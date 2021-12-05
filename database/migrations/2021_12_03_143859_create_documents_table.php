@@ -15,7 +15,10 @@ class CreateDocumentsTable extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
+            $table->enum('type', ['voice', 'video','photo'])->nullable();
+            $table->string('path')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

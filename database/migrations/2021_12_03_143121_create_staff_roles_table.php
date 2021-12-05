@@ -15,7 +15,10 @@ class CreateStaffRolesTable extends Migration
     {
         Schema::create('staff_roles', function (Blueprint $table) {
             $table->id();
+            $table->string('title')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
