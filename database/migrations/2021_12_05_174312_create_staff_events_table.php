@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNotificationTypesTable extends Migration
+class CreateStaffEventsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateNotificationTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('notification_types', function (Blueprint $table) {
+        Schema::create('staff_events', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->string('message')->nullable();
-            $table->string('description')->nullable();
+            $table->bigInteger('event_id')->unsigned()->nullable();
+            $table->bigInteger('staff_id')->unsigned()->nullable();
+            $table->bigInteger('event_status_id')->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +30,6 @@ class CreateNotificationTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notification_types');
+        Schema::dropIfExists('staff_events');
     }
 }

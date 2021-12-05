@@ -15,7 +15,12 @@ class CreateGroupEventsTable extends Migration
     {
         Schema::create('group_events', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('event_id')->unsigned()->nullable();
+            $table->bigInteger('assigner_staff_id')->unsigned()->nullable();
+            $table->bigInteger('group_id')->unsigned()->nullable();
+            $table->bigInteger('event_status_id')->unsigned()->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
