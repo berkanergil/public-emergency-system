@@ -15,8 +15,7 @@ class UserController extends Controller
         */
         public function index()
         {
-            $users=User::all();
-            return $users;
+            return User::all();
         }
     
         /**
@@ -36,8 +35,7 @@ class UserController extends Controller
             */
         public function store(Request $request)
         {
-            $user=User::create($request->all());
-            return $user;
+            return User::create($request->all());
         }
     
         /**
@@ -48,8 +46,7 @@ class UserController extends Controller
             */
         public function show($id)
         {
-            $user=User::find($id);
-            return $user;
+            return User::find($id);
         }
     
         /**
@@ -71,9 +68,7 @@ class UserController extends Controller
             */
         public function update(Request $request,$id)
         {
-            $user=User::find($id);
-            $user->update($request->all());
-            return $user;
+            return User::find($id)->update($request->all());
         }
     
         /**
