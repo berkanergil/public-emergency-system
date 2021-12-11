@@ -1,9 +1,19 @@
 <?php
 
-use App\Http\Controllers\StaffEventController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\StaffController;
+use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\StaffRoleController;
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\GroupEventController;
+use App\Http\Controllers\StaffEventController;
+use App\Http\Controllers\EventStatusController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\NotificationTypeController;
 
 /*
 |--------------------------------------------------------------------------
