@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
 use Symfony\Component\Console\Input\Input;
 
 class UserController extends Controller
@@ -36,7 +38,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        return User::create($request->all());
+        $email=User::where("email",$request->email)->first();
+        if(isset($email)){
+            return false;
+        }else{
+            $password = Hash::make($request->password);
+            $user=User::create($request->all())->update(["password" => $password]);
+            return $user;
+        }
+
     }
 
     /**
@@ -81,5 +91,17 @@ class UserController extends Controller
     public function destroy($id)
     {
         return User::destroy($id);
+    }
+
+
+    public function login(Request $request){
+        $user= User::where('email',$request->email)->first();
+        $checkLogin = $user->email == $request->email && $user->password== Hash::make($request->password);
+        if(Hash::make($checkLogin)){
+            return $user;
+        }else{
+            return false;
+        }
+        
     }
 }

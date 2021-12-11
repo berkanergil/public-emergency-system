@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Staff;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class StaffController extends Controller
 {
@@ -35,7 +36,14 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        return Staff::create($request->all());
+        $email=Staff::where("email",$request->email)->first();
+        if(isset($email)){
+            return false;
+        }else{
+            $password = Hash::make($request->password);
+            $user=Staff::create($request->all())->update(["password" => $password]);
+            return $user;
+        }
     }
 
     /**
@@ -80,5 +88,16 @@ class StaffController extends Controller
     public function destroy($id)
     {
         return Staff::destroy($id);
+    }
+
+    public function login(Request $request){
+        $user= Staff::where('email',$request->email)->first();
+        $checkLogin = $user->email == $request->email && $user->password== Hash::make($request->password);
+        if(Hash::make($checkLogin)){
+            return $user;
+        }else{
+            return false;
+        }
+        
     }
 }
