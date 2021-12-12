@@ -7,6 +7,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\EventTypeController;
 use App\Http\Controllers\StaffRoleController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\GroupEventController;
@@ -48,3 +49,4 @@ Route::prefix('staffs')->group(function () {
 Route::resource('staffs', StaffController::class); 
 Route::resource('staff-events', StaffEventController::class); 
 Route::resource('staff-roles', StaffRoleController::class);  
+Route::resource('event-types', EventTypeController::class);  

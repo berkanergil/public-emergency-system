@@ -76,7 +76,15 @@ class StaffController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return Staff::find($id)->update($request->all());
+        $staff=Staff::find($id)->update($request->all());
+        if(isset($request->password)){
+            $password=Hash::make($request->password);
+            $staff=Staff::find($id);
+            $staff->update(["password"=>$password]);
+            return $staff->update(["password"=>$password]);
+        }else{
+            return $staff;
+        }
     }
 
     /**
