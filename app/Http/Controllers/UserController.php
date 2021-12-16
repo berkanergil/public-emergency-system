@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Staff;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\Console\Input\Input;
 
-class StaffController extends Controller
+class UserController extends Controller
 {
 
     /**
@@ -16,7 +18,7 @@ class StaffController extends Controller
      */
     public function index()
     {
-        return Staff::all();
+        return User::all();
     }
 
     /**
@@ -36,14 +38,15 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        $email=Staff::where("email",$request->email)->first();
+        $email=User::where("email",$request->email)->first();
         if(isset($email)){
             return false;
         }else{
             $password = Hash::make($request->password);
-            $user=Staff::create($request->all())->update(["password" => $password]);
+            $user=User::create($request->all())->update(["password" => $password]);
             return $user;
         }
+
     }
 
     /**
@@ -54,7 +57,7 @@ class StaffController extends Controller
      */
     public function show($id)
     {
-        return Staff::find($id);
+        return User::find($id);
     }
 
     /**
@@ -76,14 +79,14 @@ class StaffController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $staff=Staff::find($id)->update($request->all());
+        $user=User::find($id)->update($request->all());
         if(isset($request->password)){
             $password=Hash::make($request->password);
-            $staff=Staff::find($id);
-            $staff->update(["password"=>$password]);
-            return $staff->update(["password"=>$password]);
+            $user=User::find($id);
+            $user->update(["password"=>$password]);
+            return $user->update(["password"=>$password]);
         }else{
-            return $staff;
+            return $user;
         }
     }
 
@@ -95,11 +98,12 @@ class StaffController extends Controller
      */
     public function destroy($id)
     {
-        return Staff::destroy($id);
+        return User::destroy($id);
     }
 
+
     public function login(Request $request){
-        $user= Staff::where('email',$request->email)->first();
+        $user= User::where('email',$request->email)->first();
         $checkLogin = $user->email == $request->email && $user->password== Hash::make($request->password);
         if(Hash::make($checkLogin)){
             return $user;

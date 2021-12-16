@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\StaffRole;
+use App\Models\EventType;
 use Illuminate\Http\Request;
 
-class StaffRoleController extends Controller
+class EventTypeController extends Controller
 {
-
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
     public function index()
     {
-        return StaffRole::all();
+        return EventType::all();
     }
 
     /**
@@ -35,7 +34,7 @@ class StaffRoleController extends Controller
      */
     public function store(Request $request)
     {
-        return StaffRole::create($request->all());
+        return EventType::create($request->all());
     }
 
     /**
@@ -46,7 +45,7 @@ class StaffRoleController extends Controller
      */
     public function show($id)
     {
-        return StaffRole::find($id);
+        return EventType::find($id);
     }
 
     /**
@@ -68,7 +67,7 @@ class StaffRoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return StaffRole::find($id)->update($request->all());
+        return EventType::find($id)->update($request->all());
     }
 
     /**
@@ -79,6 +78,6 @@ class StaffRoleController extends Controller
      */
     public function destroy($id)
     {
-        return StaffRole::destroy($id);
+        return EventType::destroy($id);
     }
 }
