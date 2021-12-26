@@ -11,7 +11,7 @@
                      <!-- small box -->
                      <div class="small-box bg-info">
                          <div class="inner">
-                             <h3>90</h3>
+                             <h3>{{ $eventCountToday }}</h3>
 
                              <p>Events Reported Today</p>
                          </div>

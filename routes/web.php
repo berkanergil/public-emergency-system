@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\StaffController;
+use App\Models\Event;
 use App\Models\Staff;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,9 @@ use Illuminate\Http\Request;
 Route::get('/login', [App\Http\Controllers\StaffController::class, 'enter'])->name('enter');
 Route::get('/statistics', function (Request $request) {
     $staff=Staff::find($request->id);
-    return view('authority.statistics',compact("staff"));
+    $event=new Event;
+    $eventCountToday=$event->countToday();
+    return view('authority.statistics',compact("staff","eventCountToday"));
 })->name('statistics');
 
 Route::get('/dashboard', function (Request $request) {
