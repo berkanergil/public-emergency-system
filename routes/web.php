@@ -28,23 +28,27 @@ use Illuminate\Http\Request;
 
 Route::get('/login', [App\Http\Controllers\StaffController::class, 'enter'])->name('enter');
 Route::get('/statistics', function (Request $request) {
-    $staff=Staff::find($request->id);
-    $event=new Event;
-    $eventCountToday=$event->countToday();
-    $eventHandledCountToday=$event->handledCountToday();
-    $eventBeingHandledCountToday=$event->beingHandledCountToday();
-    $eventNotHandledCountToday=$event->notHandledCountToday();
-    $eventCount=$event->count();
-    $eventHandledCount=$event->handledCount();
-    $eventNotHandledCount=$event->notHandledCount();
-    
-    return view('authority.statistics',compact("staff","eventCountToday","eventHandledCountToday","eventBeingHandledCountToday","eventNotHandledCountToday","eventCount","eventHandledCount","eventNotHandledCount"));
+    $staff = Staff::find($request->id);
+    $eventObject = new Event;
+    $staffObject = new Staff;
+    $eventCountToday = $eventObject->countToday();
+    $eventHandledCountToday = $eventObject->handledCountToday();
+    $eventBeingHandledCountToday = $eventObject->beingHandledCountToday();
+    $eventNotHandledCountToday = $eventObject->notHandledCountToday();
+    $eventCount = $eventObject->count();
+    $eventHandledCount = $eventObject->handledCount();
+    $eventNotHandledCount = $eventObject->notHandledCount();
+    $policeCount = $staffObject->policeCount();
+    $healthCount = $staffObject->healhtCount();
+    $fireCount = $staffObject->fireCount();
+
+    return view('authority.statistics', compact("staff", "eventCountToday", "eventHandledCountToday", "eventBeingHandledCountToday", "eventNotHandledCountToday", "eventCount", "eventHandledCount", "eventNotHandledCount","policeCount","healthCount","fireCount"));
 })->name('statistics');
 
 Route::get('/dashboard', function (Request $request) {
-    $staff=Staff::find($request->id);
+    $staff = Staff::find($request->id);
 
-    return view('authority.dashboard',compact("staff"));
+    return view('authority.dashboard', compact("staff"));
 })->name('dashboard');
 
 Route::post("/login", function (Request $request) {
@@ -62,9 +66,9 @@ Route::get('/eventpage', [App\Http\Controllers\HomeController::class, 'eventpage
 Route::get('/edit_report', [App\Http\Controllers\HomeController::class, 'edit_report'])->name('edit_report');
 Route::get('/past_archives', [App\Http\Controllers\HomeController::class, 'past_archives'])->name('past_archives');
 Route::get('/current_archives', [App\Http\Controllers\HomeController::class, 'current_archives'])->name('current_archives');
-Route::get('/newReport', function(Request $request){
-    $staff=Staff::find($request->id);
-    return view("authority.newReport",compact("staff"));
+Route::get('/newReport', function (Request $request) {
+    $staff = Staff::find($request->id);
+    return view("authority.newReport", compact("staff"));
 })->name('newReport');
 
 Route::get('/all_agents', [App\Http\Controllers\HomeController::class, 'all_agents'])->name('all_agents');

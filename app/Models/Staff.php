@@ -12,4 +12,17 @@ class Staff extends Model
     use SoftDeletes;
 
     protected $guarded=[];
+
+    public static function policeCount(){
+        return Staff::where("department_id","1")->get()->count();
+    }
+
+    public static function healhtCount(){
+        return Staff::where("department_id","2")->get()->count();
+    }
+
+    public static function fireCount(){
+        return Staff::where("department_id","3")->get()->count();
+    }
+    
 }
