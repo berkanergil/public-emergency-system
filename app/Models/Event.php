@@ -30,4 +30,16 @@ class Event extends Model
         return Event::where("event_status_id","3")->whereDate("created_at","=",Carbon::today())->get()->count();
     }
 
+    public static function count(){
+        return Event::all()->count();
+    }
+
+    public static function handledCount(){
+        return Event::where("event_status_id","1")->get()->count();
+    }
+
+    public static function notHandledCount(){
+        return Event::where("event_status_id","3")->get()->count();
+    }
+
 }
