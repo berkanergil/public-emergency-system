@@ -42,7 +42,7 @@
                      <!-- small box -->
                      <div class="small-box bg-warning">
                          <div class="inner">
-                             <h3>7</h3>
+                             <h3>{{ $eventBeingHandledCountToday }}</h3>
 
                              <p>Events Being Handled Now</p>
                          </div>
@@ -57,7 +57,7 @@
                      <!-- small box -->
                      <div class="small-box bg-danger">
                          <div class="inner">
-                             <h3>3</h3>
+                             <h3>{{ $eventNotHandledCountToday }}</h3>
 
                              <p>Events Not Handled Today</p>
                          </div>

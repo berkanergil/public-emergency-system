@@ -22,4 +22,12 @@ class Event extends Model
         return Event::where("event_status_id","1")->whereDate("created_at","=",Carbon::today())->get()->count();
     }
 
+    public static function beingHandledCountToday(){
+        return Event::where("event_status_id","2")->whereDate("created_at","=",Carbon::today())->get()->count();
+    }
+
+    public static function notHandledCountToday(){
+        return Event::where("event_status_id","3")->whereDate("created_at","=",Carbon::today())->get()->count();
+    }
+
 }

@@ -32,7 +32,9 @@ Route::get('/statistics', function (Request $request) {
     $event=new Event;
     $eventCountToday=$event->countToday();
     $eventHandledCountToday=$event->handledCountToday();
-    return view('authority.statistics',compact("staff","eventCountToday","eventHandledCountToday"));
+    $eventBeingHandledCountToday=$event->beingHandledCountToday();
+    $eventNotHandledCountToday=$event->notHandledCountToday();
+    return view('authority.statistics',compact("staff","eventCountToday","eventHandledCountToday","eventBeingHandledCountToday","eventNotHandledCountToday"));
 })->name('statistics');
 
 Route::get('/dashboard', function (Request $request) {
