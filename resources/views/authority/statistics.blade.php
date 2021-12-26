@@ -77,7 +77,7 @@
 
                          <div class="info-box-content">
                              <span class="info-box-text">Total Events Reported</span>
-                             <span class="info-box-number">2010</span>
+                             <span class="info-box-number">{{ $eventCount }}</span>
                          </div>
                          <!-- /.info-box-content -->
                      </div>
@@ -90,7 +90,7 @@
 
                          <div class="info-box-content">
                              <span class="info-box-text">Total Events Handled</span>
-                             <span class="info-box-number">1920</span>
+                             <span class="info-box-number">{{ $eventHandledCount }}</span>
                          </div>
                          <!-- /.info-box-content -->
                      </div>
@@ -105,7 +105,7 @@
 
                          <div class="info-box-content">
                              <span class="info-box-text">Total Events Not Handled</span>
-                             <span class="info-box-number">3</span>
+                             <span class="info-box-number">{{ $eventNotHandledCount }}</span>
                          </div>
                          <!-- /.info-box-content -->
                      </div>
