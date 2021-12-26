@@ -17,7 +17,7 @@ class Staff extends Model
         return Staff::where("department_id","1")->get()->count();
     }
 
-    public static function healhtCount(){
+    public static function healthCount(){
         return Staff::where("department_id","2")->get()->count();
     }
 

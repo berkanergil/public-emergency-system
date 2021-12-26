@@ -20,29 +20,13 @@ use Illuminate\Http\Request;
 |
 */
 
-// Route::get('/', function () {
-//     return view('login');
-// });
-
-
 
 Route::get('/login', [App\Http\Controllers\StaffController::class, 'enter'])->name('enter');
 Route::get('/statistics', function (Request $request) {
     $staff = Staff::find($request->id);
     $eventObject = new Event;
     $staffObject = new Staff;
-    $eventCountToday = $eventObject->countToday();
-    $eventHandledCountToday = $eventObject->handledCountToday();
-    $eventBeingHandledCountToday = $eventObject->beingHandledCountToday();
-    $eventNotHandledCountToday = $eventObject->notHandledCountToday();
-    $eventCount = $eventObject->count();
-    $eventHandledCount = $eventObject->handledCount();
-    $eventNotHandledCount = $eventObject->notHandledCount();
-    $policeCount = $staffObject->policeCount();
-    $healthCount = $staffObject->healhtCount();
-    $fireCount = $staffObject->fireCount();
-
-    return view('authority.statistics', compact("staff", "eventCountToday", "eventHandledCountToday", "eventBeingHandledCountToday", "eventNotHandledCountToday", "eventCount", "eventHandledCount", "eventNotHandledCount","policeCount","healthCount","fireCount"));
+    return view('authority.statistics', compact("staff", "eventObject","staffObject"));
 })->name('statistics');
 
 Route::get('/dashboard', function (Request $request) {

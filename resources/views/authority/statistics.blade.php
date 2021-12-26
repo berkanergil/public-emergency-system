@@ -11,7 +11,7 @@
                      <!-- small box -->
                      <div class="small-box bg-info">
                          <div class="inner">
-                             <h3>{{ $eventCountToday }}</h3>
+                             <h3>{{ $eventObject->countToday() }}</h3>
 
                              <p>Events Reported Today</p>
                          </div>
@@ -26,7 +26,7 @@
                      <!-- small box -->
                      <div class="small-box bg-success">
                          <div class="inner">
-                             <h3>{{ $eventHandledCountToday }}</h3>
+                             <h3>{{ $eventObject->handledCountToday() }}</h3>
 
                              <p>Events Handled Today</p>
                          </div>
@@ -42,7 +42,7 @@
                      <!-- small box -->
                      <div class="small-box bg-warning">
                          <div class="inner text-white">
-                             <h3>{{ $eventBeingHandledCountToday }}</h3>
+                             <h3>{{ $eventObject->beingHandledCountToday() }}</h3>
 
                              <p>Events Being Handled Now</p>
                          </div>
@@ -58,7 +58,7 @@
                      <!-- small box -->
                      <div class="small-box bg-danger">
                          <div class="inner">
-                             <h3>{{ $eventNotHandledCountToday }}</h3>
+                             <h3>{{ $eventObject->notHandledCountToday() }}</h3>
 
                              <p>Events Not Handled Today</p>
                          </div>
@@ -78,7 +78,7 @@
 
                          <div class="info-box-content">
                              <span class="info-box-text">Total Events Reported</span>
-                             <span class="info-box-number">{{ $eventCount }}</span>
+                             <span class="info-box-number">{{ $eventObject->count() }}</span>
                          </div>
                          <!-- /.info-box-content -->
                      </div>
@@ -91,7 +91,7 @@
 
                          <div class="info-box-content">
                              <span class="info-box-text">Total Events Handled</span>
-                             <span class="info-box-number">{{ $eventHandledCount }}</span>
+                             <span class="info-box-number">{{ $eventObject->handledCount() }}</span>
                          </div>
                          <!-- /.info-box-content -->
                      </div>
@@ -106,7 +106,7 @@
 
                          <div class="info-box-content">
                              <span class="info-box-text">Total Events Not Handled</span>
-                             <span class="info-box-number">{{ $eventNotHandledCount }}</span>
+                             <span class="info-box-number">{{ $eventObject->notHandledCount() }}</span>
                          </div>
                          <!-- /.info-box-content -->
                      </div>
@@ -120,7 +120,7 @@
                      <!-- small box -->
                      <div class="small-box bg-info">
                          <div class="inner">
-                             <h3>{{ $policeCount }}</h3>
+                             <h3>{{ $staffObject->policeCount() }}</h3>
 
                              <p>Number of Cases Police Department Deployed</p>
                          </div>
@@ -134,7 +134,7 @@
                      <!-- small box -->
                      <div class="small-box bg-success">
                          <div class="inner">
-                             <h3>{{ $healthCount }}</h3>
+                             <h3>{{ $staffObject->healthCount() }}</h3>
 
                              <p>Number of Cases Health Department Deployed</p>
                          </div>
@@ -149,7 +149,7 @@
                      <!-- small box -->
                      <div class="small-box bg-warning">
                          <div class="inner text-white">
-                             <h3>{{ $fireCount }}</h3>
+                             <h3>{{ $staffObject->fireCount() }}</h3>
 
                              <p>Number of Cases Fire Department Deployed</p>
                          </div>
