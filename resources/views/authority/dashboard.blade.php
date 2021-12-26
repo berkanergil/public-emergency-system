@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 @include('layouts.authority.authority_master')
 
 <body class="hold-transition sidebar-mini">
@@ -168,7 +167,7 @@
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex text-center justify-content-center align-items-center">
                     <div class="info">
                         {{-- <a href="#" class="d-block">{{ Auth::user()->name }}</a> --}}
-                        <a href="" class="d-block">Tolgahan Dayanıklı</a>
+                        <a href="" class="d-block">{{ $staff->name.' '.$staff->surname }}</a>
                     </div>
                 </div>
 
@@ -204,7 +203,7 @@
                         </li>
                         <li class="nav-header"> <strong> EVENT OPERATIONS</strong></li>
                         <li class="nav-item">
-                            <a href="{{ route('newReport') }}" class="nav-link">
+                            <a href="{{ route('newReport',["id"=>$staff->id]) }}" class="nav-link">
                                 <i class="ml-1 fas fa-exclamation-triangle"></i>
                                 <p class="ml-1">
                                     New Reports
