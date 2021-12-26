@@ -1,5 +1,7 @@
 @extends('authority.dashboard')
-
+@section('breadcrumb')
+    <a>Current Archive</a>
+@endsection
 @section('statistic_content')
     <div class="card">
         <div class="card-header">
@@ -85,7 +87,7 @@
                         <td>Tolgahan Dayanıklı</td>
                         <td>\N</td>
                         <td>1</td>
-                        <td class="bg-success">Handled</td>
+                        <td class="bg-warning">Being Handled</td>
                         <td><a href="">33.1221,35.3232</a></td>
                         <td>Mehmet Taçyıldız</td>
                         <td>2021-12-09 14:45</td>

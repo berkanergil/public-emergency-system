@@ -1,5 +1,7 @@
 @extends('authority.dashboard')
-
+@section('breadcrumb')
+    <a>User</a>
+@endsection
 @section('statistic_content')
     <div class="container">
         <div class="row">

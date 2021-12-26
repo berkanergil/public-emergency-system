@@ -1,5 +1,7 @@
 @extends('authority.dashboard')
-
+@section('breadcrumb')
+    <a>Past Archive</a>
+@endsection
 @section('statistic_content')
     <div class="card">
         <div class="card-header">

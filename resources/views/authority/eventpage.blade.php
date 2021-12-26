@@ -1,5 +1,7 @@
 @extends('authority.dashboard')
-
+@section('breadcrumb')
+    <a>Event</a>
+@endsection
 
 @section('statistic_content')
     <section class="content">
@@ -17,9 +19,11 @@
                     <button type="button" class="btn btn-lg btn-default button2 text-bold">Add Notes</button>
                     <button type="button" class="btn btn-lg btn-default button3 text-bold">Send SMS</button>
                     <button type="button" class="btn btn-lg btn-default button4 text-bold">Send Notification</button>
-                    <button type="button" class="btn btn-lg btn-default button5 text-bold">Merge</button>
+                    <button type="button" class="btn btn-lg btn-default button5 text-bold">Upload Evidence</button>
+                    <button type="button" class="btn btn-lg btn-default button6 text-bold">Deploy Agent</button>
+
                 </div>
-                <hr class="w-50">
+                <hr class="w-75">
                 <ul class="nav nav-tabs text-bold" id="custom-content-below-tab" role="tablist">
                     <li class="nav-item ">
                         <a class="nav-link active p-3" id="custom-content-below-home-tab" data-toggle="pill"
@@ -81,8 +85,8 @@
                                                 15:54</li>
                                             <li class="list-group-item border-0"><strong>Editor:</strong> Berkan Ergil</li>
                                         </ul>
-                                        <a href="{{ route('edit_report') }}"
-                                            class="btn  btn-lg p-2 float-right btn-info"><i class="far fa-edit"></i>
+                                        <a href="{{ route('edit_report') }}" class="btn p-2 float-right btn-dark"><i
+                                                class="far fa-edit"></i>
                                             Make Changes</a>
                                     </div>
                                 </div>
@@ -160,18 +164,14 @@
                         aria-labelledby="custom-content-below-agentsDeployed-tab">
                         <div class="row">
                             <div class="row">
-                                <div class="col-md-6">
-
-                                    <h3 class="text-bold mb-3">Agent Group: <a href="" class="text-danger">12 (Click To
+                                <div class="col-md-7">
+                                    <h3 class="text-bold mb-3">Agent Group: <a href="{{ route('one_agentGroup') }}"
+                                            class="text-danger">12 (Click To
                                             See
                                             More
                                             Details About the Group)</a></h3>
                                 </div>
-                                <div class="col-md-6">
-                                    <button class="btn btn-danger btn-md p-2 btn-lg float-right mb-5"><i
-                                            class="fas fa-user-shield mr-2"></i>Deploy Agent</button>
 
-                                </div>
 
                             </div>
                             <div class="col-md-4">
@@ -242,8 +242,8 @@
                                                     </ul>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button class="btn btn-dark btn-block"><i
-                                                            class="fas fa-user mr-2"></i>Visit Profile</button>
+                                                    <a href="{{ route('one_agent') }}" class="btn btn-dark btn-block"><i
+                                                            class="fas fa-user mr-2"></i>Visit Profile</a>
 
                                                 </div>
                                             </div>
@@ -319,9 +319,8 @@
                                                     </ul>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button class="btn btn-dark btn-block"><i
-                                                            class="fas fa-user mr-2"></i>Visit Profile</button>
-
+                                                    <a href="{{ route('one_agent') }}" class="btn btn-dark btn-block"><i
+                                                            class="fas fa-user mr-2"></i>Visit Profile</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -394,8 +393,9 @@
                                                         </li>
                                                     </ul>
                                                     <div class="modal-footer">
-                                                        <button class="btn btn-dark btn-block"><i
-                                                                class="fas fa-user mr-2"></i>Visit Profile</button>
+                                                        <a href="{{ route('one_agent') }}"
+                                                            class="btn btn-dark btn-block"><i
+                                                                class="fas fa-user mr-2"></i>Visit Profile</a>
 
                                                     </div>
                                                 </div>
@@ -416,6 +416,7 @@
                                     <div class="card-title text-bold p-3 bg-warning">Event Notes
                                     </div>
                                     <div class="card-body">
+
                                         <table class="table">
                                             <thead class="thead">
                                                 <tr>
@@ -459,9 +460,7 @@
                                     <div class="card-title text-bold p-3 bg-danger">Event Evidences
                                     </div>
                                     <div class="card-body">
-                                        <button class="btn button1 float-right p-2"><i
-                                                class="fas fa-plus-circle mr-1"></i> Add
-                                            New Document</button>
+
                                         <table class="table">
                                             <thead class="thead">
                                                 <tr>

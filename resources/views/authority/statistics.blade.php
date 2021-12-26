@@ -1,5 +1,7 @@
  @extends('authority.dashboard')
-
+ @section('breadcrumb')
+     <a>Statistics</a>
+ @endsection
  @section('statistic_content')
      <section class="content">
          <div class="container-fluid">
@@ -160,8 +162,8 @@
                  <!-- /.col -->
              </div>
              <h3 class="mb-2 text-bold">Event Type Statistics</h3>
-             <div class="row shadow p-3 mb-5 bg-white rounded">
-                 <div class="col-md-3">
+             <div class="row shadow p-3 mb-5 bg-white rounded  d-flex justify-content-center align-items-center">
+                 <div class="col-md-4">
                      <!-- Widget: user widget style 2 -->
                      <div class="card card-widget">
                          <div class="widget-user-header bg-info d-flex justify-content-center align-items-center">
@@ -193,7 +195,7 @@
                          </div>
                      </div>
                  </div>
-                 <div class="col-md-3">
+                 <div class="col-md-4">
                      <!-- Widget: user widget style 2 -->
                      <div class="card card-widget">
                          <div class="widget-user-header bg-danger d-flex justify-content-center align-items-center">
@@ -225,7 +227,7 @@
                          </div>
                      </div>
                  </div>
-                 <div class="col-md-3">
+                 <div class="col-md-4">
                      <!-- Widget: user widget style 2 -->
                      <div class="card card-widget">
                          <div class="widget-user-header bg-dark d-flex justify-content-center align-items-center">
@@ -257,11 +259,43 @@
                          </div>
                      </div>
                  </div>
-                 <div class="col-md-3">
+                 <div class="col-md-4">
                      <!-- Widget: user widget style 2 -->
                      <div class="card card-widget">
                          <div class="widget-user-header bg-warning d-flex justify-content-center align-items-center">
                              <h3 class="widget-user-username p-3">Traffic</h3>
+                         </div>
+                         <div class="card-footer p-0">
+                             <ul class="nav flex-column">
+                                 <li class="nav-item">
+                                     <a href="#" class="nav-link">
+                                         Total Reports <span class="float-right badge bg-primary">31</span>
+                                     </a>
+                                 </li>
+                                 <li class="nav-item">
+                                     <a href="#" class="nav-link">
+                                         Fire Department Deployed <span class="float-right badge bg-info">5</span>
+                                     </a>
+                                 </li>
+                                 <li class="nav-item">
+                                     <a href="#" class="nav-link">
+                                         Police Department Deployed <span class="float-right badge bg-success">12</span>
+                                     </a>
+                                 </li>
+                                 <li class="nav-item">
+                                     <a href="#" class="nav-link">
+                                         Health Department Deployed <span class="float-right badge bg-danger">842</span>
+                                     </a>
+                                 </li>
+                             </ul>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-md-4">
+                     <!-- Widget: user widget style 2 -->
+                     <div class="card card-widget">
+                         <div class="widget-user-header bg-success d-flex justify-content-center align-items-center">
+                             <h3 class="widget-user-username p-3">Health</h3>
                          </div>
                          <div class="card-footer p-0">
                              <ul class="nav flex-column">

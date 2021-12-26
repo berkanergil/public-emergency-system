@@ -21,14 +21,12 @@ use App\Http\Controllers\Auth\LoginController;
 // });
 
 Auth::routes();
-
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
-
 Auth::routes();
-
+Auth::routes();
+/*AUTHORITY ROUTES */
 Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
 
-Auth::routes();
 Route::get('/eventpage', [App\Http\Controllers\HomeController::class, 'eventpage'])->name('eventpage');
 Route::get('/edit_report', [App\Http\Controllers\HomeController::class, 'edit_report'])->name('edit_report');
 Route::get('/past_archives', [App\Http\Controllers\HomeController::class, 'past_archives'])->name('past_archives');
@@ -38,7 +36,20 @@ Route::get('/all_agents', [App\Http\Controllers\HomeController::class, 'all_agen
 Route::get('/one_agent', [App\Http\Controllers\HomeController::class, 'one_agent'])->name('one_agent');
 Route::get('/all_users', [App\Http\Controllers\HomeController::class, 'all_users'])->name('all_users');
 Route::get('/one_user', [App\Http\Controllers\HomeController::class, 'one_user'])->name('one_user');
+Route::get('/form_agent_groups', [App\Http\Controllers\HomeController::class, 'form_agent_groups'])->name('form_agent_groups');
 Route::get('/agent_groups', [App\Http\Controllers\HomeController::class, 'agent_groups'])->name('agent_groups');
+Route::get('/one_agentGroup', [App\Http\Controllers\HomeController::class, 'one_agentGroup'])->name('one_agentGroup');
+Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
+Route::get('/edit_profile', [App\Http\Controllers\HomeController::class, 'edit_profile'])->name('edit_profile');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/statistics', [App\Http\Controllers\HomeController::class, 'statistics'])->name('statistics');
+
+
+
+/*ADMIN ROUTES */
+Route::get('/adminDashboard', [App\Http\Controllers\HomeController::class, 'adminDashboard'])->name('adminDashboard');
+Route::get('/create_authorities', [App\Http\Controllers\HomeController::class, 'create_authorities'])->name('create_authorities');
+Route::get('/create_agents', [App\Http\Controllers\HomeController::class, 'create_agents'])->name('create_agents');
+Route::get('/all_authorities', [App\Http\Controllers\HomeController::class, 'all_authorities'])->name('all_authorities');
+Route::get('/one_authority', [App\Http\Controllers\HomeController::class, 'one_authority'])->name('one_authority');

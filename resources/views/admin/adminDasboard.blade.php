@@ -2,6 +2,9 @@
 <html lang="en">
 
 @include('layouts.authority.authority_master')
+@section('title')
+    Admin
+@endsection
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -136,7 +139,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="{{ route('dashboard') }}" class="brand-link">
+            <a href="{{ route('adminDashboard') }}" class="brand-link">
                 <img src="{{ asset('images/emergencyp-white.png') }}" alt="EmergenCYP Logo"
                     class="brand-image img-circle">
                 <span class=" brand-text font-weight-light">
@@ -151,7 +154,7 @@
                     <div class="info">
                         {{-- <a href="#" class="d-block">{{ Auth::user()->name }}</a> --}}
                         <a href="{{ route('profile') }}" class="d-block"><i class="fas fa-user-tie mr-1"></i>
-                            Tolgahan Dayanıklı</a>
+                            Berkan Ergil</a>
                     </div>
                 </div>
 
@@ -173,7 +176,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+                           with font-awesome or any other icon font library -->
                         <li class="nav-header"> <strong> STATISTICS & INSIGHTS</strong></li>
 
                         <li class="nav-item menu-open">
@@ -212,7 +215,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="past_archives" class="nav-link">
+                                    <a href="{{ route('past_archives') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Past Reports</p>
                                     </a>
@@ -224,6 +227,32 @@
 
 
                         <li class="nav-header"><strong>USER OPERATIONS</strong></li>
+                        <li class="nav-item">
+                            <a href="{{ route('all_authorities') }}" class="nav-link">
+                                <i class="ml-1 fas fa-user-tie"></i>
+                                <p class="ml-2">
+                                    Authorities
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>All Authorites</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{ route('create_authorities') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Create Authorities </p>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="ml-1 fas fa-user-tie"></i>
@@ -241,7 +270,7 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="{{ route('agent_groups') }}" class="nav-link">
+                                    <a href="" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Agent Groups</p>
                                     </a>
@@ -252,7 +281,12 @@
                                         <p>Form Agent Groups</p>
                                     </a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a href="{{ route('create_agents') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Create Agents</p>
+                                    </a>
+                                </li>
 
                             </ul>
                         </li>
@@ -271,6 +305,34 @@
                                         <p>All Users</p>
                                     </a>
                                 </li>
+
+
+                            </ul>
+                        </li>
+                        <li class="nav-header"><strong>DATABASE OPERATIONS</strong></li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-database"></i>
+                                <p class="ml-2">
+                                    Databases
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Modify Database</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Archive Database </p>
+                                    </a>
+                                </li>
+
 
                             </ul>
                         </li>
@@ -296,7 +358,7 @@
                                 <li class="breadcrumb-item">
                                     @yield('breadcrumb')
                                 </li>
-                                <li class="breadcrumb-item active">Authority Panel</li>
+                                <li class="breadcrumb-item active">Admin Panel</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
