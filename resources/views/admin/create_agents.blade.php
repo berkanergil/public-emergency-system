@@ -5,7 +5,7 @@
 @endsection
 
 @section('statistic_content')
-    <div class="container-fluid">
+    <div class="container-fluid card-info card-outline">
         <div class="row gutters">
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                 <div class="card h-100">

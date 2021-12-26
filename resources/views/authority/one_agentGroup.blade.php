@@ -4,7 +4,7 @@
 @endsection
 @section('statistic_content')
     <div class="container-fluid">
-        <div class="row">
+        <div class="row card-info card-outline pt-3">
             <div class="row">
                 <div class="col-md-6">
 
