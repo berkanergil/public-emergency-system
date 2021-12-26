@@ -120,7 +120,7 @@
                      <!-- small box -->
                      <div class="small-box bg-info">
                          <div class="inner">
-                             <h3>90</h3>
+                             <h3>{{ $policeCount }}</h3>
 
                              <p>Number of Cases Police Department Deployed</p>
                          </div>
@@ -134,7 +134,7 @@
                      <!-- small box -->
                      <div class="small-box bg-success">
                          <div class="inner">
-                             <h3>80</h3>
+                             <h3>{{ $healthCount }}</h3>
 
                              <p>Number of Cases Health Department Deployed</p>
                          </div>
@@ -149,7 +149,7 @@
                      <!-- small box -->
                      <div class="small-box bg-warning">
                          <div class="inner text-white">
-                             <h3>7</h3>
+                             <h3>{{ $fireCount }}</h3>
 
                              <p>Number of Cases Fire Department Deployed</p>
                          </div>
