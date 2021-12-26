@@ -98,11 +98,15 @@ class StaffController extends Controller
         return Staff::destroy($id);
     }
 
+    public function enter(Request $request){
+        return view("auth.login");
+    }
+
     public function login(Request $request){
         $user= Staff::where('email',$request->email)->first();
         $checkLogin = $user->email == $request->email && $user->password== Hash::make($request->password);
         if(Hash::make($checkLogin)){
-            return $user;
+            return response($user);
         }else{
             return false;
         }
