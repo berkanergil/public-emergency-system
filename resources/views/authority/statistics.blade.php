@@ -41,7 +41,7 @@
                  <div class="col-lg-3 col-6">
                      <!-- small box -->
                      <div class="small-box bg-warning">
-                         <div class="inner">
+                         <div class="inner text-white">
                              <h3>{{ $eventBeingHandledCountToday }}</h3>
 
                              <p>Events Being Handled Now</p>
@@ -49,7 +49,8 @@
                          <div class="icon">
                              <i class="fas fa-spinner"></i>
                          </div>
-                         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                         <a href="#" class="small-box-footer " style="color:white !important;">More info <i
+                                 class="fas fa-arrow-circle-right"></i></a>
                      </div>
                  </div>
                  <!-- /.col -->
@@ -147,7 +148,7 @@
                  <div class="col-lg-4 col-6">
                      <!-- small box -->
                      <div class="small-box bg-warning">
-                         <div class="inner">
+                         <div class="inner text-white">
                              <h3>7</h3>
 
                              <p>Number of Cases Fire Department Deployed</p>
@@ -263,7 +264,7 @@
                      <!-- Widget: user widget style 2 -->
                      <div class="card card-widget">
                          <div class="widget-user-header bg-warning d-flex justify-content-center align-items-center">
-                             <h3 class="widget-user-username p-3">Traffic</h3>
+                             <h3 class="widget-user-username p-3 text-white">Traffic</h3>
                          </div>
                          <div class="card-footer p-0">
                              <ul class="nav flex-column">
