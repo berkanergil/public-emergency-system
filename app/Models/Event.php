@@ -31,7 +31,7 @@ class Event extends Model
     }
 
     public static function count(){
-        return Event::count();
+        return Event::all()->count();
     }
 
     public static function handledCount(){
