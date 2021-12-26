@@ -17,4 +17,9 @@ class Event extends Model
     public static function countToday(){
         return Event::whereDate("created_at","=",Carbon::today())->get()->count();
     }
+
+    public static function handledCountToday(){
+        return Event::where("event_status_id","1")->whereDate("created_at","=",Carbon::today())->get()->count();
+    }
+
 }

@@ -31,7 +31,8 @@ Route::get('/statistics', function (Request $request) {
     $staff=Staff::find($request->id);
     $event=new Event;
     $eventCountToday=$event->countToday();
-    return view('authority.statistics',compact("staff","eventCountToday"));
+    $eventHandledCountToday=$event->handledCountToday();
+    return view('authority.statistics',compact("staff","eventCountToday","eventHandledCountToday"));
 })->name('statistics');
 
 Route::get('/dashboard', function (Request $request) {
