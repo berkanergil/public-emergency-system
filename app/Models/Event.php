@@ -42,4 +42,24 @@ class Event extends Model
         return Event::where("event_status_id","3")->get()->count();
     }
 
+    public static function fireCount(){
+        return Event::where("event_type_id","1")->get()->count();
+    }
+
+    public static function crimeCount(){
+        return Event::where("event_type_id","2")->get()->count();
+    }
+
+    public static function naturalEventCount(){
+        return Event::where("event_type_id","3")->get()->count();
+    }
+
+    public static function trafficCount(){
+        return Event::where("event_type_id","4")->get()->count();
+    }
+
+    public static function healthCount(){
+        return Event::where("event_type_id","5")->get()->count();
+    }
+
 }

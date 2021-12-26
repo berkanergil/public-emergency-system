@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\StaffController;
 use App\Models\Event;
+use App\Models\GroupEvent;
 use App\Models\Staff;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,8 @@ Route::get('/statistics', function (Request $request) {
     $staff = Staff::find($request->id);
     $eventObject = new Event;
     $staffObject = new Staff;
-    return view('authority.statistics', compact("staff", "eventObject","staffObject"));
+    $groupEventObject = new GroupEvent;
+    return view('authority.statistics', compact("staff", "eventObject","staffObject","groupEventObject"));
 })->name('statistics');
 
 Route::get('/dashboard', function (Request $request) {
