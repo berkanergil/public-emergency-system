@@ -68,16 +68,3 @@ Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])-
 Route::get('/edit_profile', [App\Http\Controllers\HomeController::class, 'edit_profile'])->name('edit_profile');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-<<<<<<< HEAD
-Route::get('/statistics', [App\Http\Controllers\HomeController::class, 'statistics'])->name('statistics');
-
-
-
-/*ADMIN ROUTES */
-Route::get('/adminDashboard', [App\Http\Controllers\HomeController::class, 'adminDashboard'])->name('adminDashboard');
-Route::get('/create_authorities', [App\Http\Controllers\HomeController::class, 'create_authorities'])->name('create_authorities');
-Route::get('/create_agents', [App\Http\Controllers\HomeController::class, 'create_agents'])->name('create_agents');
-Route::get('/all_authorities', [App\Http\Controllers\HomeController::class, 'all_authorities'])->name('all_authorities');
-Route::get('/one_authority', [App\Http\Controllers\HomeController::class, 'one_authority'])->name('one_authority');
-=======
->>>>>>> b216c7588a74b71096e94a2c191c70452d0024fe
