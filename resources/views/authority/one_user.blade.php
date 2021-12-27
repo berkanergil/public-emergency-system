@@ -7,8 +7,8 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card user-card">
-                    <div class="card-header bg-c-blue">
-                        <h5 class="font-weight-bold">Personal Information</h5>
+                    <div class="card-header bg-primary">
+                        <h5 class="font-weight-bold text-center">Personal Information</h5>
                     </div>
                     <div class="card-block ">
                         <p class="text-bold mt-3"> <span class="text-muted"> Full Name:</span> Berkan Ergil</p>
