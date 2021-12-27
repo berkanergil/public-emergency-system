@@ -69,3 +69,4 @@ Route::get('/edit_profile', [App\Http\Controllers\HomeController::class, 'edit_p
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/adminDashboard', [App\Http\Controllers\HomeController::class, 'adminDashboard'])->name('adminDashboard');
+Route::get('/all_authorities', [App\Http\Controllers\HomeController::class, 'all_authorities'])->name('all_authorities');
