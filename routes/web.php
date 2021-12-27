@@ -76,8 +76,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/adminDashboard', [App\Http\Controllers\HomeController::class, 'adminDashboard'])->name('adminDashboard');
 Route::get('/create_authorities', [App\Http\Controllers\HomeController::class, 'create_authorities'])->name('create_authorities');
 Route::get('/create_agents', [App\Http\Controllers\HomeController::class, 'create_agents'])->name('create_agents');
-Route::get('/one_authority/{id}', function ($id) {
-        $staff=Staff::find($id);
+Route::get(
+    '/one_authority/{id}',
+    function ($id) {
+        $staff = Staff::find($id);
         return view("admin.one_authority", compact("staff"));
     }
 )->name('one_authority');
+
+Route::get('/editAuthority', [App\Http\Controllers\HomeController::class, 'editAuthority'])->name('editAuthority');

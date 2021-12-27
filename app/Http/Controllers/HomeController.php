@@ -97,4 +97,8 @@ class HomeController extends Controller
     {
         return view('admin.one_authority');
     }
+    public function editAuthority()
+    {
+        return view('admin.editAuthority');
+    }
 }
