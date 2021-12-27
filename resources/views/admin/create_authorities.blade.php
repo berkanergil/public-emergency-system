@@ -16,25 +16,31 @@
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="fullName"><i class="far fa-id-card"></i> Full Name</label>
-                                    <input type="text" class="form-control" id="fullName" placeholder="Enter full name">
+                                    <label for="name"><i class="far fa-id-card"></i> Name </label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter full name">
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="eMail"><i class="far fa-envelope"></i> Email</label>
-                                    <input type="email" class="form-control" id="eMail" placeholder="Enter email ID">
+                                    <label for="surname"><i class="far fa-id-card"></i> Surname </label>
+                                    <input type="text" class="form-control" id="surname" name="surname" placeholder="Enter full name">
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="phone"><i class="fas fa-mobile-alt"></i> Phone</label>
-                                    <input type="text" class="form-control" id="phone" placeholder="Enter phone number">
+                                    <label for="email"><i class="far fa-envelope"></i> Email </label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email ID">
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="website"><i class="fas fa-user-tag"></i> Staff Role</label>
+                                    <label for="msisdn"><i class="fas fa-mobile-alt"></i> Phone </label>
+                                    <input type="text" class="form-control" id="msisdn" name="msisdn" placeholder="Enter phone number">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="website"><i class="fas fa-user-tag"></i> Staff Role </label>
                                     <input type="url" class="form-control" disabled id="website"
                                         placeholder="Web Authority">
                                 </div>
@@ -46,14 +52,14 @@
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="Street"><i class="fas fa-key"></i> Password</label>
-                                    <input type="name" class="form-control" id="Street" placeholder="">
+                                    <label for="password"><i class="fas fa-key"></i> Password</label>
+                                    <input type="name" class="form-control" id="password" name="password" placeholder="">
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="ciTy"><i class="fas fa-key"></i> Confirm Password</label>
-                                    <input type="name" class="form-control" id="ciTy" placeholder="">
+                                    <label for="passwordRepeat"><i class="fas fa-key"></i> Confirm Password</label>
+                                    <input type="name" class="form-control" id="passwordRepeat"  placeholder="">
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
