@@ -24,16 +24,15 @@
                     </tr>
                 </thead>
                 <tbody class="table-light">
-
+                    @foreach ($staffObject->authorities() as $authority)
                     <tr>
-                        <td><a target="_blank" href="{{ route('one_authority') }}">1</a></td>
-                        <td>Berkan Ergil</td>
-                        <td>BERKAN.ERGIL@authority.com</td>
-                        <td>0543231212</td>
-                        <td>2021-15-15 14:33:22</td>
+                        <td><a target="_blank" href="{{ route('one_authority',$authority->id) }}">{{ $authority->id }}</a></td> 
+                        <td>{{ $authority->name." ".$authority->surname  }}</td>
+                        <td>{{ $authority->email }}</td>
+                        <td>{{ $authority->msisdn }}</td>
+                        <td>{{ $authority->created_at }}</td>
                     </tr>
-
-                    </tfoot>
+                    @endforeach
             </table>
         </div>
         <!-- /.card-body -->

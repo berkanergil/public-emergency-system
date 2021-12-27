@@ -25,4 +25,16 @@ class Staff extends Model
         return Staff::where("department_id","3")->get()->count();
     }
     
+    public static function authorities(){
+        return Staff::where("staff_role_id","1")->get();
+    }
+
+    public static function agents(){
+        return Staff::where("staff_role_id","2")->get();
+    }
+
+    public static function admins(){
+        return Staff::where("staff_role_id","3")->get();
+    }
+    
 }

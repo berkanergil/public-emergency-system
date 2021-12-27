@@ -228,7 +228,7 @@
 
                         <li class="nav-header"><strong>USER OPERATIONS</strong></li>
                         <li class="nav-item">
-                            <a href="{{ route('all_authorities') }}" class="nav-link">
+                            <a class="nav-link">
                                 <i class="ml-1 fas fa-user-tie"></i>
                                 <p class="ml-2">
                                     Authorities
@@ -237,7 +237,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="{{ route('all_authorities') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>All Authorites</p>
                                     </a>

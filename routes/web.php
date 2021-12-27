@@ -48,6 +48,11 @@ Route::post("/login", function (Request $request) {
     }
 })->name("login");
 
+Route::get('/all_authorities', function () {
+    $staffObject = new Staff;
+    return view("admin.all_authorities", compact("staffObject"));
+})->name('all_authorities');
+
 Route::get('/eventpage', [App\Http\Controllers\HomeController::class, 'eventpage'])->name('eventpage');
 Route::get('/edit_report', [App\Http\Controllers\HomeController::class, 'edit_report'])->name('edit_report');
 Route::get('/past_archives', [App\Http\Controllers\HomeController::class, 'past_archives'])->name('past_archives');
@@ -69,6 +74,10 @@ Route::get('/edit_profile', [App\Http\Controllers\HomeController::class, 'edit_p
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/adminDashboard', [App\Http\Controllers\HomeController::class, 'adminDashboard'])->name('adminDashboard');
-Route::get('/all_authorities', [App\Http\Controllers\HomeController::class, 'all_authorities'])->name('all_authorities');
 Route::get('/create_authorities', [App\Http\Controllers\HomeController::class, 'create_authorities'])->name('create_authorities');
 Route::get('/create_agents', [App\Http\Controllers\HomeController::class, 'create_agents'])->name('create_agents');
+Route::get('/one_authority/{id}', function ($id) {
+        $staff=Staff::find($id);
+        return view("admin.one_authority", compact("staff"));
+    }
+)->name('one_authority');

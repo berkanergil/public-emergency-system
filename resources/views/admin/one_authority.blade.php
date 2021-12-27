@@ -11,10 +11,10 @@
                         <h5 class="font-weight-bold">Personal Information</h5>
                     </div>
                     <div class="card-block ">
-                        <p class="text-bold mt-3"> <span class="text-muted"> Full Name:</span> Berkan Ergil</p>
-                        <p class="text-bold"> <span class="text-muted"> User ID:</span> 1 </p>
-                        <p class="text-bold"> <span class="text-muted"> Email:</span> berkan@fire.com </p>
-                        <p class="text-bold"> <span class="text-muted"> Phone Number:</span> 1212112</p>
+                        <p class="text-bold mt-3"> <span class="text-muted"> Full Name:</span> {{ $staff->name." ".$staff->surname }}</p>
+                        <p class="text-bold"> <span class="text-muted"> User ID:</span> {{ $staff->id }} </p>
+                        <p class="text-bold"> <span class="text-muted"> Email:</span> {{ $staff->email }} </p>
+                        <p class="text-bold"> <span class="text-muted"> Phone Number:</span> {{ $staff->msisdn }}</p>
                         <ul class="list-unstyled activity-leval text-center">
                             <li class="active"></li>
                             <li class="active"></li>
@@ -25,7 +25,9 @@
                             Edit
                             User</a>
 
+                            
                     </div>
+                    
                 </div>
             </div>
         </div>
