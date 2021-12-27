@@ -28,7 +28,7 @@ Route::get('/statistics', function (Request $request) {
     $eventObject = new Event;
     $staffObject = new Staff;
     $groupEventObject = new GroupEvent;
-    return view('authority.statistics', compact("staff", "eventObject","staffObject","groupEventObject"));
+    return view('authority.statistics', compact("staff", "eventObject", "staffObject", "groupEventObject"));
 })->name('statistics');
 
 Route::get('/dashboard', function (Request $request) {
@@ -68,3 +68,4 @@ Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])-
 Route::get('/edit_profile', [App\Http\Controllers\HomeController::class, 'edit_profile'])->name('edit_profile');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/adminDashboard', [App\Http\Controllers\HomeController::class, 'adminDashboard'])->name('adminDashboard');
