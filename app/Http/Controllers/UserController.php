@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::all();
+        return response(User::all());
     }
 
     /**
@@ -40,11 +40,12 @@ class UserController extends Controller
     {
         $email=User::where("email",$request->email)->first();
         if(isset($email)){
-            return false;
+            return response(false);
         }else{
             $password = Hash::make($request->password);
-            $user=User::create($request->all())->update(["password" => $password]);
-            return $user;
+            $user=User::create($request->all());
+            $user->update(["password" => $password]);
+            return response($user);
         }
 
     }

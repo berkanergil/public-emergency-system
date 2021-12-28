@@ -75,6 +75,17 @@ Route::get('/edit_profile', [App\Http\Controllers\HomeController::class, 'edit_p
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/adminDashboard', [App\Http\Controllers\HomeController::class, 'adminDashboard'])->name('adminDashboard');
 Route::get('/create_authorities', [App\Http\Controllers\HomeController::class, 'create_authorities'])->name('create_authorities');
+Route::post('/create_authorities', function(Request $request){
+    $staffControllerObject=new StaffController;
+    $response=$staffControllerObject->store($request);
+    if ($response?->status() == 200) {
+        $staff_json = json_decode($response->content());
+        return redirect()->route("one_authority", ["id" => $staff_json->id]);
+    } else {
+        return back();
+    }
+
+})->name('create_authorities');
 Route::get('/create_agents', [App\Http\Controllers\HomeController::class, 'create_agents'])->name('create_agents');
 Route::get(
     '/one_authority/{id}',

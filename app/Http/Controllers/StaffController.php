@@ -16,7 +16,7 @@ class StaffController extends Controller
      */
     public function index()
     {
-        return Staff::all();
+        return response(Staff::all());
     }
 
     /**
@@ -38,11 +38,12 @@ class StaffController extends Controller
     {
         $email=Staff::where("email",$request->email)->first();
         if(isset($email)){
-            return false;
+            return response(false);
         }else{
             $password = Hash::make($request->password);
-            $user=Staff::create($request->all())->update(["password" => $password]);
-            return $user;
+            $user=Staff::create($request->all());
+            $user->update(["password" => $password]);
+            return response($user);
         }
     }
 
@@ -54,7 +55,7 @@ class StaffController extends Controller
      */
     public function show($id)
     {
-        return Staff::find($id);
+        return response(Staff::find($id));
     }
 
     /**
@@ -81,9 +82,9 @@ class StaffController extends Controller
             $password=Hash::make($request->password);
             $staff=Staff::find($id);
             $staff->update(["password"=>$password]);
-            return $staff->update(["password"=>$password]);
+            return response($staff->update(["password"=>$password]));
         }else{
-            return $staff;
+            return response($staff);
         }
     }
 
@@ -95,7 +96,7 @@ class StaffController extends Controller
      */
     public function destroy($id)
     {
-        return Staff::destroy($id);
+        return response(Staff::destroy($id));
     }
 
     public function enter(Request $request){
@@ -108,7 +109,7 @@ class StaffController extends Controller
         if(Hash::make($checkLogin)){
             return response($user);
         }else{
-            return false;
+            return response(false);
         }
         
     }
