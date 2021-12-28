@@ -58,7 +58,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return User::find($id);
+        return response(User::find($id));
     }
 
     /**
@@ -85,9 +85,9 @@ class UserController extends Controller
             $password=Hash::make($request->password);
             $user=User::find($id);
             $user->update(["password"=>$password]);
-            return $user->update(["password"=>$password]);
+            return response($user->update(["password"=>$password]));
         }else{
-            return $user;
+            return response($user);
         }
     }
 
@@ -99,7 +99,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        return User::destroy($id);
+        return response(User::destroy($id));
     }
 
 
@@ -107,9 +107,9 @@ class UserController extends Controller
         $user= User::where('email',$request->email)->first();
         $checkLogin = $user->email == $request->email && $user->password== Hash::make($request->password);
         if(Hash::make($checkLogin)){
-            return $user;
+            return response($user);
         }else{
-            return false;
+            return response(false);
         }
         
     }

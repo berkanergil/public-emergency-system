@@ -14,7 +14,7 @@ class NotificationTypeController extends Controller
      */
     public function index()
     {
-        return NotificationType::all();
+        return response(NotificationType::all());
     }
 
     /**
@@ -34,7 +34,7 @@ class NotificationTypeController extends Controller
      */
     public function store(Request $request)
     {
-        return NotificationType::create($request->all());
+        return response(NotificationType::create($request->all()));
     }
 
     /**
@@ -45,7 +45,7 @@ class NotificationTypeController extends Controller
      */
     public function show($id)
     {
-        return NotificationType::find($id);
+        return response(NotificationType::find($id));
     }
 
     /**
@@ -67,7 +67,7 @@ class NotificationTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return NotificationType::find($id)->update($request->all());
+        return response(NotificationType::find($id)->update($request->all()));
     }
 
     /**
@@ -78,6 +78,6 @@ class NotificationTypeController extends Controller
      */
     public function destroy($id)
     {
-        return NotificationType::destroy($id);
+        return response(NotificationType::destroy($id));
     }
 }

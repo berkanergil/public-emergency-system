@@ -14,7 +14,7 @@ class GroupController extends Controller
      */
     public function index()
     {
-        return Group::all();
+        return response(Group::all());
     }
 
     /**
@@ -34,7 +34,7 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        return Group::create($request->all());
+        return response(Group::create($request->all()));
     }
 
     /**
@@ -45,7 +45,7 @@ class GroupController extends Controller
      */
     public function show($id)
     {
-        return Group::find($id);
+        return response(Group::find($id));
     }
 
     /**
@@ -67,7 +67,7 @@ class GroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return Group::find($id)->update($request->all());
+        return response(Group::find($id)->update($request->all()));
     }
 
     /**
@@ -78,6 +78,6 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-        return Group::destroy($id);
+        return response(Group::destroy($id));
     }
 }

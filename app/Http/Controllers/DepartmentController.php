@@ -14,7 +14,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        return Department::all();
+        return response(Department::all());
     }
 
     /**
@@ -34,7 +34,7 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        return Department::create($request->all());
+        return response(Department::create($request->all()));
     }
 
     /**
@@ -45,7 +45,7 @@ class DepartmentController extends Controller
      */
     public function show($id)
     {
-        return Department::find($id);
+        return response(Department::find($id));
     }
 
     /**
@@ -67,7 +67,7 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return Department::find($id)->update($request->all());
+        return response(Department::find($id)->update($request->all()));
     }
 
     /**
@@ -78,6 +78,6 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        return Department::destroy($id);
+        return response(Department::destroy($id));
     }
 }

@@ -14,7 +14,7 @@ class EventStatusController extends Controller
      */
     public function index()
     {
-        return EventStatus::all();
+        return response(EventStatus::all());
     }
 
     /**
@@ -34,7 +34,7 @@ class EventStatusController extends Controller
      */
     public function store(Request $request)
     {
-        return EventStatus::create($request->all());
+        return response(EventStatus::create($request->all()));
     }
 
     /**
@@ -45,7 +45,7 @@ class EventStatusController extends Controller
      */
     public function show($id)
     {
-        return EventStatus::find($id);
+        return response(EventStatus::find($id));
     }
 
     /**
@@ -67,7 +67,7 @@ class EventStatusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return EventStatus::find($id)->update($request->all());
+        return response(EventStatus::find($id)->update($request->all()));
     }
 
     /**
@@ -78,6 +78,6 @@ class EventStatusController extends Controller
      */
     public function destroy($id)
     {
-        return EventStatus::destroy($id);
+        return response(EventStatus::destroy($id));
     }
 }

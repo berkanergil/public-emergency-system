@@ -15,7 +15,7 @@ class StaffRoleController extends Controller
      */
     public function index()
     {
-        return StaffRole::all();
+        return response(StaffRole::all());
     }
 
     /**
@@ -35,7 +35,7 @@ class StaffRoleController extends Controller
      */
     public function store(Request $request)
     {
-        return StaffRole::create($request->all());
+        return response(StaffRole::create($request->all()));
     }
 
     /**
@@ -46,7 +46,7 @@ class StaffRoleController extends Controller
      */
     public function show($id)
     {
-        return StaffRole::find($id);
+        return response(StaffRole::find($id));
     }
 
     /**
@@ -68,7 +68,7 @@ class StaffRoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return StaffRole::find($id)->update($request->all());
+        return response(StaffRole::find($id)->update($request->all()));
     }
 
     /**
@@ -79,6 +79,6 @@ class StaffRoleController extends Controller
      */
     public function destroy($id)
     {
-        return StaffRole::destroy($id);
+        return response(StaffRole::destroy($id));
     }
 }

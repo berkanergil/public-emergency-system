@@ -14,7 +14,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        return Event::all();
+        return response(Event::all());
     }
 
     /**
@@ -34,7 +34,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        return Event::create($request->all());
+        return response(Event::create($request->all()));
     }
 
     /**
@@ -45,7 +45,7 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        return Event::find($id);
+        return response(Event::find($id));
     }
 
     /**
@@ -67,7 +67,7 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return Event::find($id)->update($request->all());
+        return response(Event::find($id)->update($request->all()));
     }
 
     /**
@@ -78,6 +78,6 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        return Event::destroy($id);
+        return response(Event::destroy($id));
     }
 }

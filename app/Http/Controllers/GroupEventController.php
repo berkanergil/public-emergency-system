@@ -14,7 +14,7 @@ class GroupEventController extends Controller
      */
     public function index()
     {
-        return GroupEvent::all();
+        return response(GroupEvent::all());
     }
 
     /**
@@ -34,7 +34,7 @@ class GroupEventController extends Controller
      */
     public function store(Request $request)
     {
-        return GroupEvent::create($request->all());
+        return response(GroupEvent::create($request->all()));
     }
 
     /**
@@ -45,7 +45,7 @@ class GroupEventController extends Controller
      */
     public function show($id)
     {
-        return GroupEvent::find($id);
+        return response(GroupEvent::find($id));
     }
 
     /**
@@ -67,7 +67,7 @@ class GroupEventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return GroupEvent::find($id)->update($request->all());
+        return response(GroupEvent::find($id)->update($request->all()));
     }
 
     /**
@@ -78,6 +78,6 @@ class GroupEventController extends Controller
      */
     public function destroy($id)
     {
-        return GroupEvent::destroy($id);
+        return response(GroupEvent::destroy($id));
     }
 }

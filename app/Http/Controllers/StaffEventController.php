@@ -15,7 +15,7 @@ class StaffEventController extends Controller
      */
     public function index()
     {
-        return StaffEvent::all();
+        return response(StaffEvent::all());
     }
 
     /**
@@ -35,7 +35,7 @@ class StaffEventController extends Controller
      */
     public function store(Request $request)
     {
-        return StaffEvent::create($request->all());
+        return response(StaffEvent::create($request->all()));
     }
 
     /**
@@ -46,7 +46,7 @@ class StaffEventController extends Controller
      */
     public function show($id)
     {
-        return StaffEvent::find($id);
+        return response(StaffEvent::find($id));
     }
 
     /**
@@ -68,7 +68,7 @@ class StaffEventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return StaffEvent::find($id)->update($request->all());
+        return response(StaffEvent::find($id)->update($request->all()));
     }
 
     /**
@@ -79,6 +79,6 @@ class StaffEventController extends Controller
      */
     public function destroy($id)
     {
-        return StaffEvent::destroy($id);
+        return response(StaffEvent::destroy($id));
     }
 }
