@@ -15,4 +15,8 @@ class User extends Authenticatable
     use SoftDeletes;
 
     protected $guarded = [];
+
+    public static function users(){
+        return User::all();
+    }
 }

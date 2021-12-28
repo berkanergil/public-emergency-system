@@ -11,10 +11,10 @@
                         <h5 class="font-weight-bold text-center">Personal Information</h5>
                     </div>
                     <div class="card-block ">
-                        <p class="text-bold mt-3"> <span class="text-muted"> Full Name:</span> Berkan Ergil</p>
-                        <p class="text-bold"> <span class="text-muted"> User ID:</span> 1 </p>
-                        <p class="text-bold"> <span class="text-muted"> Email:</span> berkan@fire.com </p>
-                        <p class="text-bold"> <span class="text-muted"> Phone Number:</span> 1212112</p>
+                        <p class="text-bold mt-3"> <span class="text-muted"> Full Name:</span> {{ $user->name . ' ' . $user->surname }}</p>
+                        <p class="text-bold"> <span class="text-muted"> User ID:</span> {{ $user->id }} </p>
+                        <p class="text-bold"> <span class="text-muted"> Email:</span> {{ $user->email }} </p>
+                        <p class="text-bold"> <span class="text-muted"> Phone Number:</span> {{ $user->msisdn }}</p>
                         <ul class="list-unstyled activity-leval text-center">
                             <li class="active"></li>
                             <li class="active"></li>
@@ -33,8 +33,8 @@
                     <div class="card-block">
 
                         <p class="text-bold mt-3"> <span class="text-muted"> Device Name:</span> Iphone XS Max</p>
-                        <p class="text-bold mt-3"> <span class="text-muted"> Device ID:</span> 1212Dsy31</p>
-                        <p class="text-bold"> <span class="text-muted"> Device Token:</span> 12121dfe2121 </p>
+                        <p class="text-bold mt-3"> <span class="text-muted"> Device ID:</span> {{ $user->device_id }}</p>
+                        <p class="text-bold"> <span class="text-muted"> Device Token:</span> {{ $user->device_token }} </p>
                         <ul class="list-unstyled activity-leval text-center">
                             <li class="active"></li>
                             <li class="active"></li>

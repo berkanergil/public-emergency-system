@@ -9,7 +9,7 @@
         <div class="row gutters">
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                 <div class="card h-100">
-                    <form action="{{ route("create_authorities") }}" method="post">
+                    <form action="{{ route("create_agents") }}" method="post">
                         @csrf
                         <div class="card-body">
                             <div class="row gutters">
@@ -43,7 +43,7 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="website"><i class="fas fa-user-tag"></i> Staff Role </label>
-                                        <input type="url" class="form-control" disabled id="website"
+                                        <input type="url" class="form-control" disabled id="website" name="staff_role_id" value="1"
                                             placeholder="Web Authority">
                                     </div>
                                 </div>

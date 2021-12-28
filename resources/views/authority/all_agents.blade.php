@@ -23,31 +23,16 @@
                 </thead>
                 <tbody class="table-light">
 
+                    @foreach ($staffObject->agents() as $authority)
                     <tr>
-                        <td><a target="_blank" href="{{ route('one_agent') }}">1</a></td>
-                        <td>Health Department</td>
-                        <td>Berkan Ergil</td>
-                        <td>berkan@health.com</td>
-                        <td>0543231212</td>
-                        <td>2021-15-15 14:33:22</td>
+                        <td><a target="_blank" href="{{ route("one_agent",$authority->id) }}">{{ $authority->id }}</a></td> 
+                        <td>{{ $authority->department_id }}</td>
+                        <td>{{ $authority->name." ".$authority->surname  }}</td>
+                        <td>{{ $authority->email }}</td>
+                        <td>{{ $authority->msisdn }}</td>
+                        <td>{{ $authority->created_at }}</td>
                     </tr>
-                    <tr>
-                        <td><a target="_blank" href="{{ route('one_agent') }}">2</a></td>
-                        <td>Police Department</td>
-                        <td>Mehmet Taçyıldız</td>
-                        <td>mehmet@police.com</td>
-                        <td>0543231212</td>
-                        <td>2021-15-15 14:33:22</td>
-                    </tr>
-                    <tr>
-                        <td><a target="_blank" href="{{ route('one_agent') }}">3</a></td>
-                        <td>Fire Department</td>
-                        <td>İbrahim Emin</td>
-                        <td>ibrahim@fire.com</td>
-                        <td>0543231212</td>
-                        <td>2021-15-15 14:33:22</td>
-                    </tr>
-                    </tfoot>
+                    @endforeach
             </table>
         </div>
         <!-- /.card-body -->

@@ -1,14 +1,15 @@
 <?php
 
+use App\Models\User;
+use App\Models\Event;
+use App\Models\Staff;
+use App\Models\GroupEvent;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\StaffController;
-use App\Models\Event;
-use App\Models\GroupEvent;
-use App\Models\Staff;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,17 +51,20 @@ Route::get('/dashboard', function (Request $request) {
     return view('authority.dashboard', compact("staff"));
 })->name('dashboard');
 
-Route::get('/all_authorities', function () {
-    $staffObject = new Staff;
-    return view("admin.all_authorities", compact("staffObject"));
-})->name('all_authorities');
-
 Route::get('/newReport', function (Request $request) {
     $staff = Staff::find($request->id);
     return view("authority.newReport", compact("staff"));
 })->name('newReport');
 
-Route::get('/create_authorities', [App\Http\Controllers\HomeController::class, 'create_authorities'])->name('create_authorities');
+Route::get('/all_authorities', function () {
+    $staffObject = new Staff;
+    return view("admin.all_authorities", compact("staffObject"));
+})->name('all_authorities');
+
+
+Route::get('/create_authorities', function(Request $request){
+    return view("admin.create_authorities");
+})->name('create_authorities');
 Route::post('/create_authorities', function (Request $request) {
     $staffControllerObject = new StaffController;
     $response = $staffControllerObject->store($request);
@@ -97,27 +101,76 @@ Route::put('/updateAuthority/{id}', function (Request $request,$id) {
 })->name('updateAuthority');
 
 
+
+Route::get('/all_agents', function () {
+    $staffObject = new Staff;
+    return view("authority.all_agents", compact("staffObject"));
+})->name('all_agents');
+
+
+Route::get('/create_agents', function(Request $request){
+    return view("admin.create_agents");
+})->name('create_agents');
+Route::post('/create_agents', function (Request $request) {
+    $staffControllerObject = new StaffController;
+    $response = $staffControllerObject->store($request);
+    if ($response?->status() == 200) {
+        $staff_json = json_decode($response->content());
+        return redirect()->route("one_agent", ["id" => $staff_json->id]);
+    } else {
+        return back();
+    }
+})->name('create_agents');
+
+Route::get(
+    '/one_agent/{id}',
+    function ($id) {
+        $staff = Staff::find($id);
+        return view("authority.one_agent", compact("staff"));
+    }
+)->name('one_agent');
+
+Route::get('/edit_agent/{id}', function ($id) {
+    $staff = Staff::find($id);
+    return view("authority.edit_profile", compact("staff"));
+})->name('edit_agent');
+Route::put('/update_agent/{id}', function (Request $request,$id) {
+    $staffControllerObject = new StaffController;
+    $response = $staffControllerObject->update($request,$id);
+    if ($response?->status() == 200) {
+        $staff=Staff::find($id);
+        return redirect()->route("one_agent", ["id" => $staff->id]);
+    } else {
+        return back();
+    }
+    return view("authority.one_agent", compact("staff"));
+})->name('update_agent');
+
+Route::get('/all_users', function () {
+    $userObject = new User;
+    return view("authority.all_users", compact("userObject"));
+})->name('all_users');
+
+Route::get(
+    '/one_user/{id}',
+    function ($id) {
+        $user = User::find($id);
+        return view("authority.one_user", compact("user"));
+    }
+)->name('one_user');
+
 Route::get('/eventpage', [App\Http\Controllers\HomeController::class, 'eventpage'])->name('eventpage');
 Route::get('/edit_report', [App\Http\Controllers\HomeController::class, 'edit_report'])->name('edit_report');
 Route::get('/past_archives', [App\Http\Controllers\HomeController::class, 'past_archives'])->name('past_archives');
 Route::get('/current_archives', [App\Http\Controllers\HomeController::class, 'current_archives'])->name('current_archives');
 
-
-Route::get('/all_agents', [App\Http\Controllers\HomeController::class, 'all_agents'])->name('all_agents');
-Route::get('/one_agent', [App\Http\Controllers\HomeController::class, 'one_agent'])->name('one_agent');
-Route::get('/all_users', [App\Http\Controllers\HomeController::class, 'all_users'])->name('all_users');
-Route::get('/one_user', [App\Http\Controllers\HomeController::class, 'one_user'])->name('one_user');
 Route::get('/form_agent_groups', [App\Http\Controllers\HomeController::class, 'form_agent_groups'])->name('form_agent_groups');
 Route::get('/agent_groups', [App\Http\Controllers\HomeController::class, 'agent_groups'])->name('agent_groups');
 Route::get('/one_agentGroup', [App\Http\Controllers\HomeController::class, 'one_agentGroup'])->name('one_agentGroup');
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
 Route::get('/edit_profile', [App\Http\Controllers\HomeController::class, 'edit_profile'])->name('edit_profile');
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/adminDashboard', [App\Http\Controllers\HomeController::class, 'adminDashboard'])->name('adminDashboard');
 
-
-Route::get('/create_agents', [App\Http\Controllers\HomeController::class, 'create_agents'])->name('create_agents');
 
 
 

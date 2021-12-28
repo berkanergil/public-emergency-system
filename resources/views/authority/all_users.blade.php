@@ -22,35 +22,15 @@
                 </thead>
                 <tbody class="table-light">
 
+                    @foreach ($userObject->users() as $user)
                     <tr>
-                        <td><a target="_blank" href="{{ route('one_user') }}">1</a></td>
-                        <td>Berkan Ergil</td>
-                        <td>berkan@gmail.com</td>
-                        <td>0543231212</td>
-                        <td>2021-15-15 14:33:22</td>
+                        <td><a target="_blank" href="{{ route('one_user',$user->id) }}">{{ $user->id }}</a></td> 
+                        <td>{{ $user->name." ".$user->surname  }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->msisdn }}</td>
+                        <td>{{ $user->created_at }}</td>
                     </tr>
-                    <tr>
-                        <td><a target="_blank" href="{{ route('one_user') }}">1</a></td>
-                        <td>Berkan Ergil</td>
-                        <td>berkan@gmail.com</td>
-                        <td>0543231212</td>
-                        <td>2021-15-15 14:33:22</td>
-                    </tr>
-                    <tr>
-                        <td><a target="_blank" href="{{ route('one_user') }}">1</a></td>
-                        <td>Berkan Ergil</td>
-                        <td>berkan@gmail.com</td>
-                        <td>0543231212</td>
-                        <td>2021-15-15 14:33:22</td>
-                    </tr>
-                    <tr>
-                        <td><a target="_blank" href="{{ route('one_user') }}">1</a></td>
-                        <td>Berkan Ergil</td>
-                        <td>berkan@gmail.com</td>
-                        <td>0543231212</td>
-                        <td>2021-15-15 14:33:22</td>
-                    </tr>
-                    </tfoot>
+                    @endforeach
             </table>
         </div>
         <!-- /.card-body -->
