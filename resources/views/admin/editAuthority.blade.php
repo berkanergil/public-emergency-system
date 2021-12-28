@@ -14,13 +14,13 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input value="" type="text" class="form-control" id="name" name="name">
+                                    <input value="" type="text" class="form-control" id="name" name="name" value={{ $staff->name }}>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="surname">Surname</label>
-                                    <input value="" type="text" class="form-control" id="surname" name="surname">
+                                    <input value="" type="text" class="form-control" id="surname" name="surname" value={{ $staff->surname }}>
                                 </div>
                             </div>
                         </div>
@@ -28,13 +28,13 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" name="email" class="form-control" id="email">
+                                    <input type="email" name="email" class="form-control" id="email" value={{ $staff->email }}>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="phone">Phone</label>
-                                    <input name="phone" class="form-control" id="phone">
+                                    <input name="msisdn" class="form-control" id="phone" value={{ $staff->msisdn }}>
                                 </div>
                             </div>
                         </div>
@@ -56,9 +56,9 @@
                         <div class="row gutters">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right">
-                                    <button type="reset" id="submit" name="submit" class="btn btn-secondary"><i
+                                    <button type="reset"  class="btn btn-secondary"><i
                                             class="far fa-window-close mr-1"></i> Cancel</button>
-                                    <button type="submit" id="submit" name="submit" class="btn btn-success"> <i
+                                    <button type="submit" class="btn btn-success"> <i
                                             class="far fa-edit mr-1"></i>Update
                                     </button>
                                 </div>

@@ -23,7 +23,7 @@
                             <li class="active"></li>
                             <li class="active"></li>
                         </ul>
-                        <a href="{{ route('editAuthority') }}" class="btn btn-outline-primary float-right text-bold"> <i
+                        <a href="{{ route('editAuthority',["id"=>$staff->id]) }}" class="btn btn-outline-primary float-right text-bold"> <i
                                 class="far fa-edit"></i>
                             Edit
                             User</a>

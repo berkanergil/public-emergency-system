@@ -99,9 +99,6 @@ class StaffController extends Controller
         return response(Staff::destroy($id));
     }
 
-    public function enter(Request $request){
-        return view("auth.login");
-    }
 
     public function login(Request $request){
         $user= Staff::where('email',$request->email)->first();
