@@ -40,7 +40,7 @@ class UserController extends Controller
     {
         $email=User::where("email",$request->email)->first();
         if(isset($email)){
-            return response(false);
+            return response(false, 400);
         }else{
             $password = Hash::make($request->password);
             $user=User::create($request->all());
@@ -109,7 +109,7 @@ class UserController extends Controller
         if(Hash::make($checkLogin)){
             return response($user);
         }else{
-            return response(false);
+            return response(false, 400);
         }
         
     }

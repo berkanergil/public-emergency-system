@@ -8,19 +8,19 @@
                     <h3 class="text-danger text-bold">Edit Personal Information</h3>
                 </div>
                 <div class="card-body">
-                    <form id="" action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route("updateAuthority",["id"=>$staff->id]) }}" method="POST">
                         @csrf
                         <div class="row gutters">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input value="" type="text" class="form-control" id="name" name="name" value={{ $staff->name }}>
+                                    <input  type="text" class="form-control" id="name" name="name" value={{ $staff->name }}>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="surname">Surname</label>
-                                    <input value="" type="text" class="form-control" id="surname" name="surname" value={{ $staff->surname }}>
+                                    <input type="text" class="form-control" id="surname" name="surname" value={{ $staff->surname }}>
                                 </div>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="password_confirm">Confirm Password</label>
-                                    <input type="password" name="password_confirm" class="form-control"
+                                    <input type="password" class="form-control"
                                         id="password_confirm">
                                 </div>
                             </div>
@@ -64,6 +64,7 @@
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" name="_method" value="PUT">
                     </form>
                     @if (session('success'))
                         <div class="container mb-4 d-flex justify-content-center align-items-center text-center"

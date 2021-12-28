@@ -84,6 +84,18 @@ Route::get('/editAuthority/{id}', function ($id) {
     $staff = Staff::find($id);
     return view("admin.editAuthority", compact("staff"));
 })->name('editAuthority');
+Route::put('/updateAuthority/{id}', function (Request $request,$id) {
+    $staffControllerObject = new StaffController;
+    $response = $staffControllerObject->update($request,$id);
+    if ($response?->status() == 200) {
+        $staff=Staff::find($id);
+        return redirect()->route("one_authority", ["id" => $staff->id]);
+    } else {
+        return back();
+    }
+    return view("admin.one_authority", compact("staff"));
+})->name('updateAuthority');
+
 
 Route::get('/eventpage', [App\Http\Controllers\HomeController::class, 'eventpage'])->name('eventpage');
 Route::get('/edit_report', [App\Http\Controllers\HomeController::class, 'edit_report'])->name('edit_report');

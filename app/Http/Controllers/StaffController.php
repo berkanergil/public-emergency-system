@@ -38,7 +38,7 @@ class StaffController extends Controller
     {
         $email=Staff::where("email",$request->email)->first();
         if(isset($email)){
-            return response(false);
+            return response(false,400);
         }else{
             $password = Hash::make($request->password);
             $user=Staff::create($request->all());
@@ -106,7 +106,7 @@ class StaffController extends Controller
         if(Hash::make($checkLogin)){
             return response($user);
         }else{
-            return response(false);
+            return response(false,400);
         }
         
     }
