@@ -165,19 +165,21 @@ Route::get('/current_archives', function(){
     $eventObject=new Event();
     return view("authority.current_archives",compact("eventObject"));
 })->name('current_archives');
-Route::get('/eventpage/{id}', function($id){
-    $event=Event::find($id);
-    return view("authority.eventpage",compact("event"));
-})->name('eventpage');
-Route::get('/edit_report/{id}',function ($id) {
-    $event=Event::find($id);
-    return view("authority.edit_report",compact("event"));
-})->name('edit_report');
 
 Route::get('/past_archives', function(){
     $eventObject=new Event();
     return view("authority.past_archives",compact("eventObject"));
 })->name('past_archives');
+
+Route::get('/eventpage/{id}', function($id){
+    $event=Event::find($id);
+    return view("authority.eventpage",compact("event"));
+})->name('eventpage');
+
+Route::get('/edit_report/{id}',function ($id) {
+    $event=Event::find($id);
+    return view("authority.edit_report",compact("event"));
+})->name('edit_report');
 
 Route::get('/form_agent_groups', [App\Http\Controllers\HomeController::class, 'form_agent_groups'])->name('form_agent_groups');
 Route::get('/agent_groups', [App\Http\Controllers\HomeController::class, 'agent_groups'])->name('agent_groups');
