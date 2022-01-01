@@ -9,11 +9,11 @@
         <div class="card-header">
             <h3 class="card-title">
                 <i class="fas fa-edit"></i>
-                Reported Event ID: 14323
+                Reported Event ID:{{ $event->id }}
             </h3>
         </div>
         <div class="card-body">
-            <h4 class="mb-3 text-bold">Fire at the Computer Engineering Department</h4>
+            <h4 class="mb-3 text-bold">{{ $event->description }}</h4>
             <div class="btn-group button-groups my-3 ">
                 <button type="button" class="btn btn-lg btn-default button1 text-bold">Mark Event</button>
                 <button type="button" class="btn btn-lg btn-default button4 text-bold">Send Notification</button>
@@ -52,27 +52,40 @@
                         <div class="col-md-6 ml-5 mr-5">
                             <div class="card  shadow  bg-white rounded">
                                 <div class="card-title text-bold p-3 bg-success">Emergency Information ({{
-                                    $event->event_status_id }})
+                                    $event->eventStatus->title  }})
                                 </div>
                                 <div class="card-body">
                                     <ul>
                                         <li class="list-group-item border-0"><strong>Emergency Type:</strong> {{
-                                            $event->event_type_id }}</li>
+                                            $event->eventType->title }}</li>
                                         <li class="list-group-item border-0"><strong>Description:</strong> {{
                                             $event->description }}
                                         </li>
-                                        <li class="list-group-item border-0"><strong>Name Surname:</strong> {{
-                                            $event->user_id }}
+                                        <li class="list-group-item border-0"><strong>Name Surname:</strong> 
+                                             @if(isset($event->user))
+                                             {{ $event->user->name ." ".$event->user->surname   }}
+                                             @else{{$event->staff->name." ".$event->staff->surname  ." "." (Staff Category)" }} 
+                                             @endif
                                         </li>
 
-                                        <li class="list-group-item border-0"><strong>Phone Number:</strong> {{
-                                            $event->user_id }}
+                                        <li class="list-group-item border-0"><strong>Phone Number:</strong>  
+                                             @if(isset($event->user))
+                                             {{ $event->user->msisdn }}
+                                             @else{{$event->staff->msisdn  }} 
+                                             @endif
                                         </li>
-                                        <li class="list-group-item border-0"><strong>Age:</strong> {{ $event->user_id }}
+                                        <li class="list-group-item border-0"><strong>Age:</strong>
+                                            @if(isset($event->user))
+                                            {{ $event->user->age }}
+                                            @else{{" No Age !"}} 
+                                            @endif
 
                                         </li>
                                         <li class="list-group-item border-0"><strong>Email:</strong>
-                                            {{ $event->user_id }}
+                                            @if(isset($event->user))
+                                            {{ $event->user->email }}
+                                            @else{{$event->staff->email  }} 
+                                            @endif
                                         </li>
                                         <li class="list-group-item border-0"><strong>Report Date & Time:</strong>
                                             {{ $event->created_at }}</li>
@@ -91,14 +104,27 @@
                                 <div class="card-title bg-info p-3 text-bold">Device Information</div>
                                 <div class="card-body">
                                     <ul>
-                                        <li class="list-group-item border-0"><strong>Device ID:</strong> {{ $event->user_id }}
+                                        <li class="list-group-item border-0"><strong>Device ID:</strong> 
+                                            @if(isset($event->user))
+                                            {{ $event->user->device_id }}
+                                            @else{{$event->staff->device_id }} 
+                                            @endif
                                         </li>
-                                        <li class="list-group-item border-0"><strong>Phone Model:</strong> {{ $event->user_id }}
+                                        <li class="list-group-item border-0"><strong>Phone Model:</strong> 
+                                            @if(isset($event->user))
+                                            {{ $event->user->device_model }}
+                                            @else{{$event->staff->device_model  }} 
+                                            @endif
                                         </li>
                                         <li class="list-group-item border-0"><strong>Event Location:</strong>
-                                            <a class="bg-danger p-2 rounded" href="">{{ $event->lat." ".$event->lon }}</a>
+                                            <a class="bg-danger p-2 rounded" href="https://www.google.com/maps/search/{{ $event->lat.",".$event->lon }}">
+                                                {{ $event->lat." ".$event->lon }}</a>
                                         </li>
-                                        <li class="list-group-item border-0"><strong>Device Token:</strong> {{ $event->user_id }}
+                                        <li  class="list-group-item border-0"><strong>Device Token:</strong> 
+                                            @if(isset($event->user))
+                                            {{ $event->user->device_token }}
+                                            @else{{$event->staff->device_token  }} 
+                                            @endif
                                         </li>
 
                                     </ul>

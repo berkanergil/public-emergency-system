@@ -15,7 +15,7 @@
                         <th>Event ID</th>
                         <th>Emergency Type</th>
                         <th>User Name</th>
-                        <th>Staff ID</th>
+                        <th>Staff Name</th>
                         <th>Event Status</th>
                         <th>Location</th>
                         <th>Date & Time</th>
@@ -26,11 +26,11 @@
                     @foreach ($eventObject->currentEvents() as $event)
                     <tr>
                         <td><a target="_blank" href="{{ route('eventpage',$event->id) }}">{{ $event->id }}</a></td>
-                        <td>{{ $event->event_type_id }}</td>
-                        <td>{{ $event->user_id }}</td>
-                        <td>{{ $event->staff_id }}</td>
+                        <td>{{ $event->eventType->title }}</td>
+                        <td> @if(isset($event->user)) {{ $event->user->name." ".$event->user->surname }}  @endif </td>
+                        <td> @if(isset($event->staff)) {{ $event->staff->name." ".$event->staff->surname }}  @endif</td>
                         <td class={{ $event->event_status_id==2?"bg-warning":"bg-danger"  }}>{{ $event->event_status_id }}</td>
-                        <td><a href="">{{ $event->lat." ".$event->lon }}</a></td>
+                        <td><a href="https://www.google.com/maps/search/{{ $event->lat.",".$event->lon }}">{{ $event->lat." ".$event->lon }}</a></td>
                         <td>{{ $event->created_at }}</td>
                     </tr>
                     @endforeach

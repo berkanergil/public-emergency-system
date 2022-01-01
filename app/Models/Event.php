@@ -99,6 +99,11 @@ class Event extends Model
 
     public function groupEvent(){
         return $this->hasOne(GroupEvent::class);
-    }    
+    }   
+    
+    public function status(){
+        return $this->belongsTo(User::class);
+    }
+    
 
 }

@@ -175,6 +175,10 @@ Route::get('/edit_report/{id}',function ($id) {
 })->name('edit_report');
 Route::get('/past_archives', [App\Http\Controllers\HomeController::class, 'past_archives'])->name('past_archives');
 
+Route::get('/past_archives', function(){
+    $eventObject=new Event();
+    return view("authority.past_archives",compact("eventObject"));
+})->name('past_archives');
 
 Route::get('/form_agent_groups', [App\Http\Controllers\HomeController::class, 'form_agent_groups'])->name('form_agent_groups');
 Route::get('/agent_groups', [App\Http\Controllers\HomeController::class, 'agent_groups'])->name('agent_groups');

@@ -33,7 +33,7 @@
                     </div>
                     <div class="card-block">
 
-                        <p class="text-bold mt-3"> <span class="text-muted"> Device Name:</span> Iphone XS Max</p>
+                        <p class="text-bold mt-3"> <span class="text-muted"> Device Name:</span> {{ $staff->device_model }}</p>
                         <p class="text-bold mt-3"> <span class="text-muted"> Device ID:</span> {{ $staff->device_id }}</p>
                         <p class="text-bold"> <span class="text-muted"> Device Token:</span> {{ $staff->device_token }} </p>
                         <ul class="list-unstyled activity-leval text-center">
