@@ -92,7 +92,7 @@ class Event extends Model
     }
 
     public function group(){
-        return $this->hasOne(Group::class);
+        return $this->hasOne(GroupEvent::class);
     }    
 
 }
