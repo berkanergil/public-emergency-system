@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Department;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -35,6 +36,10 @@ class Staff extends Model
 
     public static function admins(){
         return Staff::where("staff_role_id","3")->get();
+    }
+
+    public function department(){
+        return $this->belongsTo(Department::class);
     }
     
 }

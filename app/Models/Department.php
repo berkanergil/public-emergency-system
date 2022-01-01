@@ -11,5 +11,11 @@ class Department extends Model
     use HasFactory;
     use SoftDeletes;
 
+
     protected $guarded=[];
+
+    public function staffs(){
+        return $this->hasMany(Staff::class);
+    }
 }
+
