@@ -88,8 +88,8 @@ class GroupEvent extends Model
         return GroupEvent::join("groups", "groups.id", "=", "group_events.group_id")->join("staff", "staff.id", "=", "groups.staff_id")->join("events", "events.id", "=", "group_events.event_id")->where("events.event_type_id","5")->where("staff.department_id","3")->get()->count();
     }
 
-    public function group(){
-        return $this->belongsTo(Group::class);
+    public function group($id){
+        return Group::where("group_id",$id)->get(); 
     }
 
     public function assignerStaff(){

@@ -12,4 +12,9 @@ class Group extends Model
     use SoftDeletes;
 
     protected $guarded=[];
+
+
+    public static function groups(){
+        return Group::all()->groupBy("group_id");
+    }
 }
