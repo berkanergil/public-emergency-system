@@ -169,7 +169,10 @@ Route::get('/eventpage/{id}', function($id){
     $event=Event::find($id);
     return view("authority.eventpage",compact("event"));
 })->name('eventpage');
-Route::get('/edit_report', [App\Http\Controllers\HomeController::class, 'edit_report'])->name('edit_report');
+Route::get('/edit_report/{id}',function ($id) {
+    $event=Event::find($id);
+    return view("authority.edit_report",compact("event"));
+})->name('edit_report');
 Route::get('/past_archives', [App\Http\Controllers\HomeController::class, 'past_archives'])->name('past_archives');
 
 

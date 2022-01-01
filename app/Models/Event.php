@@ -3,10 +3,16 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Staff;
+use App\Models\Document;
+use App\Models\EventType;
+use App\Models\GroupEvent;
+use App\Models\EventStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Event extends Model
 {
@@ -91,7 +97,7 @@ class Event extends Model
         return $this->belongsTo(EventType::class);
     }
 
-    public function group(){
+    public function groupEvent(){
         return $this->hasOne(GroupEvent::class);
     }    
 
