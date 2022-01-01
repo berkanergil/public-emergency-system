@@ -159,15 +159,24 @@ Route::get(
     }
 )->name('one_user');
 
-Route::get('/eventpage', [App\Http\Controllers\HomeController::class, 'eventpage'])->name('eventpage');
+Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
+
+Route::get('/current_archives', function(){
+    $eventObject=new Event();
+    return view("authority.current_archives",compact("eventObject"));
+})->name('current_archives');
+Route::get('/eventpage/{id}', function($id){
+    $event=Event::find($id);
+    return view("authority.eventpage",compact("event"));
+})->name('eventpage');
 Route::get('/edit_report', [App\Http\Controllers\HomeController::class, 'edit_report'])->name('edit_report');
 Route::get('/past_archives', [App\Http\Controllers\HomeController::class, 'past_archives'])->name('past_archives');
-Route::get('/current_archives', [App\Http\Controllers\HomeController::class, 'current_archives'])->name('current_archives');
+
 
 Route::get('/form_agent_groups', [App\Http\Controllers\HomeController::class, 'form_agent_groups'])->name('form_agent_groups');
 Route::get('/agent_groups', [App\Http\Controllers\HomeController::class, 'agent_groups'])->name('agent_groups');
 Route::get('/one_agentGroup', [App\Http\Controllers\HomeController::class, 'one_agentGroup'])->name('one_agentGroup');
-Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
+
 Route::get('/edit_profile', [App\Http\Controllers\HomeController::class, 'edit_profile'])->name('edit_profile');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
