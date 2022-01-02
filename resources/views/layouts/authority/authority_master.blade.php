@@ -41,6 +41,8 @@
     <link rel="stylesheet"
         href="{{ url('https://adminlte.io/themes/v3/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/auth/authority_global.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('sweetalert2.min.css') }}">
     @yield('css')
 
 </head>
