@@ -2,14 +2,20 @@
 
 use App\Models\User;
 use App\Models\Event;
+use App\Models\Group;
 use App\Models\Staff;
+use App\Models\EventType;
 use App\Models\GroupEvent;
+use App\Models\EventStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\GroupEventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +37,8 @@ Route::post("/login", function (Request $request) {
     $response = $staffController->login($request);
     if ($response?->status() == 200) {
         $staff_json = json_decode($response->content());
+        $staff= Staff::find($staff_json->id);
+        Auth::login($staff);
         return redirect()->route("statistics", ["id" => $staff_json->id]);
     } else {
         return view("auth.login");
@@ -176,10 +184,34 @@ Route::get('/eventpage/{id}', function($id){
     return view("authority.eventpage",compact("event"));
 })->name('eventpage');
 
-Route::get('/edit_report/{id}',function ($id) {
+Route::get('/edit_report/{id}',function ($id) { 
     $event=Event::find($id);
-    return view("authority.edit_report",compact("event"));
+    $eventTypeObject=new EventType();
+    $groupObject=new Group();
+    $eventStatusObject=new EventStatus();
+    return view("authority.edit_report",compact("event","eventTypeObject","groupObject","eventStatusObject"));
 })->name('edit_report');
+
+Route::put('/update_report/{id}', function (Request $request,$id) {
+    $eventControllerObject = new EventController();
+    $response = $eventControllerObject->update($request,$id);
+    if ($response?->status() == 200) {
+        $event=Event::find($id);
+        if($event->groupEvent()==null && $request->input("group_id")!=null ){
+            $groupEventControllerObject = new GroupEventController();
+            $response = Http::post('http://127.0.0.1:8000/api/group-events', [
+                'event_id' => 'Steve',
+                'assigner_staff_id' => Auth::id(),
+                'group_id' => $request->input("group_id"),
+                'event_status_id' => 'Network Administrator',
+            ]);
+        }
+        return redirect()->route("eventpage", ["id" => $event->id]);
+    } else {
+        return back();
+    }
+    return view("authority.one_agent", compact("staff"));
+})->name('update_agent');
 
 Route::get('/form_agent_groups', [App\Http\Controllers\HomeController::class, 'form_agent_groups'])->name('form_agent_groups');
 Route::get('/agent_groups', [App\Http\Controllers\HomeController::class, 'agent_groups'])->name('agent_groups');

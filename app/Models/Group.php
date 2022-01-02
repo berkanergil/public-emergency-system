@@ -15,6 +15,6 @@ class Group extends Model
 
 
     public static function groups(){
-        return Group::all()->groupBy("group_id");
+        return Group::select("group_id")->groupBy("group_id")->get();
     }
 }

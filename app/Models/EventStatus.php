@@ -12,4 +12,8 @@ class EventStatus extends Model
     use SoftDeletes;
 
     protected $guarded=[];
+
+    public static function eventStatuses(){
+        return EventStatus::all();
+    }
 }

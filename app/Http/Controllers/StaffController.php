@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Staff;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -101,13 +102,18 @@ class StaffController extends Controller
 
 
     public function login(Request $request){
-        $user= Staff::where('email',$request->email)->first();
-        $checkLogin = $user->email == $request->email && $user->password== Hash::make($request->password);
-        if(Hash::make($checkLogin)){
-            return response($user);
-        }else{
+        try{
+            $user= Staff::where('email',$request->email)->first();
+            $checkLogin = $user->email == $request->email && $user->password== Hash::make($request->password);
+            if(Hash::make($checkLogin)){
+                return response($user);
+            }else{
+                return response(false,400);
+            }
+        }catch(Exception $e){
             return response(false,400);
         }
+
         
     }
 }

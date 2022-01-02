@@ -12,4 +12,8 @@ class EventType extends Model
     use SoftDeletes;
 
     protected $guarded=[];
+
+    public static function eventTypes(){
+        return EventType::all();
+    }
 }
