@@ -411,7 +411,9 @@
             });
         });
     </script>
-
+    <script src="{{ url('sweetalert2.all.min.js') }}"></script>
 </body>
+
+@yield('sweetjs')
 
 </html>

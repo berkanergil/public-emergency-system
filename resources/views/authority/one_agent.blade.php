@@ -7,15 +7,18 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card user-card">
-                    <div class="card-header bg-c-blue">
+                    <div class="card-header bg-success">
                         <h5 class="font-weight-bold">Personal Information</h5>
                     </div>
-                    <div class="card-block ">
-                        <p class="text-bold mt-3"> <span class="text-muted"> Full Name:</span> {{ $staff->name . ' ' . $staff->surname }}</p>
+                    <div class="card-block p-4">
+                        <p class="text-bold mt-3"> <span class="text-muted"> Full Name:</span>
+                            {{ $staff->name . ' ' . $staff->surname }}</p>
                         <p class="text-bold"> <span class="text-muted"> Agent ID:</span> {{ $staff->id }} </p>
-                        <p class="text-bold"> <span class="text-muted"> Department:</span> {{ $staff->department_id }}</p>
+                        <p class="text-bold"> <span class="text-muted"> Department:</span>
+                            {{ $staff->department_id }}</p>
                         <p class="text-bold"> <span class="text-muted"> Email:</span> {{ $staff->email }} </p>
-                        <p class="text-bold"> <span class="text-muted"> Phone Number:</span> {{ $staff->msisdn }}</p>
+                        <p class="text-bold"> <span class="text-muted"> Phone Number:</span> {{ $staff->msisdn }}
+                        </p>
                         <ul class="list-unstyled activity-leval text-center">
                             <li class="active"></li>
                             <li class="active"></li>
@@ -28,14 +31,17 @@
 
             <div class="col-md-6">
                 <div class="card user-card">
-                    <div class="card-header bg-c-green">
+                    <div class="card-header bg-primary">
                         <h5 class="font-weight-bold">Device Information</h5>
                     </div>
-                    <div class="card-block">
+                    <div class="card-block p-4">
 
-                        <p class="text-bold mt-3"> <span class="text-muted"> Device Name:</span> {{ $staff->device_model }}</p>
-                        <p class="text-bold mt-3"> <span class="text-muted"> Device ID:</span> {{ $staff->device_id }}</p>
-                        <p class="text-bold"> <span class="text-muted"> Device Token:</span> {{ $staff->device_token }} </p>
+                        <p class="text-bold mt-3"> <span class="text-muted"> Device Name:</span>
+                            {{ $staff->device_model }}</p>
+                        <p class="text-bold mt-3"> <span class="text-muted"> Device ID:</span> {{ $staff->device_id }}
+                        </p>
+                        <p class="text-bold"> <span class="text-muted"> Device Token:</span>
+                            {{ $staff->device_token }} </p>
                         <ul class="list-unstyled activity-leval text-center">
                             <li class="active"></li>
                             <li class="active"></li>
