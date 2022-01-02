@@ -16,6 +16,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GroupEventController;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -198,20 +199,24 @@ Route::put('/update_report/{id}', function (Request $request,$id) {
     if ($response?->status() == 200) {
         $event=Event::find($id);
         if($event->groupEvent()==null && $request->input("group_id")!=null ){
+            Log::info("Burada");
             $groupEventControllerObject = new GroupEventController();
             $response = Http::post('http://127.0.0.1:8000/api/group-events', [
                 'event_id' => $event->id,
                 'assigner_staff_id' => Auth::id(),
                 'group_id' => $request->input("group_id"),
-                'event_status_id' => 'Network Administrator',
+                'event_status_id' => $request->input("event_status_id"),
             ]);
+            if ($response?->status() == 200) {
+                dd("oldu");
+            }
         }
         return redirect()->route("eventpage", ["id" => $event->id]);
     } else {
         return back();
     }
     return view("authority.one_agent", compact("staff"));
-})->name('update_agent');
+})->name('update_report');
 
 Route::get('/form_agent_groups', [App\Http\Controllers\HomeController::class, 'form_agent_groups'])->name('form_agent_groups');
 Route::get('/agent_groups', [App\Http\Controllers\HomeController::class, 'agent_groups'])->name('agent_groups');

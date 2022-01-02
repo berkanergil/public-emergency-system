@@ -67,7 +67,8 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return response(Event::find($id)->update($request->all()));
+        $request=$request->except("group_id");
+        return response(Event::find($id)->update($request));
     }
 
     /**
