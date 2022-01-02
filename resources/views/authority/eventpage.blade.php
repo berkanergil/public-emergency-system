@@ -9,15 +9,13 @@
             <div class="card-header">
                 <h3 class="card-title">
                     <i class="fas fa-edit"></i>
-                    Reported Event ID: 14323
+                    Reported Event ID:{{ $event->id }}
                 </h3>
             </div>
             <div class="card-body">
-                <h4 class="mb-3 text-bold">Fire at the Computer Engineering Department</h4>
+                <h4 class="mb-3 text-bold">{{ $event->description }}</h4>
                 <div class="btn-group button-groups my-3 ">
                     <button type="button" class="btn btn-lg btn-default button1 text-bold">Mark Event</button>
-                    <button type="button" class="btn btn-lg btn-default button2 text-bold">Add Notes</button>
-                    <button type="button" class="btn btn-lg btn-default button3 text-bold">Send SMS</button>
                     <button type="button" class="btn btn-lg btn-default button4 text-bold">Send Notification</button>
                     <button type="button" class="btn btn-lg btn-default button5 text-bold">Upload Evidence</button>
                     <button type="button" class="btn btn-lg btn-default button6 text-bold">Deploy Agent</button>
@@ -41,12 +39,6 @@
                             aria-controls="custom-content-below-agentsDeployed" aria-selected="false">Agents Deployed</a>
                     </li>
 
-
-                    <li class="nav-item">
-                        <a class="nav-link p-3" id="custom-content-below-notes-tab" data-toggle="pill"
-                            href="#custom-content-below-notes" role="tab" aria-controls="custom-content-below-notes"
-                            aria-selected="false">Notes</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link p-3" id="custom-content-below-evidence-tab" data-toggle="pill"
                             href="#custom-content-below-evidence" role="tab" aria-controls="custom-content-below-evidence"
@@ -59,34 +51,52 @@
                         <div class="row">
                             <div class="col-md-6 ml-5 mr-5">
                                 <div class="card  shadow  bg-white rounded">
-                                    <div class="card-title text-bold p-3 bg-success">Emergency Information (Handled)
+                                    <div class="card-title text-bold p-3 bg-success">Emergency Information
+                                        ({{                                         ($event->eventStatus->title }})
                                     </div>
                                     <div class="card-body">
                                         <ul>
-                                            <li class="list-group-item border-0"><strong>Emergency Type:</strong> Crime</li>
-                                            <li class="list-group-item border-0"><strong>Description:</strong> Someone tried
-                                                to break
-                                                in my house!
+                                            <li class="list-group-item border-0"><strong>Emergency Type:</strong>
+                                                {{                                                 $event->eventType->title }}
                                             </li>
-                                            <li class="list-group-item border-0"><strong>Name Surname:</strong> Tolgahan
-                                                Dayanıklı
+                                            <li class="list-group-item border-0"><strong>Description:</strong>
+                                                {{                                                 $event->description }}
+                                            </li>
+                                            <li class="list-group-item border-0"><strong>Name Surname:</strong>
+                                                @if (isset($event->user))
+                                                    {{ $event->user->name . ' ' . $event->user->surname }}
+                                                    @else{{ $event->staff->name . ' ' . $event->staff->surname . ' ' . ' (Staff Category)' }}
+                                                @endif
                                             </li>
 
-                                            <li class="list-group-item border-0"><strong>Phone Number:</strong> 05488386890
+                                            <li class="list-group-item border-0"><strong>Phone Number:</strong>
+                                                @if (isset($event->user))
+                                                    {{ $event->user->msisdn }}
+                                                    @else{{ $event->staff->msisdn }}
+                                                @endif
                                             </li>
-                                            <li class="list-group-item border-0"><strong>Age:</strong> 22
+                                            <li class="list-group-item border-0"><strong>Age:</strong>
+                                                @if (isset($event->user))
+                                                    {{ $event->user->age }}
+                                                    @else{{ ' No Age !' }}
+                                                @endif
 
                                             </li>
                                             <li class="list-group-item border-0"><strong>Email:</strong>
-                                                tolgahan.dayanikli@gmail.com
+                                                @if (isset($event->user))
+                                                    {{ $event->user->email }}
+                                                    @else{{ $event->staff->email }}
+                                                @endif
                                             </li>
                                             <li class="list-group-item border-0"><strong>Report Date & Time:</strong>
-                                                08/12/2021
-                                                15:54</li>
-                                            <li class="list-group-item border-0"><strong>Editor:</strong> Berkan Ergil</li>
+                                                {{ $event->created_at }}</li>
+                                            <li class="list-group-item border-0"><strong>Editor:</strong> Kullanıcı
+                                                Eklenecek</li>
+                                            <li class="list-group-item border-0"><strong>Note:</strong>
+                                                {{ $event->note }}</li>
                                         </ul>
-                                        <a href="{{ route('edit_report') }}" class="btn p-2 float-right btn-dark"><i
-                                                class="far fa-edit"></i>
+                                        <a href="{{ route('edit_report', $event->id) }}"
+                                            class="btn p-2 float-right btn-dark"><i class="far fa-edit"></i>
                                             Make Changes</a>
                                     </div>
                                 </div>
@@ -96,14 +106,28 @@
                                     <div class="card-title bg-info p-3 text-bold">Device Information</div>
                                     <div class="card-body">
                                         <ul>
-                                            <li class="list-group-item border-0"><strong>Device ID:</strong> ac56ygfdfg5
+                                            <li class="list-group-item border-0"><strong>Device ID:</strong>
+                                                @if (isset($event->user))
+                                                    {{ $event->user->device_id }}
+                                                    @else{{ $event->staff->device_id }}
+                                                @endif
                                             </li>
-                                            <li class="list-group-item border-0"><strong>Phone Model:</strong> Iphone XS Max
+                                            <li class="list-group-item border-0"><strong>Phone Model:</strong>
+                                                @if (isset($event->user))
+                                                    {{ $event->user->device_model }}
+                                                    @else{{ $event->staff->device_model }}
+                                                @endif
                                             </li>
                                             <li class="list-group-item border-0"><strong>Event Location:</strong>
-                                                <a class="bg-danger p-2 rounded" href="">35.12345, 33.123454</a>
+                                                <a class="bg-danger p-2 rounded"
+                                                    href="https://www.google.com/maps/search/{{ $event->lat . ',' . $event->lon }}">
+                                                    {{ $event->lat . ' ' . $event->lon }}</a>
                                             </li>
-                                            <li class="list-group-item border-0"><strong>Device Token:</strong> 123456432
+                                            <li class="list-group-item border-0"><strong>Device Token:</strong>
+                                                @if (isset($event->user))
+                                                    {{ $event->user->device_token }}
+                                                    @else{{ $event->staff->device_token }}
+                                                @endif
                                             </li>
 
                                         </ul>
@@ -133,25 +157,11 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>SMS</td>
+                                                    <td>Notification</td>
                                                     <td>Agents Have Arrived</td>
                                                     <td>Tolgahan Dayanıklı (Agent)</td>
                                                     <td>2021-12-09 11:23</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>SMS</td>
-                                                    <td>Agents Deployed</td>
-                                                    <td>Berkan Ergil</td>
-                                                    <td>2021-12-09 11:12</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Notification</td>
-                                                    <td>Your Report is Confirmed by Authorities</td>
-                                                    <td>Berkan Ergil</td>
-                                                    <td>2021-12-09 11:10</td>
-                                                </tr>
-
-
                                             </tbody>
                                         </table>
                                     </div>
@@ -242,7 +252,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{ route('one_agent') }}" class="btn btn-dark btn-block"><i
+                                                    <a href="" class="btn btn-dark btn-block"><i
                                                             class="fas fa-user mr-2"></i>Visit Profile</a>
 
                                                 </div>
@@ -319,7 +329,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a href="{{ route('one_agent') }}" class="btn btn-dark btn-block"><i
+                                                    <a href="" class="btn btn-dark btn-block"><i
                                                             class="fas fa-user mr-2"></i>Visit Profile</a>
                                                 </div>
                                             </div>
@@ -393,8 +403,7 @@
                                                         </li>
                                                     </ul>
                                                     <div class="modal-footer">
-                                                        <a href="{{ route('one_agent') }}"
-                                                            class="btn btn-dark btn-block"><i
+                                                        <a href="" class="btn btn-dark btn-block"><i
                                                                 class="fas fa-user mr-2"></i>Visit Profile</a>
 
                                                     </div>
@@ -407,50 +416,6 @@
                             </div>
                         </div>
 
-                    </div>
-                    <div class="tab-pane fade py-5" id="custom-content-below-notes" role="tabpanel"
-                        aria-labelledby="custom-content-below-notes-tab">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card rounded">
-                                    <div class="card-title text-bold p-3 bg-warning">Event Notes
-                                    </div>
-                                    <div class="card-body">
-
-                                        <table class="table">
-                                            <thead class="thead">
-                                                <tr>
-                                                    <th scope="col">Date & Time</th>
-                                                    <th scope="col">Note</th>
-                                                    <th scope="col">Editor</th>
-
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>2021-12-09 11:23</td>
-                                                    <td>Agents Have Arrived</td>
-                                                    <td>Tolgahan Dayanıklı (Agent)</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2021-12-09 11:12</td>
-                                                    <td>Agents Deployed</td>
-                                                    <td>Berkan Ergil</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2021-12-09 11:10</td>
-                                                    <td>Your Report is Confirmed by Authorities</td>
-                                                    <td>Berkan Ergil</td>
-                                                </tr>
-
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
                     </div>
                     <div class="tab-pane fade py-5" id="custom-content-below-evidence" role="tabpanel"
                         aria-labelledby="custom-content-below-evidence-tab">
@@ -495,9 +460,5 @@
         </div>
 
     </section>
-
-@endsection
-
-@section('sweetjs')
 
 @endsection

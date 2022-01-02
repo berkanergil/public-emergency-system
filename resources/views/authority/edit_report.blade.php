@@ -10,8 +10,8 @@
                     <div class="card-body text-center">
                         <div class="account-settings mt-5">
                             <div class="user-profile">
-                                <h5 class="text-danger text-bold mt-4">Event ID: 12</h5>
-                                <h6 class="text-bold mt-4">Editor: Berkan Ergil</h6>
+                                <h5 class="text-danger text-bold mt-4">Event ID: {{ $event->id }}</h5>
+                                <h6 class="text-bold mt-4">Editor: Editor Eklenecek</h6>
                             </div>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                                 <div class="form-group">
                                     <label for="fullName"> Emergency Type</label>
                                     <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                                        <option selected>Natural Events</option>
+                                        <option selected value="natural_event">Natural Events</option>
                                         <option value="">Traffic</option>
                                         <option value="">Crime</option>
                                         <option value="">Fire</option>

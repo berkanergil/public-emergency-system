@@ -26,7 +26,7 @@
                     @foreach ($staffObject->agents() as $authority)
                     <tr>
                         <td><a target="_blank" href="{{ route("one_agent",$authority->id) }}">{{ $authority->id }}</a></td> 
-                        <td>{{ $authority->department_id }}</td>
+                        <td>{{ $authority->department->title }}</td>
                         <td>{{ $authority->name." ".$authority->surname  }}</td>
                         <td>{{ $authority->email }}</td>
                         <td>{{ $authority->msisdn }}</td>

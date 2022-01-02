@@ -3,8 +3,15 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Staff;
+use App\Models\Document;
+use App\Models\EventType;
+use App\Models\GroupEvent;
+use App\Models\EventStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Event extends Model
@@ -61,5 +68,42 @@ class Event extends Model
     public static function healthCount(){
         return Event::where("event_type_id","5")->get()->count();
     }
+
+    public static function currentEvents(){
+        return Event::whereIn("event_status_id",[2,3])->orderBy("id","desc")->get();
+    }
+
+    public static function pastEvents(){
+        return Event::where("event_status_id","1")->orderBy("id","desc")->get();
+    } 
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function staff(){
+        return $this->belongsTo(Staff::class);
+    }
+
+    public function document(){
+        return $this->belongsTo(Document::class);
+    }
+
+    public function eventStatus(){
+        return $this->belongsTo(EventStatus::class);
+    }
+
+    public function eventType(){
+        return $this->belongsTo(EventType::class);
+    }
+
+    public function groupEvent(){
+        return $this->hasOne(GroupEvent::class);
+    }   
+    
+    public function status(){
+        return $this->belongsTo(User::class);
+    }
+    
 
 }

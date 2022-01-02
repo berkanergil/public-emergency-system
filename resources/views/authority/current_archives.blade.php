@@ -15,151 +15,25 @@
                         <th>Event ID</th>
                         <th>Emergency Type</th>
                         <th>User Name</th>
-                        <th>Staff ID</th>
-                        <th>Document ID</th>
+                        <th>Staff Name</th>
                         <th>Event Status</th>
                         <th>Location</th>
-                        <th>Editor</th>
                         <th>Date & Time</th>
 
                     </tr>
                 </thead>
                 <tbody class="table-light">
-
+                    @foreach ($eventObject->currentEvents() as $event)
                     <tr>
-                        <td><a target="_blank" href="{{ route('eventpage') }}">1</a></td>
-                        <td>Crime</td>
-                        <td>Tolgahan Dayanıklı</td>
-                        <td>\N</td>
-                        <td>1</td>
-                        <td class="bg-warning">Being Handled</td>
-                        <td><a href="">33.1221,35.3232</a></td>
-                        <td>Mehmet Taçyıldız</td>
-                        <td>2021-12-09 14:45</td>
+                        <td><a target="_blank" href="{{ route('eventpage',$event->id) }}">{{ $event->id }}</a></td>
+                        <td>{{ $event->eventType->title }}</td>
+                        <td> @if(isset($event->user)) {{ $event->user->name." ".$event->user->surname }}  @endif </td>
+                        <td> @if(isset($event->staff)) {{ $event->staff->name." ".$event->staff->surname }}  @endif</td>
+                        <td class={{ $event->event_status_id==2?"bg-warning":"bg-danger"  }}>{{ $event->event_status_id }}</td>
+                        <td><a href="https://www.google.com/maps/search/{{ $event->lat.",".$event->lon }}">{{ $event->lat." ".$event->lon }}</a></td>
+                        <td>{{ $event->created_at }}</td>
                     </tr>
-                    <tr>
-                        <td><a href="{{ route('eventpage') }}">1</a></td>
-                        <td>Crime</td>
-                        <td>Tolgahan Dayanıklı</td>
-                        <td>\N</td>
-                        <td>1</td>
-                        <td class="bg-red">Not Handled</td>
-                        <td><a href="">33.1221,35.3232</a></td>
-                        <td>Mehmet Taçyıldız</td>
-                        <td>2021-12-09 14:45</td>
-                    </tr>
-                    <tr>
-                        <td><a href="{{ route('eventpage') }}">1</a></td>
-                        <td>Crime</td>
-                        <td>Tolgahan Dayanıklı</td>
-                        <td>\N</td>
-                        <td>1</td>
-                        <td class="bg-red">Not Handled</td>
-                        <td><a href="">33.1221,35.3232</a></td>
-                        <td>Mehmet Taçyıldız</td>
-                        <td>2021-12-09 14:45</td>
-                    </tr>
-                    <tr>
-                        <td><a href="{{ route('eventpage') }}">1</a></td>
-                        <td>Crime</td>
-                        <td>Tolgahan Dayanıklı</td>
-                        <td>\N</td>
-                        <td>1</td>
-                        <td class="bg-warning">Being Handled</td>
-                        <td><a href="">33.1221,35.3232</a></td>
-                        <td>Mehmet Taçyıldız</td>
-                        <td>2021-12-09 14:45</td>
-                    </tr>
-                    <tr>
-                        <td><a href="{{ route('eventpage') }}">1</a></td>
-                        <td>Crime</td>
-                        <td>Tolgahan Dayanıklı</td>
-                        <td>\N</td>
-                        <td>1</td>
-                        <td class="bg-red">Not Handled</td>
-                        <td><a href="">33.1221,35.3232</a></td>
-                        <td>Mehmet Taçyıldız</td>
-                        <td>2021-12-09 14:45</td>
-                    </tr>
-                    <tr>
-                        <td><a href="{{ route('eventpage') }}">1</a></td>
-                        <td>Crime</td>
-                        <td>Tolgahan Dayanıklı</td>
-                        <td>\N</td>
-                        <td>1</td>
-                        <td class="bg-warning">Being Handled</td>
-                        <td><a href="">33.1221,35.3232</a></td>
-                        <td>Mehmet Taçyıldız</td>
-                        <td>2021-12-09 14:45</td>
-                    </tr>
-                    <tr>
-                        <td><a href="{{ route('eventpage') }}">1</a></td>
-                        <td>Crime</td>
-                        <td>Tolgahan Dayanıklı</td>
-                        <td>\N</td>
-                        <td>1</td>
-                        <td class="bg-red">Not Handled</td>
-                        <td><a href="">33.1221,35.3232</a></td>
-                        <td>Mehmet Taçyıldız</td>
-                        <td>2021-12-09 14:45</td>
-                    </tr>
-                    <tr>
-                        <td><a href="{{ route('eventpage') }}">1</a></td>
-                        <td>Crime</td>
-                        <td>Tolgahan Dayanıklı</td>
-                        <td>\N</td>
-                        <td>1</td>
-                        <td class="bg-red">Not Handled</td>
-                        <td><a href="">33.1221,35.3232</a></td>
-                        <td>Mehmet Taçyıldız</td>
-                        <td>2021-12-09 14:45</td>
-                    </tr>
-                    <tr>
-                        <td><a href="{{ route('eventpage') }}">1</a></td>
-                        <td>Crime</td>
-                        <td>Tolgahan Dayanıklı</td>
-                        <td>\N</td>
-                        <td>1</td>
-                        <td class="bg-red">Not Handled</td>
-                        <td><a href="">33.1221,35.3232</a></td>
-                        <td>Mehmet Taçyıldız</td>
-                        <td>2021-12-09 14:45</td>
-                    </tr>
-                    <tr>
-                        <td><a href="{{ route('eventpage') }}">1</a></td>
-                        <td>Crime</td>
-                        <td>Tolgahan Dayanıklı</td>
-                        <td>\N</td>
-                        <td>1</td>
-                        <td class="bg-warning">Being Handled</td>
-                        <td><a href="">33.1221,35.3232</a></td>
-                        <td>Mehmet Taçyıldız</td>
-                        <td>2021-12-09 14:45</td>
-                    </tr>
-                    <tr>
-                        <td><a href="{{ route('eventpage') }}">1</a></td>
-                        <td>Crime</td>
-                        <td>Tolgahan Dayanıklı</td>
-                        <td>\N</td>
-                        <td>1</td>
-                        <td class="bg-red">Not Handled</td>
-                        <td><a href="">33.1221,35.3232</a></td>
-                        <td>Mehmet Taçyıldız</td>
-                        <td>2021-12-09 14:45</td>
-                    </tr>
-                    <tr>
-                        <td><a href="{{ route('eventpage') }}">1</a></td>
-                        <td>Crime</td>
-                        <td>Tolgahan Dayanıklı</td>
-                        <td>\N</td>
-                        <td>1</td>
-                        <td class="bg-red">Not Handled</td>
-                        <td><a href="">33.1221,35.3232</a></td>
-                        <td>Mehmet Taçyıldız</td>
-                        <td>2021-12-09 14:45</td>
-                    </tr>
-
-                    </tfoot>
+                    @endforeach
             </table>
         </div>
         <!-- /.card-body -->
