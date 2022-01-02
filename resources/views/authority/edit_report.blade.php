@@ -31,11 +31,13 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="fullName"> Emergency Type</label>
-                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                                        <option name="event_type_id" value="" selected>-</option>
+                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                                        name="event_type_id">
+                                        <option value="" selected>-</option>
                                         @foreach ($eventTypeObject->eventTypes() as $eventType)
-                                        <option name="event_type_id" value={{ $eventType->id }} {{
-                                            $event->event_type_id==$eventType->id? "selected":"" }}>{{ $eventType->title }}
+                                        <option value={{ $eventType->id }} {{
+                                            $event->event_type_id==$eventType->id? "selected":"" }}>{{ $eventType->title
+                                            }}
                                         </option>
                                         @endforeach
                                     </select>
@@ -44,11 +46,13 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="fullName">Agent Group Deployed</label>
-                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                                        <option name="group_id" value="" selected>-</option>
+                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                                        name="group_id">
+                                        <option value="" selected>-</option>
                                         @foreach ($groupObject->groups() as $group)
-                                        <option name="group_id" value={{ $group->group_id }} {{
-                                            $event->group_id==$group->group_id? "selected":"" }}>group {{ $group->group_id
+                                        <option value={{ $group->group_id }} {{
+                                            $event->groupEvent?->group_id==$group->group_id? "selected":"" }}>group {{
+                                            $group->group_id
                                             }}</option>
                                         @endforeach
                                     </select>
@@ -71,9 +75,10 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="phone">Event Status</label>
-                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                                        name="event_status_id">
                                         @foreach ($eventStatusObject->eventStatuses() as $eventStatus)
-                                        <option name="event_status_id" value={{ $eventStatus->id }} {{
+                                        <option value={{ $eventStatus->id }} {{
                                             $event->id==$event->event_status_id? "selected":"" }}>{{ $eventStatus->title
                                             }}</option>
                                         @endforeach
@@ -86,8 +91,7 @@
                                 <div class="text-right">
                                     <button type="button" class="btn btn-secondary"><i
                                             class="far fa-window-close mr-1"></i> Cancel</button>
-                                    <button type="submit" class="btn btn-info"> <i
-                                            class="far fa-save mr-1"></i>Save
+                                    <button type="submit" class="btn btn-info"> <i class="far fa-save mr-1"></i>Save
                                         Changes</button>
                                 </div>
                             </div>

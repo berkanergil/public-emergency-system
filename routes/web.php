@@ -16,6 +16,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GroupEventController;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -198,6 +199,7 @@ Route::put('/update_report/{id}', function (Request $request,$id) {
     if ($response?->status() == 200) {
         $event=Event::find($id);
         if($event->groupEvent()==null && $request->input("group_id")!=null ){
+            Log::info("Burada");
             $groupEventControllerObject = new GroupEventController();
             $response = Http::post('http://127.0.0.1:8000/api/group-events', [
                 'event_id' => $event->id,
