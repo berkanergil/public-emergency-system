@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ route('dashboard') }}" class="brand-link">
-        <img src="{{ asset('images/emergencyp-white.png') }}" alt="EmergenCYP Logo" class="brand-image img-circle "
+        <img src="{{ asset('images/logo-white-sm.png') }}" alt="EmergenCYP Logo" class="brand-image img-circle "
             style="opacity: .8">
         <span class="brand-text font-weight-light">EmergenCYP</span>
     </a>

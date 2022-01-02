@@ -52,15 +52,15 @@
                             <div class="col-md-6 ml-5 mr-5">
                                 <div class="card  shadow  bg-white rounded">
                                     <div class="card-title text-bold p-3 bg-success">Emergency Information
-                                        ({{                                         ($event->eventStatus->title }})
+                                        ({{ $event->eventStatus->title }})
                                     </div>
                                     <div class="card-body">
                                         <ul>
                                             <li class="list-group-item border-0"><strong>Emergency Type:</strong>
-                                                {{                                                 $event->eventType->title }}
+                                                {{ $event->eventType->title }}
                                             </li>
                                             <li class="list-group-item border-0"><strong>Description:</strong>
-                                                {{                                                 $event->description }}
+                                                {{ $event->description }}
                                             </li>
                                             <li class="list-group-item border-0"><strong>Name Surname:</strong>
                                                 @if (isset($event->user))
@@ -119,7 +119,7 @@
                                                 @endif
                                             </li>
                                             <li class="list-group-item border-0"><strong>Event Location:</strong>
-                                                <a class="bg-danger p-2 rounded"
+                                                <a target="_blank" class="bg-danger p-2 rounded"
                                                     href="https://www.google.com/maps/search/{{ $event->lat . ',' . $event->lon }}">
                                                     {{ $event->lat . ' ' . $event->lon }}</a>
                                             </li>
