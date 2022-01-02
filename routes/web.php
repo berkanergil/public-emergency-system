@@ -203,15 +203,18 @@ Route::put('/update_report/{id}', function (Request $request,$id) {
                 'event_id' => $event->id,
                 'assigner_staff_id' => Auth::id(),
                 'group_id' => $request->input("group_id"),
-                'event_status_id' => 'Network Administrator',
+                'event_status_id' => $request->input("event_status_id"),
             ]);
+            if ($response?->status() == 200) {
+                dd("oldu");
+            }
         }
         return redirect()->route("eventpage", ["id" => $event->id]);
     } else {
         return back();
     }
     return view("authority.one_agent", compact("staff"));
-})->name('update_agent');
+})->name('update_report');
 
 Route::get('/form_agent_groups', [App\Http\Controllers\HomeController::class, 'form_agent_groups'])->name('form_agent_groups');
 Route::get('/agent_groups', [App\Http\Controllers\HomeController::class, 'agent_groups'])->name('agent_groups');
