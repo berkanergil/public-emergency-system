@@ -497,3 +497,7 @@
     </section>
 
 @endsection
+
+@section('sweetjs')
+
+@endsection
