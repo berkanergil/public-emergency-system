@@ -4,7 +4,7 @@
     <title>EmergenCyp | @yield('title') </title>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" href="{{ asset('images/emergencyp-white.png') }}">
+    <link rel="icon" href="{{ asset('images/logo-white-sm.png') }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
@@ -40,7 +40,7 @@
         href="{{ url('https://adminlte.io/themes/v3/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet"
         href="{{ url('https://adminlte.io/themes/v3/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/auth/authority_global.css') }}">
     @yield('css')
 
 </head>
