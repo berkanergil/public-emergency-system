@@ -60,7 +60,7 @@ Route::get('/dashboard', function (Request $request) {
 })->name('dashboard');
 
 Route::get('/newReport', function (Request $request) {
-    $staff = Staff::find($request->id);
+    $staff = Staff::find(Auth::id());
     return view("authority.newReport", compact("staff"));
 })->name('newReport');
 
@@ -200,7 +200,7 @@ Route::put('/update_report/{id}', function (Request $request,$id) {
         if($event->groupEvent()==null && $request->input("group_id")!=null ){
             $groupEventControllerObject = new GroupEventController();
             $response = Http::post('http://127.0.0.1:8000/api/group-events', [
-                'event_id' => 'Steve',
+                'event_id' => $event->id,
                 'assigner_staff_id' => Auth::id(),
                 'group_id' => $request->input("group_id"),
                 'event_status_id' => 'Network Administrator',
