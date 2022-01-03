@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\Log;
 */
 
 
-Route::get('/login', function(Request $request){
+Route::get('/login', function (Request $request) {
     return view("auth.login");
 })->name('enter');
 Route::post("/login", function (Request $request) {
@@ -38,9 +38,15 @@ Route::post("/login", function (Request $request) {
     $response = $staffController->login($request);
     if ($response?->status() == 200) {
         $staff_json = json_decode($response->content());
-        $staff= Staff::find($staff_json->id);
+        $staff = Staff::find($staff_json->id);
         Auth::login($staff);
-        return redirect()->route("statistics", ["id" => $staff_json->id]);
+        $role = Staff::find(Auth::id())->staff_role_id;
+        if ($role == "1") {
+            return redirect()->route('statistics', ["id" => Auth::id()]);
+        } elseif ($role == "3") {
+            return redirect()->route('statistics', ["id" => Auth::id()]);
+        }
+        // return redirect()->route("statistics", ["id" => $staff_json->id]);
     } else {
         return view("auth.login");
     }
@@ -71,7 +77,7 @@ Route::get('/all_authorities', function () {
 })->name('all_authorities');
 
 
-Route::get('/create_authorities', function(Request $request){
+Route::get('/create_authorities', function (Request $request) {
     return view("admin.create_authorities");
 })->name('create_authorities');
 Route::post('/create_authorities', function (Request $request) {
@@ -97,11 +103,11 @@ Route::get('/editAuthority/{id}', function ($id) {
     $staff = Staff::find($id);
     return view("admin.editAuthority", compact("staff"));
 })->name('editAuthority');
-Route::put('/updateAuthority/{id}', function (Request $request,$id) {
+Route::put('/updateAuthority/{id}', function (Request $request, $id) {
     $staffControllerObject = new StaffController;
-    $response = $staffControllerObject->update($request,$id);
+    $response = $staffControllerObject->update($request, $id);
     if ($response?->status() == 200) {
-        $staff=Staff::find($id);
+        $staff = Staff::find($id);
         return redirect()->route("one_authority", ["id" => $staff->id]);
     } else {
         return back();
@@ -117,7 +123,7 @@ Route::get('/all_agents', function () {
 })->name('all_agents');
 
 
-Route::get('/create_agents', function(Request $request){
+Route::get('/create_agents', function (Request $request) {
     return view("admin.create_agents");
 })->name('create_agents');
 Route::post('/create_agents', function (Request $request) {
@@ -143,11 +149,11 @@ Route::get('/edit_agent/{id}', function ($id) {
     $staff = Staff::find($id);
     return view("authority.edit_profile", compact("staff"));
 })->name('edit_agent');
-Route::put('/update_agent/{id}', function (Request $request,$id) {
+Route::put('/update_agent/{id}', function (Request $request, $id) {
     $staffControllerObject = new StaffController;
-    $response = $staffControllerObject->update($request,$id);
+    $response = $staffControllerObject->update($request, $id);
     if ($response?->status() == 200) {
-        $staff=Staff::find($id);
+        $staff = Staff::find($id);
         return redirect()->route("one_agent", ["id" => $staff->id]);
     } else {
         return back();
@@ -170,32 +176,32 @@ Route::get(
 
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
 
-Route::get('/current_archives', function(){
-    $eventObject=new Event();
-    return view("authority.current_archives",compact("eventObject"));
+Route::get('/current_archives', function () {
+    $eventObject = new Event();
+    return view("authority.current_archives", compact("eventObject"));
 })->name('current_archives');
 
-Route::get('/past_archives', function(){
-    $eventObject=new Event();
-    return view("authority.past_archives",compact("eventObject"));
+Route::get('/past_archives', function () {
+    $eventObject = new Event();
+    return view("authority.past_archives", compact("eventObject"));
 })->name('past_archives');
 
-Route::get('/eventpage/{id}', function($id){
-    $event=Event::find($id);
-    return view("authority.eventpage",compact("event"));
+Route::get('/eventpage/{id}', function ($id) {
+    $event = Event::find($id);
+    return view("authority.eventpage", compact("event"));
 })->name('eventpage');
 
-Route::get('/edit_report/{id}',function ($id) { 
-    $event=Event::find($id);
-    $eventTypeObject=new EventType();
-    $groupObject=new Group();
-    $eventStatusObject=new EventStatus();
-    return view("authority.edit_report",compact("event","eventTypeObject","groupObject","eventStatusObject"));
+Route::get('/edit_report/{id}', function ($id) {
+    $event = Event::find($id);
+    $eventTypeObject = new EventType();
+    $groupObject = new Group();
+    $eventStatusObject = new EventStatus();
+    return view("authority.edit_report", compact("event", "eventTypeObject", "groupObject", "eventStatusObject"));
 })->name('edit_report');
 
-Route::put('/update_report/{id}', function (Request $request,$id) {
+Route::put('/update_report/{id}', function (Request $request, $id) {
     $eventControllerObject = new EventController();
-    $response = $eventControllerObject->update($request,$id);
+    $response = $eventControllerObject->update($request, $id);
     if ($response?->status() == 200) {
         $event=Event::find($id);
         if($event->groupEvent==null && $request->input("group_id")!=null ){
@@ -224,7 +230,4 @@ Route::get('/one_agentGroup', [App\Http\Controllers\HomeController::class, 'one_
 
 Route::get('/edit_profile', [App\Http\Controllers\HomeController::class, 'edit_profile'])->name('edit_profile');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-
-
+Route::get('/adminDashboard', [App\Http\Controllers\HomeController::class, 'adminDashboard'])->name('adminDashboard');
