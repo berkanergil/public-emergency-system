@@ -161,6 +161,16 @@ Route::put('/update_agent/{id}', function (Request $request, $id) {
     return view("authority.one_agent", compact("staff"));
 })->name('update_agent');
 
+Route::delete('/delete_authority/{id}', function ($id) {
+    $eventControllerObject = new StaffController();
+    $response = $eventControllerObject->destroy($id);
+    // if ($response?->status() == 200) {
+    //     return redirect()->route("", ["id" => Auth::id()]);
+    // } else {
+    //     return back();
+    // }
+})->name('delete_authority');
+
 Route::get('/all_users', function () {
     $userObject = new User;
     return view("authority.all_users", compact("userObject"));
@@ -188,9 +198,9 @@ Route::get('/past_archives', function () {
 
 Route::get('/eventpage/{id}', function ($id) {
     $event = Event::find($id);
-    if($event==null){
+    if ($event == null) {
         return abort(404);
-    }else{
+    } else {
         return view("authority.eventpage", compact("event"));
     }
 })->name('eventpage');
@@ -207,8 +217,8 @@ Route::delete('/delete_report/{id}', function ($id) {
     $eventControllerObject = new EventController();
     $response = $eventControllerObject->destroy($id);
     if ($response?->status() == 200) {
-        return redirect()->route("statistics",["id" => Auth::id()]);
-    }else{
+        return redirect()->route("statistics", ["id" => Auth::id()]);
+    } else {
         return back();
     }
 })->name('delete_report');

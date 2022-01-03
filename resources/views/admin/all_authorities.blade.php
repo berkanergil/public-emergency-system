@@ -1,4 +1,4 @@
-@extends('admin.adminDasboard')
+@extends('authority.dashboard')
 
 @section('breadcrumb')
     <a href="">All Authorities</a>
@@ -25,13 +25,14 @@
                 </thead>
                 <tbody class="table-light">
                     @foreach ($staffObject->authorities() as $authority)
-                    <tr>
-                        <td><a target="_blank" href="{{ route('one_authority',$authority->id) }}">{{ $authority->id }}</a></td> 
-                        <td>{{ $authority->name." ".$authority->surname  }}</td>
-                        <td>{{ $authority->email }}</td>
-                        <td>{{ $authority->msisdn }}</td>
-                        <td>{{ $authority->created_at }}</td>
-                    </tr>
+                        <tr>
+                            <td><a target="_blank"
+                                    href="{{ route('one_authority', $authority->id) }}">{{ $authority->id }}</a></td>
+                            <td>{{ $authority->name . ' ' . $authority->surname }}</td>
+                            <td>{{ $authority->email }}</td>
+                            <td>{{ $authority->msisdn }}</td>
+                            <td>{{ $authority->created_at }}</td>
+                        </tr>
                     @endforeach
             </table>
         </div>
