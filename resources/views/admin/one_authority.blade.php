@@ -1,4 +1,4 @@
-@extends('admin.adminDasboard')
+@extends('authority.dashboard')
 @section('breadcrumb')
     <a>Authority</a>
 @endsection
@@ -8,7 +8,7 @@
             <div class="col-md-8">
                 <div class="card user-card">
                     <div class="card-header text-center bg-blue">
-                        <h5 class="font-weight-bold">Personal Information</h5>
+                        <h5 class="text-weight-bold">Personal Information</h5>
                     </div>
                     <div class="card-block p-4">
                         <p class="text-bold mt-3"> <span class="text-muted"> Full Name:</span>
@@ -23,8 +23,8 @@
                             <li class="active"></li>
                             <li class="active"></li>
                         </ul>
-                        <a href="{{ route('editAuthority',["id"=>$staff->id]) }}" class="btn btn-outline-primary float-right text-bold"> <i
-                                class="far fa-edit"></i>
+                        <a href="{{ route('editAuthority', ['id' => $staff->id]) }}"
+                            class="btn btn-outline-primary float-right text-bold"> <i class="far fa-edit"></i>
                             Edit
                             User</a>
 

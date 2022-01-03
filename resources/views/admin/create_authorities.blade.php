@@ -1,4 +1,4 @@
-@extends('admin.adminDasboard')
+@extends('authority.dashboard')
 
 @section('breadcrumb')
     <a href="">Create Authorities</a>
@@ -9,7 +9,7 @@
         <div class="row gutters">
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                 <div class="card h-100">
-                    <form action="{{ route("create_agents") }}" method="post">
+                    <form action="{{ route('create_agents') }}" method="post">
                         @csrf
                         <div class="card-body">
                             <div class="row gutters">
@@ -19,32 +19,36 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="name"><i class="far fa-id-card"></i> Name </label>
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter full name">
+                                        <input type="text" class="form-control" id="name" name="name"
+                                            placeholder="Enter full name">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="surname"><i class="far fa-id-card"></i> Surname </label>
-                                        <input type="text" class="form-control" id="surname" name="surname" placeholder="Enter full name">
+                                        <input type="text" class="form-control" id="surname" name="surname"
+                                            placeholder="Enter full name">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="email"><i class="far fa-envelope"></i> Email </label>
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email ID">
+                                        <input type="email" class="form-control" id="email" name="email"
+                                            placeholder="Enter email ID">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="msisdn"><i class="fas fa-mobile-alt"></i> Phone </label>
-                                        <input type="text" class="form-control" id="msisdn" name="msisdn" placeholder="Enter phone number">
+                                        <input type="text" class="form-control" id="msisdn" name="msisdn"
+                                            placeholder="Enter phone number">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="website"><i class="fas fa-user-tag"></i> Staff Role </label>
-                                        <input type="url" class="form-control" disabled id="website" name="staff_role_id" value="1"
-                                            placeholder="Web Authority">
+                                        <input type="url" class="form-control" disabled id="website" name="staff_role_id"
+                                            value="1" placeholder="Web Authority">
                                     </div>
                                 </div>
                             </div>
@@ -55,13 +59,14 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="password"><i class="fas fa-key"></i> Password</label>
-                                        <input type="name" class="form-control" id="password" name="password" placeholder="">
+                                        <input type="name" class="form-control" id="password" name="password"
+                                            placeholder="">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="passwordRepeat"><i class="fas fa-key"></i> Confirm Password</label>
-                                        <input type="name" class="form-control" id="passwordRepeat"  placeholder="">
+                                        <input type="name" class="form-control" id="passwordRepeat" placeholder="">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -73,16 +78,15 @@
                                             <p>Must contain uppercase letter</p>
                                             <p>Must contain numbers</p>
                                         </li>
-    
-    
+
+
                                     </ul>
                                 </div>
                             </div>
                             <div class="row gutters">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="text-right">
-                                        <button type="button"
-                                            class="btn btn-secondary">Cancel</button>
+                                        <button type="button" class="btn btn-secondary">Cancel</button>
                                         <button type="submit" class="btn btn-info">Create</button>
                                     </div>
                                 </div>
