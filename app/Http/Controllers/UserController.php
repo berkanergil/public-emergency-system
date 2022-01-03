@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
@@ -104,11 +105,15 @@ class UserController extends Controller
 
 
     public function login(Request $request){
-        $user= User::where('email',$request->email)->first();
-        $checkLogin = $user->email == $request->email && $user->password== Hash::make($request->password);
-        if(Hash::make($checkLogin)){
-            return response($user);
-        }else{
+        try{
+            $user= User::where('email',$request->email)->first();
+            $checkLogin = $user->email == $request->email && $user->password== Hash::make($request->password);
+            if($checkLogin){
+                return response($user);
+            }else{
+                return response(false, 400);
+            }
+        }catch(Exception $e){
             return response(false, 400);
         }
         

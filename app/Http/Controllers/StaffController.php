@@ -105,7 +105,7 @@ class StaffController extends Controller
         try{
             $user= Staff::where('email',$request->email)->first();
             $checkLogin = $user->email == $request->email && $user->password== Hash::make($request->password);
-            if(Hash::make($checkLogin)){
+            if($checkLogin){
                 return response($user);
             }else{
                 return response(false,400);
