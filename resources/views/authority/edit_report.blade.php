@@ -80,7 +80,7 @@
                                             name="event_status_id">
                                             @foreach ($eventStatusObject->eventStatuses() as $eventStatus)
                                                 <option value={{ $eventStatus->id }}
-                                                    {{ $event->id == $event->event_status_id ? 'selected' : '' }}>
+                                                    {{ $eventStatus->id == $event->event_status_id ? 'selected' : '' }}>
                                                     {{ $eventStatus->title }}
                                                 </option>
                                             @endforeach
