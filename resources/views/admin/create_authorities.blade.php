@@ -47,7 +47,7 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="website"><i class="fas fa-user-tag"></i> Staff Role </label>
-                                        <input type="url" class="form-control" disabled id="website" name="staff_role_id"
+                                        <input type="number" class="form-control" id="staff_role_id" name="staff_role_id"
                                             value="1" placeholder="Web Authority">
                                     </div>
                                 </div>

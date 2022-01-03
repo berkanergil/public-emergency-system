@@ -1,4 +1,10 @@
 @extends('authority.dashboard')
+
+@php
+use App\Models\Staff;
+$role = Staff::find(Auth::id())->staff_role_id;
+@endphp
+
 @section('breadcrumb')
     <a>Agent Profile</a>
 @endsection
@@ -25,8 +31,17 @@
                             <li class="active"></li>
                             <li class="active"></li>
                         </ul>
+                        @if ($role == '3')
+                            <a href="{{ route('edit_agent', $staff->id) }}" class="btn btn-outline-primary float-right">
+                                <i class="far fa-edit"></i> Edit
+                                User</a>
+                        @endif
+
+
                     </div>
+
                 </div>
+
             </div>
 
             <div class="col-md-6">
@@ -59,7 +74,7 @@
                 </div>
             </div>
 
-
         </div>
+
     </div>
 @endsection

@@ -45,6 +45,8 @@ Route::post("/login", function (Request $request) {
             return redirect()->route('statistics', ["id" => Auth::id()]);
         } elseif ($role == "3") {
             return redirect()->route('statistics', ["id" => Auth::id()]);
+        } else {
+            return back();
         }
         // return redirect()->route("statistics", ["id" => $staff_json->id]);
     } else {
@@ -122,6 +124,22 @@ Route::get('/all_agents', function () {
     return view("authority.all_agents", compact("staffObject"));
 })->name('all_agents');
 
+Route::get('/edit_agent/{id}', function ($id) {
+    $staff = Staff::find($id);
+    return view("admin.edit_agent", compact("staff"));
+})->name('edit_agent');
+
+Route::put('/updateAgent/{id}', function (Request $request, $id) {
+    $staffControllerObject = new StaffController;
+    $response = $staffControllerObject->update($request, $id);
+    if ($response?->status() == 200) {
+        $staff = Staff::find($id);
+        return redirect()->route("one_agent", ["id" => $staff->id]);
+    } else {
+        return back();
+    }
+    return view("admin.one_authority", compact("staff"));
+})->name('updateAuthority');
 
 Route::get('/create_agents', function (Request $request) {
     return view("admin.create_agents");
@@ -236,15 +254,14 @@ Route::put('/update_report/{id}', function (Request $request, $id) {
                 'event_status_id' => $request->input("event_status_id"),
             ]);
             return redirect()->route("eventpage", ["id" => $event->id]);
-        }else if ($event->groupEvent != null && $request->input("group_id") != null) {
+        } else if ($event->groupEvent != null && $request->input("group_id") != null) {
             $event->groupEvent->update([
-                "group_id"=>$request->input("group_id")
+                "group_id" => $request->input("group_id")
             ]);
             return redirect()->route("eventpage", ["id" => $event->id]);
         } else {
             return back();
         }
-        
     } else {
         return back();
     }
