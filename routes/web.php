@@ -198,17 +198,17 @@ Route::put('/update_report/{id}', function (Request $request,$id) {
     $response = $eventControllerObject->update($request,$id);
     if ($response?->status() == 200) {
         $event=Event::find($id);
-        if($event->groupEvent()==null && $request->input("group_id")!=null ){
-            Log::info("Burada");
-            $groupEventControllerObject = new GroupEventController();
-            $response = Http::post('http://127.0.0.1:8000/api/group-events', [
+        if($event->groupEvent==null && $request->input("group_id")!=null ){
+            $group_event=GroupEvent::create([
                 'event_id' => $event->id,
                 'assigner_staff_id' => Auth::id(),
                 'group_id' => $request->input("group_id"),
                 'event_status_id' => $request->input("event_status_id"),
             ]);
-            if ($response?->status() == 200) {
-                dd("oldu");
+            if($group_event!=null){
+                return redirect()->route("eventpage", ["id" => $event->id]);
+            }else{
+                back();
             }
         }
         return redirect()->route("eventpage", ["id" => $event->id]);

@@ -91,11 +91,11 @@
                             <div class="row gutters">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="text-right">
-                                        <button type="button" id="submit" name="submit" class="btn btn-secondary"><i
+                                        <button type="button" id="submit" class="btn btn-secondary"><i
                                                 class="far fa-window-close mr-1"></i> Cancel</button>
-                                        <button type="button" id="delete" name="selete" class="btn btn-danger"> <i
+                                        <button type="button" id="delete"  class="btn btn-danger"> <i
                                                 class="fas fa-trash mr-1"></i>Delete</button>
-                                        <button type="button" id="save" name="submit" class="btn btn-success">
+                                        <button type="submit" id="save" class="btn btn-success">
                                             <i class="far fa-edit mr-1"></i>Save
                                             Changes</button>
                                     </div>
@@ -114,9 +114,9 @@
 @endsection
 
 @section('sweetjs')
-    <script>
+    {{-- <script>
         var button = $("#save").on("click", function() {
             Swal.fire('Any fool can use a computer')
         });
-    </script>
+    </script> --}}
 @endsection
