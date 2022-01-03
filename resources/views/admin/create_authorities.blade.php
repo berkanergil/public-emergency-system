@@ -9,7 +9,7 @@
         <div class="row gutters">
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                 <div class="card h-100">
-                    <form action="{{ route("create_agents") }}" method="post">
+                    <form action="{{ route("create_authorities") }}" method="post">
                         @csrf
                         <div class="card-body">
                             <div class="row gutters">
