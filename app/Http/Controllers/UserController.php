@@ -105,17 +105,12 @@ class UserController extends Controller
 
 
     public function login(Request $request){
-        try{
             $user= User::where('email',$request->email)->first();
-            $checkLogin = $user->email == $request->email && $user->password== Hash::make($request->password);
+            $checkLogin = ($user?->email == $request->email && Hash::check($request->password,$user?->password));
             if($checkLogin){
                 return response($user);
             }else{
                 return response(false, 400);
             }
-        }catch(Exception $e){
-            return response(false, 400);
-        }
-        
     }
 }

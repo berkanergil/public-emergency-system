@@ -15,6 +15,7 @@ use App\Http\Controllers\StaffEventController;
 use App\Http\Controllers\EventStatusController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\NotificationTypeController;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------

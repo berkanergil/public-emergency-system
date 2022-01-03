@@ -225,13 +225,16 @@ Route::put('/update_report/{id}', function (Request $request, $id) {
                 'group_id' => $request->input("group_id"),
                 'event_status_id' => $request->input("event_status_id"),
             ]);
-            if ($group_event != null) {
-                return redirect()->route("eventpage", ["id" => $event->id]);
-            } else {
-                back();
-            }
+            return redirect()->route("eventpage", ["id" => $event->id]);
+        }else if ($event->groupEvent != null && $request->input("group_id") != null) {
+            $event->groupEvent->update([
+                "group_id"=>$request->input("group_id")
+            ]);
+            return redirect()->route("eventpage", ["id" => $event->id]);
+        } else {
+            return back();
         }
-        return redirect()->route("eventpage", ["id" => $event->id]);
+        
     } else {
         return back();
     }
