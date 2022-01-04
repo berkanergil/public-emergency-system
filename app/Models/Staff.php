@@ -32,7 +32,7 @@ class Staff extends Authenticatable
     }
 
     public static function agents(){
-        return Staff::where("staff_role_id","2")->get();
+        return Staff::where("staff_role_id","2")->orderBy("department_id")->get();
     }
 
     public static function admins(){
@@ -41,6 +41,11 @@ class Staff extends Authenticatable
 
     public function department(){
         return $this->belongsTo(Department::class);
+    }
+
+    public function availableAgents(){
+        $staff_id=Group::all()->pluck("staff_id");
+        return Staff::where("staff_role_id","2")->whereNotIn("id",$staff_id)->orderBy("department_id")->get();
     }
     
 }

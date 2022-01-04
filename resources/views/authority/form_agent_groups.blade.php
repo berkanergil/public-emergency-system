@@ -10,40 +10,13 @@
         </div>
         <div class="container-fluid mt-4">
             <div class="row">
-                <div class="col-md-6">
-                    <h6 class="text-danger text-bold">Select Department</h6>
-                    <div class="border p-5 ">
-                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                            <option selected>None</option>
-                            <option value="">Fire Department</option>
-                            <option value="">Police Department</option>
-                            <option value="">Health Department</option>
-                        </select>
-                        <button class="btn btn-md btn-info"><i class="fas fa-plus-square"></i> Add</button>
-                    </div>
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <h6 class="text-danger text-bold">Select Agent</h6>
                     <div class="border p-5 ">
-                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                            <option selected>None</option>
-                            <option disabled class="text-dark text-bold" value="1">Fire Department</option>
-                            <option value="1">Berkan Ergil</option>
-                            <option value="1">Tolgahan Dayanıklı </option>
-                            <option value="1">Mehmet Taçyıldız</option>
-                            <option value="" disabled>______________________________________________________________________
-                            </option>
-                            <option disabled class="text-dark text-bold" value="1">Police Department</option>
-                            <option value="1">Berkan Ergil</option>
-                            <option value="1">Tolgahan Dayanıklı </option>
-                            <option value="1">Mehmet Taçyıldız</option>
-                            <option value="" disabled>______________________________________________________________________
-                            </option>
-                            <option disabled class="text-dark text-bold" value="1">Health Department</option>
-                            <option value="1">Berkan Ergil</option>
-                            <option value="1">Tolgahan Dayanıklı </option>
-                            <option value="1">Mehmet Taçyıldız</option>
-                            </option>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" class="agents">
+                            @foreach ($staffObject->availableAgents() as $agent)
+                            <option value={{ $agent->id }}>{{ $agent->name." ".$agent->surname." (".$agent?->department?->title.")" }}</option>
+                            @endforeach
                         </select>
                         <button class="btn btn-md    btn-info"><i class="fas fa-plus-square"></i> Add</button>
                     </div>
@@ -54,7 +27,7 @@
                 <div class="container-fluid">
                     <h5 class="text-bold text-info">Agent Group Preview</h5>
                     <div class="container ">
-                        <ul class=" list-group text-left ">
+                        <ul class=" list-group text-left agents">
                             <li class="  list-group-item list-group-item-info">
                                 <h5>
                                     Fire Department
@@ -96,5 +69,7 @@
 
     </div>
 
-
+<script>
+    $(".container").append( "<p>Test</p>" );
+</script>
 @endsection

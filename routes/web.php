@@ -16,6 +16,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GroupEventController;
+use App\Models\Department;
 use Illuminate\Support\Facades\Log;
 
 /*
@@ -271,7 +272,10 @@ Route::put('/update_report/{id}', function (Request $request, $id) {
     return view("authority.one_agent", compact("staff"));
 })->name('update_report');
 
-Route::get('/form_agent_groups', [App\Http\Controllers\HomeController::class, 'form_agent_groups'])->name('form_agent_groups');
+Route::get('/form_agent_groups', function(){
+    $staffObject=new Staff();
+    return view("authority.form_agent_groups",compact("staffObject"));
+})->name('form_agent_groups');
 Route::get('/agent_groups', [App\Http\Controllers\HomeController::class, 'agent_groups'])->name('agent_groups');
 Route::get('/one_agentGroup', [App\Http\Controllers\HomeController::class, 'one_agentGroup'])->name('one_agentGroup');
 
