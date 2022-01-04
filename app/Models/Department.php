@@ -12,10 +12,15 @@ class Department extends Model
     use SoftDeletes;
 
 
-    protected $guarded=[];
+    protected $guarded = [];
 
-    public function staffs(){
+    public function staffs()
+    {
         return $this->hasMany(Staff::class);
     }
-}
 
+    public static function departments()
+    {
+        return Department::all();
+    }
+}

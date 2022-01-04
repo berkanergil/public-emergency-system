@@ -2,9 +2,7 @@
 <html lang="en">
 
 @include('layouts.authority.authority_master')
-@section('title')
-    Admin
-@endsection
+
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">

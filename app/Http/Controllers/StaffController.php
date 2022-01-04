@@ -37,12 +37,12 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        $email=Staff::where("email",$request->email)->first();
-        if(isset($email)){
-            return response(false,400);
-        }else{
+        $email = Staff::where("email", $request->email)->first();
+        if (isset($email)) {
+            return response(false, 400);
+        } else {
             $password = Hash::make($request->password);
-            $user=Staff::create($request->all());
+            $user = Staff::create($request->all());
             $user->update(["password" => $password]);
             return response($user);
         }
@@ -78,13 +78,13 @@ class StaffController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $staff=Staff::find($id)->update($request->all());
-        if(isset($request->password)){
-            $password=Hash::make($request->password);
-            $staff=Staff::find($id);
-            $staff->update(["password"=>$password]);
-            return response($staff->update(["password"=>$password]));
-        }else{
+        $staff = Staff::find($id)->update($request->all());
+        if (isset($request->password)) {
+            $password = Hash::make($request->password);
+            $staff = Staff::find($id);
+            $staff->update(["password" => $password]);
+            return response($staff->update(["password" => $password]));
+        } else {
             return response($staff);
         }
     }
@@ -101,19 +101,18 @@ class StaffController extends Controller
     }
 
 
-    public function login(Request $request){
-        try{
-            $staff= Staff::where('email',$request->email)->first();
-            $checkLogin = ($staff?->email == $request->email && Hash::check($request->password,$staff?->password));
-            if($checkLogin){
+    public function login(Request $request)
+    {
+        try {
+            $staff = Staff::where('email', $request->email)->first();
+            $checkLogin = ($staff?->email == $request->email && Hash::check($request->password, $staff?->password));
+            if ($checkLogin) {
                 return response($staff);
-            }else{
-                return response(false,400);
+            } else {
+                return response(false, 400);
             }
-        }catch(Exception $e){
-            return response(false,400);
+        } catch (Exception $e) {
+            return response(false, 400);
         }
-
-        
     }
 }

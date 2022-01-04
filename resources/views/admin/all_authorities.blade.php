@@ -28,7 +28,7 @@
                         <tr>
                             <td><a target="_blank"
                                     href="{{ route('one_authority', $authority->id) }}">{{ $authority->id }}</a></td>
-                            <td>{{ $authority->name . ' ' . $authority->surname }}</td>
+                            <td>{{ Str::title($authority->name . ' ' . $authority->surname) }}</td>
                             <td>{{ $authority->email }}</td>
                             <td>{{ $authority->msisdn }}</td>
                             <td>{{ $authority->created_at }}</td>

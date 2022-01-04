@@ -16,6 +16,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GroupEventController;
+use App\Models\Department;
 use Illuminate\Support\Facades\Log;
 
 /*
@@ -125,8 +126,9 @@ Route::get('/all_agents', function () {
 })->name('all_agents');
 
 Route::get('/edit_agent/{id}', function ($id) {
+    $department = Department::get();
     $staff = Staff::find($id);
-    return view("admin.edit_agent", compact("staff"));
+    return view("authority.edit_agent", compact("staff", "department"));
 })->name('edit_agent');
 
 Route::put('/updateAgent/{id}', function (Request $request, $id) {
@@ -142,8 +144,10 @@ Route::put('/updateAgent/{id}', function (Request $request, $id) {
 })->name('updateAuthority');
 
 Route::get('/create_agents', function (Request $request) {
-    return view("admin.create_agents");
+    $departmentTypeObject = new Department();
+    return view("admin.create_agents", compact("departmentTypeObject"));
 })->name('create_agents');
+
 Route::post('/create_agents', function (Request $request) {
     $staffControllerObject = new StaffController;
     $response = $staffControllerObject->store($request);
@@ -163,10 +167,7 @@ Route::get(
     }
 )->name('one_agent');
 
-Route::get('/edit_agent/{id}', function ($id) {
-    $staff = Staff::find($id);
-    return view("authority.edit_profile", compact("staff"));
-})->name('edit_agent');
+
 Route::put('/update_agent/{id}', function (Request $request, $id) {
     $staffControllerObject = new StaffController;
     $response = $staffControllerObject->update($request, $id);
@@ -179,14 +180,37 @@ Route::put('/update_agent/{id}', function (Request $request, $id) {
     return view("authority.one_agent", compact("staff"));
 })->name('update_agent');
 
+Route::delete('/delete_agent/{id}', function ($id) {
+    $eventControllerObject = new StaffController();
+    $response = $eventControllerObject->destroy($id);
+})->name('delete_agent');
+
+Route::get('/profile/{id}', function ($id) {
+    $staff = Staff::find($id);
+    return view('authority.profile', compact("staff"));
+})->name('profile');
+
+Route::get('/edit_profile/{id}', function (Request $request, $id) {
+    $staffControllerObject = new StaffController;
+    $response = $staffControllerObject->update($request, $id);
+    if ($response?->status() == 200) {
+        $staff = Staff::find($id);
+        return redirect()->route("profile", ["id" => $staff->id]);
+    } else {
+        return back();
+    }
+    return view("authority.edit_profile", compact("staff"));
+})->name('edit_profile');
+
+Route::put('/edit_profile/{id}', function ($id) {
+    $staff = Staff::find($id);
+    return view('authority.edit_profile', compact("staff"));
+})->name('edit_profile');
+
+
 Route::delete('/delete_authority/{id}', function ($id) {
     $eventControllerObject = new StaffController();
     $response = $eventControllerObject->destroy($id);
-    // if ($response?->status() == 200) {
-    //     return redirect()->route("", ["id" => Auth::id()]);
-    // } else {
-    //     return back();
-    // }
 })->name('delete_authority');
 
 Route::get('/all_users', function () {
@@ -202,7 +226,6 @@ Route::get(
     }
 )->name('one_user');
 
-Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
 
 Route::get('/current_archives', function () {
     $eventObject = new Event();
@@ -213,6 +236,7 @@ Route::get('/past_archives', function () {
     $eventObject = new Event();
     return view("authority.past_archives", compact("eventObject"));
 })->name('past_archives');
+
 
 Route::get('/eventpage/{id}', function ($id) {
     $event = Event::find($id);
@@ -259,7 +283,7 @@ Route::put('/update_report/{id}', function (Request $request, $id) {
                 "group_id" => $request->input("group_id")
             ]);
             return redirect()->route("eventpage", ["id" => $event->id]);
-        }else if ($event->groupEvent != null && $request->input("group_id") == null) {
+        } else if ($event->groupEvent != null && $request->input("group_id") == null) {
             $event->groupEvent->delete();
             return redirect()->route("eventpage", ["id" => $event->id]);
         } else {
@@ -275,6 +299,5 @@ Route::get('/form_agent_groups', [App\Http\Controllers\HomeController::class, 'f
 Route::get('/agent_groups', [App\Http\Controllers\HomeController::class, 'agent_groups'])->name('agent_groups');
 Route::get('/one_agentGroup', [App\Http\Controllers\HomeController::class, 'one_agentGroup'])->name('one_agentGroup');
 
-Route::get('/edit_profile', [App\Http\Controllers\HomeController::class, 'edit_profile'])->name('edit_profile');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/adminDashboard', [App\Http\Controllers\HomeController::class, 'adminDashboard'])->name('adminDashboard');

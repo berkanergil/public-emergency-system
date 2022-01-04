@@ -1,11 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-@include('layouts.authority.authority_master')
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" href="{{ asset('images/logo-white-sm.png') }}">
+    {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="{{ url('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css') }}">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet"
+        href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css') }}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
+    <!-- summernote -->
+    <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
+    <!--Datatables-->
+    <link rel="stylesheet"
+        href="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ url('https://adminlte.io/themes/v3/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ url('https://adminlte.io/themes/v3/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/auth/authority_global.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('sweetalert2.min.css') }}">
+    @yield('css')
+
+    <title>EmergenCyp | Dashboard</title>
+
+</head>
 
 <body class="hold-transition sidebar-mini">
     @php
         use App\Models\Staff;
+        $staff = Staff::find(Auth::id());
         $role = Staff::find(Auth::id())->staff_role_id;
+        $name = Staff::find(Auth::id())->name;
+        $surname = Staff::find(Auth::id())->surname;
+        
     @endphp
 
     <div class="wrapper">
@@ -40,7 +93,9 @@
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex text-center justify-content-center align-items-center">
                     <div class="info">
                         {{-- <a href="#" class="d-block">{{ Auth::user()->name }}</a> --}}
-                        {{-- <a href="" class="d-block">{{ $staff->name . ' ' . $staff->surname }}</a> --}}
+                        <a href="{{ route('profile', $staff) }}" class="d-block"><i
+                                class="fas fa-user-circle"></i>
+                            {{ Str::title($name . ' ' . $surname) }}</a>
                     </div>
                 </div>
 
@@ -76,12 +131,12 @@
                         </li>
                         <li class="nav-header"> <strong> EVENT OPERATIONS</strong></li>
                         <li class="nav-item">
-                            {{-- <a href="{{ route('newReport', ['id' => $staff->id]) }}" class="nav-link"> --}}
-                            <i class="ml-1 fas fa-exclamation-triangle"></i>
-                            <p class="ml-1">
-                                New Reports
-                                <span class="right badge badge-danger ml-1">Live Map</span>
-                            </p>
+                            <a href="{{ route('newReport', ['id' => $staff->id]) }}" class="nav-link">
+                                <i class="ml-1 fas fa-exclamation-triangle"></i>
+                                <p class="ml-1">
+                                    New Reports
+                                    <span class="right badge badge-danger ml-1">Live Map</span>
+                                </p>
                             </a>
                         </li>
 
@@ -101,7 +156,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="past_archives" class="nav-link">
+                                    <a href="{{ route('past_archives') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Past Reports</p>
                                     </a>
@@ -113,7 +168,7 @@
                         <li class="nav-header"><strong>USER OPERATIONS</strong></li>
                         @if ($role == '3')
                             <li class="nav-item">
-                                <a class="nav-link">
+                                <a href="#" class="nav-link">
                                     <i class="ml-1 fas fa-user-tie"></i>
                                     <p class="ml-2">
                                         Authorities
@@ -122,25 +177,20 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="{{ route('all_authorities') }}" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>All Authorites</p>
-                                        </a>
-                                    </li>
-
-                                    <li class="nav-item">
                                         <a href="{{ route('create_authorities') }}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Create Authorities </p>
                                         </a>
                                     </li>
-
-
+                                    <li class="nav-item">
+                                        <a href="{{ route('all_authorities') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>All Authorites</p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
-
                         @endif
-
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="ml-1 fas fa-user-tie"></i>
@@ -151,22 +201,9 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('all_agents') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>All Agents</p>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="{{ route('agent_groups') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Agent Groups</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
                                     <a href="{{ route('form_agent_groups') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Form Agent Groups</p>
+                                        <p>Create Agent Groups</p>
                                     </a>
                                 </li>
                                 @if ($role == '3')
@@ -177,7 +214,18 @@
                                         </a>
                                     </li>
                                 @endif
-
+                                <li class="nav-item">
+                                    <a href="{{ route('agent_groups') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Agent Groups</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('all_agents') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>All Agents</p>
+                                    </a>
+                                </li>
 
 
                             </ul>
@@ -222,7 +270,14 @@
                                 <li class="breadcrumb-item">
                                     @yield('breadcrumb')
                                 </li>
-                                <li class="breadcrumb-item active">Authority Panel</li>
+                                <li class="breadcrumb-item active">
+                                    @if ($role == '1')
+                                        Authority Panel
+                                    @elseif($role == '3')
+                                        Admin Panel
+                                    @endif
+
+                                </li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -339,6 +394,7 @@
             });
         });
     </script>
+    <script src="{{ asset('js/password_generator.js') }}"></script>
     <script src="{{ url('//cdn.jsdelivr.net/npm/sweetalert2@11') }}"></script>
 
     <script src="{{ asset('sweetalert2.min.js') }}"></script>

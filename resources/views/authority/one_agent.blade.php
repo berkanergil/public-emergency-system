@@ -6,22 +6,30 @@ $role = Staff::find(Auth::id())->staff_role_id;
 @endphp
 
 @section('breadcrumb')
-    <a>Agent Profile</a>
+    <a href="{{ route('one_agent', $staff) }}">Agent ID: {{ $staff->id }} Profile</a>
 @endsection
 @section('statistic_content')
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <div class="card user-card">
-                    <div class="card-header bg-success">
-                        <h5 class="font-weight-bold">Personal Information</h5>
+                <div class="card user-card shadow p-3 mb-5 bg-white rounded">
+                    <div class="card-header bg-success text-center">
+                        <h5 class="">PERSONAL INFORMATION</h5>
                     </div>
                     <div class="card-block p-4">
                         <p class="text-bold mt-3"> <span class="text-muted"> Full Name:</span>
-                            {{ $staff->name . ' ' . $staff->surname }}</p>
+                            {{ Str::title($staff->name . ' ' . $staff->surname) }}</p>
                         <p class="text-bold"> <span class="text-muted"> Agent ID:</span> {{ $staff->id }} </p>
                         <p class="text-bold"> <span class="text-muted"> Department:</span>
-                            {{ $staff->department_id }}</p>
+                            @if ($staff->department_id == 1)
+                                Police Department
+                            @elseif ($staff->department_id == 2)
+                                Health Department
+
+                            @else
+                                Fire Department
+                            @endif
+                        </p>
                         <p class="text-bold"> <span class="text-muted"> Email:</span> {{ $staff->email }} </p>
                         <p class="text-bold"> <span class="text-muted"> Phone Number:</span> {{ $staff->msisdn }}
                         </p>
@@ -45,9 +53,9 @@ $role = Staff::find(Auth::id())->staff_role_id;
             </div>
 
             <div class="col-md-6">
-                <div class="card user-card">
-                    <div class="card-header bg-primary">
-                        <h5 class="font-weight-bold">Device Information</h5>
+                <div class="card user-card shadow p-3 mb-5 bg-white rounded">
+                    <div class="card-header bg-primary text-center">
+                        <h5 class=" ">DEVICE INFORMATION</h5>
                     </div>
                     <div class="card-block p-4">
 

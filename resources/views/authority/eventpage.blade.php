@@ -1,6 +1,6 @@
 @extends('authority.dashboard')
 @section('breadcrumb')
-    <a>Event</a>
+    <a href="{{ route('eventpage', $event) }}">View Event ID: {{ $event->id }}</a>
 @endsection
 
 @section('statistic_content')
@@ -52,20 +52,20 @@
                             <div class="col-md-6 ml-5 mr-5">
                                 <div class="card  shadow  bg-white rounded">
                                     <div class="card-title text-bold p-3 bg-success">Emergency Information
-                                        ({{ $event->eventStatus->title }})
+                                        ({{ Str::title($event->eventStatus->title) }})
                                     </div>
                                     <div class="card-body">
                                         <ul>
                                             <li class="list-group-item border-0"><strong>Emergency Type:</strong>
-                                                {{ $event->eventType->title }}
+                                                {{ Str::title($event->eventType->title) }}
                                             </li>
                                             <li class="list-group-item border-0"><strong>Description:</strong>
-                                                {{ $event->description }}
+                                                {{ Str::title($event->description) }}
                                             </li>
                                             <li class="list-group-item border-0"><strong>Name Surname:</strong>
                                                 @if (isset($event->user))
-                                                    {{ $event->user->name . ' ' . $event->user->surname }}
-                                                    @else{{ $event->staff->name . ' ' . $event->staff->surname . ' ' . ' (Staff Category)' }}
+                                                    {{ Str::title($event->user->name . ' ' . $event->user->surname) }}
+                                                    @else{{ Str::title($event->staff->name . ' ' . $event->staff->surname . ' ' . ' (Staff Category)') }}
                                                 @endif
                                             </li>
 

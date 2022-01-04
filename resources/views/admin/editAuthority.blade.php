@@ -1,11 +1,15 @@
 @extends('authority.dashboard')
 
+@section('breadcrumb')
+    <a href="{{ route('editAuthority', $staff) }}">Edit Authority ID: {{ $staff->id }}</a>
+@endsection
+
 @section('statistic_content')
     <div class="row gutters">
         <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
-            <div class="card p-5">
+            <div class="card p-5 shadow p-3 mb-5 bg-white rounded">
                 <div class="card-title text-center mt-3">
-                    <h3 class="text-danger text-bold">Edit Personal Information</h3>
+                    <h3 class="text-primary text-bold">Edit Personal Information</h3>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('updateAuthority', ['id' => $staff->id]) }}" method="POST">
@@ -75,12 +79,57 @@
             </div>
         </div>
         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-            <div class="card p-5">
+            <div class="card p-5 shadow p-3 mb-5 bg-white rounded">
                 <div class="card-title text-center mt-3">
-                    <h3 class="text-danger text-bold">Generate Password</h3>
+                    <h3 class="text-primary text-bold">Generate Password</h3>
                 </div>
                 <div class="card-body">
+                    <main class="d-flex flex-column align-items-center">
+                        <form class="form-group">
+                            <input type="text" class="form-control" id="generatedPassword"
+                                placeholder="Generate Password">
+                        </form>
 
+                        <form class="form-group">
+                            <button type="button" class="btn btn-primary">Generate</button>
+                            <button type="button" class="btn btn-outline-primary">Copy</button>
+                        </form>
+
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label for="pwLength">Length</label>
+                                <select class="custom-select" id="pwLength">
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option selected="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                </select>
+                                <div class="row">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" id="caps">
+                                        A-Z
+                                    </label>
+                                </div>
+                                <div class="row">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" id="special">
+                                        !-?
+                                    </label>
+                                </div>
+                                <div class="row">
+
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" id="numbers" checked="checked">
+                                        1-9
+                                    </label>
+                                </div>
+                        </form>
+                    </main>
 
                 </div>
             </div>
@@ -102,24 +151,25 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete it!'
             }).then((isConfirm) => {
-                if (!isConfirm) return;
-                $.ajax({
-                    url: "{{ route('delete_authority', $staff->id) }}",
-                    type: "POST",
-                    data: {
-                        id: id,
-                        _method: "DELETE",
-                        _token: _token
-                    },
-                    success: function() {
-                        swal.fire("Done!", "It was succesfully deleted!", "success");
+                if (isConfirm) {
+                    $.ajax({
+                        url: "{{ route('delete_authority', $staff->id) }}",
+                        type: "POST",
+                        data: {
+                            id: id,
+                            _method: "DELETE",
+                            _token: _token
+                        },
+                        success: function() {
+                            swal.fire("Done!", "It was succesfully deleted!", "success");
 
-                        $(location).attr('href', url);
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        swal.fire("Error deleting!", "Please try again", "error");
-                    }
-                });
+                            $(location).attr('href', url);
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            swal.fire("Error deleting!", "Please try again", "error");
+                        }
+                    });
+                } else return;
             })
         });
     </script>

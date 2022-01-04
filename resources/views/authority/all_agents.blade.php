@@ -1,6 +1,6 @@
 @extends('authority.dashboard')
 @section('breadcrumb')
-    <a>All Agents</a>
+    <a href="{{ route('all_agents') }}">All Agents</a>
 @endsection
 @section('statistic_content')
     <div class="card">
@@ -24,14 +24,15 @@
                 <tbody class="table-light">
 
                     @foreach ($staffObject->agents() as $authority)
-                    <tr>
-                        <td><a target="_blank" href="{{ route("one_agent",$authority->id) }}">{{ $authority->id }}</a></td> 
-                        <td>{{ $authority->department->title }}</td>
-                        <td>{{ $authority->name." ".$authority->surname  }}</td>
-                        <td>{{ $authority->email }}</td>
-                        <td>{{ $authority->msisdn }}</td>
-                        <td>{{ $authority->created_at }}</td>
-                    </tr>
+                        <tr>
+                            <td><a target="_blank"
+                                    href="{{ route('one_agent', $authority->id) }}">{{ $authority->id }}</a></td>
+                            <td>{{ Str::title($authority->department?->title) }}</td>
+                            <td>{{ Str::title($authority->name . ' ' . $authority->surname) }}</td>
+                            <td>{{ $authority->email }}</td>
+                            <td>{{ $authority->msisdn }}</td>
+                            <td>{{ $authority->created_at }}</td>
+                        </tr>
                     @endforeach
             </table>
         </div>

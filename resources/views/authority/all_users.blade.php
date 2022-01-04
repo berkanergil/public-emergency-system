@@ -1,6 +1,6 @@
 @extends('authority.dashboard')
 @section('breadcrumb')
-    <a>All Users</a>
+    <a href="{{ route('all_users') }}">All Users</a>
 @endsection
 @section('statistic_content')
     <div class="card">
@@ -23,13 +23,13 @@
                 <tbody class="table-light">
 
                     @foreach ($userObject->users() as $user)
-                    <tr>
-                        <td><a target="_blank" href="{{ route('one_user',$user->id) }}">{{ $user->id }}</a></td> 
-                        <td>{{ $user->name." ".$user->surname  }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->msisdn }}</td>
-                        <td>{{ $user->created_at }}</td>
-                    </tr>
+                        <tr>
+                            <td><a target="_blank" href="{{ route('one_user', $user->id) }}">{{ $user->id }}</a></td>
+                            <td>{{ Str::title($user->name . ' ' . $user->surname) }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->msisdn }}</td>
+                            <td>{{ $user->created_at }}</td>
+                        </tr>
                     @endforeach
             </table>
         </div>

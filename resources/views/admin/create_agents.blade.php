@@ -5,13 +5,16 @@
 @endsection
 
 @section('statistic_content')
-    <div class="container-fluid card-info card-outline">
+    <div class="container-fluid ">
         <div class="row gutters">
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                 <div class="card h-100">
-                    <form action="{{ route('create_authorities') }}" method="post">
+                    <form class="validatedForm" action="{{ route('create_authorities') }}" method="post">
                         @csrf
                         <div class="card-body">
+                            <div class="card-header text-center">
+                                <h4 class="text-bold text-primary">Create Agent</h4>
+                            </div>
                             <div class="row gutters">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <h6 class="mb-2 text-bold text-info">Personal Details</h6>
@@ -46,9 +49,25 @@
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="website"><i class="fas fa-user-tag"></i> Staff Role</label>
-                                        <input type="url" class="form-control" disabled id="website" placeholder="Agent"
-                                            name="staff_role_id" value="2">
+                                        <label for="staff_role_id"><i class="fas fa-user-tag"></i> Staff Role</label>
+                                        <input type="number" class="form-control" id="staff_role_id" name="staff_role_id"
+                                            value="2">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="department_id"><i class="fas fa-user-tag"></i> Department
+                                            Name</label>
+                                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                                            name="department_id">
+                                            <option value="" selected>-</option>
+                                            @foreach ($departmentTypeObject->departments() as $departmentType)
+                                                <option value={{ $departmentType->id }}
+                                                    {{ $departmentType->title == $departmentType->id ? 'selected' : '' }}>
+                                                    {{ $departmentType->title }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -59,14 +78,15 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="Street"><i class="fas fa-key"></i> Password</label>
-                                        <input type="name" class="form-control" id="Street" placeholder=""
+                                        <input type="password" class="form-control" id="password" placeholder=""
                                             name="password">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="ciTy"><i class="fas fa-key"></i> Confirm Password</label>
-                                        <input type="name" class="form-control" id="ciTy" placeholder="">
+                                        <label for="confirm_password"><i class="fas fa-key"></i> Confirm
+                                            Password</label>
+                                        <input type="password" class="form-control" id="confirm_password" placeholder="">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -86,8 +106,10 @@
                             <div class="row gutters">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="text-right">
-                                        <button type="button" class="btn btn-secondary">Cancel</button>
-                                        <button type="submit" class="btn btn-info">Create</button>
+                                        <button type="button" class="btn btn-secondary"><i class="far fa-window-close"></i>
+                                            Cancel</button>
+                                        <button type="submit" class="btn btn-success"><i class="fas fa-user-plus"></i>
+                                            Create</button>
                                     </div>
                                 </div>
                             </div>
@@ -96,11 +118,60 @@
                 </div>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-                <div class="card h-100">
+                <div class="card ">
                     <div class="card-body">
-                        <div class="account-settings">
-                            <h5 class="text-info">Generate Random Password</h5>
+                        <div class="account-settings mt-4">
+                            <h5 class="text-center text-bold text-primary">Generate Random Password</h5>
+                            <div class="card-body">
+                                <main class="d-flex flex-column align-items-center">
+                                    <form class="form-group">
+                                        <input type="text" class="form-control" id="generatedPassword"
+                                            placeholder="Generate Password">
+                                    </form>
 
+                                    <form class="form-group">
+                                        <button type="button" class="btn btn-primary">Generate</button>
+                                        <button type="button" class="btn btn-outline-primary">Copy</button>
+                                    </form>
+
+                                    <form class="form-inline">
+                                        <div class="form-group">
+                                            <label for="pwLength">Length</label>
+                                            <select class="custom-select" id="pwLength">
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option selected="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                            </select>
+                                            <div class="row">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" id="caps">
+                                                    A-Z
+                                                </label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" id="special">
+                                                    !-?
+                                                </label>
+                                            </div>
+                                            <div class="row">
+
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" id="numbers"
+                                                        checked="checked">
+                                                    1-9
+                                                </label>
+                                            </div>
+                                    </form>
+                                </main>
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -108,4 +179,23 @@
 
         </div>
     </div>
+@endsection
+
+@section('sweetjs')
+    <script>
+        jQuery('.validatedForm').validate({
+            rules: {
+                password: {
+                    required: true,
+                    minlength: 5
+                },
+                confirm_password: {
+                    required: true,
+                    minlength: 5,
+                    equalTo: "#password"
+                }
+            }
+        });
+    </script>
+
 @endsection

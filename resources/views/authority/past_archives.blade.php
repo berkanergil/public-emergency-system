@@ -1,6 +1,6 @@
 @extends('authority.dashboard')
 @section('breadcrumb')
-    <a>Past Archive</a>
+    <a href="{{ route('past_archives') }}">Past Reports</a>
 @endsection
 @section('statistic_content')
     <div class="card">
@@ -15,11 +15,9 @@
                         <th>Event ID</th>
                         <th>Emergency Type</th>
                         <th>User Name</th>
-                        <th>Staff ID</th>
-                        <th>Document ID</th>
+                        <th>Staff Name</th>
                         <th>Event Status</th>
                         <th>Location</th>
-                        <th>Editor</th>
                         <th>Date & Time</th>
 
                     </tr>
@@ -27,15 +25,22 @@
                 <tbody class="table-light">
 
                     @foreach ($eventObject->pastEvents() as $event)
-                    <tr>
-                        <td><a target="_blank" href="{{ route('eventpage',$event->id) }}">{{ $event->id }}</a></td>
-                        <td>{{ $event->eventType->title }}</td>
-                        <td> @if(isset($event->user)) {{ $event->user->name." ".$event->user->surname }}  @endif </td>
-                        <td> @if(isset($event->staff)) {{ $event->staff->name." ".$event->staff->surname }}  @endif</td>
-                        <td class={{ $event->event_status_id==2?"bg-warning":"bg-danger"  }}>{{ $event->event_status_id }}</td>
-                        <td><a href="https://www.google.com/maps/search/{{ $event->lat.",".$event->lon }}">{{ $event->lat." ".$event->lon }}</a></td>
-                        <td>{{ $event->created_at }}</td>
-                    </tr>
+                        <tr>
+                            <td><a target="_blank" href="{{ route('eventpage', $event->id) }}">{{ $event->id }}</a>
+                            </td>
+                            <td>{{ Str::title($event->eventType->title) }}</td>
+                            <td> @if (isset($event->user)) {{ Str::title($event->user->name . ' ' . $event->user->surname) }}  @endif </td>
+                            <td> @if (isset($event->staff)) {{ Str::title($event->staff->name . ' ' . $event->staff->surname) }}  @endif</td>
+                            <td class={{ $event->event_status_id == 1 ? 'bg-success' : 'bg-danger' }}>
+                                @if ($event->event_status_id)
+                                    Handled
+                                @endif
+                            </td>
+                            <td><a target="_blank"
+                                    href="https://www.google.com/maps/search/{{ $event->lat . ',' . $event->lon }}">{{ $event->lat . ' ' . $event->lon }}</a>
+                            </td>
+                            <td>{{ $event->created_at }}</td>
+                        </tr>
                     @endforeach
             </table>
         </div>

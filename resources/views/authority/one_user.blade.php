@@ -1,18 +1,18 @@
 @extends('authority.dashboard')
 @section('breadcrumb')
-    <a>User</a>
+    <a href="{{ route('one_user', $user) }}">User ID: {{ $user->id }}</a>
 @endsection
 @section('statistic_content')
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <div class="card user-card">
-                    <div class="card-header bg-success">
-                        <h5 class="font-weight-bold text-center">Personal Information</h5>
+                <div class="card user-card shadow p-3 mb-5 bg-white rounded">
+                    <div class="card-header bg-success text-center">
+                        <h5 class="font-weight-bold ">Personal Information</h5>
                     </div>
                     <div class="card-block p-4">
                         <p class="text-bold mt-3"> <span class="text-muted"> Full Name:</span>
-                            {{ $user->name . ' ' . $user->surname }}</p>
+                            {{ Str::title($user->name . ' ' . $user->surname) }}</p>
                         <p class="text-bold"> <span class="text-muted"> User ID:</span> {{ $user->id }} </p>
                         <p class="text-bold"> <span class="text-muted"> Email:</span> {{ $user->email }} </p>
                         <p class="text-bold"> <span class="text-muted"> Phone Number:</span> {{ $user->msisdn }}
@@ -28,8 +28,8 @@
             </div>
 
             <div class="col-md-6">
-                <div class="card user-card">
-                    <div class="card-header bg-primary">
+                <div class="card user-card shadow p-3 mb-5 bg-white rounded">
+                    <div class="card-header bg-primary text-center">
                         <h5 class="font-weight-bold">Device Information</h5>
                     </div>
                     <div class="card-block p-4">

@@ -1,6 +1,6 @@
 @extends('authority.dashboard')
 @section('breadcrumb')
-    <a>Current Archive</a>
+    <a href="{{ route('current_archives') }}">Current Reports</a>
 @endsection
 @section('statistic_content')
     <div class="card">
@@ -24,15 +24,25 @@
                 </thead>
                 <tbody class="table-light">
                     @foreach ($eventObject->currentEvents() as $event)
-                    <tr>
-                        <td><a target="_blank" href="{{ route('eventpage',$event->id) }}">{{ $event->id }}</a></td>
-                        <td>{{ $event->eventType->title }}</td>
-                        <td> @if(isset($event->user)) {{ $event->user->name." ".$event->user->surname }}  @endif </td>
-                        <td> @if(isset($event->staff)) {{ $event->staff->name." ".$event->staff->surname }}  @endif</td>
-                        <td class={{ $event->event_status_id==2?"bg-warning":"bg-danger"  }}>{{ $event->event_status_id }}</td>
-                        <td><a href="https://www.google.com/maps/search/{{ $event->lat.",".$event->lon }}">{{ $event->lat." ".$event->lon }}</a></td>
-                        <td>{{ $event->created_at }}</td>
-                    </tr>
+                        <tr>
+                            <td><a target="_blank" href="{{ route('eventpage', $event->id) }}">{{ $event->id }}</a>
+                            </td>
+                            <td>{{ Str::title($event->eventType->title) }}</td>
+                            <td> @if (isset($event->user)) {{ Str::title($event->user->name . ' ' . $event->user->surname) }}  @endif </td>
+                            <td> @if (isset($event->staff)) {{ Str::title($event->staff->name . ' ' . $event->staff->surname) }}  @endif</td>
+                            <td class={{ $event->event_status_id == 2 ? 'bg-warning' : 'bg-danger' }}>
+                                @if ($event->event_status_id == 2)
+                                    Being Handled
+
+                                @elseif ($event->event_status_id == 3)
+                                    Not Handled
+                                @endif
+                            </td>
+                            <td><a
+                                    href="https://www.google.com/maps/search/{{ $event->lat . ',' . $event->lon }}">{{ $event->lat . ' ' . $event->lon }}</a>
+                            </td>
+                            <td>{{ $event->created_at }}</td>
+                        </tr>
                     @endforeach
             </table>
         </div>
