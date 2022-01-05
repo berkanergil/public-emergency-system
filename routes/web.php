@@ -300,6 +300,30 @@ Route::get('/form_agent_groups', function () {
     $staffObject = new Staff();
     return view("authority.form_agent_groups", compact("staffObject"));
 })->name('form_agent_groups');
+
+Route::post('/form_agent_groups', function (Request $request) {
+    $group_id=Group::latest()?->first()?->group_id+1??1;
+    $groups=[];
+    foreach($request->agents_id as $agent_id){
+        $group=Group::create([
+            "group_id"=>$group_id,
+            "staff_id"=>$agent_id,
+            "creater_staff_id"=>Auth::id()
+        ]);
+        $groups[]=$group;
+    }
+    dd($groups);
+    return $groups;
+    // $staffControllerObject = new StaffController;
+    // $response = $staffControllerObject->store($request);
+    // if ($response?->status() == 200) {
+    //     $staff_json = json_decode($response->content());
+    //     return redirect()->route("one_agent", ["id" => $staff_json->id]);
+    // } else {
+    //     return back();
+    // }
+})->name('form_agent_groups');
+
 Route::get('/agent_groups', [App\Http\Controllers\HomeController::class, 'agent_groups'])->name('agent_groups');
 Route::get('/one_agentGroup', [App\Http\Controllers\HomeController::class, 'one_agentGroup'])->name('one_agentGroup');
 
