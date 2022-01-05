@@ -1,13 +1,16 @@
-@extends('layouts.authority.authority_master')
-@section('title')
-    EmergenCyp | Login
-@endsection
+<!DOCTYPE html>
+<html lang="en">
 
-@section('css')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/auth/login.css') }}">
-@endsection
 
-@section('content')
+    <title> EmergenCyp | Login</title>
+</head>
+
+<body>
     <div class="container-fluid" style="min-height: 100vh">
         <div class="d-flex align-items-center justify-content-center">
             <a class="actor-login mr-md-5" href="#">Admin Login</a>
@@ -19,8 +22,8 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="user-box">
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                            value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                            name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                         <label>Email</label>
                         @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -30,8 +33,9 @@
                     </div>
 
                     <div class="user-box">
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-                            name="password" required autocomplete="current-password"> <label>Password</label>
+                        <input id="password" type="password"
+                            class="form-control @error('password') is-invalid @enderror" name="password" required
+                            autocomplete="current-password"> <label>Password</label>
                         @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -62,10 +66,6 @@
             </div>
         </div>
     </div>
+</body>
 
-    <body>
-
-
-    </body>
-
-@endsection
+</html>

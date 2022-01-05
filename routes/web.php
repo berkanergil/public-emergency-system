@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Log;
 Route::get('/login', function (Request $request) {
     return view("auth.login");
 })->name('enter');
+
 Route::post("/login", function (Request $request) {
     $staffController = new StaffController;
     $response = $staffController->login($request);
@@ -295,9 +296,9 @@ Route::put('/update_report/{id}', function (Request $request, $id) {
     return view("authority.one_agent", compact("staff"));
 })->name('update_report');
 
-Route::get('/form_agent_groups', function(){
-    $staffObject=new Staff();
-    return view("authority.form_agent_groups",compact("staffObject"));
+Route::get('/form_agent_groups', function () {
+    $staffObject = new Staff();
+    return view("authority.form_agent_groups", compact("staffObject"));
 })->name('form_agent_groups');
 Route::get('/agent_groups', [App\Http\Controllers\HomeController::class, 'agent_groups'])->name('agent_groups');
 Route::get('/one_agentGroup', [App\Http\Controllers\HomeController::class, 'one_agentGroup'])->name('one_agentGroup');
