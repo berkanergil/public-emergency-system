@@ -16,7 +16,7 @@
                     <h6 class="text-danger text-bold">Select Agent</h6>
                     <div class="border p-5 ">
                         <select class="form-select form-select-lg mb-3 available_agents" required
-                            name="agents_id[] multiple=" true">
+                            name="agents_id[]" multiple=" true">
                             <option value="" disabled class="text-bold">Fire Department</option>
                             @foreach ($staffObject->availableAgents() as $agent)
                             <option value={{ $agent->id }}>
