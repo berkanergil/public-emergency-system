@@ -13,17 +13,17 @@
                 <div class="col-md-12">
                     <h6 class="text-danger text-bold">Select Agent</h6>
                     <div class="border p-5 ">
-                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" class="agents">
+                        <select class="form-select form-select-lg mb-3 available_agents"  multiple="multiple">
                             @foreach ($staffObject->availableAgents() as $agent)
-                            <option value={{ $agent->id }}>{{ $agent->name." ".$agent->surname." (".$agent?->department?->title.")" }}</option>
+                            <option value={{ $agent->id }}>{{ $agent->name." ".$agent->surname }}</option>
                             @endforeach
                         </select>
-                        <button class="btn btn-md    btn-info"><i class="fas fa-plus-square"></i> Add</button>
+                        <button id="add_staff" class="btn btn-md btn-info"><i class="fas fa-plus-square"></i> Add</button>
                     </div>
 
                 </div>
             </div>
-            <div class="row mt-4 text-center">
+            {{-- <div class="row mt-4 text-center">
                 <div class="container-fluid">
                     <h5 class="text-bold text-info">Agent Group Preview</h5>
                     <div class="container ">
@@ -61,15 +61,23 @@
                         </ul>
                     </div>
                     <form class="mt-3" action="">
-                        <button class="btn btn-lg btn-info"><i class="fas fa-users"></i> Create Group</button>
+                        <button type="button" id="deneme" class="btn btn-lg btn-info"><i class="fas fa-users"></i> Create Group</button>
                     </form>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
     </div>
 
+@endsection
+
+
+@section("sweetjs")
 <script>
-    $(".container").append( "<p>Test</p>" );
+    $(document).ready(function() {
+        $(".available_agents").select2()
+});
+
 </script>
 @endsection
+
