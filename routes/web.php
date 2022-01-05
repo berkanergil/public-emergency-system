@@ -312,7 +312,6 @@ Route::post('/form_agent_groups', function (Request $request) {
         ]);
         $groups[]=$group;
     }
-    dd($groups);
     return $groups;
     // $staffControllerObject = new StaffController;
     // $response = $staffControllerObject->store($request);
@@ -324,7 +323,9 @@ Route::post('/form_agent_groups', function (Request $request) {
     // }
 })->name('form_agent_groups');
 
-Route::get('/agent_groups', [App\Http\Controllers\HomeController::class, 'agent_groups'])->name('agent_groups');
+Route::get('/agent_groups', function(Request $request){
+
+})->name('agent_groups');
 Route::get('/one_agentGroup', [App\Http\Controllers\HomeController::class, 'one_agentGroup'])->name('one_agentGroup');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

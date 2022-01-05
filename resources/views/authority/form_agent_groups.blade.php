@@ -3,7 +3,7 @@
 <a href="{{ route('form_agent_groups') }}">Form Agent Groups</a>
 @endsection
 @section('statistic_content')
-<form action="{{ route(" form_agent_groups") }}" method="post">
+<form action="{{ route("form_agent_groups") }}" method="post">
     @csrf
     <div class="container-fluid bg-white rounded p-4">
 
@@ -17,10 +17,9 @@
                     <div class="border p-5 ">
                         <select class="form-select form-select-lg mb-3 available_agents" required
                             name="agents_id[]" multiple=" true">
-                            <option value="" disabled class="text-bold">Fire Department</option>
                             @foreach ($staffObject->availableAgents() as $agent)
                             <option value={{ $agent->id }}>
-                                {{ $agent->name . ' ' . $agent->surname }}
+                                {{ $agent->name . ' ' . $agent->surname. "(".$agent->department->title.")" }}
                                 @endforeach
 
 
