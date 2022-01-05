@@ -7,7 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ asset('images/logo-white-sm.png') }}">
-    <link href="{{ url('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css') }}" rel="stylesheet" />
+    <link href="{{ url('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css') }}"
+        rel="stylesheet" />
 
     {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
 
@@ -400,7 +401,7 @@
     <script src="{{ url('//cdn.jsdelivr.net/npm/sweetalert2@11') }}"></script>
 
     <script src="{{ asset('sweetalert2.min.js') }}"></script>
-    <script src="{{ url('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js') }}"></script> 
+    <script src="{{ url('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js') }}"></script>
     <script
         src="{{ url('https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=') }}"
         crossorigin="anonymous"></script>
