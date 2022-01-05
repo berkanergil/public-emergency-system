@@ -1,6 +1,6 @@
 @extends('authority.dashboard')
 @section('breadcrumb')
-<a href="{{ route('form_agent_groups') }}">Form Agent Groups</a>
+    <a href="{{ route('form_agent_groups') }}">Form Agent Groups</a>
 @endsection
 @section('statistic_content')
 <form action="{{ route("form_agent_groups") }}" method="post">
@@ -21,29 +21,27 @@
                             <option value={{ $agent->id }}>
                                 {{ $agent->name . ' ' . $agent->surname. "(".$agent->department->title.")" }}
                                 @endforeach
+                            </select>
 
-
-                        </select>
-
-                        <button id="add_staff" class="btn btn-md btn-success mt-5"><i class="fas fa-plus-square"></i>
-                            Add</button>
+                            <button id="add_staff" class="btn btn-md btn-success mt-5"><i class="fas fa-plus-square"></i>
+                                Add</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
 
 @endsection
 
 
 @section('sweetjs')
-<script>
-    $(document).ready(function() {
+    <script>
+        $(document).ready(function() {
             $(".available_agents").select2({
                 theme: 'classic',
             })
 
         });
-</script>
+    </script>
 @endsection
