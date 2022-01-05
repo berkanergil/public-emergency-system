@@ -170,7 +170,7 @@
 
                         </div>
                     </div>
-                    <div class="tab-pane fade py-5" id="custom-content-below-agentsDeployed" role="tabpanel"
+                    {{-- <div class="tab-pane fade py-5" id="custom-content-below-agentsDeployed" role="tabpanel"
                         aria-labelledby="custom-content-below-agentsDeployed-tab">
                         <div class="row">
                             <div class="row">
@@ -452,7 +452,7 @@
                             </div>
 
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
             </div>

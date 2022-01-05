@@ -303,30 +303,27 @@ Route::get('/form_agent_groups', function () {
 
 Route::post('/form_agent_groups', function (Request $request) {
     $group_id=Group::latest()?->first()?->group_id+1??1;
-    $groups=[];
+    $group=[];
     foreach($request->agents_id as $agent_id){
-        $group=Group::create([
+        $row=Group::create([
             "group_id"=>$group_id,
             "staff_id"=>$agent_id,
             "creater_staff_id"=>Auth::id()
         ]);
-        $groups[]=$group;
+        $group[]=$row;
     }
-    return $groups;
-    // $staffControllerObject = new StaffController;
-    // $response = $staffControllerObject->store($request);
-    // if ($response?->status() == 200) {
-    //     $staff_json = json_decode($response->content());
-    //     return redirect()->route("one_agent", ["id" => $staff_json->id]);
-    // } else {
-    //     return back();
-    // }
+    return redirect()->route("one_agentGroup", ["group" => $group]);
 })->name('form_agent_groups');
 
 Route::get('/agent_groups', function(Request $request){
-
+    return view("authority.agent_groups");
 })->name('agent_groups');
-Route::get('/one_agentGroup', [App\Http\Controllers\HomeController::class, 'one_agentGroup'])->name('one_agentGroup');
+
+Route::get('/one_agentGroup/{id}', function(Request $request){
+    $group=Group::where("group_id",$request->id)->get();
+
+    return view("authority.one_agentGroup",compact("group"));
+})->name('one_agentGroup');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/adminDashboard', [App\Http\Controllers\HomeController::class, 'adminDashboard'])->name('adminDashboard');

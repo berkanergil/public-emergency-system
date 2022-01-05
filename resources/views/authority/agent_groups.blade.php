@@ -22,24 +22,11 @@
                 </thead>
                 <tbody class="table-light">
                     <tr>
-                        <td><a target="_blank" href="{{ route('one_agentGroup') }}">1</a></td>
+                        <td><a target="_blank" href="">1</a></td>
                         <td>Health Department,Fire Department</td>
                         <td class="text-success">Available</td>
                         <td>2021-15-15 14:33:22</td>
                     </tr>
-                    <tr>
-                        <td><a target="_blank" href="{{ route('one_agentGroup') }}">2</a></td>
-                        <td>Health Department,Fire Department,Police Department</td>
-                        <td class="text-danger">On Duty</td>
-                        <td>2021-15-15 14:33:22</td>
-                    </tr>
-                    <tr>
-                        <td><a target="_blank" href="{{ route('one_agentGroup') }}">3</a></td>
-                        <td>Health Department,Police Department</td>
-                        <td class="text-danger">On Duty</td>
-                        <td>2021-15-15 14:33:22</td>
-                    </tr>
-                    </tfoot>
             </table>
         </div>
         <!-- /.card-body -->
