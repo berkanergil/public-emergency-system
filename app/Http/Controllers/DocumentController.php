@@ -34,7 +34,20 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        return response(Document::create($request->all()));
+            $documentModel = new Document();
+    
+            if($request->file()) {
+                $fileName = time().'_'.$request->file->getClientOriginalName();
+                $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+    
+                $documentModel->path = '/storage/' . $filePath;
+                $documentModel->type = $request->type;
+                $documentModel->save();
+    
+                return response($documentModel);
+            }else{
+                return response(false,400);
+            }
     }
 
     /**

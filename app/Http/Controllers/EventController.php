@@ -38,16 +38,6 @@ class EventController extends Controller
         return response(Event::create($request->all()));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        return response(Event::find($id));
-    }
 
     /**
      * Show the form for editing the specified resource.
