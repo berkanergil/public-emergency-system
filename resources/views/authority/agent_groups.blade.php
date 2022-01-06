@@ -4,6 +4,9 @@
 @endsection
 
 @section('statistic_content')
+    @php
+    use App\Models\Staff;
+    @endphp
     <div class="card">
         <div class="card-header">
             <h3 class="card-title text-bold">Agent Groups</h3>
@@ -21,12 +24,23 @@
                     </tr>
                 </thead>
                 <tbody class="table-light">
-                    <tr>
-                        <td><a target="_blank" href="">1</a></td>
-                        <td>Health Department,Fire Department</td>
-                        <td class="text-success">Available</td>
-                        <td>2021-15-15 14:33:22</td>
-                    </tr>
+                    @foreach ($groups as $group)
+                        @php
+                            $staff = Staff::find($group->staff_id);
+                            
+                        @endphp
+                        <tr>
+                            <td><a target="_blank"
+                                    href="{{ route('one_agentGroup', $group->group_id) }}">{{ $group->group_id }}</a>
+                            </td>
+                            <td>
+                                {{ $staff->email }}
+                            </td>
+                            <td class="text-success">Available</td>
+                            <td>2021-15-15 14:33:22</td>
+                        </tr>
+                    @endforeach
+
             </table>
         </div>
         <!-- /.card-body -->

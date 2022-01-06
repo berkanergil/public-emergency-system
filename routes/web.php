@@ -302,27 +302,28 @@ Route::get('/form_agent_groups', function () {
 })->name('form_agent_groups');
 
 Route::post('/form_agent_groups', function (Request $request) {
-    $group_id=Group::latest()?->first()?->group_id+1??1;
-    $group=[];
-    foreach($request->agents_id as $agent_id){
-        $row=Group::create([
-            "group_id"=>$group_id,
-            "staff_id"=>$agent_id,
-            "creater_staff_id"=>Auth::id()
+    $group_id = Group::latest()?->first()?->group_id + 1 ?? 1;
+    $group = [];
+    foreach ($request->agents_id as $agent_id) {
+        $row = Group::create([
+            "group_id" => $group_id,
+            "staff_id" => $agent_id,
+            "creater_staff_id" => Auth::id()
         ]);
-        $group[]=$row;
+        $group[] = $row;
     }
     return redirect()->route("one_agentGroup", ["group" => $group]);
 })->name('form_agent_groups');
 
-Route::get('/agent_groups', function(Request $request){
-    return view("authority.agent_groups");
+Route::get('/agent_groups', function (Request $request) {
+    $groups = Group::select("group_id")->groupBy("group_id")->get();
+    return view("authority.agent_groups", compact("groups"));
 })->name('agent_groups');
 
-Route::get('/one_agentGroup/{id}', function(Request $request){
-    $group=Group::where("group_id",$request->id)->get();
+Route::get('/one_agentGroup/{id}', function (Request $request) {
+    $group = Group::where("group_id", $request->id)->get();
 
-    return view("authority.one_agentGroup",compact("group"));
+    return view("authority.one_agentGroup", compact("group"));
 })->name('one_agentGroup');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
