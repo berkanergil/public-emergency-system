@@ -1,6 +1,6 @@
 @extends('authority.dashboard')
 @section('breadcrumb')
-    <a>Agent Group</a>
+    <a href="">Agent Group</a>
 @endsection
 @section('statistic_content')
     @php
@@ -23,32 +23,34 @@
             @foreach ($group as $row)
                 @php
                     $agent = Staff::find($row->staff_id);
+                    $modal_trigger = 'agent' . $agent->id;
                 @endphp
                 <div class="col-md-4">
                     <div class="card card-primary card-outline shadow  bg-white rounded">
                         <div class="card-body box-profile">
 
-                            <h3 class="profile-username text-center ">{{ $agent->department->title }}</h3>
+                            <h3 class="profile-username text-center text-danger text-bold">
+                                {{ Str::title($agent->department->title) . ' Department' }}</h3>
 
                             <ul class="list-group list-group-unbordered mb-3">
                                 <li class="list-group-item">
                                     <b>Name Surname:</b> <a
-                                        class="float-right">{{ $agent->name . $agent->surname }}</a>
+                                        class="float-right">{{ Str::title($agent->name . ' ' . $agent->surname) }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Phone Number:</b> <a class="float-right">1234567</a>
+                                    <b>Phone Number:</b> <a class="float-right">{{ $agent->msisdn }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Email:</b> <a class="float-right">MEHMET.TACYILDIZ@police.com</a>
+                                    <b>Email:</b> <a class="float-right">{{ $agent->email }}</a>
                                 </li>
                             </ul>
 
-                            <button type="button" data-toggle="modal" data-target="#agentModal1" href="#"
+                            <button type="button" data-toggle="modal" data-target="#{{ $modal_trigger }}" href="#"
                                 class="btn btn-info btn-block"><b>Agent
                                     Information</b></button>
                         </div>
                         <!-- /.card-body -->
-                        <div class="modal fade" id="agentModal1" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="{{ $modal_trigger }}" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content border border-dark">
@@ -63,36 +65,40 @@
                                         </button>
                                     </div>
                                     <div class="modal-body box-profile">
-                                        <h3 class="profile-username text-center ">Police Department</h3>
+                                        <h3 class="profile-username text-center text-primary">
+                                            {{ Str::title($agent->department->title) . ' Department' }}</h3>
 
                                         <ul class="list-group list-group-unbordered mb-3">
                                             <li class="list-group-item border-0">
-                                                <b>Agent Group ID:</b> <a class="float-right">12</a>
+                                                <b>Agent Group ID:</b> <a class="float-right"></a>
                                             </li>
                                             <li class="list-group-item border-0">
-                                                <b>Agent ID:</b> <a class="float-right">2</a>
+                                                <b>Agent ID:</b> <a class="float-right">{{ $agent->id }}</a>
                                             </li>
                                             <li class="list-group-item border-0">
-                                                <b>Name Surname:</b> <a class="float-right">Mehmet
-                                                    Taçyıldız</a>
+                                                <b>Name Surname:</b> <a
+                                                    class="float-right">{{ Str::title($agent->name . ' ' . $agent->surname) }}
+                                                </a>
                                             </li>
                                             <li class="list-group-item border-0">
-                                                <b>Phone Number:</b> <a class="float-right">1234567</a>
+                                                <b>Phone Number:</b> <a class="float-right">{{ $agent->msisdn }}</a>
                                             </li>
                                             <li class="list-group-item border-0">
-                                                <b>Email:</b> <a class="float-right">MEHMET.TACYILDIZ@health.com</a>
+                                                <b>Email:</b> <a class="float-right">{{ $agent->msisdn }}</a>
                                             </li>
                                             <li class="list-group-item border-0">
-                                                <b>Device ID:</b> <a class="float-right">123456sasa</a>
+                                                <b>Device ID:</b> <a class="float-right">{{ $agent->device_id }}</a>
                                             </li>
                                             <li class="list-group-item border-0">
-                                                <b>Device Token:</b> <a class="float-right">sd21sa21</a>
+                                                <b>Device Token:</b> <a
+                                                    class="float-right">{{ $agent->device_token }}</a>
                                             </li>
 
                                         </ul>
                                     </div>
                                     <div class="modal-footer">
-                                        <a href="" class="btn btn-dark btn-block"><i class="fas fa-user mr-2"></i>Visit
+                                        <a href="{{ route('one_agent', $agent) }}" class="btn btn-dark btn-block"><i
+                                                class="fas fa-user mr-2"></i>Visit
                                             Profile</a>
 
                                     </div>

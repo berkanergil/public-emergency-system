@@ -34,7 +34,7 @@
                                     href="{{ route('one_agentGroup', $group->group_id) }}">{{ $group->group_id }}</a>
                             </td>
                             <td>
-                                {{ $staff->email }}
+
                             </td>
                             <td class="text-success">Available</td>
                             <td>2021-15-15 14:33:22</td>
