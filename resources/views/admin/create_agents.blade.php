@@ -89,19 +89,7 @@
                                         <input type="password" class="form-control" id="confirm_password" placeholder="">
                                     </div>
                                 </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <h5 class="text-danger"><i class="fas fa-exclamation-circle"></i> Restrictions: </h5>
-                                    <ul class="list-group">
-                                        <li class="list-group-item border-0">
-                                            <p>Must be at least 8 characters</p>
-                                            <p>Must contain special symbol</p>
-                                            <p>Must contain uppercase letter</p>
-                                            <p>Must contain numbers</p>
-                                        </li>
 
-
-                                    </ul>
-                                </div>
                             </div>
                             <div class="row gutters">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">

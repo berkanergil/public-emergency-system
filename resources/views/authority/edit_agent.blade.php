@@ -9,8 +9,59 @@
                 <div class="card h-100 shadow p-3 mb-5 bg-white rounded">
                     <div class="card-body text-center">
                         <div class="account-settings mt-5">
-                            <div class="user-profile">
-                                <h5 class="text-danger text-bold">Agent ID: {{ $staff->id }}</h5>
+
+                            <div class="account-settings mt-4">
+                                <h5 class="text-center text-bold text-primary">Generate Random Password</h5>
+                                <div class="card-body">
+                                    <main class="d-flex flex-column align-items-center">
+                                        <form class="form-group">
+                                            <input type="text" class="form-control" id="generatedPassword"
+                                                placeholder="Generate Password">
+                                        </form>
+
+                                        <form class="form-group">
+                                            <button type="button" class="btn btn-primary">Generate</button>
+                                            <button type="button" class="btn btn-outline-primary">Copy</button>
+                                        </form>
+
+                                        <form class="form-inline">
+                                            <div class="form-group">
+                                                <label for="pwLength">Length</label>
+                                                <select class="custom-select" id="pwLength">
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                    <option value="11">11</option>
+                                                    <option selected="12">12</option>
+                                                    <option value="13">13</option>
+                                                    <option value="14">14</option>
+                                                    <option value="15">15</option>
+                                                    <option value="16">16</option>
+                                                </select>
+                                                <div class="row">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" id="caps">
+                                                        A-Z
+                                                    </label>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" id="special">
+                                                        !-?
+                                                    </label>
+                                                </div>
+                                                <div class="row">
+
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" id="numbers"
+                                                            checked="checked">
+                                                        1-9
+                                                    </label>
+                                                </div>
+                                        </form>
+                                    </main>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -69,8 +120,7 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="password">Password</label>
-                                        <input type="password" class="form-control" id="password" name="password"
-                                            value={{ $staff->password }}>
+                                        <input type="password" class="form-control" id="password" name="password">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">

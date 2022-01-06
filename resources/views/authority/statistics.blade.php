@@ -122,7 +122,7 @@
                          <div class="inner">
                              <h3>{{ $staffObject->policeCount() }}</h3>
 
-                             <p>Number of Cases Police Department Deployed</p>
+                             <p>Number of Personels Deployed for Police Department</p>
                          </div>
                          <div class="icon">
                              <i class="fab fa-old-republic"></i>
@@ -136,7 +136,7 @@
                          <div class="inner">
                              <h3>{{ $staffObject->healthCount() }}</h3>
 
-                             <p>Number of Cases Health Department Deployed</p>
+                             <p>Number of Personels Deployed for Health Department</p>
                          </div>
                          <div class="icon">
                              <i class="fas fa-ambulance"></i>
@@ -151,7 +151,7 @@
                          <div class="inner text-white">
                              <h3>{{ $staffObject->fireCount() }}</h3>
 
-                             <p>Number of Cases Fire Department Deployed</p>
+                             <p>Number of Personels Deployed for Fire Department</p>
                          </div>
                          <div class="icon">
                              <i class="fas fa-fire-extinguisher"></i>
