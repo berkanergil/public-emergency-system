@@ -209,8 +209,9 @@ $group=$event?->groupEvent?->group($event?->groupEvent?->group_id);
                                 @foreach ($group as $row)
                                 @php
                                 $agent = Staff::find($row->staff_id);
-                                $modal_trigger = 'agent' . $agent->id;
+                                $modal_trigger = 'agent' . $agent?->id;
                                 @endphp
+                                @if (isset($agent))
                                 <div class="col-md-4">
                                     <div class="card card-primary card-outline shadow  bg-white rounded">
                                         <div class="card-body box-profile">
@@ -301,6 +302,8 @@ $group=$event?->groupEvent?->group($event?->groupEvent?->group_id);
                                         </div>
                                     </div>
                                 </div>
+                                @endif
+
                                 @endforeach
                                 @endif
 
