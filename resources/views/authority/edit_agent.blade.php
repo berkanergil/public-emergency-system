@@ -176,7 +176,7 @@
                         type: "POST",
                         data: {
                             id: id,
-                            _method: "CANCEL",
+                            _method: "DELETE",
                             _token: _token
                         },
                         success: function() {
