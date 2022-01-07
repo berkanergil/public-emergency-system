@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Document;
 use Illuminate\Http\Request;
 
@@ -34,6 +35,7 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
+        try{
             $documentModel = new Document();
     
             if($request->file()) {
@@ -48,6 +50,10 @@ class DocumentController extends Controller
             }else{
                 return response(false,400);
             }
+        }catch(Exception $e){
+            return response($e,500);
+        }
+            
     }
 
     /**
