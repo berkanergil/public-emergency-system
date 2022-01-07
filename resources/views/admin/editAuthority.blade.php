@@ -150,8 +150,8 @@
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete it!'
-            }).then((isConfirm) => {
-                if (isConfirm) {
+            }).then((result) => {
+                if (result.isConfirmed) {
                     $.ajax({
                         url: "{{ route('delete_authority', $staff->id) }}",
                         type: "POST",
