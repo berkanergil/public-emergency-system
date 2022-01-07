@@ -140,7 +140,7 @@
 @section('sweetjs')
     <script>
         let _token = $('meta[name="csrf-token"]').attr('content');
-        var url = "http://127.0.0.1:8000/all_authorities"
+        var url = 'http://127.0.0.1:8000/all_authorities'
         var id = {{ $staff->id }};
         var button = $("#delete").on("click", function() {
             Swal.fire({
@@ -183,8 +183,7 @@
     <script>
         let _token = $('meta[name="csrf-token"]').attr('content');
         var id = {{ $staff->id }};
-        var url = "http://127.0.0.1:8000/one_authority/{{ $staff->id }}"
-
+        var url = 'http://127.0.0.1:8000/one_authority/' + id
         var button = $('#update').on('click', function() {
             console.log('hell')
             Swal.fire({
