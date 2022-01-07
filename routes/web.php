@@ -4,20 +4,22 @@ use App\Models\User;
 use App\Models\Event;
 use App\Models\Group;
 use App\Models\Staff;
+use App\Models\Document;
 use App\Models\EventType;
+use App\Models\Department;
 use App\Models\GroupEvent;
 use App\Models\EventStatus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GroupEventController;
-use App\Models\Department;
-use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -323,6 +325,22 @@ Route::get('/one_agentGroup/{id}', function (Request $request) {
 
     return view("authority.one_agentGroup", compact("group"));
 })->name('one_agentGroup');
+
+Route::post('/store_evidence/{id}', function (Request $request,$id) {
+    $documentControllerObject = new DocumentController();
+    $response = $documentControllerObject->store($request);
+    if ($response?->status() == 200) {
+        $document_json = json_decode($response->content());
+        $event = Event::find($id);
+        $event->update([
+            "document_id" => $document_json->id
+            ]
+        );
+        return true;
+    }else{
+        return abort(500);
+    }
+})->name("uploadEvidence");
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/adminDashboard', [App\Http\Controllers\HomeController::class, 'adminDashboard'])->name('adminDashboard');

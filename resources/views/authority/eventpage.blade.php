@@ -402,9 +402,9 @@
                                         text: "Your row has been updated.",
                                         type: "success",
                                         timer: 3000
+                                    }).then(function() {
+                                        location.reload(true);
                                     });
-
-                                    location.reload();
                                 },
                                 error: function(xhr, ajaxOptions, thrownError) {
                                     swal.fire("Error deleting!", "Please try again",
@@ -420,8 +420,6 @@
             Swal.fire({
                 title: 'Upload Evidence',
                 input: 'file',
-                inputOptions: eventStatus,
-                inputPlaceholder: currentStatus,
                 inputValue: currentStatusId,
                 showCancelButton: true,
                 inputValidator: (value) => {
@@ -430,11 +428,10 @@
                             resolve('You need to select oranges :)')
                         } else {
                             $.ajax({
-                                url: "{{ route('update_report', $event->id) }}",
+                                url: "{{ route('uploadEvidence', $event->id) }}",
                                 type: "POST",
                                 data: {
                                     event_status_id: value,
-                                    _method: "PUT",
                                     _token: _token
                                 },
                                 success: function() {
@@ -445,7 +442,6 @@
                                         timer: 50000
                                     });
 
-                                    location.reload();
                                 },
                                 error: function(xhr, ajaxOptions, thrownError) {
                                     swal.fire("Error deleting!", "Please try again",
