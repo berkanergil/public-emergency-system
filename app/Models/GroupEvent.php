@@ -89,7 +89,7 @@ class GroupEvent extends Model
     }
 
     public function group($id){
-        return Group::where("group_id",$id)->get(); 
+        return Group::where("group_id",$id)->get();
     }
 
     public function assignerStaff(){

@@ -127,9 +127,9 @@
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete it!'
-            }).then((isConfirm) => {
-                if (!isConfirm) return;
-                $.ajax({
+            }).then((result) => {
+                if(result.isConfirmed){
+                    $.ajax({
                     url: "{{ route('delete_report', $event->id) }}",
                     type: "POST",
                     data: {
@@ -146,6 +146,7 @@
                         swal.fire("Error deleting!", "Please try again", "error");
                     }
                 });
+                }
             })
         });
     </script>
