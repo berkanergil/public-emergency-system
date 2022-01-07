@@ -119,8 +119,6 @@ Route::put('/updateAuthority/{id}', function (Request $request, $id) {
     return view("admin.one_authority", compact("staff"));
 })->name('updateAuthority');
 
-
-
 Route::get('/all_agents', function () {
     $staffObject = new Staff;
     return view("authority.all_agents", compact("staffObject"));

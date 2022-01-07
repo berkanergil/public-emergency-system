@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-md-6">
 
-                    <h3 class="text-bold mb-3">Agent Group: <span class="text-danger">12</span></h3>
+                    <h3 class="text-bold mb-3">Agent Group: <span class="text-danger"></span></h3>
                 </div>
                 <div class="col-md-6">
                     <button class="btn btn-danger btn-md p-2  float-right mb-5"><i class="fas fa-edit"></i> Edit
