@@ -371,11 +371,10 @@
 @endsection
 @section('sweetjs')
     <script>
-        console.log("başladık yine")
         var eventStatus = @json($eventStatus);
         var currentStatus = @json($currentStatus);
         var currentStatusId = @json($currentStatusId);
-        console.log(currentStatus)
+        let _token = $('meta[name="csrf-token"]').attr('content');
         $("#mark_event").on("click", function() {
             Swal.fire({
                 title: 'Mark Events As',
@@ -390,19 +389,63 @@
                             resolve('You need to select oranges :)')
                         } else {
                             $.ajax({
-                                url: "{{ route('delete_authority', $staff->id) }}",
+                                url: "{{ route('update_report', $event->id) }}",
                                 type: "POST",
                                 data: {
-                                    id: id,
-                                    _method: "DELETE",
+                                    event_status_id: value,
+                                    _method: "PUT",
                                     _token: _token
                                 },
                                 success: function() {
-                                    swal.fire("Done!",
-                                        "It was succesfully deleted!", "success"
-                                    );
+                                    swal.fire({
+                                        title: "Updated!",
+                                        text: "Your row has been updated.",
+                                        type: "success",
+                                        timer: 3000
+                                    });
 
-                                    $(location).attr('href', url);
+                                    location.reload();
+                                },
+                                error: function(xhr, ajaxOptions, thrownError) {
+                                    swal.fire("Error deleting!", "Please try again",
+                                        "error");
+                                }
+                            });
+                        }
+                    })
+                }
+            })
+        })
+        $("#upload_evidence").on("click", function() {
+            Swal.fire({
+                title: 'Upload Evidence',
+                input: 'file',
+                inputOptions: eventStatus,
+                inputPlaceholder: currentStatus,
+                inputValue: currentStatusId,
+                showCancelButton: true,
+                inputValidator: (value) => {
+                    return new Promise((resolve) => {
+                        if (value === '') {
+                            resolve('You need to select oranges :)')
+                        } else {
+                            $.ajax({
+                                url: "{{ route('update_report', $event->id) }}",
+                                type: "POST",
+                                data: {
+                                    event_status_id: value,
+                                    _method: "PUT",
+                                    _token: _token
+                                },
+                                success: function() {
+                                    swal.fire({
+                                        title: "Updated!",
+                                        text: "Your row has been updated.",
+                                        type: "success",
+                                        timer: 50000
+                                    });
+
+                                    location.reload();
                                 },
                                 error: function(xhr, ajaxOptions, thrownError) {
                                     swal.fire("Error deleting!", "Please try again",
