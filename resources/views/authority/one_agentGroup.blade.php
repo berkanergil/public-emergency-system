@@ -37,7 +37,7 @@
                                 <ul class="list-group list-group-unbordered mb-3">
                                     <li class="list-group-item">
                                         <b>Name Surname:</b> <a
-                                            class="float-right">{{                                             class="float-right">Str::title($agent->name . ' ' . $agent->surname) }}</a>
+                                            class="float-right">{{ Str::title($agent->name . ' ' . $agent->surname) }}</a>
                                     </li>
                                     <li class="list-group-item">
                                         <b>Phone Number:</b> <a class="float-right">{{ $agent->msisdn }}</a>
@@ -80,7 +80,7 @@
                                                 </li>
                                                 <li class="list-group-item border-0">
                                                     <b>Name Surname:</b> <a
-                                                        class="float-right">{{                                                         class="float-right">Str::title($agent->name . ' ' . $agent->surname) }}
+                                                        class="float-right">{{ Str::title($agent->name . ' ' . $agent->surname) }}
                                                     </a>
                                                 </li>
                                                 <li class="list-group-item border-0">
