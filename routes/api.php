@@ -51,3 +51,4 @@ Route::resource('staffs', StaffController::class);
 Route::resource('staff-events', StaffEventController::class); 
 Route::resource('staff-roles', StaffRoleController::class);  
 Route::resource('event-types', EventTypeController::class);  
+Route::get('/event-detail/{id}',[EventController::class,'eventDetail']); 
