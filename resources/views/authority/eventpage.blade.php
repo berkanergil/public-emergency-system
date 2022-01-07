@@ -79,7 +79,8 @@
                                             <li class="list-group-item border-0"><strong>Name Surname:</strong>
                                                 @if (isset($event->user))
                                                     {{ Str::title($event->user->name . ' ' . $event->user->surname) }}
-                                                    @else{{ @elseStr::title($event->staff->name . ' ' . $event->staff->surname . ' ' . ' (Staff Category)') }}
+                                                @else
+                                                    {{ Str::title($event->staff->name . ' ' . $event->staff->surname . ' ' . ' (Staff Category)') }}
                                                 @endif
                                             </li>
 
@@ -314,7 +315,6 @@
                                             @endif
 
                                         @endforeach
-
                                     @endif
 
                                 </div>
