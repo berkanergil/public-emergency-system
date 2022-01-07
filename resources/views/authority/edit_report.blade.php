@@ -73,20 +73,7 @@
                                             value={{ $event->description }}>
                                     </div>
                                 </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label for="phone">Event Status</label>
-                                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
-                                            name="event_status_id">
-                                            @foreach ($eventStatusObject->eventStatuses() as $eventStatus)
-                                                <option value={{ $eventStatus->id }}
-                                                    {{ $eventStatus->id == $event->event_status_id ? 'selected' : '' }}>
-                                                    {{ $eventStatus->title }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
+
                             </div>
                             <div class="row gutters">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -128,24 +115,24 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
-                if(result.isConfirmed){
+                if (result.isConfirmed) {
                     $.ajax({
-                    url: "{{ route('delete_report', $event->id) }}",
-                    type: "POST",
-                    data: {
-                        id: id,
-                        _method: "DELETE",
-                        _token: _token
-                    },
-                    success: function() {
-                        swal.fire("Done!", "It was succesfully deleted!", "success");
+                        url: "{{ route('delete_report', $event->id) }}",
+                        type: "POST",
+                        data: {
+                            id: id,
+                            _method: "DELETE",
+                            _token: _token
+                        },
+                        success: function() {
+                            swal.fire("Done!", "It was succesfully deleted!", "success");
 
-                        $(location).attr('href', url);
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        swal.fire("Error deleting!", "Please try again", "error");
-                    }
-                });
+                            $(location).attr('href', url);
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            swal.fire("Error deleting!", "Please try again", "error");
+                        }
+                    });
                 }
             })
         });

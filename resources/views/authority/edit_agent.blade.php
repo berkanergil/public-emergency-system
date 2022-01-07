@@ -170,25 +170,25 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
-                if(result.isConfirmed){
+                if (result.isConfirmed) {
                     $.ajax({
-                    url: "{{ route('delete_agent', $staff->id) }}",
-                    type: "POST",
-                    data: {
-                        id: id,
-                        _method: "DELETE",
-                        _token: _token
-                    },
-                    success: function() {
-                        swal.fire("Done!", "It was succesfully deleted!", "success");
+                        url: "{{ route('delete_agent', $staff->id) }}",
+                        type: "POST",
+                        data: {
+                            id: id,
+                            _method: "CANCEL",
+                            _token: _token
+                        },
+                        success: function() {
+                            swal.fire("Done!", "It was succesfully deleted!", "success");
 
-                        $(location).attr('href', url);
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        swal.fire("Error deleting!", "Please try again", "error");
-                    }
-                });
-                }else{
+                            $(location).attr('href', url);
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            swal.fire("Error deleting!", "Please try again", "error");
+                        }
+                    });
+                } else {
 
                 }
             })
