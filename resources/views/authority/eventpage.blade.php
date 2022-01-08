@@ -68,7 +68,7 @@
                             <div class="col-md-6 ml-5 mr-5">
                                 <div class="card  shadow  bg-white rounded">
                                     <div
-                                        class="card-title text-bold p-3 {{ $event->event_status_id === '1' ? 'bg-success' : ($event->event_status_id === '2' ? 'bg-warning' : 'bg-danger') }}">
+                                        class="card-title text-bold p-3 {{ $event->event_status_id == '1' ? 'bg-success' : ($event->event_status_id == '2' ? 'bg-warning' : 'bg-danger') }}">
                                         Emergency Information
                                         ({{ Str::title($event->eventStatus->title) }})
                                     </div>

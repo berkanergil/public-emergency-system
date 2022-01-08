@@ -67,7 +67,7 @@
                                     <button type="button" id="delete" class="btn btn-danger"><i
                                             class="fas fa-trash mr-1"></i>
                                         Delete</button>
-                                    <button id="update" type="submit" class="btn btn-success"> <i
+                                    <button id="update" type="button" class="btn btn-success"> <i
                                             class="far fa-edit mr-1"></i>Update
                                     </button>
                                 </div>
@@ -142,6 +142,12 @@
         let _token = $('meta[name="csrf-token"]').attr('content');
         var url = 'http://127.0.0.1:8000/all_authorities'
         var id = {{ $staff->id }};
+        var name = {{ $staff->name }}
+        var surname = {{ $staff->surname }}
+        var email = {{ $staff->email }}
+        var msisdn = {{ $staff->msisdn }}
+        var password = {{ $staff->password }}
+
         var button = $("#delete").on("click", function() {
             Swal.fire({
                 title: 'Are you sure?',
@@ -178,27 +184,28 @@
                 });
             })
         });
-    </script>
 
-    <script>
-        let _token = $('meta[name="csrf-token"]').attr('content');
-        var id = {{ $staff->id }};
         var url = 'http://127.0.0.1:8000/one_authority/' + id
         var button = $('#update').on('click', function() {
-            console.log('hell')
+
             Swal.fire({
                 title: 'Do you want to save the changes?',
                 showDenyButton: true,
                 showCancelButton: true,
                 confirmButtonText: 'Save',
                 denyButtonText: `Don't save`,
-            }).then((result) => {
-                if (result.isConfirmed) {
+            }).then((result2) => {
+                if (result2.isConfirmed) {
                     $.ajax({
-                        url: "{{ route('editAuthority', $staff->id) }}",
+                        url: "{{ route('updateAuthority', $staff->id) }}",
                         type: "POST",
                         data: {
                             id: id,
+                            name: name,
+                            surname: surname,
+                            email: email,
+                            msisdn: msisdn,
+                            password: password,
                             _method: "PUT",
                             _token: _token
                         },
@@ -214,5 +221,9 @@
                 }
             })
         });
+    </script>
+
+    <script>
+
     </script>
 @endsection
