@@ -450,29 +450,6 @@
                             } else {
                                 alert("Please select a file.");
                             }
-                            // $.ajax({
-                            //     url: "{{ route('update_report', $event->id) }}",
-                            //     type: "POST",
-                            //     data: {
-                            //         event_status_id: value,
-                            //         _method: "PUT",
-                            //         _token: _token
-                            //     },
-                            //     success: function() {
-                            //         swal.fire({
-                            //             title: "Updated!",
-                            //             text: "Your row has been updated.",
-                            //             type: "success",
-                            //             timer: 3000
-                            //         }).then(function() {
-                            //             location.reload(true);
-                            //         });
-                            //     },
-                            //     error: function(xhr, ajaxOptions, thrownError) {
-                            //         swal.fire("Error deleting!", "Please try again",
-                            //             "error");
-                            //     }
-                            // });
                         }
                     })
                 }
