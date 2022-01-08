@@ -109,6 +109,7 @@ Route::get('/editAuthority/{id}', function ($id) {
     $staff = Staff::find($id);
     return view("admin.editAuthority", compact("staff"));
 })->name('editAuthority');
+
 Route::put('/updateAuthority/{id}', function (Request $request, $id) {
     $staffControllerObject = new StaffController;
     $response = $staffControllerObject->update($request, $id);
@@ -326,18 +327,19 @@ Route::get('/one_agentGroup/{id}', function (Request $request) {
     return view("authority.one_agentGroup", compact("group"));
 })->name('one_agentGroup');
 
-Route::post('/store_evidence/{id}', function (Request $request,$id) {
+Route::post('/store_evidence/{id}', function (Request $request, $id) {
     $documentControllerObject = new DocumentController();
     $response = $documentControllerObject->store($request);
     if ($response?->status() == 200) {
         $document_json = json_decode($response->content());
         $event = Event::find($id);
-        $event->update([
-            "document_id" => $document_json->id
+        $event->update(
+            [
+                "document_id" => $document_json->id
             ]
         );
         return true;
-    }else{
+    } else {
         return abort(500);
     }
 })->name("uploadEvidence");
