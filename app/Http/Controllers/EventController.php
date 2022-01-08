@@ -88,4 +88,12 @@ class EventController extends Controller
         $eventDetail->event_type_title=EventType::find($eventDetail->event_type_id)->title;
         return response($eventDetail);
     }
+
+    public function groupMembers($id){
+        $staff=Staff::find($id);
+        $groupMembers=$staff->group->groupMembers($staff->group->group_id);
+        return response($groupMembers);
+    }
+
+
 }
