@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Group;
 use App\Models\Department;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -47,5 +48,10 @@ class Staff extends Authenticatable
         $staff_id=Group::all()->pluck("staff_id");
         return Staff::where("staff_role_id","2")->whereNotIn("id",$staff_id)->orderBy("department_id")->get();
     }
+
+    public function group(){
+        return $this->hasOne(Group::class);
+    }
+
     
 }

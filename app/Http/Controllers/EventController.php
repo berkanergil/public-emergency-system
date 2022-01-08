@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Event;
+use App\Models\Staff;
+use App\Models\EventType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -71,5 +74,18 @@ class EventController extends Controller
     public function destroy($id)
     {
         return response(Event::destroy($id));
+    }
+
+    public function eventDetail($id){
+        $staff=Staff::find($id);
+        $eventDetail=$staff->group->currentEvent($staff->group->group_id);
+        if(isset($eventDetail->user_id)){
+            $eventDetail->creator=User::find($eventDetail->user_id);
+        }elseif(isset($eventDetail->staff_id)){
+            $eventDetail->creator=Staff::find($eventDetail->staff_id);
+        }
+        $eventDetail->groupMembers=$staff->group->groupMembers($staff->group->group_id);
+        $eventDetail->event_type_title=EventType::find($eventDetail->event_type_id)->title;
+        return response($eventDetail);
     }
 }
