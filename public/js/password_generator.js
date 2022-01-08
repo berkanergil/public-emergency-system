@@ -1,6 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
+    var result = document.querySelector('.generator');
+    var copy = document.querySelector('.btn-outline-primary');
+    var pwField = document.getElementById('password');
+    var pwField2 = document.getElementById('password_confirm');
+
+
     function copyToClipboard(text) {
-        window.prompt('Copy to clipboard: Ctrl+C, Enter', text);
+        Swal.fire({
+            icon: 'success',
+            title: 'Click Button to Copy to Clipboard',
+            confirmButtonText: '<i class="far fa-copy"></i> Copy',
+            confirmButtonColor: '#28A745',
+            text: text,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                navigator.clipboard.writeText(text);
+            }
+        })
     }
 
     function generatePass(pwField) {
@@ -28,20 +44,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         pwField.value = newPassword;
+        pwField2.value = newPassword;
+        Swal.fire(newPassword).then(copyToClipboard(pwField.value));
     }
-
-    var gen = document.querySelector('.btn-primary');
-    var copy = document.querySelector('.btn-outline-primary');
-    var pwField = document.getElementById('generatedPassword');
-
-    // Why does this work but
-    // gen.addEventListener('click', generatePass(pwField));
-    // doesn't?
-    gen.addEventListener('click', function() {
-        generatePass(pwField);
+    result.addEventListener('click', function() {
+        generatePass(pwField).then(copyToClipboard(pwField.value));
     });
-
-    copy.addEventListener('click', function() {
-        copyToClipboard(pwField.value);
-    });
-})
+});
