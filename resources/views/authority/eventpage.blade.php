@@ -414,36 +414,65 @@
         })
         $("#upload_evidence").on("click", function() {
             Swal.fire({
-                title: 'Upload Evidence',
+                title: 'Select image',
                 input: 'file',
-                inputValue: currentStatusId,
-                showCancelButton: true,
+                inputAttributes: {
+                    'accept': 'image/*',
+                    'aria-label': 'Upload your profile picture'
+                },
                 inputValidator: (value) => {
                     return new Promise((resolve) => {
                         if (value === '') {
                             resolve('You need to select oranges :)')
                         } else {
-                            $.ajax({
-                                url: "{{ route('uploadEvidence', $event->id) }}",
-                                type: "POST",
-                                data: {
-                                    event_status_id: value,
-                                    _token: _token
-                                },
-                                success: function() {
-                                    swal.fire({
-                                        title: "Updated!",
-                                        text: "Your row has been updated.",
-                                        type: "success",
-                                        timer: 50000
-                                    });
+                            var fd = new FormData();
 
-                                },
-                                error: function(xhr, ajaxOptions, thrownError) {
-                                    swal.fire("Error deleting!", "Please try again",
-                                        "error");
-                                }
-                            });
+                            // Check file selected or not
+                            if (value) {
+                                fd.append('file', value);
+                                fd.append('_token', _token);
+                                fd.append('type', "photo");
+
+                                $.ajax({
+                                    url: "{{ route('store_evidence',$event->id) }}",
+                                    type: 'post',
+                                    data: fd,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function(response) {
+                                        if (response) {
+                                            alert('file uploaded');
+                                        } else {
+                                            alert('file not uploaded');
+                                        }
+                                    },
+                                });
+                            } else {
+                                alert("Please select a file.");
+                            }
+                            // $.ajax({
+                            //     url: "{{ route('update_report', $event->id) }}",
+                            //     type: "POST",
+                            //     data: {
+                            //         event_status_id: value,
+                            //         _method: "PUT",
+                            //         _token: _token
+                            //     },
+                            //     success: function() {
+                            //         swal.fire({
+                            //             title: "Updated!",
+                            //             text: "Your row has been updated.",
+                            //             type: "success",
+                            //             timer: 3000
+                            //         }).then(function() {
+                            //             location.reload(true);
+                            //         });
+                            //     },
+                            //     error: function(xhr, ajaxOptions, thrownError) {
+                            //         swal.fire("Error deleting!", "Please try again",
+                            //             "error");
+                            //     }
+                            // });
                         }
                     })
                 }

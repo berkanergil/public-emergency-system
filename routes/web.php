@@ -340,7 +340,7 @@ Route::post('/store_evidence/{id}', function (Request $request,$id) {
     }else{
         return abort(500);
     }
-})->name("uploadEvidence");
+})->name("store_evidence");
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/adminDashboard', [App\Http\Controllers\HomeController::class, 'adminDashboard'])->name('adminDashboard');
