@@ -243,9 +243,9 @@
                                                 @if (isset($history["mark"][0]))
                                                 @foreach($history["mark"] as $mark)
                                                 <tr>
-                                                    <td>Group Created <a href="{{ route('one_agentGroup',$history["group"]["group_id"]) }}">(Group {{ $history["group"]["group_id"] }})</a></td>
-                                                    <td><a href="{{ route('one_agent',$history["group"]["assigner_staff_id"]) }}">{{ $history["group"]["assigner_staff_name"] }}</a></td>
-                                                    <td>{{ $history["group"]["created_at"] }}</td>
+                                                    <td>Event Status Changed ({{ $mark["event_status_name"]}})</td>
+                                                    <td><a href="{{ route('one_agent',$mark["staff_id"]) }}">{{ $mark["staff_name"] }}</a></td>
+                                                    <td>{{ $mark["created_at"]}}</td>
                                                 </tr>
                                                 @endforeach
                                                

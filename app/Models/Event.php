@@ -131,6 +131,7 @@ class Event extends Model
                 "event_status_name"=>$staffEvent->eventStatus->title,
                 "staff_name"=>$staffEvent->staff->name." ".$staffEvent->staff->surname,
                 "staff_id"=>$staffEvent->staff_id,
+                "created_at"=>$staffEvent->created_at,
             ];
         }
 
