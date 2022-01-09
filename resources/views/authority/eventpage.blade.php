@@ -171,7 +171,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 ml-5">
+                            <div class="col-md-5 ">
                                 <div class="card shadow  bg-white rounded">
                                     <div class="card-title bg-info p-3 text-bold">Device Information</div>
                                     <div class="card-body">
