@@ -499,5 +499,50 @@
                 }
             })
         })
+
+        $("#deploy_agent_group").on("click", function() {
+            Swal.fire({
+                title: 'Mark Events As',
+                input: 'select',
+                inputOptions: eventStatus,
+                inputPlaceholder: currentStatus,
+                inputValue: currentStatusId,
+                showCancelButton: true,
+                inputValidator: (value) => {
+                    return new Promise((resolve) => {
+                        if (value === '') {
+                            resolve('You need to select oranges :)')
+                        } else {
+                            $.ajax({
+                                url: "{{ route('update_report', $event->id) }}",
+                                type: "POST",
+                                data: {
+                                    event_status_id: value,
+                                    _method: "PUT",
+                                    _token: _token
+                                },
+                                success: function() {
+                                    swal.fire({
+                                        icon: 'success',
+                                        title: "Updated!",
+                                        text: "Your row has been updated.",
+                                        type: "success",
+                                        timer: 3000
+                                    }).then(function() {
+                                        location.reload(true);
+                                    });
+                                },
+                                error: function(xhr, ajaxOptions, thrownError) {
+                                    swal.fire("Error deleting!", "Please try again",
+                                        "error");
+                                }
+                            });
+                        }
+                    })
+                }
+            })
+        })
+
+        
     </script>
 @endsection

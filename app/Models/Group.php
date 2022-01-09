@@ -30,4 +30,9 @@ class Group extends Model
     public static function groupMembers($id){
         return Staff::join("groups","groups.staff_id","=","staff.id")->where("groups.group_id",$id)->get();
     }
+
+    // public static function availableGroups(){
+    //     $notAvailableGroups=GroupEvent::where
+    //     return true;
+    // }
 }
