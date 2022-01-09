@@ -327,7 +327,10 @@
                                     <div class="card-title text-bold p-3 bg-danger">Event Evidences
                                     </div>
                                     <div class="card-body">
-                                        <a href="{{ asset($event?->document?->path)}}">BUYUR YARRAM</a>
+                                        @if (isset($event->document->path))
+                                        <a href="{{ asset($event->document->path)}}">BUYUR YARRAM</a>
+                                        @endif
+
                                     </div>
                                 </div>
                             </div>
