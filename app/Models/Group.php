@@ -31,8 +31,13 @@ class Group extends Model
         return Staff::join("groups","groups.staff_id","=","staff.id")->where("groups.group_id",$id)->get();
     }
 
-    // public static function availableGroups(){
-    //     $notAvailableGroups=GroupEvent::where
-    //     return true;
-    // }
+    public static function availableGroups(){
+        $availableGroups = GroupEvent::select("group_events.group_id","departments.title")->join("events","group_events.event_id","=","events.id")
+        ->leftJoin("groups","group_events.group_id","=","groups.group_id")
+        ->leftJoin("staff","groups.staff_id","=","staff.id")
+        ->leftJoin("departments","staff.department_id","=","departments.id")
+        ->where("events.event_status_id","!=","2")->get();
+
+        return $availableGroups;
+    }
 }
