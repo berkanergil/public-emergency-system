@@ -468,14 +468,33 @@
                                     _token: _token
                                 },
                                 success: function() {
-                                    swal.fire({
-                                        icon: 'success',
-                                        title: "Updated!",
-                                        text: "Your row has been updated.",
-                                        type: "success",
-                                        timer: 3000
-                                    }).then(function() {
-                                        location.reload(true);
+                                    $.ajax({
+                                        url: "{{ route('mark_event', $event->id) }}",
+                                        type: "POST",
+                                        data: {
+                                            event_status_id: value,
+                                            event_id:  "{{ $event->id }}",
+                                            staff_id:  "{{ Auth::id() }}",
+                                            _token: _token
+                                        },
+                                        success: function() {
+                                            swal.fire({
+                                                icon: 'success',
+                                                title: "Updated!",
+                                                text: "Your row has been updated.",
+                                                type: "success",
+                                                timer: 3000
+                                            }).then(function() {
+                                                location.reload(
+                                                    true);
+                                            });
+                                        },
+                                        error: function(xhr, ajaxOptions,
+                                            thrownError) {
+                                            swal.fire("Error deleting!",
+                                                "Please try again",
+                                                "error");
+                                        }
                                     });
                                 },
                                 error: function(xhr, ajaxOptions, thrownError) {
@@ -483,6 +502,7 @@
                                         "error");
                                 }
                             });
+
                         }
                     })
                 }

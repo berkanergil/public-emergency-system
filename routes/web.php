@@ -20,6 +20,7 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GroupEventController;
+use App\Http\Controllers\StaffEventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -345,6 +346,17 @@ Route::post('/store_evidence/{id}', function (Request $request, $id) {
         return abort(500);
     }
 })->name("store_evidence");
+
+Route::post('/mark_event', function (Request $request) {
+    Log::info("message");
+    $staffEventControllerObject = new StaffEventController();
+    $response = $staffEventControllerObject->store($request);
+    if ($response?->status() == 200) {
+        return true;
+    } else {
+        return abort(500);
+    }
+})->name("mark_event");
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/adminDashboard', [App\Http\Controllers\HomeController::class, 'adminDashboard'])->name('adminDashboard');

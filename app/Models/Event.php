@@ -104,6 +104,17 @@ class Event extends Model
     public function status(){
         return $this->belongsTo(User::class);
     }
+
+    public static function history($id){
+        $array=array();
+        $event=Event::find($id);
+        $array["create"]=[
+            "creator_name"=>isset($event->staff->id)?$event->staff->name . ' ' . $event->staff->surname:$event->user->name . ' ' . $event->user->surname,
+            "created_at"=>$event->created_at
+        ];
+        
+        
+    }
     
 
 }
