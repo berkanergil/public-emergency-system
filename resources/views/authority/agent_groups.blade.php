@@ -7,6 +7,7 @@
     @php
     use App\Models\Staff;
     use App\Models\Group;
+    use App\Models\Event;
     @endphp
     <div class="card">
         <div class="card-header">
@@ -30,6 +31,7 @@
                             $groupObject = new Group();
                             $groupMembers = $groupObject->groupMembers($group->group_id);
                             $currentEvent = $groupObject->event($group->group_id);
+                             $currentEvent= Event::find($currentEvent?->id);
                         @endphp
                         <tr>
                             <td><a target="_blank"
@@ -42,7 +44,7 @@
 
                             </td>
 
-                            <td class="text-success">{{ $currentEvent->status->title }}</td>
+                            <td class="text-success">{{ isset($currentEvent)?$currentEvent->status->title:"not assigned" }}</td>
 
                         </tr>
                     @endforeach

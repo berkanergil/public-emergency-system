@@ -288,9 +288,6 @@ Route::put('/update_report/{id}', function (Request $request, $id) {
                 "group_id" => $request->input("group_id")
             ]);
             return redirect()->route("eventpage", ["id" => $event->id]);
-        } else if ($event->groupEvent != null && $request->input("group_id") == null) {
-            $event->groupEvent->delete();
-            return redirect()->route("eventpage", ["id" => $event->id]);
         } else {
             return back();
         }
@@ -348,7 +345,6 @@ Route::post('/store_evidence/{id}', function (Request $request, $id) {
 })->name("store_evidence");
 
 Route::post('/mark_event', function (Request $request) {
-    Log::info("message");
     $staffEventControllerObject = new StaffEventController();
     $response = $staffEventControllerObject->store($request);
     if ($response?->status() == 200) {

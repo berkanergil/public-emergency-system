@@ -29,7 +29,7 @@ class Group extends Model
     }
 
     public static function event($id){
-        return Event::join("group_events","events.id","=","group_events.event_id")->where("group_events.group_id",$id)->get()->first();
+        return Event::select("events.*")->join("group_events","events.id","=","group_events.event_id")->where("group_events.group_id",$id)->get()->first();
     }
 
     public static function groupMembers($id){

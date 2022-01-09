@@ -102,7 +102,7 @@ class Event extends Model
     }   
     
     public function status(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(EventStatus::class,"event_status_id");
     }
 
     public function staffEvents(){
