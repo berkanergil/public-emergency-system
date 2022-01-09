@@ -27,7 +27,7 @@
                         <tr>
                             <td><a target="_blank"
                                     href="{{ route('one_agent', $authority->id) }}">{{ $authority->id }}</a></td>
-                            <td>{{ Str::title($authority->department?->title) }}</td>
+                            <td>{{ Str::title($authority->department?->title) }} Department</td>
                             <td>{{ Str::title($authority->name . ' ' . $authority->surname) }}</td>
                             <td>{{ $authority->email }}</td>
                             <td>{{ $authority->msisdn }}</td>
