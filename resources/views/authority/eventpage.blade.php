@@ -13,7 +13,7 @@
     $currentStatus = $event?->eventStatus?->title;
     $currentStatusId = $event?->eventStatus?->id;
     $group = $event?->groupEvent?->group($event?->groupEvent?->group_id);
-    $documentModalTrigger = 'document' . $event->document->id;
+    $documentModalTrigger = 'document' . $event?->document?->id;
     $bgWarning = 'bg-warning';
     $bgDanger = 'bg-danger';
     @endphp
