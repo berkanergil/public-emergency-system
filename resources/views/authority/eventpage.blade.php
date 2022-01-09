@@ -52,22 +52,22 @@
                             </div>
 
                             <div class="modal-body">
-                                <table border='1' id="myTable">
-                                    <tr>
+                                <table border='1' id="myTable" class="table table-hover table-bordered text-center">
+                                    <tr class="table-danger">
                                         <th>Id</th>
                                         <th>Product Name</th>
                                         <th>Description</th>
                                         <th>Action</th>
                                     </tr>
-                                    <tr>
+                                    <tr class="table-light">
                                         <td>1</td>
-                                        <td class='pd-name'>Moto G</td>
+                                        <td class='pd-name'>Allah G</td>
                                         <td>
                                             <p class="pd-price">50$
                                             <p>
                                         </td>
                                         <td>
-                                            <button class="btnSelect">Select</button>
+                                            <button class="btn btn-danger btnSelect"><i class="fas fa-plus"></i></button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -78,7 +78,7 @@
                                             <p>
                                         </td>
                                         <td>
-                                            <button class="btnSelect">Select</button>
+                                            <button class="btn btn-danger btnSelect"><i class="fas fa-plus"></i></button>
                                         </td>
                                     </tr>
                                 </table>
