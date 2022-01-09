@@ -52,27 +52,35 @@
                             </div>
 
                             <div class="modal-body">
-                                <table id="addGroupTable" class="table table-hover table-bordered text-center">
-                                    <thead>
-                                        <tr class="table-danger">
-                                            <th></th>
-                                            <th>Group ID</th>
-                                            <th>Departments</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="table-light">
-                                        <tr>
-                                            <td><button type="button" class=" btn btn-danger addGroup"><i
-                                                        class="fas fa-plus"></i></button></td>
-                                            <td>a</td>
-                                            <td>Health Department, Fire Department, Police Department</td>
-                                        </tr>
-                                        <tr>
-                                            <td><button type="button" class=" btn btn-danger addGroup"><i
-                                                        class="fas fa-plus"></i></button></td>
-                                            <td>b</td>
-                                            <td>Fire Department, Police Department</td>
-                                        </tr>
+                                <table border='1' id="myTable">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Product Name</th>
+                                        <th>Description</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td class='pd-name'>Moto G</td>
+                                        <td>
+                                            <p class="pd-price">50$
+                                            <p>
+                                        </td>
+                                        <td>
+                                            <button class="btnSelect">Select</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td class='pd-name'>Moto G</td>
+                                        <td>
+                                            <p class="pd-price">50$
+                                            <p>
+                                        </td>
+                                        <td>
+                                            <button class="btnSelect">Select</button>
+                                        </td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>
@@ -541,14 +549,19 @@
             })
         })
 
-        $('#addGroupTable').on('click', 'addGroup', function() {
-            // get the current row
-            var currentRow = $(this).closest("tr");
+        $(document).ready(function() {
 
-            var col1 = currentRow.find("td:eq(0)").html(); // get current row 1st table cell TD value
-            var col2 = currentRow.find("td:eq(1)").html(); // get current row 2nd table cell TD value
+            $("#myTable").on('click', '.btnSelect', function() {
+                // get the current row
+                var currentRow = $(this).closest("tr");
 
+                var col1 = currentRow.find(".pd-price").html(); // get current row 1st table cell TD value
+                var col2 = currentRow.find(".pd-name").html(); // get current row 2nd table cell TD value
 
+                var data = col1 + "\n" + col2;
+
+                alert(data);
+            });
         });
     </script>
 @endsection
