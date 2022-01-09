@@ -34,9 +34,49 @@
                         Notification</button>
                     <button id="upload_evidence" type="button" class="btn btn-lg btn-default button5 text-bold">Upload
                         Evidence</button>
-                    <button id="deploy_agent_group" type="button" class="btn btn-lg btn-default button6 text-bold">Deploy
+                    <button data-target=".bd-example-modal-lg" data-toggle="modal" id="deploy_agent_group" type="button"
+                        class="btn btn-lg btn-default button6 text-bold">Deploy
                         Agent Group</button>
 
+                </div>
+                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-bold text-primary " id="exampleModalLongTitle">Available
+                                    Groups</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body">
+                                <table id="addGroupTable" class="table table-hover table-bordered text-center">
+                                    <thead>
+                                        <tr class="table-danger">
+                                            <th></th>
+                                            <th>Group ID</th>
+                                            <th>Departments</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-light">
+                                        <tr>
+                                            <td><button type="button" class=" btn btn-danger addGroup"><i
+                                                        class="fas fa-plus"></i></button></td>
+                                            <td>a</td>
+                                            <td>Health Department, Fire Department, Police Department</td>
+                                        </tr>
+                                        <tr>
+                                            <td><button type="button" class=" btn btn-danger addGroup"><i
+                                                        class="fas fa-plus"></i></button></td>
+                                            <td>b</td>
+                                            <td>Fire Department, Police Department</td>
+                                        </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <hr class="w-75">
                 <ul class="nav nav-tabs text-bold" id="custom-content-below-tab" role="tablist">
@@ -53,7 +93,8 @@
                     <li class="nav-item">
                         <a class="nav-link p-3" id="custom-content-below-agentsDeployed-tab" data-toggle="pill"
                             href="#custom-content-below-agentsDeployed" role="tab"
-                            aria-controls="custom-content-below-agentsDeployed" aria-selected="false">Agents Deployed</a>
+                            aria-controls="custom-content-below-agentsDeployed" aria-selected="false">Agents
+                            Deployed</a>
                     </li>
 
                     <li class="nav-item">
@@ -500,49 +541,14 @@
             })
         })
 
-        $("#deploy_agent_group").on("click", function() {
-            Swal.fire({
-                title: 'Mark Events As',
-                input: 'select',
-                inputOptions: eventStatus,
-                inputPlaceholder: currentStatus,
-                inputValue: currentStatusId,
-                showCancelButton: true,
-                inputValidator: (value) => {
-                    return new Promise((resolve) => {
-                        if (value === '') {
-                            resolve('You need to select oranges :)')
-                        } else {
-                            $.ajax({
-                                url: "{{ route('update_report', $event->id) }}",
-                                type: "POST",
-                                data: {
-                                    event_status_id: value,
-                                    _method: "PUT",
-                                    _token: _token
-                                },
-                                success: function() {
-                                    swal.fire({
-                                        icon: 'success',
-                                        title: "Updated!",
-                                        text: "Your row has been updated.",
-                                        type: "success",
-                                        timer: 3000
-                                    }).then(function() {
-                                        location.reload(true);
-                                    });
-                                },
-                                error: function(xhr, ajaxOptions, thrownError) {
-                                    swal.fire("Error deleting!", "Please try again",
-                                        "error");
-                                }
-                            });
-                        }
-                    })
-                }
-            })
-        })
+        $('#addGroupTable').on('click', 'addGroup', function() {
+            // get the current row
+            var currentRow = $(this).closest("tr");
 
-        
+            var col1 = currentRow.find("td:eq(0)").html(); // get current row 1st table cell TD value
+            var col2 = currentRow.find("td:eq(1)").html(); // get current row 2nd table cell TD value
+
+
+        });
     </script>
 @endsection
