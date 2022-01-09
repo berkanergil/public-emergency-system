@@ -5,7 +5,7 @@
 @endsection
 
 @section('statistic_content')
-    <div class="row gutters">
+    <div class="row gutters d-flex justify-content-center align-items-center">
         <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
             <div class="card p-5 shadow p-3 mb-5 bg-white rounded">
                 <div class="card-title text-center mt-3">
@@ -62,8 +62,10 @@
                         <div class="row gutters">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right">
-                                    <button type="reset" class="btn btn-secondary"><i class="far fa-window-close mr-1"></i>
-                                        Cancel</button>
+                                    <form class="form-group">
+                                        <button type="button" class="btn btn-primary generator"><i
+                                                class="fas fa-key"></i> Generate Password</button>
+                                    </form>
                                     <button type="button" id="delete" class="btn btn-danger"><i
                                             class="fas fa-trash mr-1"></i>
                                         Delete</button>
@@ -79,62 +81,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-            <div class="card p-5 shadow p-3 mb-5 bg-white rounded">
-                <div class="card-title text-center mt-3">
-                    <h3 class="text-primary text-bold">Generate Password</h3>
-                </div>
-                <div class="card-body">
-                    <main class="d-flex flex-column align-items-center">
-                        <form class="form-group">
-                            <input type="text" class="form-control" id="generatedPassword"
-                                placeholder="Generate Password">
-                        </form>
 
-                        <form class="form-group">
-                            <button type="button" class="btn btn-primary">Generate</button>
-                            <button type="button" class="btn btn-outline-primary">Copy</button>
-                        </form>
-
-                        <form class="form-inline">
-                            <div class="form-group">
-                                <label for="pwLength">Length</label>
-                                <select class="custom-select" id="pwLength">
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option selected="12">12</option>
-                                    <option value="13">13</option>
-                                    <option value="14">14</option>
-                                    <option value="15">15</option>
-                                    <option value="16">16</option>
-                                </select>
-                                <div class="row">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" id="caps">
-                                        A-Z
-                                    </label>
-                                </div>
-                                <div class="row">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" id="special">
-                                        !-?
-                                    </label>
-                                </div>
-                                <div class="row">
-
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" id="numbers" checked="checked">
-                                        1-9
-                                    </label>
-                                </div>
-                        </form>
-                    </main>
-
-                </div>
-            </div>
-        </div>
     </div>
 @endsection
 @section('sweetjs')
@@ -142,11 +89,11 @@
         let _token = $('meta[name="csrf-token"]').attr('content');
         var url = 'http://127.0.0.1:8000/all_authorities'
         var id = {{ $staff->id }};
-        var name = {{ $staff->name }}
-        var surname = {{ $staff->surname }}
-        var email = {{ $staff->email }}
-        var msisdn = {{ $staff->msisdn }}
-        var password = {{ $staff->password }}
+        // var name = {{ $staff->name }}
+        // var surname = {{ $staff->surname }}
+        // var email = {{ $staff->email }}
+        // var msisdn = {{ $staff->msisdn }}
+        // var password = {{ $staff->password }}
 
         var button = $("#delete").on("click", function() {
             Swal.fire({
@@ -156,7 +103,8 @@
                 showCancelButton: true,
                 confirmButtonColor: '#dc3545',
                 cancelButtonColor: '#6c757d',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: '<i class = "fas fa-trash mr-1" ></i> Delete It'
+
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
@@ -168,9 +116,12 @@
                             _token: _token
                         },
                         success: function() {
-                            swal.fire("Done!", "It was succesfully deleted!", "success");
+                            swal.fire("Done!", "It was succesfully deleted!", "success").then(
+                                function() {
+                                    $(location).attr('href', url);
 
-                            $(location).attr('href', url);
+                                })
+
                         },
                         error: function(xhr, ajaxOptions, thrownError) {
                             swal.fire("Error deleting!", "Please try again", "error");
@@ -185,15 +136,17 @@
             })
         });
 
-        var url = 'http://127.0.0.1:8000/one_authority/' + id
+        var url2 = 'http://127.0.0.1:8000/one_authority/' + id
         var button = $('#update').on('click', function() {
 
             Swal.fire({
                 title: 'Do you want to save the changes?',
+                icon: 'question',
                 showDenyButton: true,
-                showCancelButton: true,
-                confirmButtonText: 'Save',
-                denyButtonText: `Don't save`,
+                confirmButtonText: '<i class="far fa-save"></i> Save',
+                denyButtonText: `<i class="far fa-window-close"></i> Cancel`,
+                confirmButtonColor: '#28A745',
+                denyButtonColor: '#6c757d',
             }).then((result2) => {
                 if (result2.isConfirmed) {
                     $.ajax({
@@ -201,24 +154,24 @@
                         type: "POST",
                         data: {
                             id: id,
-                            name: name,
-                            surname: surname,
-                            email: email,
-                            msisdn: msisdn,
-                            password: password,
                             _method: "PUT",
                             _token: _token
                         },
                         success: function() {
                             swal.fire("Done!", "It was succesfully updated!", "success");
 
-                            $(location).attr('href', url);
+                            $(location).attr('href', url2);
                         },
                         error: function(xhr, ajaxOptions, thrownError) {
                             swal.fire("Error Updating!", "Please try again", "error");
                         }
                     })
-                }
+                } else Swal.fire({
+                    title: 'Error Updating!',
+                    text: "Please try again",
+                    icon: 'error',
+
+                });
             })
         });
     </script>
