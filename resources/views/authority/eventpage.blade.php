@@ -14,13 +14,12 @@
     $eventStatus = EventStatus::all()->pluck('title', 'id');
     $currentStatus = $event?->eventStatus?->title;
     $currentStatusId = $event?->eventStatus?->id;
-    $group = $event?->groupEvent?->group($event?->groupEvent?->group_id);
+    $groups = $event?->groupEvent?->group($event?->groupEvent?->group_id);
     $documentModalTrigger = 'document' . $event?->document?->id;
     $bgWarning = 'bg-warning';
     $bgDanger = 'bg-danger';
     $availableGroups = $groupObject->availableGroups();
     @endphp
-
     <section class="content">
         <div class="card card-info card-outline">
             <div class="card-header">
@@ -245,9 +244,9 @@
                         <div class="row">
                             <div class="col-md-7">
                                 <h3 class="text-bold mb-3">Agent Group:
-                                    @if (isset($group[0]))
-                                        <a href="{{ route('one_agentGroup', $group[0]->group_id) }}"
-                                            class="text-danger">{{ $group[0]->group_id }} (Click To
+                                    @if (isset($groups[0]))
+                                        <a href="{{ route('one_agentGroup', $groups[0]->group_id) }}"
+                                            class="text-danger">{{ $groups[0]->group_id }} (Click To
                                             See
                                             More
                                             Details About the Group)</a>
@@ -259,8 +258,8 @@
                             </div>
                         </div>
                         <div class="row d-flex justify-content-center align-items-center">
-                            @if (isset($group[0]))
-                                @foreach ($group as $row)
+                            @if (isset($groups[0]))
+                                @foreach ($groups as $row)
                                     @php
                                         $agent = Staff::find($row->staff_id);
                                         $modal_trigger = 'agent' . $agent?->id;
