@@ -7,12 +7,13 @@
     @php
     use App\Models\EventStatus;
     use App\Models\Staff;
+    use App\Models\Document;
 
     $eventStatus = EventStatus::all()->pluck('title', 'id');
     $currentStatus = $event?->eventStatus?->title;
     $currentStatusId = $event?->eventStatus?->id;
     $group = $event?->groupEvent?->group($event?->groupEvent?->group_id);
-    $bgSuccess = 'bg-success';
+    $documentModalTrigger = 'document' . $event->document->id;
     $bgWarning = 'bg-warning';
     $bgDanger = 'bg-danger';
     @endphp
@@ -327,9 +328,53 @@
                                     <div class="card-title text-bold p-3 bg-danger">Event Evidences
                                     </div>
                                     <div class="card-body">
-                                        @if (isset($event->document->path))
-                                        <a href="{{ asset($event->document->path)}}">BUYUR YARRAM</a>
-                                        @endif
+                                        <table class="table">
+                                            <thead class="thead">
+                                                <tr>
+                                                    <th scope="col">Document Type</th>
+                                                    <th scope="col">Document</th>
+                                                    <th scope="col">Uploaded At</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (isset($event->document->path))
+                                                    <tr>
+                                                        <td>{{ Str::title($event->document->type) }}</td>
+                                                        <td> <a type="button" data-toggle="modal"
+                                                                data-target="#{{ $documentModalTrigger }}"
+                                                                href="{{ asset($event->document->path) }}">
+                                                                {{ $event->document->id }}</a>
+                                                        </td>
+                                                        <td>{{ $event->document->created_at }}</td>
+                                                    </tr>
+                                                    <div class="modal fade" id="{{ $documentModalTrigger }}"
+                                                        tabindex="-1" role="dialog"
+                                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header text-center">
+                                                                    <h5 class="modal-title text-bold text-dark "
+                                                                        id="exampleModalLongTitle">
+                                                                        Document ID: {{ $event->document->id }}</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <img class="img-fluid"
+                                                                        src="{{ asset($event->document->path) }}">
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+
+                                            </tbody>
+                                        </table>
+
 
                                     </div>
                                 </div>
@@ -416,7 +461,7 @@
                                 fd.append('type', "photo");
 
                                 $.ajax({
-                                    url: "{{ route('store_evidence',$event->id) }}",
+                                    url: "{{ route('store_evidence', $event->id) }}",
                                     type: 'post',
                                     data: fd,
                                     contentType: false,
