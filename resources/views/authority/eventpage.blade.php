@@ -327,28 +327,7 @@
                                     <div class="card-title text-bold p-3 bg-danger">Event Evidences
                                     </div>
                                     <div class="card-body">
-
-                                        <table class="table">
-                                            <thead class="thead">
-                                                <tr>
-                                                    <th scope="col">Document</th>
-                                                    <th scope="col">Document Type</th>
-
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><a href="">File Name Example</a></td>
-                                                    <td>Photo</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="">File Name Example2</a></td>
-                                                    <td>Voice Recording</td>
-                                                </tr>
-
-
-                                            </tbody>
-                                        </table>
+                                        <img src="{{ asset($event?->document->path)}}" alt="">
                                     </div>
                                 </div>
                             </div>
