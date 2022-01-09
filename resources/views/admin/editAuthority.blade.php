@@ -82,7 +82,49 @@
             </div>
         </div>
 
+        <div class="d-none">
+
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="pwLength">Length</label>
+                    <select class="custom-select" id="pwLength">
+                        <option selected="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                    </select>
+
+                    <div class="row">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" id="caps">
+                            A-Z
+                        </label>
+                    </div>
+                    <div class="row">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" id="special">
+                            !-?
+                        </label>
+                    </div>
+                    <div class="row">
+
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" id="numbers" checked="checked">
+                            1-9
+                        </label>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
     </div>
+
 @endsection
 @section('sweetjs')
     <script>
