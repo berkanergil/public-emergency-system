@@ -98,22 +98,43 @@ class Event extends Model
     }
 
     public function groupEvent(){
-        return $this->hasOne(GroupEvent::class);
+        return $this->hasOne(GroupEvent::class)->latest();
     }   
     
     public function status(){
         return $this->belongsTo(User::class);
     }
 
+    public function staffEvents(){
+        return $this->hasMany(StaffEvent::class);
+    }   
+
     public static function history($id){
         $array=array();
         $event=Event::find($id);
+        $assignerStaff=Staff::find($event->groupEvent->assigner_staff_id);
+        $staffEvent=EventStatus::find($event->groupEvent->assigner_staff_id);
         $array["create"]=[
             "creator_name"=>isset($event->staff->id)?$event->staff->name . ' ' . $event->staff->surname:$event->user->name . ' ' . $event->user->surname,
+            "creator_type"=>isset($event->staff->id)?"staff":"user",
+            "creator_id"=>isset($event->staff->id)?$event->staff->id:$event->user->id,
             "created_at"=>$event->created_at
         ];
-        
-        
+        $array["group"]=[
+            "group_id"=>isset($event->groupEvent)?$event->groupEvent->group_id:null,
+            "assigner_staff_id"=>isset($event->groupEvent)?$event->groupEvent->assigner_staff_id:null,
+            "assigner_staff_name"=>isset($assignerStaff)?$assignerStaff->name." ".$assignerStaff->surname:null,
+            "created_at"=>isset($event->groupEvent)?$event->groupEvent->created_at:null,
+        ];
+        foreach ($event->staffEvents as $staffEvent){
+            $array["mark"][]=[
+                "event_status_name"=>$staffEvent->eventStatus->title,
+                "staff_name"=>$staffEvent->staff->name." ".$staffEvent->staff->surname,
+                "staff_id"=>$staffEvent->staff_id,
+            ];
+        }
+
+        return $array;
     }
     
 

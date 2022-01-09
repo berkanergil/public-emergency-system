@@ -35,7 +35,11 @@ class StaffEventController extends Controller
      */
     public function store(Request $request)
     {
-        return response(StaffEvent::create($request->all()));
+        return response(StaffEvent::create([
+            "event_id"=>$request->input("event_id"),
+            "staff_id"=>$request->input("staff_id"),
+            "event_status_id"=>$request->input("event_status_id"),
+        ]));
     }
 
     /**

@@ -9,8 +9,10 @@
     use App\Models\Staff;
     use App\Models\Document;
     use App\Models\Group;
+    use App\Models\Event;
 
     $groupObject = new Group();
+    $eventObject = new Event();
     $eventStatus = EventStatus::all()->pluck('title', 'id');
     $currentStatus = $event?->eventStatus?->title;
     $currentStatusId = $event?->eventStatus?->id;
@@ -19,6 +21,7 @@
     $bgWarning = 'bg-warning';
     $bgDanger = 'bg-danger';
     $availableGroups = $groupObject->availableGroups();
+    $history=$eventObject->history($event->id);
     @endphp
     <section class="content">
         <div class="card card-info card-outline">
@@ -217,20 +220,37 @@
                                         <table class="table">
                                             <thead class="thead">
                                                 <tr>
-                                                    <th scope="col">Type</th>
                                                     <th scope="col">Content</th>
                                                     <th scope="col">Editor</th>
                                                     <th scope="col">Date</th>
-
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @if (isset($history["create"]["creator_name"]))
                                                 <tr>
-                                                    <td>Notification</td>
-                                                    <td>Agents Have Arrived</td>
-                                                    <td>Tolgahan Dayanıklı (Agent)</td>
-                                                    <td>2021-12-09 11:23</td>
+                                                    <td>Event Created</td>
+                                                    <td><a href="{{ $history["create"]["creator_type"]=="staff"? route('one_agent',$history["create"]["creator_id"]):route('one_user',$history["create"]["creator_id"]) }}">{{ $history["create"]["creator_name"] }} ({{ $history["create"]["creator_type"] }})</a></td>
+                                                    <td>{{ $history["create"]["created_at"] }}</td>
                                                 </tr>
+                                                @endif
+                                                @if (isset($history["group"]["group_id"]))
+                                                <tr>
+                                                    <td>Group Created <a href="{{ route('one_agentGroup',$history["group"]["group_id"]) }}">(Group {{ $history["group"]["group_id"] }})</a></td>
+                                                    <td><a href="{{ route('one_agent',$history["group"]["assigner_staff_id"]) }}">{{ $history["group"]["assigner_staff_name"] }}</a></td>
+                                                    <td>{{ $history["group"]["created_at"] }}</td>
+                                                </tr>
+                                                @endif
+                                                @if (isset($history["mark"][0]))
+                                                @foreach($history["mark"] as $mark)
+                                                <tr>
+                                                    <td>Group Created <a href="{{ route('one_agentGroup',$history["group"]["group_id"]) }}">(Group {{ $history["group"]["group_id"] }})</a></td>
+                                                    <td><a href="{{ route('one_agent',$history["group"]["assigner_staff_id"]) }}">{{ $history["group"]["assigner_staff_name"] }}</a></td>
+                                                    <td>{{ $history["group"]["created_at"] }}</td>
+                                                </tr>
+                                                @endforeach
+                                               
+                                                @endif
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -490,14 +510,14 @@
                                         },
                                         error: function(xhr, ajaxOptions,
                                             thrownError) {
-                                            swal.fire("Error deleting!",
+                                            swal.fire("Error updating(2)!",
                                                 "Please try again",
                                                 "error");
                                         }
                                     });
                                 },
                                 error: function(xhr, ajaxOptions, thrownError) {
-                                    swal.fire("Error deleting!", "Please try again",
+                                    swal.fire("Error updating!", "Please try again",
                                         "error");
                                 }
                             });
