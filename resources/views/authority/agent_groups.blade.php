@@ -6,6 +6,7 @@
 @section('statistic_content')
     @php
     use App\Models\Staff;
+    use App\Models\Group;
     @endphp
     <div class="card">
         <div class="card-header">
@@ -26,17 +27,21 @@
                 <tbody class="table-light">
                     @foreach ($groups as $group)
                         @php
-                            $staff = Staff::find($group->staff_id);
-                            
+                            $groupObject = new Group();
+                            $groupMembers=$groupObject->groupMembers($group->group_id);
+                            $currentEvent=$groupObject->event($group->group_id);
                         @endphp
                         <tr>
                             <td><a target="_blank"
                                     href="{{ route('one_agentGroup', $group->group_id) }}">{{ $group->group_id }}</a>
                             </td>
                             <td>
-
+                                @foreach ($groupMembers as $member)
+                                    {{ $member->department->title }}
+                                @endforeach
                             </td>
-                            <td class="text-success">Available</td>
+                            
+                            <td class="text-success">{{ $currentEvent->eventStatus->title }}</td>
                             <td>2021-15-15 14:33:22</td>
                         </tr>
                     @endforeach

@@ -8,7 +8,9 @@
     use App\Models\EventStatus;
     use App\Models\Staff;
     use App\Models\Document;
+    use App\Models\Group;
 
+    $groupObject = new Group();
     $eventStatus = EventStatus::all()->pluck('title', 'id');
     $currentStatus = $event?->eventStatus?->title;
     $currentStatusId = $event?->eventStatus?->id;
@@ -16,7 +18,9 @@
     $documentModalTrigger = 'document' . $event?->document?->id;
     $bgWarning = 'bg-warning';
     $bgDanger = 'bg-danger';
+    $availableGroups = $groupObject->availableGroups();
     @endphp
+
     <section class="content">
         <div class="card card-info card-outline">
             <div class="card-header">
@@ -55,32 +59,27 @@
                                 <table border='1' id="myTable" class="table table-hover table-bordered text-center">
                                     <tr class="table-danger">
                                         <th>Id</th>
-                                        <th>Product Name</th>
-                                        <th>Description</th>
+                                        <th>Departments</th>
+
                                         <th>Action</th>
                                     </tr>
-                                    <tr class="table-light">
-                                        <td>1</td>
-                                        <td class='pd-name'>Allah G</td>
-                                        <td>
-                                            <p class="pd-price">50$
-                                            <p>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btnSelect"><i class="fas fa-plus"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td class='pd-name'>Moto G</td>
-                                        <td>
-                                            <p class="pd-price">50$
-                                            <p>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btnSelect"><i class="fas fa-plus"></i></button>
-                                        </td>
-                                    </tr>
+                                    @foreach ($availableGroups as $group)
+                                        @php
+                                            $groupMembers = $groupObject->groupMembers($group->group_id);
+                                        @endphp
+                                        <tr class="table-light">
+                                            <td class='pd-price'>{{ $group->group_id }}</td>
+                                            <td class='pd-name'>
+                                                @foreach ($groupMembers as $member)
+                                                    {{ $member->department->title }}
+                                                @endforeach
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-danger btnSelect"><i
+                                                        class="fas fa-plus"></i></button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </table>
                             </div>
                         </div>
@@ -552,15 +551,35 @@
         $(document).ready(function() {
 
             $("#myTable").on('click', '.btnSelect', function() {
-                // get the current row
                 var currentRow = $(this).closest("tr");
 
-                var col1 = currentRow.find(".pd-price").html(); // get current row 1st table cell TD value
-                var col2 = currentRow.find(".pd-name").html(); // get current row 2nd table cell TD value
+                var id = currentRow.find(".pd-price").html();
+                console.log(id);
+                $.ajax({
+                    url: "{{ route('update_report', $event->id) }}",
+                    type: "POST",
+                    data: {
+                        group_id: id,
+                        _method: "PUT",
+                        _token: _token
+                    },
+                    success: function() {
+                        swal.fire({
+                            icon: 'success',
+                            title: "Updated!",
+                            text: "Your row has been updated.",
+                            type: "success",
+                            timer: 3000
+                        }).then(function() {
+                            location.reload(true);
+                        });
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        swal.fire("Error deleting!", "Please try again",
+                            "error");
+                    }
+                });
 
-                var data = col1 + "\n" + col2;
-
-                alert(data);
             });
         });
     </script>
