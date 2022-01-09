@@ -179,6 +179,13 @@
         });
 
         var url2 = 'http://127.0.0.1:8000/one_authority/' + id
+        var name=$('#name').val();
+        var surname=$('#surname').val();
+        var msisdn=$('#msisdn').val();
+        var email=$('#email').val();
+        var password=$('#password').val();
+
+
         var button = $('#update').on('click', function() {
 
             Swal.fire({
@@ -196,6 +203,11 @@
                         type: "POST",
                         data: {
                             id: id,
+                            name: name,
+                            surname: surname,
+                            email: email,
+                            msisdn: msisdn,
+                            password: password,
                             _method: "PUT",
                             _token: _token
                         },
