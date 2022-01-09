@@ -39,7 +39,7 @@
                                 @endif
                             </td>
                             <td><a
-                                    href="https://www.google.com/maps/search/{{ $event->lat . ',' . $event->lon }}">{{ $event->lat . ' ' . $event->lon }}</a>
+                                    href="https://www.google.com/maps/search/{{ $event->lat . ',' . $event->lon }}">{{ substr($event->lat, 0, 7) . ' - ' . substr($event->lon, 0, 7) }}</a>
                             </td>
                             <td>{{ $event->created_at }}</td>
                         </tr>

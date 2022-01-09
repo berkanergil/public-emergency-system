@@ -316,7 +316,7 @@ Route::post('/form_agent_groups', function (Request $request) {
         ]);
         $group[] = $row;
     }
-    return redirect()->route("one_agentGroup", ["group" => $group]);
+    return redirect()->route("one_agentGroup", $group_id);
 })->name('form_agent_groups');
 
 Route::get('/agent_groups', function (Request $request) {
