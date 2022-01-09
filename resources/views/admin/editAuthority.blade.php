@@ -230,7 +230,5 @@
         });
     </script>
 
-    <script>
 
-    </script>
 @endsection

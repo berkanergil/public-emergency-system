@@ -20,7 +20,7 @@
                         <th>Group ID</th>
                         <th>Agent Departments</th>
                         <th>Status</th>
-                        <th>Date & Time</th>
+                        <th>Disband Group</th>
 
                     </tr>
                 </thead>
@@ -28,8 +28,8 @@
                     @foreach ($groups as $group)
                         @php
                             $groupObject = new Group();
-                            $groupMembers=$groupObject->groupMembers($group->group_id);
-                            $currentEvent=$groupObject->event($group->group_id);
+                            $groupMembers = $groupObject->groupMembers($group->group_id);
+                            $currentEvent = $groupObject->event($group->group_id);
                         @endphp
                         <tr>
                             <td><a target="_blank"
@@ -37,12 +37,13 @@
                             </td>
                             <td>
                                 @foreach ($groupMembers as $member)
-                                    {{ $member->department->title }}
+                                    {{ Str::title($member->department->title) }} Department,
                                 @endforeach
+
                             </td>
-                            
-                            <td class="text-success">{{ $currentEvent->eventStatus->title }}</td>
-                            <td>2021-15-15 14:33:22</td>
+
+                            <td class="text-success">{{ $currentEvent->status->title }}</td>
+
                         </tr>
                     @endforeach
 
