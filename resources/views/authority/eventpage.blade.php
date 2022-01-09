@@ -421,6 +421,7 @@
                                 },
                                 success: function() {
                                     swal.fire({
+                                        icon: 'success',
                                         title: "Updated!",
                                         text: "Your row has been updated.",
                                         type: "success",
@@ -468,14 +469,30 @@
                                     processData: false,
                                     success: function(response) {
                                         if (response) {
-                                            alert('file uploaded');
+                                            Swal.fire({
+                                                icon: 'success',
+                                                title: 'Done',
+                                                text: 'You have uploaded an evidence!',
+                                            }).then(
+                                                function() {
+                                                    location.reload();
+                                                }
+                                            )
                                         } else {
-                                            alert('file not uploaded');
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Error',
+                                                text: 'Could not upload the evidence!',
+                                            })
                                         }
                                     },
                                 });
                             } else {
-                                alert("Please select a file.");
+                                Swal.fire({
+                                    icon: 'info',
+                                    title: 'No File',
+                                    text: 'Please select a file!',
+                                })
                             }
                         }
                     })
