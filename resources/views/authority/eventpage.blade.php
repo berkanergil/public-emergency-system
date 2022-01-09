@@ -327,7 +327,7 @@
                                     <div class="card-title text-bold p-3 bg-danger">Event Evidences
                                     </div>
                                     <div class="card-body">
-                                        <img src="{{ asset($event?->document->path)}}" alt="">
+                                        <a href="{{ asset($event?->document->path)}}">BUYUR YARRAM</a>
                                     </div>
                                 </div>
                             </div>
