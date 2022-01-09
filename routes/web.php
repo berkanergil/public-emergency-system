@@ -277,7 +277,9 @@ Route::put('/update_report/{id}', function (Request $request, $id) {
                 'event_id' => $event->id,
                 'assigner_staff_id' => Auth::id(),
                 'group_id' => $request->input("group_id"),
-                'event_status_id' => $request->input("event_status_id"),
+            ]);
+            $event->update([
+                "event_status_id"=>2
             ]);
             return redirect()->route("eventpage", ["id" => $event->id]);
         } else if ($event->groupEvent != null && $request->input("group_id") != null) {
