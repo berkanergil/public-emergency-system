@@ -31,7 +31,9 @@
                             $groupObject = new Group();
                             $groupMembers = $groupObject->groupMembers($group->group_id);
                             $currentEvent = $groupObject->event($group->group_id);
-                             $currentEvent= Event::find($currentEvent?->id);
+                            $currentEvent = Event::find($currentEvent?->id);
+                            $loop->last;
+                            
                         @endphp
                         <tr>
                             <td><a target="_blank"
@@ -39,13 +41,31 @@
                             </td>
                             <td>
                                 @foreach ($groupMembers as $member)
-                                    {{ Str::title($member->department->title) }} Department,
+                                    @if ($loop->last)
+                                        {{ Str::title($member->department->title) }} Department
+                                    @else
+                                        {{ Str::title($member->department->title) }} Department,
+
+                                    @endif
+
                                 @endforeach
 
                             </td>
 
-                            <td class="text-success">{{ isset($currentEvent)?$currentEvent->status->title:"not assigned" }}</td>
+                            @if (!isset($currentEvent))
+                                <td class=" availablity bg-success">
+                                    Available</td>
+                            @elseif ($currentEvent->status->id == 1)
+                                <td class="availablity bg-success">
+                                    Available</td>
+                            @else
+                                <td class="availablity bg-danger">
+                                    Not Available</td>
+                            @endif
 
+                            <td> <button type="button" class="btn btn-danger btnSelect"><i
+                                        class="fas fa-user-times"></i></button>
+                            </td>
                         </tr>
                     @endforeach
 
@@ -54,6 +74,73 @@
         <!-- /.card-body -->
     </div>
 
+
+
+@endsection
+
+@section('sweetjs')
+    <script>
+        $(document).ready(function() {
+
+            $("#myTable").on('click', '.btnSelect', function() {
+                var currentRow = $(this).closest("tr");
+
+                var id = currentRow.find(".availablity").html();
+                console.log(id);
+                $.ajax({
+                    url: "{{ route('disbandGroups', $group->id) }}",
+                    type: "POST",
+                    data: {
+                        group_id: id,
+                        _method: "DELETE",
+                        _token: _token
+                    },
+                    success: function() {
+                        swal.fire({
+                            icon: 'success',
+                            title: "Updated!",
+                            text: "Your row has been updated.",
+                            type: "success",
+                            timer: 3000
+                        }).then(function() {
+                            location.reload(true);
+                        });
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        swal.fire("Error deleting!", "Please try again",
+                            "error");
+                    }
+                });
+
+            });
+        });
+        $('#disbandGroup').on('click', function() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#6c757d',
+                cancelButtonText: '<i class="far fa-window-close"></i> Cancel',
+                confirmButtonText: '<i class="far fa-trash-alt"></i> Disband'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Disbanded!',
+                        'Your group has been disbanded.',
+                        'success'
+                    )
+                } else {
+                    Swal.fire(
+                        'Error!',
+                        'Group is not disbanded.',
+                        'error'
+                    )
+                }
+            })
+        })
+    </script>
 
 
 @endsection
