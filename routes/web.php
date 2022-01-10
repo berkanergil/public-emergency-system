@@ -193,7 +193,7 @@ Route::get('/profile/{id}', function ($id) {
     return view('authority.profile', compact("staff"));
 })->name('profile');
 
-Route::get('/edit_profile/{id}', function (Request $request, $id) {
+Route::put('/edit_profile/{id}', function (Request $request, $id) {
     $staffControllerObject = new StaffController;
     $response = $staffControllerObject->update($request, $id);
     if ($response?->status() == 200) {
@@ -205,7 +205,7 @@ Route::get('/edit_profile/{id}', function (Request $request, $id) {
     return view("authority.edit_profile", compact("staff"));
 })->name('edit_profile');
 
-Route::put('/edit_profile/{id}', function ($id) {
+Route::get('/edit_profile/{id}', function ($id) {
     $staff = Staff::find($id);
     return view('authority.edit_profile', compact("staff"));
 })->name('edit_profile');
