@@ -38,7 +38,7 @@
                                     Not Handled
                                 @endif
                             </td>
-                            <td><a
+                            <td><a target="_blank"
                                     href="https://www.google.com/maps/search/{{ $event->lat . ',' . $event->lon }}">{{ substr($event->lat, 0, 7) . ' - ' . substr($event->lon, 0, 7) }}</a>
                             </td>
                             <td>{{ $event->created_at }}</td>
