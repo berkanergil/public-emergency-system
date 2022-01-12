@@ -33,6 +33,9 @@ use App\Http\Controllers\StaffEventController;
 |
 */
 
+Route::get('/', function (Request $request) {
+    return view("auth.login");
+});
 
 Route::get('/login', function (Request $request) {
     return view("auth.login");
@@ -362,3 +365,9 @@ Route::post('/mark_event', function (Request $request) {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/adminDashboard', [App\Http\Controllers\HomeController::class, 'adminDashboard'])->name('adminDashboard');
+
+Route::get('/logout',function () {
+    $staff = Staff::find(Auth::id());
+    Auth::logout($staff);
+    return redirect()->route('enter');
+})->name("logout");
