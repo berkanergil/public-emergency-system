@@ -317,6 +317,11 @@ Route::post('/form_agent_groups', function (Request $request) {
     return redirect()->route("one_agentGroup", $group_id);
 })->name('form_agent_groups');
 
+Route::delete('/agent_groups/{id}', function (Request $request) {
+    $groups = Group::select("group_id")->groupBy("group_id")->get();
+    return view("authority.agent_groups", compact("groups"));
+})->name('disbandGroups');
+
 Route::get('/agent_groups', function (Request $request) {
     $groups = Group::select("group_id")->groupBy("group_id")->get();
     return view("authority.agent_groups", compact("groups"));

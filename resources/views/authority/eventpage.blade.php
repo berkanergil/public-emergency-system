@@ -21,7 +21,7 @@
     $bgWarning = 'bg-warning';
     $bgDanger = 'bg-danger';
     $availableGroups = $groupObject->availableGroups();
-    $history=$eventObject->history($event->id);
+    $history = $eventObject->history($event->id);
     @endphp
     <section class="content">
         <div class="card card-info card-outline">
@@ -36,13 +36,23 @@
                 <div class="btn-group button-groups my-3 ">
                     <button id="mark_event" type="button" class="btn btn-lg btn-default button1 text-bold">Mark
                         Event</button>
-                    <button id="send_notification" type="button" class="btn btn-lg btn-default button4 text-bold">Send
-                        Notification</button>
-                    <button id="upload_evidence" type="button" class="btn btn-lg btn-default button5 text-bold">Upload
-                        Evidence</button>
-                    <button data-target=".bd-example-modal-lg" data-toggle="modal" id="deploy_agent_group" type="button"
-                        class="btn btn-lg btn-default button6 text-bold">Deploy
-                        Agent Group</button>
+                    {{-- <button id="send_notification" type="button" class="btn btn-lg btn-default button4 text-bold">Send
+                        Notification</button> --}}
+                    @if ($event->status->id == '1')
+                        <button disabled id="upload_evidence" type="button"
+                            class="btn btn-lg btn-default button5 text-bold">Upload
+                            Evidence</button>
+                        <button disabled data-target=".bd-example-modal-lg" data-toggle="modal" id="deploy_agent_group"
+                            type="button" class="btn btn-lg btn-default button6 text-bold">Deploy
+                            Agent Group</button>
+                    @else
+                        <button id="upload_evidence" type="button" class="btn btn-lg btn-default button5 text-bold">Upload
+                            Evidence</button>
+                        <button data-target=".bd-example-modal-lg" data-toggle="modal" id="deploy_agent_group" type="button"
+                            class="btn btn-lg btn-default button6 text-bold">Deploy
+                            Agent Group</button>
+                    @endif
+
 
                 </div>
                 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
@@ -226,29 +236,38 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if (isset($history["create"]["creator_name"]))
-                                                <tr>
-                                                    <td>Event Created</td>
-                                                    <td><a href="{{ $history["create"]["creator_type"]=="staff"? route('one_agent',$history["create"]["creator_id"]):route('one_user',$history["create"]["creator_id"]) }}">{{ $history["create"]["creator_name"] }} ({{ $history["create"]["creator_type"] }})</a></td>
-                                                    <td>{{ $history["create"]["created_at"] }}</td>
-                                                </tr>
+                                                @if (isset($history['create']['creator_name']))
+                                                    <tr>
+                                                        <td>Event Created</td>
+                                                        <td><a
+                                                                href="{{ $history['create']['creator_type'] == 'staff' ? route('one_agent', $history['create']['creator_id']) : route('one_user', $history['create']['creator_id']) }}">{{ $history['create']['creator_name'] }}
+                                                                ({{ $history['create']['creator_type'] }})</a></td>
+                                                        <td>{{ $history['create']['created_at'] }}</td>
+                                                    </tr>
                                                 @endif
-                                                @if (isset($history["group"]["group_id"]))
-                                                <tr>
-                                                    <td>Group Created <a href="{{ route('one_agentGroup',$history["group"]["group_id"]) }}">(Group {{ $history["group"]["group_id"] }})</a></td>
-                                                    <td><a href="{{ route('one_agent',$history["group"]["assigner_staff_id"]) }}">{{ $history["group"]["assigner_staff_name"] }}</a></td>
-                                                    <td>{{ $history["group"]["created_at"] }}</td>
-                                                </tr>
+                                                @if (isset($history['group']['group_id']))
+                                                    <tr>
+                                                        <td>Group Created <a
+                                                                href="{{ route('one_agentGroup', $history['group']['group_id']) }}">(Group
+                                                                {{ $history['group']['group_id'] }})</a></td>
+                                                        <td><a
+                                                                href="{{ route('one_agent', $history['group']['assigner_staff_id']) }}">{{ $history['group']['assigner_staff_name'] }}</a>
+                                                        </td>
+                                                        <td>{{ $history['group']['created_at'] }}</td>
+                                                    </tr>
                                                 @endif
-                                                @if (isset($history["mark"][0]))
-                                                @foreach($history["mark"] as $mark)
-                                                <tr>
-                                                    <td>Event Status Changed ({{ $mark["event_status_name"]}})</td>
-                                                    <td><a href="{{ route('one_agent',$mark["staff_id"]) }}">{{ $mark["staff_name"] }}</a></td>
-                                                    <td>{{ $mark["created_at"]}}</td>
-                                                </tr>
-                                                @endforeach
-                                               
+                                                @if (isset($history['mark'][0]))
+                                                    @foreach ($history['mark'] as $mark)
+                                                        <tr>
+                                                            <td>Event Status Changed ({{ $mark['event_status_name'] }})
+                                                            </td>
+                                                            <td><a
+                                                                    href="{{ route('one_agent', $mark['staff_id']) }}">{{ $mark['staff_name'] }}</a>
+                                                            </td>
+                                                            <td>{{ $mark['created_at'] }}</td>
+                                                        </tr>
+                                                    @endforeach
+
                                                 @endif
 
                                             </tbody>
@@ -492,8 +511,8 @@
                                         type: "POST",
                                         data: {
                                             event_status_id: value,
-                                            event_id:  "{{ $event->id }}",
-                                            staff_id:  "{{ Auth::id() }}",
+                                            event_id: "{{ $event->id }}",
+                                            staff_id: "{{ Auth::id() }}",
                                             _token: _token
                                         },
                                         success: function() {
@@ -510,7 +529,8 @@
                                         },
                                         error: function(xhr, ajaxOptions,
                                             thrownError) {
-                                            swal.fire("Error updating(2)!",
+                                            swal.fire(
+                                                "Error updating(2)!",
                                                 "Please try again",
                                                 "error");
                                         }
