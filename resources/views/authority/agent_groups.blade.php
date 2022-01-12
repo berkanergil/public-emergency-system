@@ -15,7 +15,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <table id="example1" class="table table-hover table-bordered text-center">
+            <table id="myTable" class="table table-hover table-bordered text-center">
                 <thead>
                     <tr class="table-warning">
                         <th>Group ID</th>
@@ -53,13 +53,13 @@
                             </td>
 
                             @if (!isset($currentEvent))
-                                <td class=" availablity bg-success">
+                                <td id="{{ $group->group_id }}" class=" availablity bg-success">
                                     Available</td>
                             @elseif ($currentEvent->status->id == 1)
-                                <td class="availablity bg-success">
+                                <td id="{{ $group->group_id }}" class="availablity bg-success">
                                     Available</td>
                             @else
-                                <td class="availablity bg-danger">
+                                <td id="{{ $group->group_id }}" class="availablity bg-danger">
                                     Not Available</td>
                             @endif
 
@@ -73,7 +73,7 @@
         </div>
         <!-- /.card-body -->
     </div>
-
+    {{-- url: "{{ route('disbandGroups', $group->id) }}", --}}
 
 
 @endsection
@@ -85,14 +85,25 @@
             $("#myTable").on('click', '.btnSelect', function() {
                 var currentRow = $(this).closest("tr");
 
-                var id = currentRow.find(".availablity").html();
-                console.log(id);
-                $.ajax({
-                    url: "{{ route('disbandGroups', $group->id) }}",
+                var id = currentRow.find(".availablity").attr('id');
+                let _token = $('meta[name="csrf-token"]').attr('content');
+
+                Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#6c757d',
+                cancelButtonText: '<i class="far fa-window-close"></i> Cancel',
+                confirmButtonText: '<i class="far fa-trash-alt"></i> Disband'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                    url: "{{ route('disbandGroups') }}",
                     type: "POST",
                     data: {
                         group_id: id,
-                        _method: "DELETE",
                         _token: _token
                     },
                     success: function() {
@@ -111,26 +122,6 @@
                             "error");
                     }
                 });
-
-            });
-        });
-        $('#disbandGroup').on('click', function() {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#6c757d',
-                cancelButtonText: '<i class="far fa-window-close"></i> Cancel',
-                confirmButtonText: '<i class="far fa-trash-alt"></i> Disband'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
-                        'Disbanded!',
-                        'Your group has been disbanded.',
-                        'success'
-                    )
                 } else {
                     Swal.fire(
                         'Error!',
@@ -139,7 +130,9 @@
                     )
                 }
             })
-        })
+
+            });
+        });
     </script>
 
 
