@@ -75,7 +75,8 @@ Route::get('/dashboard', function (Request $request) {
 
 Route::get('/newReport', function (Request $request) {
     $staff = Staff::find(Auth::id());
-    return view("authority.newReport", compact("staff"));
+    $lat_lon=Event::all();
+    return view("authority.newReport", compact("staff","lat_lon"));
 })->name('newReport');
 
 Route::get('/all_authorities', function () {
