@@ -19,7 +19,7 @@
                                 multiple=" true">
                                 @foreach ($staffObject->availableAgents() as $agent)
                                     <option value={{ $agent->id }}>
-                                        {{ $agent->name . ' ' . $agent->surname . '(' . $agent->department->title . ')' }}
+                                        {{-- {{ $agent->name . ' ' . $agent->surname . '(' . $agent->department->title . ')' }} --}}
                                 @endforeach
                             </select>
 

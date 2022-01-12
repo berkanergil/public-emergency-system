@@ -77,8 +77,7 @@
 
 
 @endsection
-
-@section('sweetjs')
+{{-- @section('sweetjs')
     <script>
         $(document).ready(function() {
 
@@ -143,4 +142,4 @@
     </script>
 
 
-@endsection
+@endsection --}}
