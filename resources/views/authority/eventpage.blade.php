@@ -171,8 +171,22 @@
                                             <li class="list-group-item border-0"><strong>Report Date & Time:</strong>
                                                 {{ $event->created_at }}
                                             </li>
-                                            <li class="list-group-item border-0"><strong>Editor:</strong> Kullanıcı
-                                                Eklenecek</li>
+                                            @php
+                                                use App\Models\StaffEvent;
+                                                $editor_name = '';
+                                                $staffEvent = StaffEvent::where('event_id', $event->id)
+                                                    ->orderBy('created_at', 'desc')
+                                                    ->first();
+                                                if (isset($staffEvent)) {
+                                                    $editor = Staff::find($staffEvent->staff_id);
+                                                    if (isset($editor)) {
+                                                        $editor_name = $editor->name . ' ' . $editor->surname;
+                                                    }
+                                                }
+                                                
+                                            @endphp
+                                            <li class="list-group-item border-0">
+                                                <strong>Editor:</strong>{{ $editor_name }}</li>
                                             <li class="list-group-item border-0"><strong>Note:</strong>
                                                 {{ $event->note }}
                                             </li>
