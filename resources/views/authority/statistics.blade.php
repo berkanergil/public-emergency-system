@@ -163,188 +163,228 @@
                  <!-- /.col -->
              </div>
              <h3 class="mb-2 text-bold">Event Type Statistics</h3>
-             <div class="row shadow p-3 mb-5 bg-white rounded  d-flex justify-content-center align-items-center">
-                 <div class="col-md-4">
-                     <!-- Widget: user widget style 2 -->
-                     <div class="card card-widget">
-                         <div class="widget-user-header bg-info d-flex justify-content-center align-items-center">
-                             <h3 class="widget-user-username p-3">Fire</h3>
+
+             <div class="card shadow p-3 mb-5 bg-white rounded ">
+                 <div class="row  d-flex justify-content-center align-items-center">
+                     <div class="col-md-4">
+                         <!-- Widget: user widget style 2 -->
+                         <div class="card card-widget">
+                             <div class="widget-user-header bg-info d-flex justify-content-center align-items-center">
+                                 <h3 class="widget-user-username p-3">Fire</h3>
+                             </div>
+                             <div class="card-footer p-0">
+                                 <ul class="nav flex-column">
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Total Reports <span
+                                                 class="float-right badge bg-primary">{{ $eventObject->fireCount() }}</span>
+                                         </a>
+                                     </li>
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Fire Department Deployed <span
+                                                 class="float-right badge bg-info">{{ $groupEventObject->fireFireCount() }}</span>
+                                         </a>
+                                     </li>
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Police Department Deployed <span
+                                                 class="float-right badge bg-success">{{ $groupEventObject->firePoliceCount() }}</span>
+                                         </a>
+                                     </li>
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Health Department Deployed <span
+                                                 class="float-right badge bg-danger">{{ $groupEventObject->fireHealthCount() }}</span>
+                                         </a>
+                                     </li>
+                                 </ul>
+                             </div>
                          </div>
-                         <div class="card-footer p-0">
-                             <ul class="nav flex-column">
-                                 <li class="nav-item">
-                                     <a href="#" class="nav-link">
-                                         Total Reports <span
-                                             class="float-right badge bg-primary">{{ $eventObject->fireCount() }}</span>
-                                     </a>
-                                 </li>
-                                 <li class="nav-item">
-                                     <a href="#" class="nav-link">
-                                         Fire Department Deployed <span
-                                             class="float-right badge bg-info">{{ $groupEventObject->fireFireCount() }}</span>
-                                     </a>
-                                 </li>
-                                 <li class="nav-item">
-                                     <a href="#" class="nav-link">
-                                         Police Department Deployed <span
-                                             class="float-right badge bg-success">{{ $groupEventObject->firePoliceCount() }}</span>
-                                     </a>
-                                 </li>
-                                 <li class="nav-item">
-                                     <a href="#" class="nav-link">
-                                         Health Department Deployed <span
-                                             class="float-right badge bg-danger">{{ $groupEventObject->fireHealthCount() }}</span>
-                                     </a>
-                                 </li>
-                             </ul>
+                     </div>
+                     <div class="col-md-4">
+                         <!-- Widget: user widget style 2 -->
+                         <div class="card card-widget">
+                             <div class="widget-user-header bg-danger d-flex justify-content-center align-items-center">
+                                 <h3 class="widget-user-username p-3">Crime</h3>
+                             </div>
+                             <div class="card-footer p-0">
+                                 <ul class="nav flex-column">
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Total Reports <span
+                                                 class="float-right badge bg-primary">{{ $eventObject->crimeCount() }}</span>
+                                         </a>
+                                     </li>
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Fire Department Deployed <span
+                                                 class="float-right badge bg-info">{{ $groupEventObject->crimeFireCount() }}</span>
+                                         </a>
+                                     </li>
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Police Department Deployed <span
+                                                 class="float-right badge bg-success">{{ $groupEventObject->crimePoliceCount() }}</span>
+                                         </a>
+                                     </li>
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Health Department Deployed <span
+                                                 class="float-right badge bg-danger">{{ $groupEventObject->crimeHealthCount() }}</span>
+                                         </a>
+                                     </li>
+                                 </ul>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="col-md-4">
+                         <!-- Widget: user widget style 2 -->
+                         <div class="card card-widget">
+                             <div class="widget-user-header bg-primary d-flex justify-content-center align-items-center">
+                                 <h3 class="widget-user-username p-3">Natural Events</h3>
+                             </div>
+                             <div class="card-footer p-0">
+                                 <ul class="nav flex-column">
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Total Reports <span
+                                                 class="float-right badge bg-primary">{{ $eventObject->naturalEventCount() }}</span>
+                                         </a>
+                                     </li>
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Fire Department Deployed <span
+                                                 class="float-right badge bg-info">{{ $groupEventObject->naturalEventFireCount() }}</span>
+                                         </a>
+                                     </li>
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Police Department Deployed <span
+                                                 class="float-right badge bg-success">{{ $groupEventObject->naturalEventPoliceCount() }}</span>
+                                         </a>
+                                     </li>
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Health Department Deployed <span
+                                                 class="float-right badge bg-danger">{{ $groupEventObject->naturalEventHealthCount() }}</span>
+                                         </a>
+                                     </li>
+                                 </ul>
+                             </div>
                          </div>
                      </div>
                  </div>
-                 <div class="col-md-4">
-                     <!-- Widget: user widget style 2 -->
-                     <div class="card card-widget">
-                         <div class="widget-user-header bg-danger d-flex justify-content-center align-items-center">
-                             <h3 class="widget-user-username p-3">Crime</h3>
-                         </div>
-                         <div class="card-footer p-0">
-                             <ul class="nav flex-column">
-                                 <li class="nav-item">
-                                     <a href="#" class="nav-link">
-                                         Total Reports <span
-                                             class="float-right badge bg-primary">{{ $eventObject->crimeCount() }}</span>
-                                     </a>
-                                 </li>
-                                 <li class="nav-item">
-                                     <a href="#" class="nav-link">
-                                         Fire Department Deployed <span
-                                             class="float-right badge bg-info">{{ $groupEventObject->crimeFireCount() }}</span>
-                                     </a>
-                                 </li>
-                                 <li class="nav-item">
-                                     <a href="#" class="nav-link">
-                                         Police Department Deployed <span
-                                             class="float-right badge bg-success">{{ $groupEventObject->crimePoliceCount() }}</span>
-                                     </a>
-                                 </li>
-                                 <li class="nav-item">
-                                     <a href="#" class="nav-link">
-                                         Health Department Deployed <span
-                                             class="float-right badge bg-danger">{{ $groupEventObject->crimeHealthCount() }}</span>
-                                     </a>
-                                 </li>
-                             </ul>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-md-4">
-                     <!-- Widget: user widget style 2 -->
-                     <div class="card card-widget">
-                         <div class="widget-user-header bg-dark d-flex justify-content-center align-items-center">
-                             <h3 class="widget-user-username p-3">Natural Events</h3>
-                         </div>
-                         <div class="card-footer p-0">
-                             <ul class="nav flex-column">
-                                 <li class="nav-item">
-                                     <a href="#" class="nav-link">
-                                         Total Reports <span
-                                             class="float-right badge bg-primary">{{ $eventObject->naturalEventCount() }}</span>
-                                     </a>
-                                 </li>
-                                 <li class="nav-item">
-                                     <a href="#" class="nav-link">
-                                         Fire Department Deployed <span
-                                             class="float-right badge bg-info">{{ $groupEventObject->naturalEventFireCount() }}</span>
-                                     </a>
-                                 </li>
-                                 <li class="nav-item">
-                                     <a href="#" class="nav-link">
-                                         Police Department Deployed <span
-                                             class="float-right badge bg-success">{{ $groupEventObject->naturalEventPoliceCount() }}</span>
-                                     </a>
-                                 </li>
-                                 <li class="nav-item">
-                                     <a href="#" class="nav-link">
-                                         Health Department Deployed <span
-                                             class="float-right badge bg-danger">{{ $groupEventObject->naturalEventHealthCount() }}</span>
-                                     </a>
-                                 </li>
-                             </ul>
+                 <div class="row  d-flex justify-content-center align-items-center">
+                     <div class="col-md-4">
+                         <!-- Widget: user widget style 2 -->
+                         <div class="card card-widget">
+                             <div class="widget-user-header bg-warning d-flex justify-content-center align-items-center">
+                                 <h3 class="widget-user-username p-3 text-white">Traffic</h3>
+                             </div>
+                             <div class="card-footer p-0">
+                                 <ul class="nav flex-column">
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Total Reports <span
+                                                 class="float-right badge bg-primary">{{ $eventObject->trafficCount() }}</span>
+                                         </a>
+                                     </li>
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Fire Department Deployed <span
+                                                 class="float-right badge bg-info">{{ $groupEventObject->trafficFireCount() }}</span>
+                                         </a>
+                                     </li>
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Police Department Deployed <span
+                                                 class="float-right badge bg-success">{{ $groupEventObject->trafficPoliceCount() }}</span>
+                                         </a>
+                                     </li>
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Health Department Deployed <span
+                                                 class="float-right badge bg-danger">{{ $groupEventObject->trafficHealthCount() }}</span>
+                                         </a>
+                                     </li>
+                                 </ul>
+                             </div>
                          </div>
                      </div>
-                 </div>
-                 <div class="col-md-4">
-                     <!-- Widget: user widget style 2 -->
-                     <div class="card card-widget">
-                         <div class="widget-user-header bg-warning d-flex justify-content-center align-items-center">
-                             <h3 class="widget-user-username p-3 text-white">Traffic</h3>
-                         </div>
-                         <div class="card-footer p-0">
-                             <ul class="nav flex-column">
-                                 <li class="nav-item">
-                                     <a href="#" class="nav-link">
-                                         Total Reports <span
-                                             class="float-right badge bg-primary">{{ $eventObject->trafficCount() }}</span>
-                                     </a>
-                                 </li>
-                                 <li class="nav-item">
-                                     <a href="#" class="nav-link">
-                                         Fire Department Deployed <span
-                                             class="float-right badge bg-info">{{ $groupEventObject->trafficFireCount() }}</span>
-                                     </a>
-                                 </li>
-                                 <li class="nav-item">
-                                     <a href="#" class="nav-link">
-                                         Police Department Deployed <span
-                                             class="float-right badge bg-success">{{ $groupEventObject->trafficPoliceCount() }}</span>
-                                     </a>
-                                 </li>
-                                 <li class="nav-item">
-                                     <a href="#" class="nav-link">
-                                         Health Department Deployed <span
-                                             class="float-right badge bg-danger">{{ $groupEventObject->trafficHealthCount() }}</span>
-                                     </a>
-                                 </li>
-                             </ul>
+                     <div class="col-md-4">
+                         <!-- Widget: user widget style 2 -->
+                         <div class="card card-widget">
+                             <div class="widget-user-header bg-success d-flex justify-content-center align-items-center">
+                                 <h3 class="widget-user-username p-3">Health</h3>
+                             </div>
+                             <div class="card-footer p-0">
+                                 <ul class="nav flex-column">
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Total Reports <span
+                                                 class="float-right badge bg-primary">{{ $eventObject->healthCount() }}</span>
+                                         </a>
+                                     </li>
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Fire Department Deployed <span
+                                                 class="float-right badge bg-info">{{ $groupEventObject->healthFireCount() }}</span>
+                                         </a>
+                                     </li>
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Police Department Deployed <span
+                                                 class="float-right badge bg-success">{{ $groupEventObject->healthPoliceCount() }}</span>
+                                         </a>
+                                     </li>
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Health Department Deployed <span
+                                                 class="float-right badge bg-danger">{{ $groupEventObject->healthHealthCount() }}</span>
+                                         </a>
+                                     </li>
+                                 </ul>
+                             </div>
                          </div>
                      </div>
-                 </div>
-                 <div class="col-md-4">
-                     <!-- Widget: user widget style 2 -->
-                     <div class="card card-widget">
-                         <div class="widget-user-header bg-success d-flex justify-content-center align-items-center">
-                             <h3 class="widget-user-username p-3">Health</h3>
-                         </div>
-                         <div class="card-footer p-0">
-                             <ul class="nav flex-column">
-                                 <li class="nav-item">
-                                     <a href="#" class="nav-link">
-                                         Total Reports <span
-                                             class="float-right badge bg-primary">{{ $eventObject->healthCount() }}</span>
-                                     </a>
-                                 </li>
-                                 <li class="nav-item">
-                                     <a href="#" class="nav-link">
-                                         Fire Department Deployed <span
-                                             class="float-right badge bg-info">{{ $groupEventObject->healthFireCount() }}</span>
-                                     </a>
-                                 </li>
-                                 <li class="nav-item">
-                                     <a href="#" class="nav-link">
-                                         Police Department Deployed <span
-                                             class="float-right badge bg-success">{{ $groupEventObject->healthPoliceCount() }}</span>
-                                     </a>
-                                 </li>
-                                 <li class="nav-item">
-                                     <a href="#" class="nav-link">
-                                         Health Department Deployed <span
-                                             class="float-right badge bg-danger">{{ $groupEventObject->healthHealthCount() }}</span>
-                                     </a>
-                                 </li>
-                             </ul>
+                     <div class="col-md-4">
+                         <!-- Widget: user widget style 2 -->
+                         <div class="card card-widget">
+                             <div class="widget-user-header bg-dark d-flex justify-content-center align-items-center">
+                                 <h3 class="widget-user-username p-3">Other</h3>
+                             </div>
+                             <div class="card-footer p-0">
+                                 <ul class="nav flex-column">
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Total Reports <span
+                                                 class="float-right badge bg-primary">{{ $eventObject->healthCount() }}</span>
+                                         </a>
+                                     </li>
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Fire Department Deployed <span
+                                                 class="float-right badge bg-info">{{ $groupEventObject->healthFireCount() }}</span>
+                                         </a>
+                                     </li>
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Police Department Deployed <span
+                                                 class="float-right badge bg-success">{{ $groupEventObject->healthPoliceCount() }}</span>
+                                         </a>
+                                     </li>
+                                     <li class="nav-item">
+                                         <a href="#" class="nav-link">
+                                             Health Department Deployed <span
+                                                 class="float-right badge bg-danger">{{ $groupEventObject->healthHealthCount() }}</span>
+                                         </a>
+                                     </li>
+                                 </ul>
+                             </div>
                          </div>
                      </div>
                  </div>
              </div>
-
      </section>
  @endsection

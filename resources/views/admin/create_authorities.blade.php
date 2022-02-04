@@ -1,35 +1,34 @@
 @extends('authority.dashboard')
 
 @section('breadcrumb')
-    <a href="">Create Authorities</a>
+    <a href="{{ route('create_authorities') }}">Create Authority</a>
 @endsection
 
 @section('statistic_content')
     <div class="container-fluid">
         <div class="row gutters d-flex justify-content-center align-items-center">
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-                <div class="card  p-5 shadow p-3 mb-5 bg-white rounded">
-                    <div class="card-title text-center mt-3">
-                        <h3 class="text-primary text-bold">Create Authority</h3>
+                <div class="card p-5 shadow p-3 mb-5 bg-white rounded">
+                    <div class="card-title  mt-3">
+                        <h3 class="create_staff_form text-bold">Create Authority</h3>
+                        <hr class="create_staff_form">
                     </div>
                     <div class="card-body">
                         <form action="{{ route('create_authorities') }}" method="POST">
                             @csrf
                             <div class="row gutters">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <h6 class="mb-2 text-bold text-info">Personal Details</h6>
-                                </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label for="name"><i class="far fa-id-card"></i> Name</label>
-                                        <input type="text" class="form-control" id="name" name="name"
-                                            placeholder="Enter full name">
+                                    <div class="form-group  text-primary">
+                                        <label for="name"><i class="far fa-id-card"></i> First Name</label>
+                                        <input type="text" class="form-control input rounded" id="name" name="name"
+                                            placeholder="Enter first name">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="surname"><i class="far fa-id-card"></i> Surname</label>
-                                        <input type="text" class="form-control" id="surname" name="surname">
+                                        <label for="surname"><i class="far fa-id-card"></i> Last Name</label>
+                                        <input type="text" class="form-control rounded" id="surname" name="surname"
+                                            placeholder="Enter last name">
                                     </div>
                                 </div>
                             </div>
@@ -37,15 +36,15 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="email"><i class="far fa-envelope"></i> Email</label>
-                                        <input type="email" name="email" class="form-control" id="email"
-                                            placeholder="Enter email ID">
+                                        <input type="email" name="email" class="form-control rounded" id="email"
+                                            placeholder="Enter email">
                                     </div>
                                 </div>
 
                                 <div class="  col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="phone"><i class="fas fa-mobile-alt"></i> Phone</label>
-                                        <input name="msisdn" class="form-control" id="phone"
+                                        <input name="msisdn" class="form-control rounded" id="phone"
                                             placeholder="Enter phone number">
                                     </div>
                                 </div>
@@ -55,8 +54,8 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="website"><i class="fas fa-user-tag"></i> Staff Role </label>
-                                        <input type="number" class="form-control" id="staff_role_id" name="staff_role_id"
-                                            value="1" placeholder="Web Authority">
+                                        <input type="number" class="form-control rounded" id="staff_role_id"
+                                            name="staff_role_id" value="1" placeholder="Web Authority">
                                     </div>
                                 </div>
                             </div>
@@ -64,15 +63,16 @@
                             <div class="row gutters">
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <input type="password" name="password" class="form-control" id="password"
+                                        <label for="password"><i class="fas fa-key"></i> Password</label>
+                                        <input type="password" name="password" class="form-control rounded" id="password"
                                             rows="5">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="password_confirm">Confirm Password</label>
-                                        <input type="password" class="form-control" id="password_confirm">
+                                        <label for="password_confirm"><i class="fas fa-key"></i> Confirm
+                                            Password</label>
+                                        <input type="password" class="form-control rounded" id="password_confirm">
                                     </div>
                                 </div>
                             </div>
@@ -80,12 +80,12 @@
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="text-right">
                                         <form class="form-group">
-                                            <button type="button" class="btn btn-primary generator"><i
+                                            <button type="button" class="generator form-buttons2 mr-1"><i
                                                     class="fas fa-key"></i>
                                                 Generate Password</button>
                                         </form>
 
-                                        <button type="submit" class="btn btn-success"><i class="fas fa-user-plus"></i>
+                                        <button type="submit" class="form-buttons"><i class="fas fa-plus mr-1"></i>
                                             Create</button>
                                     </div>
                                 </div>

@@ -368,3 +368,147 @@ body {
     border: 0;
     margin-bottom: 1rem;
 }
+
+label {
+    color: #3B5997;
+}
+
+.input::focus() {
+    border: 1px solid #3B5997;
+}
+
+.form-buttons {
+    background-color: #043565;
+    padding: .5rem 1.6rem;
+    width: 10rem;
+    color: #ffffff;
+    border: 3px solid #ffffff;
+    transition: all .4s ease-in-out
+}
+
+.form-buttons:hover {
+    background-color: #ffffff;
+    color: #043565;
+    border: 3px solid #043565;
+}
+
+.form-buttons2 {
+    background-color: #3B5997;
+    padding: .5rem 1.6rem;
+    width: auto;
+    color: #ffffff;
+    border: 3px solid #ffffff;
+    transition: all .4s ease-in-out
+}
+
+.form-buttons2:hover {
+    background-color: #ffffff;
+    color: #3B5997;
+    border: 3px solid #3B5997;
+}
+
+.cards {
+    background-color: #083372 !important;
+}
+
+.create_staff_form {
+    color: #083372;
+}
+
+.form-buttons3 {
+    background-color: #C94B41;
+    padding: .5rem 1.6rem;
+    width: auto;
+    color: #ffffff;
+    border: 3px solid #ffffff;
+    transition: all .4s ease-in-out
+}
+
+.form-buttons3:hover {
+    background-color: #ffffff;
+    color: #C94B41;
+    border: 3px solid #C94B41;
+}
+
+.input-group {
+    position: relative;
+    width: 320px;
+    height: 50px;
+}
+
+.input-group input {
+    font-size: 18px;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    padding: 10px 65px 10px 15px;
+}
+
+.btn-eye {
+    position: absolute;
+    right: 0;
+    top: 8px;
+    width: 60px;
+    height: 100%;
+    opacity: .75;
+    cursor: pointer;
+}
+
+.btn-eye:hover {
+    opacity: 1;
+}
+
+.btn-eye:before,
+.btn-eye:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+
+/* eye close */
+
+input[type="password"]+.btn-eye:before {
+    width: 18px;
+    height: 18px;
+    background-color: transparent;
+    border: 3px solid #c0c0c0;
+    transform: rotate(45deg);
+    border-radius: 15px 0 15px 0;
+}
+
+input[type="password"]+.btn-eye:after {
+    width: 4px;
+    height: 28px;
+    background-color: #d1d1d1;
+    transform: rotate(30deg);
+    border-radius: 0;
+}
+
+
+/* eye open */
+
+input[type="text"]+.btn-eye:before {
+    width: 20px;
+    height: 20px;
+    background-color: #083372;
+    transform: rotate(45deg);
+    border-radius: 15px 0 15px 0;
+    transition: .15s;
+}
+
+input[type="text"]+.btn-eye:after {
+    width: 9px;
+    height: 8px;
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+::selection {
+    background-color: rgba(0, 0, 0, .1);
+}

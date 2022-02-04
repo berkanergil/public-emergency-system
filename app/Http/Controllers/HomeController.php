@@ -101,4 +101,8 @@ class HomeController extends Controller
     {
         return view('admin.editAuthority');
     }
+    public function chatPage()
+    {
+        return view('authority.chatPage');
+    }
 }

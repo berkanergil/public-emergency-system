@@ -49,6 +49,8 @@
 
     <link rel="stylesheet" href="{{ asset('sweetalert2.min.css') }}">
     @yield('css')
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <title>EmergenCyp | Dashboard</title>
 
@@ -73,7 +75,37 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route("logout") }}"><i class="fas fa-sign-out-alt"></i></a>
+                    <a class="nav-link btn-group dropwdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" href=""><i class="fas fa-inbox"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <ul class="list-group">
+                            <li class="list-group-item border-top-0">
+                                <button class="dropdown-item" type="button">
+                                    <h6><i class="far fa-envelope"></i> Tolgahan Dayanıklı </h6>
+                                </button>
+                            </li>
+                            <li class="list-group-item">
+                                <button class="dropdown-item" type="button">
+                                    <h6><i class="far fa-envelope"></i> Tolgahan Dayanıklı </h6>
+                                </button>
+                            </li>
+                            <li class="list-group-item border-bottom-0">
+                                <button class="dropdown-item" type="button">
+                                    <h6><i class="far fa-envelope"></i> Tolgahan Dayanıklı </h6>
+                                </button>
+                            </li>
+                            <li class="text-center">
+                                <a href="{{ route('chatPage') }}" class="dropdown-item button1">
+                                    <i class="far fa-paper-plane"></i> See All
+                                </a>
+                            </li>
+                        </ul>
+
+
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i></a>
                 </li>
             </ul>
         </nav>
@@ -135,7 +167,7 @@
                         <li class="nav-header"> <strong> EVENT OPERATIONS</strong></li>
                         <li class="nav-item">
                             <a href="{{ route('newReport', ['id' => $staff->id]) }}" class="nav-link">
-                                <i class="ml-1 fas fa-exclamation-triangle"></i>
+                                <i class="ml-1 fas fa-search-location"></i>
                                 <p class="ml-1">
                                     New Reports
                                     <span class="right badge badge-danger ml-1">Live Map</span>
@@ -251,6 +283,33 @@
 
                             </ul>
                         </li>
+                        <li class="nav-header"><strong>DATABASE OPERATIONS</strong></li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="ml-1 fas fa-user"></i>
+                                <p class="ml-2">
+                                    Database
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('all_users') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Modify Databases</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('all_users') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Archive Databases</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -268,21 +327,7 @@
                     <div class="row mb-2">
                         <div class="col-sm-6">
                         </div><!-- /.col -->
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item">
-                                    @yield('breadcrumb')
-                                </li>
-                                <li class="breadcrumb-item active">
-                                    @if ($role == '1')
-                                        Authority Panel
-                                    @elseif($role == '3')
-                                        Admin Panel
-                                    @endif
-
-                                </li>
-                            </ol>
-                        </div><!-- /.col -->
+                        <!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
             </div>

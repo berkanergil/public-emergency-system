@@ -1,6 +1,24 @@
 @extends('authority.dashboard')
+
 @section('breadcrumb')
-    <a href="{{ route('form_agent_groups') }}">Form Agent Groups</a>
+
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">
+            <li class="breadcrumb-item active">
+                <a href="{{ route('form_agent_groups') }}">Form Agent Groups</a>
+            </li>
+            </li>
+            {{-- <li class="breadcrumb-item active">
+                @if ($role == '1')
+                    Authority Panel
+                @elseif($role == '3')
+                    Admin Panel
+                @endif
+            </li> --}}
+        </ol>
+    </div>
+
 @endsection
 @section('statistic_content')
     <form action="{{ route('form_agent_groups') }}" method="post">

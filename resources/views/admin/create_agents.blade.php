@@ -9,34 +9,32 @@
         <div class="row gutters d-flex justify-content-center align-items-center">
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                 <div class="card p-5 shadow p-3 mb-5 bg-white rounded">
-                    <form class="validatedForm" action="{{ route('create_authorities') }}" method="post">
-                        @csrf
-                        <div class="card-body">
-                            <div class="card-header text-center">
-                                <h4 class="text-bold text-primary">Create Agent</h4>
-                            </div>
+                    <div class="card-title mt-3">
+                        <h3 class="text-bold create_staff_form">Create Agent</h3>
+                        <hr class="create_staff_form">
+                    </div>
+                    <div class="card-body">
+                        <form class="validatedForm" action="{{ route('create_authorities') }}" method="post">
+                            @csrf
                             <div class="row gutters">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <h6 class="mb-2 text-bold text-info">Personal Details</h6>
-                                </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="name"><i class="far fa-id-card"></i> Name</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Enter name"
+                                        <label for="name"><i class="far fa-id-card"></i> First Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Enter first name"
                                             name="name">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="fullName"><i class="far fa-id-card"></i> Surname</label>
-                                        <input type="text" class="form-control" id="fullName" placeholder="Enter surname"
-                                            name="surname">
+                                        <label for="fullName"><i class="far fa-id-card"></i> Last Name</label>
+                                        <input type="text" class="form-control" id="fullName"
+                                            placeholder="Enter last name" name="surname">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="eMail"><i class="far fa-envelope"></i> Email</label>
-                                        <input type="email" class="form-control" id="eMail" placeholder="Enter email ID"
+                                        <input type="email" class="form-control" id="eMail" placeholder="Enter email"
                                             name="email">
                                     </div>
                                 </div>
@@ -64,7 +62,7 @@
                                             @foreach ($departmentTypeObject->departments() as $departmentType)
                                                 <option value={{ $departmentType->id }}
                                                     {{ $departmentType->title == $departmentType->id ? 'selected' : '' }}>
-                                                    {{ $departmentType->title }}
+                                                    {{ Str::title($departmentType->title) . ' Department' }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -72,21 +70,21 @@
                                 </div>
                             </div>
                             <div class="row gutters">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <h6 class="mt-3 mb-2 text-info text-bold">Password Settings</h6>
-                                </div>
+
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="Street"><i class="fas fa-key"></i> Password</label>
-                                        <input type="password" class="form-control" id="password" placeholder=""
-                                            name="password">
+                                        <label for="password"><i class="fas fa-key"></i> Password</label>
+                                        <input type="password" class="form-control icon" id="password" placeholder=""
+                                            name="password"><i id="btn-eye" class="btn-eye far fa-eye-slash"></i>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="password_confirm"><i class="fas fa-key"></i> Confirm
                                             Password</label>
-                                        <input type="password" class="form-control" id="password_confirm" placeholder="">
+                                        <input type="password" class="form-control icon" id="password_confirm"
+                                            placeholder="">
+                                        <i id="btn-eye2" class="btn-eye far fa-eye-slash"></i>
                                     </div>
                                 </div>
 
@@ -95,11 +93,12 @@
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="text-right">
                                         <form class="form-group">
-                                            <button type="button" class="btn btn-primary generator"><i
+                                            <button type="button" class="form-buttons2 generator"><i
                                                     class="fas fa-key"></i>
                                                 Generate Password</button>
                                         </form>
-                                        <button type="submit" class="btn btn-success"><i class="fas fa-user-plus"></i>
+                                        <button type="submit" class="form-buttons btn btn-success"><i
+                                                class="fas fa-user-plus"></i>
                                             Create</button>
                                     </div>
                                 </div>
@@ -146,7 +145,7 @@
                                 </form>
 
                             </div>
-                        </div>
+                    </div>
 
                     </form>
 
@@ -211,6 +210,18 @@
                 generatePass(pwField).then(copyToClipboard(pwField.value));
             });
         });
+        var eyeBtn = document.querySelector('#btn-eye');
+        eyeBtn.onclick = function() {
+            var inp = document.querySelector('#password');
+            inp.getAttribute('type') === 'password' ? inp.setAttribute('type', 'text') : inp.setAttribute('type',
+                'password');
+        }
+        var eyeBtn2 = document.querySelector('#btn-eye2');
+        eyeBtn2.onclick = function() {
+            var inp = document.querySelector('#password_confirm');
+            inp.getAttribute('type') === 'password' ? inp.setAttribute('type', 'text') : inp.setAttribute('type',
+                'password');
+        }
     </script>
 
 @endsection

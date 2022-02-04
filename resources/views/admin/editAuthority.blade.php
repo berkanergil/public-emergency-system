@@ -6,10 +6,11 @@
 
 @section('statistic_content')
     <div class="row gutters d-flex justify-content-center align-items-center">
-        <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
             <div class="card p-5 shadow p-3 mb-5 bg-white rounded">
-                <div class="card-title text-center mt-3">
-                    <h3 class="text-primary text-bold">Edit Personal Information</h3>
+                <div class="card-title mt-3">
+                    <h3 class="create_staff_form text-bold">Edit Personal Information</h3>
+                    <hr class="create_staff_form">
                 </div>
                 <div class="card-body">
                     <form action="{{ route('updateAuthority', ['id' => $staff->id]) }}" method="POST">
@@ -17,44 +18,54 @@
                         <div class="row gutters">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="name">Name</label>
+                                    <label for="name"><i class="far fa-id-card"></i> Name</label>
                                     <input type="text" class="form-control" id="name" name="name"
-                                        value={{ $staff->name }}>
+                                        value={{ Str::title($staff->name) }}>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="surname">Surname</label>
+                                    <label for="surname"><i class="far fa-id-card"></i> Surname</label>
                                     <input type="text" class="form-control" id="surname" name="surname"
-                                        value={{ $staff->surname }}>
+                                        value={{ Str::title($staff->surname) }}>
                                 </div>
                             </div>
                         </div>
                         <div class="row gutters">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="email">Email</label>
+                                    <label for="email"><i class="far fa-envelope"></i> Email</label>
                                     <input type="email" name="email" class="form-control" id="email"
                                         value={{ $staff->email }}>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="phone">Phone</label>
+                                    <label for="phone"><i class="fas fa-mobile-alt"></i> Phone</label>
                                     <input name="msisdn" class="form-control" id="phone" value={{ $staff->msisdn }}>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="website"><i class="fas fa-user-tag"></i> Staff Role </label>
+                                    <input type="number" class="form-control rounded" id="staff_role_id"
+                                        name="staff_role_id" value="1" placeholder="Web Authority">
                                 </div>
                             </div>
                         </div>
                         <div class="row gutters">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="password">Password</label>
+                                    <label for="password"><i class="fas fa-key"></i> Password</label>
                                     <input type="password" name="password" class="form-control" id="password" rows="5">
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="password_confirm">Confirm Password</label>
+                                    <label for="password_confirm"><i class="fas fa-key"></i> Confirm Password</label>
                                     <input type="password" class="form-control" id="password_confirm">
                                 </div>
                             </div>
@@ -63,13 +74,13 @@
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right">
                                     <form class="form-group">
-                                        <button type="button" class="btn btn-primary generator"><i
-                                                class="fas fa-key"></i> Generate Password</button>
+                                        <button type="button" class="form-buttons2 generator"><i class="fas fa-key"></i>
+                                            Generate Password</button>
                                     </form>
-                                    <button type="button" id="delete" class="btn btn-danger"><i
+                                    <button type="button" id="delete" class="form-buttons3"><i
                                             class="fas fa-trash mr-1"></i>
                                         Delete</button>
-                                    <button id="update" type="button" class="btn btn-success"> <i
+                                    <button id="update" type="button" class="form-buttons"> <i
                                             class="far fa-edit mr-1"></i>Update
                                     </button>
                                 </div>

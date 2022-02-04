@@ -34,22 +34,29 @@
             <div class="card-body">
                 <h4 class="mb-3 text-bold">{{ $event->description }}</h4>
                 <div class="btn-group button-groups my-3 ">
-                    <button id="mark_event" type="button" class="btn btn-lg btn-default button1 text-bold">Mark
+                    <button id="mark_event" type="button" class="btn btn-lg btn-default button1 text-bold"><i
+                            class="fas fa-highlighter"></i> Mark
                         Event</button>
-                    {{-- <button id="send_notification" type="button" class="btn btn-lg btn-default button4 text-bold">Send
-                        Notification</button> --}}
+                    <button id="send_notification" type="button" class="btn btn-lg btn-default button4 text-bold"><i
+                            class="fas fa-envelope"></i> Send
+                        SMS</button>
+                    <button id="send_notification" type="button" class="btn btn-lg btn-default button2 text-bold"><i
+                            class="fas fa-bell"></i> Send
+                        Notification</button>
                     @if ($event->status->id == '1')
                         <button disabled id="upload_evidence" type="button"
-                            class="btn btn-lg btn-default button5 text-bold">Upload
+                            class="btn btn-lg btn-default button5 text-bold"><i class="fas fa-file-upload"></i> Upload
                             Evidence</button>
                         <button disabled data-target=".bd-example-modal-lg" data-toggle="modal" id="deploy_agent_group"
-                            type="button" class="btn btn-lg btn-default button6 text-bold">Deploy
+                            type="button" class="btn btn-lg btn-default button6 text-bold"><i class="fas fa-users"></i>
+                            Deploy
                             Agent Group</button>
                     @else
-                        <button id="upload_evidence" type="button" class="btn btn-lg btn-default button5 text-bold">Upload
+                        <button id="upload_evidence" type="button" class="btn btn-lg btn-default button5 text-bold"><i
+                                class="fas fa-file-upload"></i> Upload
                             Evidence</button>
                         <button data-target=".bd-example-modal-lg" data-toggle="modal" id="deploy_agent_group" type="button"
-                            class="btn btn-lg btn-default button6 text-bold">Deploy
+                            class="btn btn-lg btn-default button6 text-bold"><i class="fas fa-users"></i> Deploy
                             Agent Group</button>
                     @endif
 
@@ -115,7 +122,12 @@
                             aria-controls="custom-content-below-agentsDeployed" aria-selected="false">Agents
                             Deployed</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link p-3" id="custom-content-below-notes-tab" data-toggle="pill"
+                            href="#custom-content-below-notes" role="tab" aria-controls="custom-content-below-notes"
+                            aria-selected="false">
+                            Notes</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link p-3" id="custom-content-below-evidence-tab" data-toggle="pill"
                             href="#custom-content-below-evidence" role="tab" aria-controls="custom-content-below-evidence"
@@ -129,7 +141,7 @@
                             <div class="col-md-6 ml-5 mr-5">
                                 <div class="card  shadow  bg-white rounded">
                                     <div
-                                        class="card-title text-bold p-3 {{ $event->event_status_id == '1' ? 'bg-success' : ($event->event_status_id == '2' ? 'bg-warning' : 'bg-danger') }}">
+                                        class="card-title text-bold p-3 {{ $event->event_status_id == '1'? 'bg-success': ($event->event_status_id == '2'? 'bg-warning': 'bg-danger') }}">
                                         Emergency Information
                                         ({{ Str::title($event->eventStatus->title) }})
                                     </div>
@@ -186,13 +198,14 @@
                                                 
                                             @endphp
                                             <li class="list-group-item border-0">
-                                                <strong>Editor:</strong>{{ $editor_name }}</li>
+                                                <strong>Editor: </strong>{{ Str::title($editor_name) }}
+                                            </li>
                                             <li class="list-group-item border-0"><strong>Note:</strong>
-                                                {{ $event->note }}
+                                                {{ Str::title($event->note) }}
                                             </li>
                                         </ul>
                                         <a href="{{ route('edit_report', $event->id) }}"
-                                            class="btn p-2 float-right btn-dark"><i class="far fa-edit"></i>
+                                            class="btn p-2 float-right button1"><i class="far fa-edit"></i>
                                             Make Changes</a>
                                     </div>
                                 </div>
@@ -254,7 +267,7 @@
                                                     <tr>
                                                         <td>Event Created</td>
                                                         <td><a
-                                                                href="{{ $history['create']['creator_type'] == 'staff' ? route('one_agent', $history['create']['creator_id']) : route('one_user', $history['create']['creator_id']) }}">{{ $history['create']['creator_name'] }}
+                                                                href="{{ $history['create']['creator_type'] == 'staff'? route('one_agent', $history['create']['creator_id']): route('one_user', $history['create']['creator_id']) }}">{{ $history['create']['creator_name'] }}
                                                                 ({{ $history['create']['creator_type'] }})</a></td>
                                                         <td>{{ $history['create']['created_at'] }}</td>
                                                     </tr>
@@ -276,7 +289,7 @@
                                                             <td>Event Status Changed ({{ $mark['event_status_name'] }})
                                                             </td>
                                                             <td><a
-                                                                    href="{{ route('one_agent', $mark['staff_id']) }}">{{ $mark['staff_name'] }}</a>
+                                                                    href="{{ route('one_agent', $mark['staff_id']) }}">{{ Str::title($mark['staff_name']) }}</a>
                                                             </td>
                                                             <td>{{ $mark['created_at'] }}</td>
                                                         </tr>
@@ -294,15 +307,18 @@
                     </div>
                     <div class="tab-pane fade py-5" id="custom-content-below-agentsDeployed" role="tabpanel"
                         aria-labelledby="custom-content-below-agentsDeployed-tab">
+                        <button type="button" class="btn btn-md p-2 float-right btn-default button3 text-bold"><i
+                                class="fas fa-user-times"></i> Remove Agent
+                            Group
+                        </button>
                         <div class="row">
                             <div class="col-md-7">
                                 <h3 class="text-bold mb-3">Agent Group:
                                     @if (isset($groups[0]))
                                         <a href="{{ route('one_agentGroup', $groups[0]->group_id) }}"
-                                            class="text-danger">{{ $groups[0]->group_id }} (Click To
-                                            See
-                                            More
-                                            Details About the Group)</a>
+                                            class="text-danger">{{ $groups[0]->group_id }} ( <i
+                                                class="fas fa-eye"></i> More
+                                            Details)</a>
                                     @else
                                         No Group
 
@@ -418,6 +434,68 @@
 
                                 @endforeach
                             @endif
+                        </div>
+                    </div>
+                    <div class="tab-pane fade py-5" id="custom-content-below-notes" role="tabpanel"
+                        aria-labelledby="custom-content-below-notes-tab">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card rounded ">
+                                    <div class="card-title text-bold p-3 bg-warning "><span class="text-white">
+                                            Event Notes</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <thead class="thead">
+                                                <tr>
+                                                    <th scope="col">Notes</th>
+                                                    <th scope="col">Editor</th>
+                                                    <th scope="col">Updated At</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (isset($event->document->path))
+                                                    <tr>
+                                                        <td>{{ Str::title($event->document->type) }}</td>
+                                                        <td> <a type="button" data-toggle="modal"
+                                                                data-target="#{{ $documentModalTrigger }}"
+                                                                href="{{ asset($event->document->path) }}">
+                                                                {{ $event->document->id }}</a>
+                                                        </td>
+                                                        <td>{{ $event->document->created_at }}</td>
+                                                    </tr>
+                                                    <div class="modal fade" id="{{ $documentModalTrigger }}"
+                                                        tabindex="-1" role="dialog"
+                                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header text-center">
+                                                                    <h5 class="modal-title text-bold text-dark "
+                                                                        id="exampleModalLongTitle">
+                                                                        Document ID: {{ $event->document->id }}</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <img class="img-fluid"
+                                                                        src="{{ asset($event->document->path) }}">
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+
+                                            </tbody>
+                                        </table>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="tab-pane fade py-5" id="custom-content-below-evidence" role="tabpanel"
