@@ -69,29 +69,29 @@ Route::get('admin/statistics', function (Request $request) {
     $eventObject = new Event;
     $staffObject = new Staff;
     $groupEventObject = new GroupEvent;
-    return view('authority.statistics', compact("staff", "eventObject", "staffObject", "groupEventObject"));
+    return view('system_operations.statistics', compact("staff", "eventObject", "staffObject", "groupEventObject"));
 })->name('statistics');
 
-Route::get('/dashboard', function (Request $request) {
+Route::get('admin/dashboard', function (Request $request) {
     $staff = Staff::find($request->id);
 
-    return view('authority.dashboard', compact("staff"));
+    return view('layouts.dashboard', compact("staff"));
 })->name('dashboard');
 
 Route::get('admin/newReports', function (Request $request) {
     $staff = Staff::find(Auth::id());
     $lat_lon = Event::all();
-    return view("common.newReports", compact("staff", "lat_lon"));
+    return view("report_operations.newReports", compact("staff", "lat_lon"));
 })->name('newReports');
 
 Route::get('admin/authorities', function () {
     $staffObject = new Staff;
-    return view("admin.authorities", compact("staffObject"));
+    return view("role_operations.authority_operations.authorities", compact("staffObject"));
 })->name('authorities');
 
 
 Route::get('admin/createAuthority', function (Request $request) {
-    return view("admin.createAuthority");
+    return view("role_operations.authority_operations.createAuthority");
 })->name('createAuthority');
 
 Route::post('admin/createAuthority', function (Request $request) {
@@ -109,13 +109,13 @@ Route::get(
     'admin/authority/{id}',
     function ($id) {
         $staff = Staff::find($id);
-        return view("admin.authority", compact("staff"));
+        return view("role_operations.authority_operations.authority", compact("staff"));
     }
 )->name('authority');
 
 Route::get('admin/editAuthority/{id}', function ($id) {
     $staff = Staff::find($id);
-    return view("admin.editAuthority", compact("staff"));
+    return view("role_operations.authority_operations.editAuthority", compact("staff"));
 })->name('editAuthority');
 
 Route::put('admin/updateAuthority/{id}', function (Request $request, $id) {
@@ -127,18 +127,18 @@ Route::put('admin/updateAuthority/{id}', function (Request $request, $id) {
     } else {
         return back();
     }
-    return view("admin.authority", compact("staff"));
+    return view("role_operations.authority_operations.authority", compact("staff"));
 })->name('updateAuthority');
 
 Route::get('admin/agents', function () {
     $staffObject = new Staff;
-    return view("common.agents", compact("staffObject"));
+    return view("role_operations.agent_operations.agents", compact("staffObject"));
 })->name('agents');
 
 Route::get('admin/editAgent/{id}', function ($id) {
     $department = Department::get();
     $staff = Staff::find($id);
-    return view("common.editAgent", compact("staff", "department"));
+    return view("role_operations.agent_operations.editAgent", compact("staff", "department"));
 })->name('editAgent');
 
 Route::put('admin/updateAgent/{id}', function (Request $request, $id) {
@@ -150,12 +150,12 @@ Route::put('admin/updateAgent/{id}', function (Request $request, $id) {
     } else {
         return back();
     }
-    return view("admin.authority", compact("staff"));
+    return view("role_operations.authority_operations.authority", compact("staff"));
 })->name('updateAuthority');
 
 Route::get('admin/createAgents', function (Request $request) {
     $departmentTypeObject = new Department();
-    return view("admin.createAgents", compact("departmentTypeObject"));
+    return view("role_operations.agent_operations.createAgents", compact("departmentTypeObject"));
 })->name('createAgents');
 
 Route::post('admin/createAgents', function (Request $request) {
@@ -167,13 +167,13 @@ Route::post('admin/createAgents', function (Request $request) {
     } else {
         return back();
     }
-})->name('create_agents');
+})->name('createAgents');
 
 Route::get(
     'admin/agent/{id}',
     function ($id) {
         $staff = Staff::find($id);
-        return view("common.agent", compact("staff"));
+        return view("role_operations.agent_operations.agent", compact("staff"));
     }
 )->name('agent');
 
@@ -187,7 +187,7 @@ Route::put('/update_agent/{id}', function (Request $request, $id) {
     } else {
         return back();
     }
-    return view("common.agent", compact("staff"));
+    return view("role_operations.agent_operations.agent", compact("staff"));
 })->name('update_agent');
 
 Route::delete('/delete_agent/{id}', function ($id) {
@@ -197,7 +197,7 @@ Route::delete('/delete_agent/{id}', function ($id) {
 
 Route::get('admin/profile/{id}', function ($id) {
     $staff = Staff::find($id);
-    return view('common.profile', compact("staff"));
+    return view('profile_operations.profile', compact("staff"));
 })->name('profile');
 
 Route::put('admin/editProfile/{id}', function (Request $request, $id) {
@@ -209,12 +209,12 @@ Route::put('admin/editProfile/{id}', function (Request $request, $id) {
     } else {
         return back();
     }
-    return view("common.editProfile", compact("staff"));
+    return view("profile_operations.editProfile", compact("staff"));
 })->name('editProfile');
 
 Route::get('/editProfile/{id}', function ($id) {
     $staff = Staff::find($id);
-    return view('common.editProfile', compact("staff"));
+    return view('profile_operations.editProfile', compact("staff"));
 })->name('editProfile');
 
 
@@ -225,26 +225,26 @@ Route::delete('/delete_authority/{id}', function ($id) {
 
 Route::get('admin/users', function () {
     $userObject = new User;
-    return view("common.users", compact("userObject"));
+    return view("role_operations.user_operations.users", compact("userObject"));
 })->name('users');
 
 Route::get(
     'admin/user/{id}',
     function ($id) {
         $user = User::find($id);
-        return view("common.user", compact("user"));
+        return view("role_operations.user_operations.user", compact("user"));
     }
 )->name('user');
 
 
 Route::get('admin/currentReports', function () {
     $eventObject = new Event();
-    return view("common.currentReports", compact("eventObject"));
+    return view("report_operations.currentReports", compact("eventObject"));
 })->name('currentReports');
 
 Route::get('admin/pastReports', function () {
     $eventObject = new Event();
-    return view("common.pastReports", compact("eventObject"));
+    return view("report_operations.pastReports", compact("eventObject"));
 })->name('pastReports');
 
 
@@ -253,7 +253,7 @@ Route::get('admin/report/{id}', function ($id) {
     if ($event == null) {
         return abort(404);
     } else {
-        return view("common.report", compact("event"));
+        return view("report_operations.report", compact("event"));
     }
 })->name('report');
 
@@ -262,7 +262,7 @@ Route::get('admin/edit_report/{id}', function ($id) {
     $eventTypeObject = new EventType();
     $groupObject = new Group();
     $eventStatusObject = new EventStatus();
-    return view("authority.edit_report", compact("event", "eventTypeObject", "groupObject", "eventStatusObject"));
+    return view("report_operations.edit_report", compact("event", "eventTypeObject", "groupObject", "eventStatusObject"));
 })->name('edit_report');
 
 Route::delete('admin/delete_report/{id}', function ($id) {
@@ -301,12 +301,12 @@ Route::put('admin/update_report/{id}', function (Request $request, $id) {
     } else {
         return back();
     }
-    return view("common.agent", compact("staff"));
+    return view("role_operations.agent_operations.agent", compact("staff"));
 })->name('update_report');
 
 Route::get('admin/deployAgentGroups', function () {
     $staffObject = new Staff();
-    return view("common.deployAgentGroups", compact("staffObject"));
+    return view("role_operations.agent_operations.deployAgentGroups", compact("staffObject"));
 })->name('deployAgentGroups');
 
 Route::post('admin/deployAgentGroups', function (Request $request) {
@@ -327,18 +327,18 @@ Route::post('admin/agentGroups', function (Request $request) {
     $deleted_groups = Group::where('group_id', $request->group_id)->get()->pluck("id");
     $result = Group::destroy($deleted_groups);
     $groups = Group::select("group_id")->groupBy("group_id")->get();
-    return view("common.agentGroups", compact("groups"));
+    return view("role_operations.agent_operations.agentGroups", compact("groups"));
 })->name('disbandGroups');
 
 Route::get('admin/agentGroups', function (Request $request) {
     $groups = Group::select("group_id")->groupBy("group_id")->get();
-    return view("common.agentGroups", compact("groups"));
+    return view("role_operations.agent_operations.agentGroups", compact("groups"));
 })->name('agentGroups');
 
 Route::get('admin/agentGroup/{id}', function (Request $request) {
     $group = Group::where("group_id", $request->id)->get();
 
-    return view("common.agentGroup", compact("group"));
+    return view("role_operations.agent_operations.agentGroup", compact("group"));
 })->name('agentGroup');
 
 Route::post('/store_evidence/{id}', function (Request $request, $id) {
@@ -368,9 +368,6 @@ Route::post('/mark_event', function (Request $request) {
     }
 })->name("mark_event");
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/adminDashboard', [App\Http\Controllers\HomeController::class, 'adminDashboard'])->name('adminDashboard');
-
 Route::get('/logout', function () {
     $staff = Staff::find(Auth::id());
     Auth::logout($staff);
@@ -379,7 +376,7 @@ Route::get('/logout', function () {
 
 Route::get('/edit_user/{id}', function ($id) {
     $user = User::find($id);
-    return view("authority.edit_user", compact("user"));
+    return view("role_operations.user_operations.edit_user", compact("user"));
 })->name('edit_user');
 
 

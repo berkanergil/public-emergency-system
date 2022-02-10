@@ -11,114 +11,24 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        // $this->middleware('auth');
-    }
-
-    public function statistics()
-    {
-        return view('authority.statistics');
-    }
-    public function eventpage()
-    {
-        return view('authority.eventpage');
-    }
-    public function edit_report()
-    {
-        return view('authority.edit_report');
-    }
-    public function past_archives()
-    {
-        return view('authority.past_archives');
-    }
-    public function newReport()
-    {
-        return view('authority.newReport');
-    }
-    public function current_archives()
-    {
-        return view('authority.current_archives');
-    }
-    public function all_agents()
-    {
-        return view('authority.all_agents');
-    }
-    public function one_agent()
-    {
-        return view('authority.one_agent');
-    }
-    public function all_users()
-    {
-        return view('authority.all_users');
-    }
-    public function one_user()
-    {
-        return view('authority.one_user');
-    }
-    public function form_agent_groups()
-    {
-        return view('authority.form_agent_groups');
-    }
-    public function agent_groups()
-    {
-        return view('authority.agent_groups');
-    }
-    public function one_agentGroup()
-    {
-        return view('authority.one_agentGroup');
-    }
-    public function profile()
-    {
-        return view('authority.profile');
-    }
-    public function edit_profile()
-    {
-        return view('authority.edit_profile');
-    }
-    /*ADMIN ROUTES */
-    public function adminDashboard()
-    {
-        return view('admin.adminDasboard');
-    }
-    public function create_authorities()
-    {
-        return view('admin.create_authorities');
-    }
-    public function create_agents()
-    {
-        return view('admin.create_agents');
-    }
-    public function all_authorities()
-    {
-        return view('admin.all_authorities');
-    }
-    public function one_authority()
-    {
-        return view('admin.one_authority');
-    }
-    public function editAuthority()
-    {
-        return view('admin.editAuthority');
-    }
     public function chatPage()
     {
-        return view('authority.chatPage');
+        return view('system_operations.chatPage');
     }
     public function createPage()
     {
-        return view('common.createMessages');
+        return view('system_operations.createMessages');
     }
     public function messages()
     {
-        return view('common.messages');
+        return view('system_operations.messages');
     }
     public function createPagee()
     {
-        return view('common.createNotifications');
+        return view('system_operations.createNotifications');
     }
     public function notifications()
     {
-        return view('common.notifications');
+        return view('system_operations.notifications');
     }
 }
