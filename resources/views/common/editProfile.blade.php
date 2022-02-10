@@ -1,7 +1,6 @@
 @extends('authority.dashboard')
-
 @section('breadcrumb')
-    <a href="{{ route('editAuthority', $staff) }}">Edit Authority ID: {{ $staff->id }}</a>
+    <a href="{{ route('editProfile', $staff) }}">Edit Profile</a>
 @endsection
 
 @section('statistic_content')
@@ -9,11 +8,11 @@
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
             <div class="card p-5 shadow p-3 mb-5 bg-white rounded">
                 <div class="card-title mt-3">
-                    <h3 class="create_staff_form text-bold">Edit Personal Information</h3>
+                    <h3 class="create_staff_form text-bold">Edit Your Profile Details</h3>
                     <hr class="create_staff_form">
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('updateAuthority', ['id' => $staff->id]) }}" method="POST">
+                    <form action="{{ route('editProfile', ['id' => $staff->id]) }}" method="POST">
                         @csrf
                         <div class="row gutters">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -46,16 +45,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="website"><i class="fas fa-user-tag"></i> Staff Role </label>
-                                    <input type="number" class="form-control rounded" id="staff_role_id"
-                                        name="staff_role_id" value="1" placeholder="Web Authority">
-                                </div>
-                            </div>
-                        </div>
                         <div class="row gutters">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
@@ -80,9 +69,6 @@
                                         <button type="button" class="form-buttons2 generator"><i class="fas fa-key"></i>
                                             Generate Password</button>
                                     </form>
-                                    <button type="button" id="delete" class="form-buttons3"><i
-                                            class="fas fa-trash mr-1"></i>
-                                        Delete</button>
                                     <button id="update" type="button" class="form-buttons"> <i
                                             class="far fa-edit mr-1"></i>Update
                                     </button>
@@ -95,9 +81,7 @@
                 </div>
             </div>
         </div>
-
         <div class="d-none">
-
             <form class="form-inline">
                 <div class="form-group">
                     <label for="pwLength">Length</label>
@@ -138,108 +122,40 @@
 
         </div>
     </div>
-
 @endsection
+
 @section('sweetjs')
     <script>
         let _token = $('meta[name="csrf-token"]').attr('content');
-        var url = 'http://127.0.0.1:8000/all_authorities'
         var id = {{ $staff->id }};
-        // var name = {{ $staff->name }}
-        // var surname = {{ $staff->surname }}
-        // var email = {{ $staff->email }}
-        // var msisdn = {{ $staff->msisdn }}
-        // var password = {{ $staff->password }}
-
-        var button = $("#delete").on("click", function() {
+        var url = "http://127.0.0.1:8000/admin/profile" + id
+        var button = $("#update").on("click", function() {
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
+                title: 'Save Changes?',
+                text: "The new settings will be saved!",
+                icon: 'info',
                 showCancelButton: true,
-                confirmButtonColor: '#dc3545',
-                cancelButtonColor: '#6c757d',
-                confirmButtonText: '<i class = "fas fa-trash mr-1" ></i> Delete It'
-
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, save it!'
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ route('delete_authority', $staff->id) }}",
                         type: "POST",
                         data: {
                             id: id,
-                            _method: "DELETE",
-                            _token: _token
-                        },
-                        success: function() {
-                            swal.fire("Done!", "It was succesfully deleted!", "success").then(
-                                function() {
-                                    $(location).attr('href', url);
-
-                                })
-
-                        },
-                        error: function(xhr, ajaxOptions, thrownError) {
-                            swal.fire("Error deleting!", "Please try again", "error");
-                        }
-                    });
-                } else Swal.fire({
-                    title: 'Error Deleting!',
-                    text: "Please try again",
-                    icon: 'error',
-
-                });
-            })
-        });
-
-        var url2 = 'http://127.0.0.1:8000/admin/authority/' + id
-        var name = $('#name').val();
-        var surname = $('#surname').val();
-        var msisdn = $('#msisdn').val();
-        var email = $('#email').val();
-        var password = $('#password').val();
-
-
-        var button = $('#update').on('click', function() {
-
-            Swal.fire({
-                title: 'Do you want to save the changes?',
-                icon: 'question',
-                showDenyButton: true,
-                confirmButtonText: '<i class="far fa-save"></i> Save',
-                denyButtonText: `<i class="far fa-window-close"></i> Cancel`,
-                confirmButtonColor: '#28A745',
-                denyButtonColor: '#6c757d',
-            }).then((result2) => {
-                if (result2.isConfirmed) {
-                    $.ajax({
-                        url: "{{ route('updateAuthority', $staff->id) }}",
-                        type: "POST",
-                        data: {
-                            id: id,
-                            name: name,
-                            surname: surname,
-                            email: email,
-                            msisdn: msisdn,
-                            password: password,
                             _method: "PUT",
                             _token: _token
                         },
                         success: function() {
-                            swal.fire("Done!", "It was succesfully updated!", "success");
+                            swal.fire("Done!", "Your details succesfully updated!", "success");
 
-                            $(location).attr('href', url2);
+                            $(location).attr('href', url);
                         },
-                        error: function(xhr, ajaxOptions, thrownError) {
-                            swal.fire("Error Updating!", "Please try again", "error");
-                        }
-                    })
-                } else Swal.fire({
-                    title: 'Error Updating!',
-                    text: "Please try again",
-                    icon: 'error',
+                    });
+                } else {
 
-                });
+                }
             })
         });
         var eyeBtn = document.querySelector('#btn-eye');
@@ -255,6 +171,3 @@
                 'password');
         }
     </script>
-
-
-@endsection

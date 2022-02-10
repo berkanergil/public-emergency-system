@@ -1,9 +1,6 @@
 @extends('authority.dashboard')
 
-@section('breadcrumb')
-    <a href="{{ route('editAuthority', $staff) }}">Edit Authority ID: {{ $staff->id }}</a>
-@endsection
-
+@section('statistic_content')
 @section('statistic_content')
     <div class="row gutters d-flex justify-content-center align-items-center">
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
@@ -13,21 +10,21 @@
                     <hr class="create_staff_form">
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('updateAuthority', ['id' => $staff->id]) }}" method="POST">
+                    <form action="{{ route('update_agent', ['id' => $user->id]) }}" method="POST">
                         @csrf
                         <div class="row gutters">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="name"><i class="far fa-id-card"></i> Name</label>
                                     <input type="text" class="form-control" id="name" name="name"
-                                        value={{ Str::title($staff->name) }}>
+                                        value={{ Str::title($user->name) }}>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="surname"><i class="far fa-id-card"></i> Surname</label>
                                     <input type="text" class="form-control" id="surname" name="surname"
-                                        value={{ Str::title($staff->surname) }}>
+                                        value={{ Str::title($user->surname) }}>
                                 </div>
                             </div>
                         </div>
@@ -36,26 +33,17 @@
                                 <div class="form-group">
                                     <label for="email"><i class="far fa-envelope"></i> Email</label>
                                     <input type="email" name="email" class="form-control" id="email"
-                                        value={{ $staff->email }}>
+                                        value={{ $user->email }}>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="phone"><i class="fas fa-mobile-alt"></i> Phone</label>
-                                    <input name="msisdn" class="form-control" id="phone" value={{ $staff->msisdn }}>
+                                    <input name="msisdn" class="form-control" id="phone" value={{ $user->msisdn }}>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
 
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="website"><i class="fas fa-user-tag"></i> Staff Role </label>
-                                    <input type="number" class="form-control rounded" id="staff_role_id"
-                                        name="staff_role_id" value="1" placeholder="Web Authority">
-                                </div>
-                            </div>
-                        </div>
                         <div class="row gutters">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
@@ -139,32 +127,27 @@
         </div>
     </div>
 
+
 @endsection
+
 @section('sweetjs')
     <script>
         let _token = $('meta[name="csrf-token"]').attr('content');
-        var url = 'http://127.0.0.1:8000/all_authorities'
-        var id = {{ $staff->id }};
-        // var name = {{ $staff->name }}
-        // var surname = {{ $staff->surname }}
-        // var email = {{ $staff->email }}
-        // var msisdn = {{ $staff->msisdn }}
-        // var password = {{ $staff->password }}
-
+        var url = "http://127.0.0.1:8000/all_agents"
+        var id = {{ $user->id }};
         var button = $("#delete").on("click", function() {
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#dc3545',
-                cancelButtonColor: '#6c757d',
-                confirmButtonText: '<i class = "fas fa-trash mr-1" ></i> Delete It'
-
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ route('delete_authority', $staff->id) }}",
+                        url: "{{ route('delete_agent', $user->id) }}",
                         type: "POST",
                         data: {
                             id: id,
@@ -172,74 +155,17 @@
                             _token: _token
                         },
                         success: function() {
-                            swal.fire("Done!", "It was succesfully deleted!", "success").then(
-                                function() {
-                                    $(location).attr('href', url);
+                            swal.fire("Done!", "It was succesfully deleted!", "success");
 
-                                })
-
+                            $(location).attr('href', url);
                         },
                         error: function(xhr, ajaxOptions, thrownError) {
                             swal.fire("Error deleting!", "Please try again", "error");
                         }
                     });
-                } else Swal.fire({
-                    title: 'Error Deleting!',
-                    text: "Please try again",
-                    icon: 'error',
+                } else {
 
-                });
-            })
-        });
-
-        var url2 = 'http://127.0.0.1:8000/admin/authority/' + id
-        var name = $('#name').val();
-        var surname = $('#surname').val();
-        var msisdn = $('#msisdn').val();
-        var email = $('#email').val();
-        var password = $('#password').val();
-
-
-        var button = $('#update').on('click', function() {
-
-            Swal.fire({
-                title: 'Do you want to save the changes?',
-                icon: 'question',
-                showDenyButton: true,
-                confirmButtonText: '<i class="far fa-save"></i> Save',
-                denyButtonText: `<i class="far fa-window-close"></i> Cancel`,
-                confirmButtonColor: '#28A745',
-                denyButtonColor: '#6c757d',
-            }).then((result2) => {
-                if (result2.isConfirmed) {
-                    $.ajax({
-                        url: "{{ route('updateAuthority', $staff->id) }}",
-                        type: "POST",
-                        data: {
-                            id: id,
-                            name: name,
-                            surname: surname,
-                            email: email,
-                            msisdn: msisdn,
-                            password: password,
-                            _method: "PUT",
-                            _token: _token
-                        },
-                        success: function() {
-                            swal.fire("Done!", "It was succesfully updated!", "success");
-
-                            $(location).attr('href', url2);
-                        },
-                        error: function(xhr, ajaxOptions, thrownError) {
-                            swal.fire("Error Updating!", "Please try again", "error");
-                        }
-                    })
-                } else Swal.fire({
-                    title: 'Error Updating!',
-                    text: "Please try again",
-                    icon: 'error',
-
-                });
+                }
             })
         });
         var eyeBtn = document.querySelector('#btn-eye');
@@ -255,6 +181,4 @@
                 'password');
         }
     </script>
-
-
 @endsection

@@ -44,8 +44,8 @@ a {
 
 button {
     border-radius: 20px;
-    border: 1px solid #E83151;
-    background-color: #E83151;
+    border: 1px solid #083372;
+    background-color: #083372;
     color: #FFFFFF;
     font-size: 12px;
     font-weight: bold;
@@ -158,9 +158,9 @@ input {
 }
 
 .overlay {
-    background: #FF416C;
-    background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-    background: linear-gradient(to right, #FF4B2B, #FF416C);
+    background: #083372;
+    background: -webkit-linear-gradient(to right, #3B5997, #083372);
+    background: linear-gradient(to right, #3B5997, #083372);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;
@@ -195,4 +195,15 @@ input {
 .overlay-right {
     right: 0;
     transform: translateX(0);
+}
+
+.login {
+    background: #083372;
+    color: #fff;
+    transition: all .4s ease-in-out;
+}
+
+.login:hover {
+    background: #fff;
+    color: #083372;
 }

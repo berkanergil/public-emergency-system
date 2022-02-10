@@ -1,14 +1,20 @@
 @extends('authority.dashboard')
+
+@php
+use App\Models\Staff;
+$role = Staff::find(Auth::id())->staff_role_id;
+@endphp
+
 @section('breadcrumb')
-    <a href="{{ route('one_user', $user) }}">User ID: {{ $user->id }}</a>
+    <a href="{{ route('user', $user) }}">User ID: {{ $user->id }}</a>
 @endsection
 @section('statistic_content')
     <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <div class="card user-card shadow p-3 mb-5 bg-white rounded">
-                    <div class="card-header bg-success text-center">
-                        <h5 class="font-weight-bold ">Personal Information</h5>
+                    <div class="card-header cards text-center">
+                        <h5 class="text-white font-weight-bold ">PERSONAL INFORMATION</h5>
                     </div>
                     <div class="card-block p-4">
                         <p class="text-bold mt-3"> <span class="text-muted"> Full Name:</span>
@@ -22,15 +28,21 @@
                             <li class="active"></li>
                             <li class="active"></li>
                             <li class="active"></li>
+                            <li class="active"></li>
                         </ul>
+                        @if ($role == '3')
+                            <a href="{{ route('edit_user', $user->id) }}" class="form-buttons float-right">
+                                <i class="far fa-edit"></i> Edit
+                                User</a>
+                        @endif
                     </div>
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="card user-card shadow p-3 mb-5 bg-white rounded">
-                    <div class="card-header bg-primary text-center">
-                        <h5 class="font-weight-bold">Device Information</h5>
+                    <div class="card-header cards2 text-center">
+                        <h5 class="text-white font-weight-bold">Device Information</h5>
                     </div>
                     <div class="card-block p-4">
 

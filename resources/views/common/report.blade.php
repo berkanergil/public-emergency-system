@@ -1,6 +1,6 @@
 @extends('authority.dashboard')
 @section('breadcrumb')
-    <a href="{{ route('eventpage', $event) }}">View Event ID: {{ $event->id }}</a>
+    <a href="{{ route('report', $event) }}">View Event ID: {{ $event->id }}</a>
 @endsection
 
 @section('statistic_content')
@@ -37,13 +37,17 @@
                     <button id="mark_event" type="button" class="btn btn-lg btn-default button1 text-bold"><i
                             class="fas fa-highlighter"></i> Mark
                         Event</button>
-                    <button id="send_notification" type="button" class="btn btn-lg btn-default button4 text-bold"><i
-                            class="fas fa-envelope"></i> Send
-                        SMS</button>
                     <button id="send_notification" type="button" class="btn btn-lg btn-default button2 text-bold"><i
-                            class="fas fa-bell"></i> Send
-                        Notification</button>
+                            class="fas fa-sticky-note"></i> Make
+                        Notes</button>
+
                     @if ($event->status->id == '1')
+                        <button disabled id="send_sms" type="button" class="btn btn-lg btn-default button4 text-bold"><i
+                                class="fas fa-envelope"></i> Send
+                            SMS</button>
+                        <button disabled id="send_notification" type="button"
+                            class="btn btn-lg btn-default button7 text-bold"><i class="fas fa-bell"></i> Send
+                            Notification</button>
                         <button disabled id="upload_evidence" type="button"
                             class="btn btn-lg btn-default button5 text-bold"><i class="fas fa-file-upload"></i> Upload
                             Evidence</button>
@@ -51,7 +55,14 @@
                             type="button" class="btn btn-lg btn-default button6 text-bold"><i class="fas fa-users"></i>
                             Deploy
                             Agent Group</button>
+
                     @else
+                        <button id="send_sms" type="button" class="btn btn-lg btn-default button4 text-bold"><i
+                                class="fas fa-envelope"></i> Send
+                            SMS</button>
+                        <button id="send_notification" type="button" class="btn btn-lg btn-default button7 text-bold"><i
+                                class="fas fa-bell"></i> Send
+                            Notification</button>
                         <button id="upload_evidence" type="button" class="btn btn-lg btn-default button5 text-bold"><i
                                 class="fas fa-file-upload"></i> Upload
                             Evidence</button>
@@ -205,14 +216,15 @@
                                             </li>
                                         </ul>
                                         <a href="{{ route('edit_report', $event->id) }}"
-                                            class="btn p-2 float-right button1"><i class="far fa-edit"></i>
-                                            Make Changes</a>
+                                            class="form-buttons float-right"><i class=" far fa-edit"></i>
+                                            Edit Report</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-5 ">
                                 <div class="card shadow  bg-white rounded">
-                                    <div class="card-title bg-info p-3 text-bold">Device Information</div>
+                                    <div class="card-title bg-info p-3 text-bold"> Device
+                                        Information</div>
                                     <div class="card-body">
                                         <ul>
                                             <li class="list-group-item border-0"><strong>Device ID:</strong>
@@ -267,7 +279,7 @@
                                                     <tr>
                                                         <td>Event Created</td>
                                                         <td><a
-                                                                href="{{ $history['create']['creator_type'] == 'staff'? route('one_agent', $history['create']['creator_id']): route('one_user', $history['create']['creator_id']) }}">{{ $history['create']['creator_name'] }}
+                                                                href="{{ $history['create']['creator_type'] == 'staff'? route('agent', $history['create']['creator_id']): route('user', $history['create']['creator_id']) }}">{{ $history['create']['creator_name'] }}
                                                                 ({{ $history['create']['creator_type'] }})</a></td>
                                                         <td>{{ $history['create']['created_at'] }}</td>
                                                     </tr>
@@ -275,10 +287,10 @@
                                                 @if (isset($history['group']['group_id']))
                                                     <tr>
                                                         <td>Group Created <a
-                                                                href="{{ route('one_agentGroup', $history['group']['group_id']) }}">(Group
+                                                                href="{{ route('agentGroup', $history['group']['group_id']) }}">(Group
                                                                 {{ $history['group']['group_id'] }})</a></td>
                                                         <td><a
-                                                                href="{{ route('one_agent', $history['group']['assigner_staff_id']) }}">{{ $history['group']['assigner_staff_name'] }}</a>
+                                                                href="{{ route('agent', $history['group']['assigner_staff_id']) }}">{{ $history['group']['assigner_staff_name'] }}</a>
                                                         </td>
                                                         <td>{{ $history['group']['created_at'] }}</td>
                                                     </tr>
@@ -289,7 +301,7 @@
                                                             <td>Event Status Changed ({{ $mark['event_status_name'] }})
                                                             </td>
                                                             <td><a
-                                                                    href="{{ route('one_agent', $mark['staff_id']) }}">{{ Str::title($mark['staff_name']) }}</a>
+                                                                    href="{{ route('agent', $mark['staff_id']) }}">{{ Str::title($mark['staff_name']) }}</a>
                                                             </td>
                                                             <td>{{ $mark['created_at'] }}</td>
                                                         </tr>
@@ -315,7 +327,7 @@
                             <div class="col-md-7">
                                 <h3 class="text-bold mb-3">Agent Group:
                                     @if (isset($groups[0]))
-                                        <a href="{{ route('one_agentGroup', $groups[0]->group_id) }}"
+                                        <a href="{{ route('agentGroup', $groups[0]->group_id) }}"
                                             class="text-danger">{{ $groups[0]->group_id }} ( <i
                                                 class="fas fa-eye"></i> More
                                             Details)</a>
@@ -419,7 +431,7 @@
                                                                 </ul>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <a href="{{ route('one_agent', $agent) }}"
+                                                                <a href="{{ route('agent', $agent) }}"
                                                                     class="btn btn-dark btn-block"><i
                                                                         class="fas fa-user mr-2"></i>Visit
                                                                     Profile</a>

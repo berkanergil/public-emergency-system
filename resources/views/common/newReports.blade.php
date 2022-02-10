@@ -1,6 +1,6 @@
 @extends('authority.dashboard')
 @section('breadcrumb')
-    <a href="{{ route('newReport') }}">New Reports</a>
+    <a href="{{ route('newReports') }}">New Reports</a>
     <style type="text/css">
         /* Set the size of the div element that contains the map */
         #map {
@@ -67,7 +67,10 @@
             });
 
 
-            var markerCluster = new MarkerClusterer({map, markers});
+            var markerCluster = new MarkerClusterer({
+                map,
+                markers
+            });
         }
     </script>
 @endsection

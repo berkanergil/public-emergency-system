@@ -47,6 +47,16 @@ body {
     color: var(--color-button1);
 }
 
+.button7 {
+    background-color: #DC3545;
+    color: #fff;
+}
+
+.button7:hover {
+    background-color: #fff;
+    color: #DC3545;
+}
+
 .button1 {
     background-color: var(--color-button1);
     color: var(--color-secondary);
@@ -218,7 +228,7 @@ body {
 }
 
 .user-card .card-block .activity-leval li.active {
-    background-color: #2ed8b6;
+    background-color: #083372;
 }
 
 .user-card .card-block .activity-leval li {
@@ -409,6 +419,10 @@ label {
 
 .cards {
     background-color: #083372 !important;
+}
+
+.cards2 {
+    background-color: #3B5997 !important;
 }
 
 .create_staff_form {

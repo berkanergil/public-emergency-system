@@ -1,7 +1,7 @@
 @extends('authority.dashboard')
 
 @section('breadcrumb')
-    <a href="{{ route('create_authorities') }}">Create Authority</a>
+    <a href="{{ route('createAuthority') }}">Create Authority</a>
 @endsection
 
 @section('statistic_content')
@@ -14,7 +14,7 @@
                         <hr class="create_staff_form">
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('create_authorities') }}" method="POST">
+                        <form action="{{ route('createAuthority') }}" method="POST">
                             @csrf
                             <div class="row gutters">
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -64,15 +64,17 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="password"><i class="fas fa-key"></i> Password</label>
-                                        <input type="password" name="password" class="form-control rounded" id="password"
-                                            rows="5">
+                                        <input type="password" class="form-control icon" id="password" placeholder=""
+                                            name="password"><i id="btn-eye" class="btn-eye far fa-eye-slash"></i>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="password_confirm"><i class="fas fa-key"></i> Confirm
                                             Password</label>
-                                        <input type="password" class="form-control rounded" id="password_confirm">
+                                        <input type="password" class="form-control icon" id="password_confirm"
+                                            placeholder="">
+                                        <i id="btn-eye2" class="btn-eye far fa-eye-slash"></i>
                                     </div>
                                 </div>
                             </div>
@@ -195,5 +197,17 @@
                 generatePass(pwField).then(copyToClipboard(pwField.value));
             });
         });
+        var eyeBtn = document.querySelector('#btn-eye');
+        eyeBtn.onclick = function() {
+            var inp = document.querySelector('#password');
+            inp.getAttribute('type') === 'password' ? inp.setAttribute('type', 'text') : inp.setAttribute('type',
+                'password');
+        }
+        var eyeBtn2 = document.querySelector('#btn-eye2');
+        eyeBtn2.onclick = function() {
+            var inp = document.querySelector('#password_confirm');
+            inp.getAttribute('type') === 'password' ? inp.setAttribute('type', 'text') : inp.setAttribute('type',
+                'password');
+        }
     </script>
 @endsection

@@ -15,7 +15,7 @@
                     </h3>
                 </div>
                 <div class="col-md-6">
-                    <button class="btn btn-danger btn-md p-2  float-right mb-5"><i class="fas fa-edit"></i> Edit
+                    <button class="btn form-buttons3 btn-md p-2  float-right mb-5"><i class="fas fa-edit"></i> Edit
                         Agent Group</button>
 
                 </div>
@@ -102,7 +102,7 @@
                                             </ul>
                                         </div>
                                         <div class="modal-footer">
-                                            <a href="{{ route('one_agent', $agent) }}" class="btn btn-dark btn-block"><i
+                                            <a href="{{ route('agent', $agent) }}" class="btn btn-dark btn-block"><i
                                                     class="fas fa-user mr-2"></i>Visit
                                                 Profile</a>
 

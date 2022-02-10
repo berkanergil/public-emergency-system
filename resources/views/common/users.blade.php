@@ -1,6 +1,6 @@
 @extends('authority.dashboard')
 @section('breadcrumb')
-    <a href="{{ route('all_users') }}">All Users</a>
+    <a href="{{ route('users') }}">All Users</a>
 @endsection
 @section('statistic_content')
     <div class="card">
@@ -12,11 +12,11 @@
             <table id="example1" class="table table-hover table-bordered text-center">
                 <thead>
                     <tr class="table-light">
-                        <th>User ID</th>
-                        <th>Name Surname</th>
-                        <th>Email</th>
-                        <th>Phone Number</th>
-                        <th>Date & Time</th>
+                        <th class="create_staff_form">User ID</th>
+                        <th class="create_staff_form">Name Surname</th>
+                        <th class="create_staff_form">Email</th>
+                        <th class="create_staff_form">Phone Number</th>
+                        <th class="create_staff_form">Date & Time</th>
 
                     </tr>
                 </thead>
@@ -24,7 +24,7 @@
 
                     @foreach ($userObject->users() as $user)
                         <tr>
-                            <td><a target="_blank" href="{{ route('one_user', $user->id) }}">{{ $user->id }}</a></td>
+                            <td><a target="_blank" href="{{ route('user', $user->id) }}">{{ $user->id }}</a></td>
                             <td>{{ Str::title($user->name . ' ' . $user->surname) }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->msisdn }}</td>

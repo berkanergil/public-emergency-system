@@ -18,14 +18,14 @@
         <div class="form-container sign-in-container">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
-                <h1 style="margin-bottom:30px;">EmergenCyp | Login</h1>
+                <h1 style="margin-bottom:30px; color: #083372;">EmergenCyp | Login</h1>
                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
                     value="{{ old('email') }}" required autocomplete="email" autofocus type="email"
                     placeholder="Email" />
                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
                     name="password" required autocomplete="current-password" type="password" placeholder="Password" />
                 <a href="#">Forgot your password?</a>
-                <button>Sign In</button>
+                <button class="login">Sign In</button>
             </form>
         </div>
         <div class="overlay-container">

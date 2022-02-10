@@ -11,17 +11,17 @@
     @endphp
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title text-bold">Agent Groups</h3>
+            <h3 class="card-title create_staff_form text-bold">Agent Groups</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
             <table id="myTable" class="table table-hover table-bordered text-center">
                 <thead>
-                    <tr class="table-warning">
-                        <th>Group ID</th>
-                        <th>Agent Departments</th>
-                        <th>Status</th>
-                        <th>Disband Group</th>
+                    <tr class="table-success">
+                        <th class="create_staff_form">Group ID</th>
+                        <th class="create_staff_form">Agent Departments</th>
+                        <th class="create_staff_form">Status</th>
+                        <th class="create_staff_form">Disband Group</th>
 
                     </tr>
                 </thead>
@@ -37,14 +37,16 @@
                         @endphp
                         <tr>
                             <td><a target="_blank"
-                                    href="{{ route('one_agentGroup', $group->group_id) }}">{{ $group->group_id }}</a>
+                                    href="{{ route('agentGroup', $group->group_id) }}">{{ $group->group_id }}</a>
                             </td>
                             <td>
                                 @foreach ($groupMembers as $member)
                                     @if ($loop->last)
-                                        {{ Str::title($member->department->title) }} Department
+                                        {{ Str::title($member->name . ' ' . '(' . $member->department->title) }}
+                                        Department)
                                     @else
-                                        {{ Str::title($member->department->title) }} Department,
+                                        {{ Str::title($member->name . ' ' . $member->surname . ' ' . '(' . $member->department->title) }}
+                                        Department),
 
                                     @endif
 

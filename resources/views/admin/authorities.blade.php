@@ -1,33 +1,33 @@
 @extends('authority.dashboard')
+
 @section('breadcrumb')
-    <a href="{{ route('all_agents') }}">All Agents</a>
+    <a href="">All Authorities</a>
 @endsection
+
 @section('statistic_content')
+
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title text-bold">Agents List</h3>
+            <h3 class="card-title create_staff_form text-bold">Agents List</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-hover table-bordered text-center">
                 <thead>
-                    <tr class="table-danger">
-                        <th>Agent ID</th>
-                        <th>Agent Department</th>
-                        <th>Name Surname</th>
-                        <th>Email</th>
-                        <th>Phone Number</th>
-                        <th>Date & Time</th>
+                    <tr class="table-success">
+                        <th class="create_staff_form">User ID</th>
+                        <th class="create_staff_form">Name Surname</th>
+                        <th class="create_staff_form">Email</th>
+                        <th class="create_staff_form">Phone Number</th>
+                        <th class="create_staff_form">Date & Time</th>
 
                     </tr>
                 </thead>
                 <tbody class="table-light">
-
-                    @foreach ($staffObject->agents() as $authority)
+                    @foreach ($staffObject->authorities() as $authority)
                         <tr>
                             <td><a target="_blank"
-                                    href="{{ route('one_agent', $authority->id) }}">{{ $authority->id }}</a></td>
-                            <td>{{ Str::title($authority->department?->title) }} Department</td>
+                                    href="{{ route('authority', $authority->id) }}">{{ $authority->id }}</a></td>
                             <td>{{ Str::title($authority->name . ' ' . $authority->surname) }}</td>
                             <td>{{ $authority->email }}</td>
                             <td>{{ $authority->msisdn }}</td>

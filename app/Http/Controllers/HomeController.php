@@ -105,4 +105,20 @@ class HomeController extends Controller
     {
         return view('authority.chatPage');
     }
+    public function createPage()
+    {
+        return view('common.createMessages');
+    }
+    public function messages()
+    {
+        return view('common.messages');
+    }
+    public function createPagee()
+    {
+        return view('common.createNotifications');
+    }
+    public function notifications()
+    {
+        return view('common.notifications');
+    }
 }

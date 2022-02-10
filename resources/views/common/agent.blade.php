@@ -6,15 +6,15 @@ $role = Staff::find(Auth::id())->staff_role_id;
 @endphp
 
 @section('breadcrumb')
-    <a href="{{ route('one_agent', $staff) }}">Agent ID: {{ $staff->id }} Profile</a>
+    <a href="{{ route('agent', $staff) }}">Agent ID: {{ $staff->id }} Profile</a>
 @endsection
 @section('statistic_content')
     <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <div class="card user-card shadow p-3 mb-5 bg-white rounded">
-                    <div class="card-header bg-success text-center">
-                        <h5 class="">PERSONAL INFORMATION</h5>
+                    <div class="card-header cards text-center">
+                        <h5 class=" text-white">PERSONAL INFORMATION</h5>
                     </div>
                     <div class="card-block p-4">
                         <p class="text-bold mt-3"> <span class="text-muted"> Full Name:</span>
@@ -38,9 +38,10 @@ $role = Staff::find(Auth::id())->staff_role_id;
                             <li class="active"></li>
                             <li class="active"></li>
                             <li class="active"></li>
+                            <li class="active"></li>
                         </ul>
                         @if ($role == '3')
-                            <a href="{{ route('edit_agent', $staff->id) }}" class="btn btn-outline-primary float-right">
+                            <a href="{{ route('editAgent', $staff->id) }}" class="form-buttons float-right">
                                 <i class="far fa-edit"></i> Edit
                                 User</a>
                         @endif
@@ -54,8 +55,8 @@ $role = Staff::find(Auth::id())->staff_role_id;
 
             <div class="col-md-6">
                 <div class="card user-card shadow p-3 mb-5 bg-white rounded">
-                    <div class="card-header bg-primary text-center">
-                        <h5 class=" ">DEVICE INFORMATION</h5>
+                    <div class="card-header cards2 text-center">
+                        <h5 class="text-white ">DEVICE INFORMATION</h5>
                     </div>
                     <div class="card-block p-4">
 

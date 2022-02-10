@@ -14,7 +14,7 @@
                         <hr class="create_staff_form">
                     </div>
                     <div class="card-body">
-                        <form class="validatedForm" action="{{ route('create_authorities') }}" method="post">
+                        <form class="validatedForm" action="{{ route('createAgents') }}" method="post">
                             @csrf
                             <div class="row gutters">
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -54,8 +54,8 @@
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="department_id"><i class="fas fa-user-tag"></i> Department
-                                            Name</label>
+                                        <label for="department_id"><i class="far fa-building"></i> Department
+                                        </label>
                                         <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
                                             name="department_id">
                                             <option value="" selected>-</option>

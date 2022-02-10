@@ -1,6 +1,6 @@
 @extends('authority.dashboard')
 @section('breadcrumb')
-    <a href="{{ route('one_authority', $staff) }}">Authority ID: {{ $staff->id }}</a>
+    <a href="{{ route('authority', $staff) }}">Authority ID: {{ $staff->id }}</a>
 @endsection
 @section('statistic_content')
     <div class="container">
@@ -8,7 +8,7 @@
             <div class="col-md-8">
                 <div class="card user-card shadow p-3 mb-5  bg-white rounded">
                     <div class="card-header text-center cards">
-                        <h5 class="text-weight-bold text-white">Personal Information</h5>
+                        <h5 class="text-weight-bold text-white">PERSONAL INFORMATION</h5>
                     </div>
                     <div class="card-block p-4">
                         <p class="text-bold mt-3"> <span class="text-muted"> Full Name:</span>
@@ -19,6 +19,8 @@
                         <p class="text-bold"> <span class="text-muted"> Phone Number:</span> {{ $staff->msisdn }}
                         </p>
                         <ul class="list-unstyled activity-leval text-center">
+                            <li class="active"></li>
+                            <li class="active"></li>
                             <li class="active"></li>
                             <li class="active"></li>
                             <li class="active"></li>
