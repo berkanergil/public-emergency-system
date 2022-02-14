@@ -51,12 +51,37 @@
     @yield('css')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
+    <script>
+        (function(w, d) {
+            ! function(a, e, t, r, z) {
+                a.zarazData = a.zarazData || {}, a.zarazData.executed = [], a.zarazData.tracks = [], a.zaraz = {
+                    deferred: []
+                };
+                var s = e.getElementsByTagName("title")[0];
+                s && (a.zarazData.t = e.getElementsByTagName("title")[0].text), a.zarazData.w = a.screen.width, a
+                    .zarazData.h = a.screen.height, a.zarazData.j = a.innerHeight, a.zarazData.e = a.innerWidth, a
+                    .zarazData.l = a.location.href, a.zarazData.r = e.referrer, a.zarazData.k = a.screen.colorDepth, a
+                    .zarazData.n = e.characterSet, a.zarazData.o = (new Date).getTimezoneOffset(), a.dataLayer = a
+                    .dataLayer || [], a.zaraz.track = (e, t) => {
+                        for (key in a.zarazData.tracks.push(e), t) a.zarazData["z_" + key] = t[key]
+                    }, a.zaraz._preSet = [], a.zaraz.set = (e, t, r) => {
+                        a.zarazData["z_" + e] = t, a.zaraz._preSet.push([e, t, r])
+                    }, a.dataLayer.push({
+                        "zaraz.start": (new Date).getTime()
+                    }), a.addEventListener("DOMContentLoaded", (() => {
+                        var t = e.getElementsByTagName(r)[0],
+                            z = e.createElement(r);
+                        z.defer = !0, z.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(
+                            a.zarazData))), t.parentNode.insertBefore(z, t)
+                    }))
+            }(w, d, 0, "script");
+        })(window, document);
+    </script>
     <title>EmergenCyp | Dashboard</title>
 
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini layout-fixed">
     @php
         use App\Models\Staff;
         $staff = Staff::find(Auth::id());
@@ -67,13 +92,23 @@
     @endphp
 
     <div class="wrapper">
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="{{ asset('images/emergencyp.png') }}" alt="EmergenCyp Logo"
+                height="160" width="450">
+        </div>
+
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
-
-
             <!-- Right navbar links -->
+            <ul class="navbar-nav ">
+                <li>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
+                            class="fas fa-bars"></i></a>
+                </li>
+            </ul>
             <ul class="navbar-nav ml-auto">
+
                 <li class="nav-item">
                     <a class="nav-link btn-group dropwdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false" href=""><i class="fas fa-inbox"></i></a>
@@ -403,7 +438,7 @@
 
         <!-- Main Footer -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2021 <a href="">EmergenCYP</a>.</strong>
+            <strong>Copyright &copy; 2022 <a href="{{ route('statistics') }}">EmergenCYP</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 1.0
@@ -491,6 +526,7 @@
             });
         });
     </script>
+    <script src="{{ url('https://kit.fontawesome.com/3a82b90854.js') }}" crossorigin="anonymous"></script>
     <script src="{{ asset('js/password_generator.js') }}"></script>
     <script src="{{ url('//cdn.jsdelivr.net/npm/sweetalert2@11') }}"></script>
 

@@ -1,10 +1,32 @@
+/*GENERAL SPECIALITAZTIONS*/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    font-size: var(--font-size-global);
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
 #frame {
     width: 100%;
     min-width: 360px;
     max-width: 2000px;
     height: 92vh;
-    min-height: 300px;
-    max-height: 900px;
+    min-height: 100vh;
+    max-height: 100vh;
     background: #E6EAEA;
 }
 
@@ -16,7 +38,7 @@
 }
 
 #frame #sidepanel {
-    float: left;
+    float: right !important;
     min-width: 280px;
     max-width: 340px;
     width: 40%;
@@ -714,12 +736,11 @@
 }
 
 #frame .content .message-input .wrap input {
-    font-family: "proxima-nova", "Source Sans Pro", sans-serif;
     float: left;
     border: none;
     width: calc(100% - 90px);
     padding: 11px 32px 10px 8px;
-    font-size: 0.8em;
+    font-size: 1.1em;
     color: #32465a;
 }
 
@@ -785,4 +806,55 @@
     display: inline-block;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.close-container {
+    position: relative;
+    float: right;
+    margin: auto;
+    margin-right: 50px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.leftright {
+    height: 4px;
+    width: 50px;
+    position: absolute;
+    margin-top: 24px;
+    background-color: #F4A259;
+    border-radius: 2px;
+    transform: rotate(45deg);
+    transition: all 0.3s ease-in;
+}
+
+.rightleft {
+    height: 4px;
+    width: 50px;
+    position: absolute;
+    margin-top: 24px;
+    background-color: #F4A259;
+    border-radius: 2px;
+    transform: rotate(-45deg);
+    transition: all 0.3s ease-in;
+}
+
+.close {
+    margin: 60px 0 0 5px;
+    position: absolute;
+}
+
+.close-container:hover .leftright {
+    transform: rotate(-45deg);
+    background-color: #F25C66;
+}
+
+.close-container:hover .rightleft {
+    transform: rotate(45deg);
+    background-color: #F25C66;
+}
+
+.file_inputting {
+    visibility: hidden;
 }

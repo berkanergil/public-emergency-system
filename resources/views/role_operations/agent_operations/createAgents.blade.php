@@ -74,16 +74,15 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="password"><i class="fas fa-key"></i> Password</label>
-                                        <input type="password" class="form-control icon" id="password" placeholder=""
-                                            name="password"><i id="btn-eye" class="btn-eye far fa-eye-slash"></i>
+                                        <input type="password" class="form-control icon" id="password" name="password"><i
+                                            id="btn-eye" class="btn-eye far fa-eye-slash"></i>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="password_confirm"><i class="fas fa-key"></i> Confirm
                                             Password</label>
-                                        <input type="password" class="form-control icon" id="password_confirm"
-                                            placeholder="">
+                                        <input type="password" class="form-control icon" id="password_confirm">
                                         <i id="btn-eye2" class="btn-eye far fa-eye-slash"></i>
                                     </div>
                                 </div>

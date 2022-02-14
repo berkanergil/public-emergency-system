@@ -1,5 +1,6 @@
 @extends('layouts.dashboard')
 @section('breadcrumb')
+
     <a href="{{ route('newReports') }}">New Reports</a>
     <style type="text/css">
         /* Set the size of the div element that contains the map */
@@ -42,7 +43,7 @@
         });
     </script>
     <script
-        src="{{ url('https://maps.googleapis.com/maps/api/js?key=AIzaSyBbE2tnlZUVFTEzDzKIJJTg7ukThQlkKHs&callback=initMap&libraries=&v=weekly') }}"
+        src="{{ url('https://maps.googleapis.com/maps/api/js?key=AIzaSyAbEnkm3njfWv7bQNLpk9p6KtXpn3lMeoIgcallback=initMap&libraries=&v=weekly') }}"
         async></script>
 
     <script>

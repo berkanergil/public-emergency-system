@@ -9,9 +9,10 @@
     use App\Models\Group;
     use App\Models\Event;
     @endphp
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title create_staff_form text-bold">Agent Groups</h3>
+    <div class="card  p-5 shadow p-3 mb-5 bg-white rounded">
+        <div class="card-title">
+            <h2 class="create_staff_form text-bold">All Agent Groups</h2>
+            <hr class="create_staff_form">
         </div>
         <!-- /.card-header -->
         <div class="card-body">

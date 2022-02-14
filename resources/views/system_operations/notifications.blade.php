@@ -2,9 +2,10 @@
 
 @section('statistic_content')
 
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title text-bold">Agents List</h3>
+    <div class="card  p-5 shadow p-3 mb-5 bg-white rounded">
+        <div class="card-title">
+            <h2 class="create_staff_form text-bold">All Notifications</h2>
+            <hr class="create_staff_form">
         </div>
         <!-- /.card-header -->
         <div class="card-body">

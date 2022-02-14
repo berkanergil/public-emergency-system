@@ -36,7 +36,7 @@ use App\Http\Controllers\StaffEventController;
 
 
 Route::get('/', function (Request $request) {
-    return view("auth.login");
+    return view("layouts.index");
 });
 
 Route::get('/login', function (Request $request) {
@@ -385,3 +385,4 @@ Route::get('admin/createMessages', [App\Http\Controllers\HomeController::class, 
 Route::get('admin/messages', [App\Http\Controllers\HomeController::class, 'messages'])->name('messages');
 Route::get('admin/createNotifications', [App\Http\Controllers\HomeController::class, 'createPagee'])->name('createNotifications');
 Route::get('admin/notifications', [App\Http\Controllers\HomeController::class, 'notifications'])->name('notifications');
+Route::get('/emergencyp', [App\Http\Controllers\HomeController::class, 'emergencyp'])->name('emergencyp');

@@ -31,4 +31,8 @@ class HomeController extends Controller
     {
         return view('system_operations.notifications');
     }
+    public function emergencyp()
+    {
+        return view('layouts.index');
+    }
 }

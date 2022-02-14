@@ -3,16 +3,17 @@
     <a href="{{ route('currentReports') }}">Current Reports</a>
 @endsection
 @section('statistic_content')
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title text-bold">Current Events</h3>
+    <div class="card  p-5 shadow p-3 mb-5 bg-white rounded">
+        <div class="card-title">
+            <h2 class="create_staff_form text-bold">Current Reports</h2>
+            <hr class="create_staff_form">
         </div>
         <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-hover table-bordered text-center">
                 <thead>
                     <tr class="table-primary">
-                        <th>Event ID</th>
+                        <th>ID</th>
                         <th>Emergency Type</th>
                         <th>User Name</th>
                         <th>Staff Name</th>
