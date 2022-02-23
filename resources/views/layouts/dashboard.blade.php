@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" href="{{ asset('images/logo-white-sm.png') }}">
+    <link rel="icon" href="{{ asset('images/favicon-16x16.png') }}">
     <link href="{{ url('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css') }}"
         rel="stylesheet" />
-
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
 
     <!-- Scripts -->
@@ -103,12 +106,42 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ">
                 <li>
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
+                    <a class="nav-link" data-widget="pushmenu" href="#sidebar" role="button"><i
                             class="fas fa-bars"></i></a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
 
+                    <a class="nav-link btn-group dropwdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" href=""><i class="fa-solid fa-bell"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <ul class="list-group">
+                            <li class="list-group-item border-top-0">
+                                <button class="dropdown-item" type="button">
+                                    <h6><i class="far fa-bell"></i> +1 Report </h6>
+                                </button>
+                            </li>
+                            <li class="list-group-item">
+                                <button class="dropdown-item" type="button">
+                                    <h6><i class="far fa-bell"></i>+1 Report </h6>
+                                </button>
+                            </li>
+                            <li class="list-group-item border-bottom-0">
+                                <button class="dropdown-item" type="button">
+                                    <h6><i class="far fa-bell"></i> +1 Report </h6>
+                                </button>
+                            </li>
+                            <li class="text-center">
+                                <a href="{{ route('chatPage') }}" class="dropdown-item button1">
+                                    <i class="far fa-paper-plane"></i> See All
+                                </a>
+                            </li>
+                        </ul>
+
+
+                    </div>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link btn-group dropwdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false" href=""><i class="fas fa-inbox"></i></a>
@@ -147,7 +180,7 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="{{ route('statistics') }}" class="brand-link">
                 <img src="{{ asset('images/emergencyp-white.png') }}" alt="EmergenCYP Logo"
@@ -450,39 +483,38 @@
     <!-- REQUIRED SCRIPTS -->
 
     <!-- jQuery -->
-    <script src="{{ url('plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
-    <script src="{{ url('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
-    <script src="{{ url('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- ChartJS -->
-    <script src="{{ url('plugins/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
     <!-- Sparkline -->
-    <script src="{{ url('plugins/sparklines/sparkline.js') }}"></script>
+    <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
     <!-- JQVMap -->
-    <script src="{{ url('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-    <script src="{{ url('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+    <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
+    <script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
     <!-- jQuery Knob Chart -->
-    <script src="{{ url('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
     <!-- daterangepicker -->
-    <script src="{{ url('plugins/moment/moment.min.js') }}"></script>
-    <script src="{{ url('plugins/daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
     <!-- Tempusdominus Bootstrap 4 -->
-    <script src="{{ url('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+    <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
     <!-- Summernote -->
-    <script src="{{ url('plugins/summernote/summernote-bs4.min.js') }}"></script>
+    <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
     <!-- overlayScrollbars -->
-    <script src="{{ url('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ url('dist/js/adminlte.js') }}"></script>
+    <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+
     <!-- AdminLTE for demo purposes -->
-    <script src="{{ url('dist/js/demo.js') }}"></script>
+    <script src="{{ asset('dist/js/demo.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ url('dist/js/pages/dashboard.js') }}"></script>
+    <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
     <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}">
     </script>
@@ -535,6 +567,8 @@
     <script
         src="{{ url('https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=') }}"
         crossorigin="anonymous"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('dist/js/adminlte.js') }}"></script>
 </body>
 
 @yield('sweetjs')

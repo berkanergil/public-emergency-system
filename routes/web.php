@@ -3,6 +3,7 @@
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Group;
+use App\Models\Notes;
 use App\Models\Staff;
 use App\Models\Document;
 use App\Models\EventType;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\NotesController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\Auth\LoginController;
@@ -357,6 +359,19 @@ Route::post('/store_evidence/{id}', function (Request $request, $id) {
         return abort(500);
     }
 })->name("store_evidence");
+
+Route::post('/store_notes', function (Request $request, $id) {
+    $noteControllerObject = new NotesController();
+    $response = $noteControllerObject->store($request);
+    if ($response?->status() == 200) {
+        $document_json = json_decode($response->content());
+        $note = Notes::find($id);
+        $note->append($document_json);
+        return true;
+    } else {
+        return abort(500);
+    }
+})->name("store_notes");
 
 Route::post('/mark_event', function (Request $request) {
     $staffEventControllerObject = new StaffEventController();

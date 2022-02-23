@@ -59,11 +59,7 @@ $role = Staff::find(Auth::id())->staff_role_id;
                             <li class="active"></li>
                         </ul>
 
-                        <div class="row justify-content-center user-social-link text-center">
-                            <div class="col-auto"><a href="#!"><i class="fa fa-facebook text-facebook"></i></a></div>
-                            <div class="col-auto"><a href="#!"><i class="fa fa-twitter text-twitter"></i></a></div>
-                            <div class="col-auto"><a href="#!"><i class="fa fa-dribbble text-dribbble"></i></a></div>
-                        </div>
+
                     </div>
                 </div>
             </div>

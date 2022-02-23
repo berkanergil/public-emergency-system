@@ -23,7 +23,7 @@
     $availableGroups = $groupObject->availableGroups();
     $history = $eventObject->history($event->id);
     @endphp
-    <section class="content">
+    <section class="content container-fluid">
         <div class="card card-info card-outline">
             <div class="card-header">
                 <h3 class="card-title">
@@ -33,45 +33,64 @@
             </div>
             <div class="card-body">
                 <h4 class="mb-3 text-bold">{{ $event->description }}</h4>
-                <div class="btn-group button-groups my-3 ">
-                    <button id="mark_event" type="button" class="btn btn-lg btn-default button1 text-bold"><i
-                            class="fas fa-highlighter"></i> Mark
-                        Event</button>
-                    <button id="send_notification" type="button" class="btn btn-lg btn-default button2 text-bold"><i
-                            class="fas fa-sticky-note"></i> Make
-                        Notes</button>
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="btn-group button-groups my-3 ">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <button id="mark_event" type="button"
+                                        class="btn btn-lg btn-default button1 text-bold"><i class="fas fa-highlighter"></i>
+                                        Mark
+                                        Event</button>
+                                    <button id="make_notes" type="button"
+                                        class="btn btn-lg btn-default button2 text-bold"><i class="fas fa-sticky-note"></i>
+                                        Make
+                                        Notes</button>
 
-                    @if ($event->status->id == '1')
-                        <button disabled id="send_sms" type="button" class="btn btn-lg btn-default button4 text-bold"><i
-                                class="fas fa-envelope"></i> Send
-                            SMS</button>
-                        <button disabled id="send_notification" type="button"
-                            class="btn btn-lg btn-default button7 text-bold"><i class="fas fa-bell"></i> Send
-                            Notification</button>
-                        <button disabled id="upload_evidence" type="button"
-                            class="btn btn-lg btn-default button5 text-bold"><i class="fas fa-file-upload"></i> Upload
-                            Evidence</button>
-                        <button disabled data-target=".bd-example-modal-lg" data-toggle="modal" id="deploy_agent_group"
-                            type="button" class="btn btn-lg btn-default button6 text-bold"><i class="fas fa-users"></i>
-                            Deploy
-                            Agent Group</button>
+                                    @if ($event->status->id == '1')
+                                        <button disabled id="send_sms" type="button"
+                                            class="btn btn-lg btn-default button4 text-bold"><i class="fas fa-envelope"></i>
+                                            Send
+                                            SMS</button>
+                                        <button disabled id="send_notification" type="button"
+                                            class="btn btn-lg btn-default button7 text-bold"><i class="fas fa-bell"></i>
+                                            Send
+                                            Notification</button>
+                                        <button disabled id="upload_evidence" type="button"
+                                            class="btn btn-lg btn-default button5 text-bold"><i
+                                                class="fas fa-file-upload"></i>
+                                            Upload
+                                            Evidence</button>
+                                        <button disabled data-target=".bd-example-modal-lg" data-toggle="modal"
+                                            id="deploy_agent_group" type="button"
+                                            class="btn btn-lg btn-default button6 text-bold"><i class="fas fa-users"></i>
+                                            Deploy
+                                            Agent Group</button>
 
-                    @else
-                        <button id="send_sms" type="button" class="btn btn-lg btn-default button4 text-bold"><i
-                                class="fas fa-envelope"></i> Send
-                            SMS</button>
-                        <button id="send_notification" type="button" class="btn btn-lg btn-default button7 text-bold"><i
-                                class="fas fa-bell"></i> Send
-                            Notification</button>
-                        <button id="upload_evidence" type="button" class="btn btn-lg btn-default button5 text-bold"><i
-                                class="fas fa-file-upload"></i> Upload
-                            Evidence</button>
-                        <button data-target=".bd-example-modal-lg" data-toggle="modal" id="deploy_agent_group" type="button"
-                            class="btn btn-lg btn-default button6 text-bold"><i class="fas fa-users"></i> Deploy
-                            Agent Group</button>
-                    @endif
+                                    @else
+                                        <button id="send_sms" type="button" class="btn btn-lg button4 text-bold"><i
+                                                class="fas fa-envelope"></i> Send
+                                            SMS</button>
+                                        <button id="send_notification" type="button"
+                                            class="btn btn-lg btn-default button7 text-bold"><i class="fas fa-bell"></i>
+                                            Send
+                                            Notification</button>
+                                        <button id="upload_evidence" type="button"
+                                            class="btn btn-lg btn-default button5 text-bold"><i
+                                                class="fas fa-file-upload"></i>
+                                            Upload
+                                            Evidence</button>
+                                        <button data-target=".bd-example-modal-lg" data-toggle="modal"
+                                            id="deploy_agent_group" type="button"
+                                            class="btn btn-lg btn-default button6 text-bold"><i class="fas fa-users"></i>
+                                            Deploy
+                                            Agent Group</button>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
 
-
+                    </div>
                 </div>
                 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                     aria-hidden="true">
@@ -149,7 +168,7 @@
                     <div class="tab-pane fade show active py-5" id="custom-content-below-home" role="tabpanel"
                         aria-labelledby="custom-content-below-home-tab">
                         <div class="row">
-                            <div class="col-md-6 ml-5 mr-5">
+                            <div class="col-md-6 col-sm-12 mx-auto">
                                 <div class="card  shadow  bg-white rounded">
                                     <div
                                         class="card-title text-bold p-3 {{ $event->event_status_id == '1'? 'bg-success': ($event->event_status_id == '2'? 'bg-warning': 'bg-danger') }}">
@@ -221,7 +240,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-5 ">
+                            <div class="col-md-5 col-sm-12 mx-auto">
                                 <div class="card shadow  bg-white rounded">
                                     <div class="card-title bg-info p-3 text-bold"> Device
                                         Information</div>
@@ -242,7 +261,7 @@
                                             <li class="list-group-item border-0"><strong>Event Location:</strong>
                                                 <a target="_blank" class="bg-danger p-2 rounded"
                                                     href="https://www.google.com/maps/search/{{ $event->lat . ',' . $event->lon }}">
-                                                    {{ $event->lat . ' ' . $event->lon }}</a>
+                                                    {{ substr($event->lat, 0, 7) . ' - ' . substr($event->lon, 0, 7) }}</a>
                                             </li>
                                             <li class="list-group-item border-0"><strong>Device Token:</strong>
                                                 @if (isset($event->user))
@@ -306,7 +325,6 @@
                                                             <td>{{ $mark['created_at'] }}</td>
                                                         </tr>
                                                     @endforeach
-
                                                 @endif
 
                                             </tbody>
@@ -319,12 +337,8 @@
                     </div>
                     <div class="tab-pane fade py-5" id="custom-content-below-agentsDeployed" role="tabpanel"
                         aria-labelledby="custom-content-below-agentsDeployed-tab">
-                        <button type="button" class="btn btn-md p-2 float-right btn-default button3 text-bold"><i
-                                class="fas fa-user-times"></i> Remove Agent
-                            Group
-                        </button>
                         <div class="row">
-                            <div class="col-md-7">
+                            <div class="col-md-7 col-sm-12">
                                 <h3 class="text-bold mb-3">Agent Group:
                                     @if (isset($groups[0]))
                                         <a href="{{ route('agentGroup', $groups[0]->group_id) }}"
@@ -439,11 +453,18 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
                                             </div>
                                         </div>
                                     @endif
-
                                 @endforeach
+                                <div class="container-fluid">
+                                    <button type="button"
+                                        class="btn btn-md p-2 float-right btn-default button3 text-bold"><i
+                                            class="fas fa-user-times"></i> Remove Agent
+                                        Group
+                                    </button>
+                                </div>
                             @endif
                         </div>
                     </div>
@@ -589,11 +610,13 @@
         let _token = $('meta[name="csrf-token"]').attr('content');
         $("#mark_event").on("click", function() {
             Swal.fire({
-                title: 'Mark Events As',
+                title: '<i class="fas fa-highlighter"></i> Mark Events As',
                 input: 'select',
                 inputOptions: eventStatus,
                 inputPlaceholder: currentStatus,
                 inputValue: currentStatusId,
+                confirmButtonColor: "#1FAB45",
+                confirmButtonText: 'Mark',
                 showCancelButton: true,
                 inputValidator: (value) => {
                     return new Promise((resolve) => {
@@ -652,8 +675,10 @@
         })
         $("#upload_evidence").on("click", function() {
             Swal.fire({
-                title: 'Select image',
+                title: '<i class="fa-solid fa-file-arrow-up"></i> Select File',
                 input: 'file',
+                confirmButtonColor: "#1FAB45",
+                confirmButtonText: 'Upload File',
                 inputAttributes: {
                     'accept': 'image/*',
                     'aria-label': 'Upload your profile picture'
@@ -709,7 +734,52 @@
                 }
             })
         })
+        $('#make_notes').on('click', function() {
+            var id = $(this.$event_id)
+            Swal.fire({
+                title: "Add Note",
+                input: "textarea",
+                showCancelButton: true,
+                confirmButtonColor: "#1FAB45",
+                confirmButtonText: "Add Note",
+                cancelButtonText: "Cancel",
+                buttonsStyling: true
+            }).then(function() {
+                    $.ajax({
+                        type: "POST",
+                        data: {
+                            url: "{{ route('store_notes') }}",
+                            'event_id': $event_id,
+                            'note': $('textarea').val()
+                        },
+                        cache: false,
+                        success: function(response) {
+                            swal(
+                                "Sccess!",
+                                "Your note has been saved!",
+                                "success"
+                            )
+                        },
+                        failure: function(response) {
+                            swal(
+                                "Internal Error",
+                                "Oops, your note was not saved.", // had a missing comma
+                                "error"
+                            )
+                        }
+                    });
+                },
+                function(dismiss) {
+                    if (dismiss === "cancel") {
+                        swal(
+                            "Cancelled",
+                            "Canceled Note",
+                            "error"
+                        )
+                    }
+                })
 
+        });
         $(document).ready(function() {
 
             $("#myTable").on('click', '.btnSelect', function() {

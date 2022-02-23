@@ -18,7 +18,6 @@
                          <div class="icon">
                              <i class="far fa-flag"></i>
                          </div>
-                         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                      </div>
                  </div>
                  <!-- /.col -->
@@ -33,7 +32,6 @@
                          <div class="icon">
                              <i class="far fa-check-square"></i>
                          </div>
-                         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                      </div>
                  </div>
                  <!-- /.col -->
@@ -49,8 +47,7 @@
                          <div class="icon">
                              <i class="fas fa-spinner"></i>
                          </div>
-                         <a href="#" class="small-box-footer " style="color:white !important;">More info <i
-                                 class="fas fa-arrow-circle-right"></i></a>
+
                      </div>
                  </div>
                  <!-- /.col -->
@@ -65,7 +62,6 @@
                          <div class="icon">
                              <i class="far fa-times-circle"></i>
                          </div>
-                         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                      </div>
                  </div>
                  <!-- /.col -->

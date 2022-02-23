@@ -74,7 +74,7 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="password"><i class="fas fa-key"></i> Password</label>
-                                        <input type="password" class="form-control icon" id="password" name="password"><i
+                                        <input type="password" class="form-control " id="password" name="password"><i
                                             id="btn-eye" class="btn-eye far fa-eye-slash"></i>
                                     </div>
                                 </div>
@@ -222,5 +222,4 @@
                 'password');
         }
     </script>
-
 @endsection

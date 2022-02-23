@@ -8,6 +8,7 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
+    <link rel="icon" href="{{ asset('images/favicon-16x16.png') }}">
 
     <!-- ========================= CSS here ========================= -->
     <link rel="stylesheet" href="{{ asset('css/landing_page/bootstrap.min.css') }}" />

@@ -1,6 +1,5 @@
 @extends('layouts.dashboard')
 @section('breadcrumb')
-
     <a href="{{ route('newReports') }}">New Reports</a>
     <style type="text/css">
         /* Set the size of the div element that contains the map */
@@ -30,11 +29,9 @@
     <!--/.Card-->
 
     </div>
-
 @endsection
 
 @section('sweetjs')
-
     <script>
         window.array = {!! $lat_lon !!}
         window.array.forEach(element => {
@@ -43,7 +40,7 @@
         });
     </script>
     <script
-        src="{{ url('https://maps.googleapis.com/maps/api/js?key=AIzaSyAbEnkm3njfWv7bQNLpk9p6KtXpn3lMeoIgcallback=initMap&libraries=&v=weekly') }}"
+        src="{{ url('https://maps.googleapis.com/maps/api/js?key=AIzaSyCdAFzfQpnPHYiVkwlzIL8dvmRYndjLCmI&callback=initMap&libraries=&v=weekly') }}"
         async></script>
 
     <script>
