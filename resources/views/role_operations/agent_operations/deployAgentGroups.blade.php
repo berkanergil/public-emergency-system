@@ -1,7 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('breadcrumb')
-
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item">
@@ -18,12 +17,11 @@
             </li> --}}
         </ol>
     </div>
-
 @endsection
 @section('statistic_content')
     <form action="{{ route('deployAgentGroups') }}" method="post">
         @csrf
-        <div class="container-fluid bg-white rounded p-4">
+        <div class="container bg-white rounded p-4">
             <div>
                 <h3 class="my-2 text-bold create_staff_form"> Agent Grouping Form</h3>
                 <hr class="create_staff_form">
@@ -50,7 +48,6 @@
             </div>
         </div>
     </form>
-
 @endsection
 
 

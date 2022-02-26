@@ -66,7 +66,6 @@
                                             class="btn btn-lg btn-default button6 text-bold"><i class="fas fa-users"></i>
                                             Deploy
                                             Agent Group</button>
-
                                     @else
                                         <button id="send_sms" type="button" class="btn btn-lg button4 text-bold"><i
                                                 class="fas fa-envelope"></i> Send
@@ -92,24 +91,25 @@
 
                     </div>
                 </div>
-                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                <div class="modal fade bd-example-modal-lg " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                     aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-dialog modal-dialog-centered modal-lg agentGroupModal">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title text-bold text-primary " id="exampleModalLongTitle">Available
-                                    Groups</h5>
+                                <h3 class="modal-title create_staff_form text-bold " id="exampleModalLongTitle">Available
+                                    Groups</h3>
+                                <hr class="create_staff_form">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
 
                             <div class="modal-body">
-                                <table border='1' id="myTable" class="table table-hover table-bordered text-center">
-                                    <tr class="table-danger">
+                                <table border='1' id="myTable"
+                                    class="table table-hover table-bordered text-center table-striped">
+                                    <tr class="table-success ">
                                         <th>Id</th>
                                         <th>Departments</th>
-
                                         <th>Action</th>
                                     </tr>
                                     @foreach ($availableGroups as $group)
@@ -120,11 +120,17 @@
                                             <td class='pd-price'>{{ $group->group_id }}</td>
                                             <td class='pd-name'>
                                                 @foreach ($groupMembers as $member)
-                                                    {{ $member->department->title }}
+                                                    @if ($loop->last)
+                                                        {{ Str::title($member->name . ' ' . '(' . $member->department->title) }}
+                                                        Department)
+                                                    @else
+                                                        {{ Str::title($member->name . ' ' . $member->surname . ' ' . '(' . $member->department->title) }}
+                                                        Department),
+                                                    @endif
                                                 @endforeach
                                             </td>
                                             <td>
-                                                <button class="btn btn-danger btnSelect"><i
+                                                <button class="btn btn-success btnSelect"><i
                                                         class="fas fa-plus"></i></button>
                                             </td>
                                         </tr>

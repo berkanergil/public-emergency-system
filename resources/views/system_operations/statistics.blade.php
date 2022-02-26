@@ -171,28 +171,28 @@
                              <div class="card-footer p-0">
                                  <ul class="nav flex-column">
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Total Reports <span
                                                  class="float-right badge bg-primary">{{ $eventObject->fireCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Fire Department Deployed <span
                                                  class="float-right badge bg-info">{{ $groupEventObject->fireFireCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Police Department Deployed <span
                                                  class="float-right badge bg-success">{{ $groupEventObject->firePoliceCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Health Department Deployed <span
                                                  class="float-right badge bg-danger">{{ $groupEventObject->fireHealthCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                  </ul>
                              </div>
@@ -207,28 +207,28 @@
                              <div class="card-footer p-0">
                                  <ul class="nav flex-column">
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Total Reports <span
                                                  class="float-right badge bg-primary">{{ $eventObject->crimeCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Fire Department Deployed <span
                                                  class="float-right badge bg-info">{{ $groupEventObject->crimeFireCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Police Department Deployed <span
                                                  class="float-right badge bg-success">{{ $groupEventObject->crimePoliceCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Health Department Deployed <span
                                                  class="float-right badge bg-danger">{{ $groupEventObject->crimeHealthCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                  </ul>
                              </div>
@@ -243,28 +243,28 @@
                              <div class="card-footer p-0">
                                  <ul class="nav flex-column">
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Total Reports <span
                                                  class="float-right badge bg-primary">{{ $eventObject->naturalEventCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Fire Department Deployed <span
                                                  class="float-right badge bg-info">{{ $groupEventObject->naturalEventFireCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Police Department Deployed <span
                                                  class="float-right badge bg-success">{{ $groupEventObject->naturalEventPoliceCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Health Department Deployed <span
                                                  class="float-right badge bg-danger">{{ $groupEventObject->naturalEventHealthCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                  </ul>
                              </div>
@@ -281,28 +281,28 @@
                              <div class="card-footer p-0">
                                  <ul class="nav flex-column">
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Total Reports <span
                                                  class="float-right badge bg-primary">{{ $eventObject->trafficCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Fire Department Deployed <span
                                                  class="float-right badge bg-info">{{ $groupEventObject->trafficFireCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Police Department Deployed <span
                                                  class="float-right badge bg-success">{{ $groupEventObject->trafficPoliceCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Health Department Deployed <span
                                                  class="float-right badge bg-danger">{{ $groupEventObject->trafficHealthCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                  </ul>
                              </div>
@@ -317,28 +317,28 @@
                              <div class="card-footer p-0">
                                  <ul class="nav flex-column">
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Total Reports <span
                                                  class="float-right badge bg-primary">{{ $eventObject->healthCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Fire Department Deployed <span
                                                  class="float-right badge bg-info">{{ $groupEventObject->healthFireCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Police Department Deployed <span
                                                  class="float-right badge bg-success">{{ $groupEventObject->healthPoliceCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Health Department Deployed <span
                                                  class="float-right badge bg-danger">{{ $groupEventObject->healthHealthCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                  </ul>
                              </div>
@@ -353,28 +353,28 @@
                              <div class="card-footer p-0">
                                  <ul class="nav flex-column">
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Total Reports <span
                                                  class="float-right badge bg-primary">{{ $eventObject->healthCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Fire Department Deployed <span
                                                  class="float-right badge bg-info">{{ $groupEventObject->healthFireCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Police Department Deployed <span
                                                  class="float-right badge bg-success">{{ $groupEventObject->healthPoliceCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                      <li class="nav-item">
-                                         <a href="#" class="nav-link">
+                                         <span href="#" class="nav-link">
                                              Health Department Deployed <span
                                                  class="float-right badge bg-danger">{{ $groupEventObject->healthHealthCount() }}</span>
-                                         </a>
+                                         </span>
                                      </li>
                                  </ul>
                              </div>
