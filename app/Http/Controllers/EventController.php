@@ -6,8 +6,10 @@ use App\Models\User;
 use App\Models\Event;
 use App\Models\Staff;
 use App\Models\EventType;
+use App\DataTables\EventDataTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class EventController extends Controller
 {
@@ -95,5 +97,40 @@ class EventController extends Controller
         return response($groupMembers);
     }
 
-
+    public function reportData()
+    {
+        $query = Event::whereIn("event_status_id", [2, 3])->orderBy("id", "desc")->get();
+        $events =[];
+        foreach($query as $event){
+            if($event->user){
+                array_push($events, [
+                    'id' => $event->id,
+                    'type' => Str::title($event->eventType->title),
+                    'user' => Str::title($event->user->name . ' ' . $event->user->surname),
+                    'staff' => '',
+                    'statusid' => $event->event_status_id,
+                    'location' => [
+                        'lat' => $event->lat,
+                        'lon' => $event->lon
+                    ],
+                    'date' => substr($event->created_at, 0, 10) . ' ' . substr($event->created_at, 11, 19)
+                ]);
+            }
+            else if($event->staff){
+                array_push($events, [
+                    'id' => $event->id,
+                    'type' => Str::title($event->eventType->title),
+                    'user' => '',
+                    'staff' => Str::title($event->staff->name . ' ' . $event->staff->surname),
+                    'statusid' => $event->event_status_id,
+                    'location' => [
+                        'lat' => $event->lat,
+                        'lon' => $event->lon
+                    ],
+                    'date' => substr($event->created_at, 0, 10) . ' ' . substr($event->created_at, 11, 19)
+                ]);
+            }
+        }
+        return datatables($events)->make(true);
+    }
 }

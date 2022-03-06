@@ -394,10 +394,11 @@ Route::get('/edit_user/{id}', function ($id) {
     return view("role_operations.user_operations.edit_user", compact("user"));
 })->name('edit_user');
 
-
 Route::get('/chatPage', [App\Http\Controllers\HomeController::class, 'chatPage'])->name('chatPage');
 Route::get('admin/createMessages', [App\Http\Controllers\HomeController::class, 'createPage'])->name('createMessages');
 Route::get('admin/messages', [App\Http\Controllers\HomeController::class, 'messages'])->name('messages');
 Route::get('admin/createNotifications', [App\Http\Controllers\HomeController::class, 'createPagee'])->name('createNotifications');
 Route::get('admin/notifications', [App\Http\Controllers\HomeController::class, 'notifications'])->name('notifications');
 Route::get('/emergencyp', [App\Http\Controllers\HomeController::class, 'emergencyp'])->name('emergencyp');
+
+Route::get('reports/current/data', [EventController::class,'reportData'])->name('reports.data');

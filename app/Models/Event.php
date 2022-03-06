@@ -9,15 +9,19 @@ use App\Models\Document;
 use App\Models\EventType;
 use App\Models\GroupEvent;
 use App\Models\EventStatus;
+use Illuminate\Broadcasting\Channel;
+use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 
 class Event extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use BroadcastsEvents;
 
     protected $guarded = [];
 
@@ -163,5 +167,30 @@ class Event extends Model
         }
 
         return $array;
+    }
+
+    public function broadcastOn($event)
+    {
+        return match ($event) {
+            'created' => [new Channel('new-event')],
+            'updated' => [new Channel('updated-event')],
+            default => []
+        };
+    }
+
+    public function broadcastWith($event)
+    {
+        return match ($event) {
+            'created' => [ "model" => $this],
+            'updated' => [ "model" => $this],
+        };
+    }
+
+    public function broadcastAs($event)
+    {
+        return match ($event) {
+            'created' => 'event.created',
+            'updated' => 'event.updated',
+        };
     }
 }

@@ -96,393 +96,395 @@
         
     @endphp
 
-    <div class="wrapper">
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{ asset('images/emergencyp.png') }}" alt="EmergenCyp Logo"
-                height="160" width="450">
-        </div>
+    <div id="app">
+        <div class="wrapper">
+            <div class="preloader flex-column justify-content-center align-items-center">
+                <img class="animation__shake" src="{{ asset('images/emergencyp.png') }}" alt="EmergenCyp Logo"
+                    height="160" width="450">
+            </div>
 
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left navbar links -->
-            <!-- Right navbar links -->
-            <ul class="navbar-nav ">
-                <li>
-                    <a class="nav-link" data-widget="pushmenu" href="#sidebar" role="button"><i
-                            class="fas fa-bars"></i></a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
+            <!-- Navbar -->
+            <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+                <!-- Left navbar links -->
+                <!-- Right navbar links -->
+                <ul class="navbar-nav ">
+                    <li>
+                        <a class="nav-link" data-widget="pushmenu" href="#sidebar" role="button"><i
+                                class="fas fa-bars"></i></a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
 
-                    <a class="nav-link btn-group dropwdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false" href=""><i class="fa-solid fa-bell"></i></a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <ul class="list-group">
-                            <li class="list-group-item border-top-0">
-                                <button class="dropdown-item" type="button">
-                                    <h6><i class="far fa-bell"></i> +1 Report </h6>
-                                </button>
-                            </li>
-                            <li class="list-group-item">
-                                <button class="dropdown-item" type="button">
-                                    <h6><i class="far fa-bell"></i>+1 Report </h6>
-                                </button>
-                            </li>
-                            <li class="list-group-item border-bottom-0">
-                                <button class="dropdown-item" type="button">
-                                    <h6><i class="far fa-bell"></i> +1 Report </h6>
-                                </button>
-                            </li>
-                            <li class="text-center">
-                                <a href="{{ route('chatPage') }}" class="dropdown-item button1">
-                                    <i class="far fa-paper-plane"></i> See All
-                                </a>
-                            </li>
-                        </ul>
-
-
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btn-group dropwdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false" href=""><i class="fas fa-inbox"></i></a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <ul class="list-group">
-                            <li class="list-group-item border-top-0">
-                                <button class="dropdown-item" type="button">
-                                    <h6><i class="far fa-envelope"></i> Tolgahan Dayanıklı </h6>
-                                </button>
-                            </li>
-                            <li class="list-group-item">
-                                <button class="dropdown-item" type="button">
-                                    <h6><i class="far fa-envelope"></i> Tolgahan Dayanıklı </h6>
-                                </button>
-                            </li>
-                            <li class="list-group-item border-bottom-0">
-                                <button class="dropdown-item" type="button">
-                                    <h6><i class="far fa-envelope"></i> Tolgahan Dayanıklı </h6>
-                                </button>
-                            </li>
-                            <li class="text-center">
-                                <a href="{{ route('chatPage') }}" class="dropdown-item button1">
-                                    <i class="far fa-paper-plane"></i> See All
-                                </a>
-                            </li>
-                        </ul>
+                        <a class="nav-link btn-group dropwdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false" href=""><i class="fa-solid fa-bell"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <ul class="list-group">
+                                <li class="list-group-item border-top-0">
+                                    <button class="dropdown-item" type="button">
+                                        <h6><i class="far fa-bell"></i> +1 Report </h6>
+                                    </button>
+                                </li>
+                                <li class="list-group-item">
+                                    <button class="dropdown-item" type="button">
+                                        <h6><i class="far fa-bell"></i>+1 Report </h6>
+                                    </button>
+                                </li>
+                                <li class="list-group-item border-bottom-0">
+                                    <button class="dropdown-item" type="button">
+                                        <h6><i class="far fa-bell"></i> +1 Report </h6>
+                                    </button>
+                                </li>
+                                <li class="text-center">
+                                    <a href="{{ route('chatPage') }}" class="dropdown-item button1">
+                                        <i class="far fa-paper-plane"></i> See All
+                                    </a>
+                                </li>
+                            </ul>
 
 
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <span class="text-şef" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus"
-                        data-bs-content="Disabled popover">
-                        <a class="nav-link" href="{{ route('logout') }}"><i
-                                class="fas fa-sign-out-alt"></i></a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-group dropwdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false" href=""><i class="fas fa-inbox"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <ul class="list-group">
+                                <li class="list-group-item border-top-0">
+                                    <button class="dropdown-item" type="button">
+                                        <h6><i class="far fa-envelope"></i> Tolgahan Dayanıklı </h6>
+                                    </button>
+                                </li>
+                                <li class="list-group-item">
+                                    <button class="dropdown-item" type="button">
+                                        <h6><i class="far fa-envelope"></i> Tolgahan Dayanıklı </h6>
+                                    </button>
+                                </li>
+                                <li class="list-group-item border-bottom-0">
+                                    <button class="dropdown-item" type="button">
+                                        <h6><i class="far fa-envelope"></i> Tolgahan Dayanıklı </h6>
+                                    </button>
+                                </li>
+                                <li class="text-center">
+                                    <a href="{{ route('chatPage') }}" class="dropdown-item button1">
+                                        <i class="far fa-paper-plane"></i> See All
+                                    </a>
+                                </li>
+                            </ul>
+
+
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <span class="text-şef" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus"
+                            data-bs-content="Disabled popover">
+                            <a class="nav-link" href="{{ route('logout') }}"><i
+                                    class="fas fa-sign-out-alt"></i></a>
+                        </span>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.navbar -->
+
+            <!-- Main Sidebar Container -->
+            <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4">
+                <!-- Brand Logo -->
+                <a href="{{ route('statistics') }}" class="brand-link">
+                    <img src="{{ asset('images/emergencyp-white.png') }}" alt="EmergenCYP Logo"
+                        class="brand-image img-circle">
+                    <span class=" brand-text font-weight-light">
+                        <p style="font-size: 15px;"> EmergenCyp</p>
                     </span>
-                </li>
-            </ul>
-        </nav>
-        <!-- /.navbar -->
+                </a>
 
-        <!-- Main Sidebar Container -->
-        <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
-            <a href="{{ route('statistics') }}" class="brand-link">
-                <img src="{{ asset('images/emergencyp-white.png') }}" alt="EmergenCYP Logo"
-                    class="brand-image img-circle">
-                <span class=" brand-text font-weight-light">
-                    <p style="font-size: 15px;"> EmergenCyp</p>
-                </span>
-            </a>
-
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex text-center justify-content-center align-items-center">
-                    <div class="info">
-                        {{-- <a href="#" class="d-block">{{ Auth::user()->name }}</a> --}}
-                        <a href="{{ route('profile', $staff) }}" class="d-block"><i
-                                class="fas fa-user-circle"></i>
-                            {{ Str::title($name . ' ' . $surname) }}</a>
-                    </div>
-                </div>
-
-                <!-- SidebarSearch Form -->
-                <div class="form-inline">
-                    <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search"
-                            aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-sidebar">
-                                <i class="fas fa-search fa-fw"></i>
-                            </button>
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <!-- Sidebar user panel (optional) -->
+                    <div class="user-panel mt-3 pb-3 mb-3 d-flex text-center justify-content-center align-items-center">
+                        <div class="info">
+                            {{-- <a href="#" class="d-block">{{ Auth::user()->name }}</a> --}}
+                            <a href="{{ route('profile', $staff) }}" class="d-block"><i
+                                    class="fas fa-user-circle"></i>
+                                {{ Str::title($name . ' ' . $surname) }}</a>
                         </div>
                     </div>
-                </div>
 
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-                        <li class="nav-header"> <strong> STATISTICS & INSIGHTS</strong></li>
+                    <!-- SidebarSearch Form -->
+                    <div class="form-inline">
+                        <div class="input-group" data-widget="sidebar-search">
+                            <input class="form-control form-control-sidebar" type="search" placeholder="Search"
+                                aria-label="Search">
+                            <div class="input-group-append">
+                                <button class="btn btn-sidebar">
+                                    <i class="fas fa-search fa-fw"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
-                        <li class="nav-item menu-open">
-                            <a href="{{ route('statistics') }}" class=" nav-link active">
-                                <i class="ml-1 fas fa-chart-line"></i>
-                                <p class="ml-1">
-                                    Statistics & Insights
-                                </p>
-                            </a>
+                    <!-- Sidebar Menu -->
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                            data-accordion="false">
+                            <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+                            <li class="nav-header"> <strong> STATISTICS & INSIGHTS</strong></li>
 
-                        </li>
-                        <li class="nav-header"> <strong> EVENT OPERATIONS</strong></li>
-                        <li class="nav-item">
-                            <a href="{{ route('newReports', ['id' => $staff->id]) }}" class="nav-link">
-                                <i class="ml-1 fas fa-search-location"></i>
-                                <p class="ml-1">
-                                    New Reports
-                                    <span class="right badge badge-danger ml-1">Live Map</span>
-                                </p>
-                            </a>
-                        </li>
+                            <li class="nav-item menu-open">
+                                <a href="{{ route('statistics') }}" class=" nav-link active">
+                                    <i class="ml-1 fas fa-chart-line"></i>
+                                    <p class="ml-1">
+                                        Statistics & Insights
+                                    </p>
+                                </a>
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="ml-1 fas fa-folder-open"></i>
-                                <p class="ml-1">
-                                    Report Archive
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('currentReports') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Current Reports</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('pastReports') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Past Reports</p>
-                                    </a>
-                                </li>
+                            </li>
+                            <li class="nav-header"> <strong> EVENT OPERATIONS</strong></li>
+                            <li class="nav-item">
+                                <a href="{{ route('newReports', ['id' => $staff->id]) }}" class="nav-link">
+                                    <i class="ml-1 fas fa-search-location"></i>
+                                    <p class="ml-1">
+                                        New Reports
+                                        <span class="right badge badge-danger ml-1">Live Map</span>
+                                    </p>
+                                </a>
+                            </li>
 
-                            </ul>
-                        </li>
-
-                        <li class="nav-header"><strong>USER OPERATIONS</strong></li>
-                        @if ($role == '3')
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="ml-1 fas fa-user-tie"></i>
-                                    <p class="ml-2">
-                                        Authorities
+                                    <i class="ml-1 fas fa-folder-open"></i>
+                                    <p class="ml-1">
+                                        Report Archive
                                         <i class="fas fa-angle-left right"></i>
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="{{ route('createAuthority') }}" class="nav-link">
+                                        <a href="{{ route('currentReports') }}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Create Authorities </p>
+                                            <p>Current Reports</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('authorities') }}" class="nav-link">
+                                        <a href="{{ route('pastReports') }}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>All Authorites</p>
+                                            <p>Past Reports</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="nav-header"><strong>USER OPERATIONS</strong></li>
+                            @if ($role == '3')
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="ml-1 fas fa-user-tie"></i>
+                                        <p class="ml-2">
+                                            Authorities
+                                            <i class="fas fa-angle-left right"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="{{ route('createAuthority') }}" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Create Authorities </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('authorities') }}" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>All Authorites</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            @endif
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="ml-1 fas fa-user-tie"></i>
+                                    <p class="ml-2">
+                                        Agents
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('deployAgentGroups') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Create Agent Groups</p>
+                                        </a>
+                                    </li>
+                                    @if ($role == '3')
+                                        <li class="nav-item">
+                                            <a href="{{ route('createAgents') }}" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Create Agents</p>
+                                            </a>
+                                        </li>
+                                    @endif
+                                    <li class="nav-item">
+                                        <a href="{{ route('agentGroups') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Agent Groups</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('agents') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>All Agents</p>
+                                        </a>
+                                    </li>
+
+
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="ml-1 fas fa-user"></i>
+                                    <p class="ml-2">
+                                        Users
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('users') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>All Users</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="nav-header"><strong>SYSTEM OPERATIONS</strong></li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="ml-1 fas fa-envelope"></i>
+                                    <p class="ml-2">
+                                        SMS Messages
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('createMessages') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Create SMS Messages</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('messages') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>See All SMS Messages</p>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
-                        @endif
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="ml-1 fas fa-user-tie"></i>
-                                <p class="ml-2">
-                                    Agents
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('deployAgentGroups') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Create Agent Groups</p>
-                                    </a>
-                                </li>
-                                @if ($role == '3')
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="ml-1 fas fa-bell"></i>
+                                    <p class="ml-2">
+                                        Notifications
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+
+                                <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="{{ route('createAgents') }}" class="nav-link">
+                                        <a href="{{ route('createNotifications') }}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Create Agents</p>
+                                            <p>Create Notifications</p>
                                         </a>
                                     </li>
-                                @endif
-                                <li class="nav-item">
-                                    <a href="{{ route('agentGroups') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Agent Groups</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('agents') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>All Agents</p>
-                                    </a>
-                                </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('notifications') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>See All Notifications</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
 
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="ml-1 fas fa-user"></i>
-                                <p class="ml-2">
-                                    Users
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('users') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>All Users</p>
-                                    </a>
-                                </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="ml-1 fas fa-database"></i>
+                                    <p class="ml-2">
+                                        Databases
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
 
-                            </ul>
-                        </li>
-                        <li class="nav-header"><strong>SYSTEM OPERATIONS</strong></li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="ml-1 fas fa-envelope"></i>
-                                <p class="ml-2">
-                                    SMS Messages
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Modify Databases</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Archive Databases</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('createMessages') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Create SMS Messages</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('messages') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>See All SMS Messages</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="ml-1 fas fa-bell"></i>
-                                <p class="ml-2">
-                                    Notifications
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('createNotifications') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Create Notifications</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('notifications') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>See All Notifications</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="ml-1 fas fa-database"></i>
-                                <p class="ml-2">
-                                    Databases
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Modify Databases</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Archive Databases</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </nav>
-                <!-- /.sidebar-menu -->
-            </div>
-            <!-- /.sidebar -->
-        </aside>
-
-
-
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                        </div><!-- /.col -->
-                        <!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </div>
-            <!-- /.content-header -->
-
-            <!-- Main content -->
-            <div class="content">
-                <div class="container-fluid">
-                    @yield('statistic_content')
-
-                    <!-- /.row -->
+                        </ul>
+                    </nav>
+                    <!-- /.sidebar-menu -->
                 </div>
-                <!-- /.container-fluid -->
+                <!-- /.sidebar -->
+            </aside>
+
+
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                            </div><!-- /.col -->
+                            <!-- /.col -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </div>
+                <!-- /.content-header -->
+
+                <!-- Main content -->
+                <div class="content">
+                    <div class="container-fluid">
+                        @yield('statistic_content')
+
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </div>
+                <!-- /.content -->
             </div>
-            <!-- /.content -->
+            <!-- /.content-wrapper -->
+
+            <!-- Control Sidebar -->
+            <aside class="control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+            </aside>
+            <!-- /.control-sidebar -->
+
+            <!-- Main Footer -->
+            <footer class="main-footer">
+                <strong>Copyright &copy; 2022 <a href="{{ route('statistics') }}">EmergenCYP</a>.</strong>
+                All rights reserved.
+                <div class="float-right d-none d-sm-inline-block">
+                    <b>Version</b> 1.0
+                </div>
+            </footer>
         </div>
-        <!-- /.content-wrapper -->
-
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
-
-        <!-- Main Footer -->
-        <footer class="main-footer">
-            <strong>Copyright &copy; 2022 <a href="{{ route('statistics') }}">EmergenCYP</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 1.0
-            </div>
-        </footer>
     </div>
     <!-- ./wrapper -->
 
@@ -548,11 +550,69 @@
     <script>
         $(function() {
             $("#example1").DataTable({
+                "dom": 'Bfrtip',
+                "processing": true,
+                "serverSide": true,
+                "ajax": "{{ route('reports.data') }}",
+                "columnDefs": [
+                    {
+                        targets: [0, 1, 2, 3, 4 ,5, 6]
+                    },
+                    { 
+                        "data": "id",
+                        targets: [0], 
+                        render: function(data, type) {
+                            if (type === 'display') {
+                                return '<a target="_blank" href="report/' + data + '">' + data + '</a>';
+                            }
+                            return data;
+                        }
+                    },
+                    { "data": "type", targets: [1] },
+                    { "data": "user", targets: [2] },
+                    { "data": "staff", targets: [3] },
+                    { 
+                        "data": "statusid",
+                        targets: [4],
+                        render: function ( data, type ) {
+                            let status = "Not Handled";
+                            if (type === 'display') {
+                                let className = "bg-danger";
+                                if(data === 2){
+                                    className = "bg-warning";
+                                    status = "Being Handled";
+                                }
+                                return status;
+                            }
+                            return status;
+                        }
+                    },
+                    { 
+                        "data": "location",
+                        targets: [5],
+                        render: function(data, type) {
+                            let loc = data.lat.substr(0, 7) + ' - ' + data.lon.substr(0, 7);
+                            if (type === 'display') {
+                                return '<a target="_blank" href="https://www.google.com/maps/search/' + data.lat + ',' + data.lon + '">' + loc + '</a>';
+                            }
+                            return loc;
+                        }
+                    },
+                    { "data": "date", targets: [6] },
+                ],
+                "rowCallback": function(row, data, index) {
+                    if (data["statusid"] === 3) {
+                        $("td:eq(4)", row).addClass("bg-danger");
+                    }
+                    else if (data["statusid"] === 2) {
+                        $("td:eq(4)", row).addClass("bg-warning");
+                    }
+                },
                 "responsive": true,
                 "lengthChange": false,
                 "autoWidth": false,
                 "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            }).buttons().container().appendTo('#example1 .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,
                 "lengthChange": false,
