@@ -29,7 +29,7 @@
                     </tr>
                 </thead>
                 <tbody class="table-light">
-                    @foreach ($eventObject->currentEvents() as $event)
+                    {{-- @foreach ($eventObject->currentEvents() as $event)
                         <tr>
                             <td><a target="_blank" href="{{ route('report', $event->id) }}">{{ $event->id }}</a>
                             </td>
@@ -71,7 +71,8 @@
                             </td>
                             <td>{{ $event->created_at }}</td>
                         </tr>
-                    @endforeach
+                    @endforeach --}}
+                </tbody>
             </table>
         </div>
         <!-- /.card-body -->
