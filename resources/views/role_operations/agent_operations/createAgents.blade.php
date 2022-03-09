@@ -10,7 +10,7 @@
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                 <div class="card p-5 shadow p-3 mb-5 bg-white rounded">
                     <div class="card-title mt-3">
-                        <h3 class="text-bold create_staff_form">Create Agent</h3>
+                        <h3 class="text-bold create_staff_form">{{ __('Create Agent') }}</h3>
                         <hr class="create_staff_form">
                     </div>
                     <div class="card-body">
@@ -19,42 +19,43 @@
                             <div class="row gutters">
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="name"><i class="far fa-id-card"></i> First Name</label>
+                                        <label for="name"><i class="far fa-id-card"></i> {{ __('First Name') }}</label>
                                         <input type="text" class="form-control" id="name" placeholder="Enter first name"
                                             name="name">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="fullName"><i class="far fa-id-card"></i> Last Name</label>
+                                        <label for="fullName"><i class="far fa-id-card"></i> {{ __('Last Name') }}</label>
                                         <input type="text" class="form-control" id="fullName"
                                             placeholder="Enter last name" name="surname">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="eMail"><i class="far fa-envelope"></i> Email</label>
+                                        <label for="eMail"><i class="far fa-envelope"></i> {{ __('Email') }}</label>
                                         <input type="email" class="form-control" id="eMail" placeholder="Enter email"
                                             name="email">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="phone"><i class="fas fa-mobile-alt"></i> Phone</label>
+                                        <label for="phone"><i class="fas fa-mobile-alt"></i> {{ __('Phone') }}</label>
                                         <input type="text" class="form-control" id="phone"
                                             placeholder="Enter phone number" name="msisdn">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="staff_role_id"><i class="fas fa-user-tag"></i> Staff Role</label>
+                                        <label for="staff_role_id"><i class="fas fa-user-tag"></i>
+                                            {{ __('Staff Role') }}</label>
                                         <input type="number" class="form-control" id="staff_role_id" name="staff_role_id"
                                             value="2">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="department_id"><i class="far fa-building"></i> Department
+                                        <label for="department_id"><i class="far fa-building"></i> {{ __('Department') }}
                                         </label>
                                         <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
                                             name="department_id">
@@ -73,15 +74,15 @@
 
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="password"><i class="fas fa-key"></i> Password</label>
+                                        <label for="password"><i class="fas fa-key"></i> {{ __('Password') }}</label>
                                         <input type="password" class="form-control " id="password" name="password"><i
                                             id="btn-eye" class="btn-eye far fa-eye-slash"></i>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="password_confirm"><i class="fas fa-key"></i> Confirm
-                                            Password</label>
+                                        <label for="password_confirm"><i class="fas fa-key"></i>
+                                            {{ __('Confirm Password') }}</label>
                                         <input type="password" class="form-control icon" id="password_confirm">
                                         <i id="btn-eye2" class="btn-eye far fa-eye-slash"></i>
                                     </div>
@@ -94,11 +95,11 @@
                                         <form class="form-group">
                                             <button type="button" class="form-buttons2 generator"><i
                                                     class="fas fa-key"></i>
-                                                Generate Password</button>
+                                                {{ __('Generate Password') }}</button>
                                         </form>
                                         <button type="submit" class="form-buttons btn btn-success"><i
                                                 class="fas fa-user-plus"></i>
-                                            Create</button>
+                                            {{ __('Create') }}</button>
                                     </div>
                                 </div>
                             </div>

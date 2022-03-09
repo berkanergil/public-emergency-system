@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Exception;
 use App\Models\Notes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class NotesController extends Controller
 {
@@ -25,7 +26,6 @@ class NotesController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -35,6 +35,10 @@ class NotesController extends Controller
      */
     public function store(Request $request)
     {
+        Log::info('Controller');
+        $note = Notes::create($request->all());
+        Log::info($note);
+        return response($note);
     }
 
     /**

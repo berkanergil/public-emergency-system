@@ -95,6 +95,10 @@ return [
 
     'fallback_locale' => 'en',
 
+    'available_locales' => [
+        'Turkish' => 'tr',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Faker Locale

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Exception;
 use App\Models\Document;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class DocumentController extends Controller
 {
@@ -35,25 +36,25 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        try{
+        Log::info('2');
+        try {
             $documentModel = new Document();
-    
-            if($request->file()) {
-                $fileName = time().'_'.$request->file->getClientOriginalName();
+
+            if ($request->file()) {
+                Log::info($request->all());
+                $fileName = time() . '_' . $request->file->getClientOriginalName();
                 $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
-    
                 $documentModel->path = '/storage/' . $filePath;
-                $documentModel->type = $request->type;
+                $documentModel->document_type_id = $request->type;
                 $documentModel->save();
-    
+
                 return response($documentModel);
-            }else{
-                return response(false,400);
+            } else {
+                return response(false, 400);
             }
-        }catch(Exception $e){
-            return response($e,500);
+        } catch (Exception $e) {
+            return response($e, 500);
         }
-            
     }
 
     /**

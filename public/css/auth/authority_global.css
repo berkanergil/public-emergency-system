@@ -12,6 +12,7 @@
     --color-button3: #354f52;
     --color-button4: #757bc8;
     --color-button5: #944BF8;
+    --color-button-eight: #398721;
 }
 
 
@@ -115,6 +116,16 @@ body {
 .button6:hover {
     background-color: var(--color-secondary);
     color: var(--color-button5);
+}
+
+.button8 {
+    background-color: var(--color-button-eight);
+    color: var(--color-secondary);
+}
+
+.button8:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-button-eight);
 }
 
 .nav-item>.nav-link {

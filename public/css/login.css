@@ -206,4 +206,5 @@ input {
 .login:hover {
     background: #fff;
     color: #083372;
+    cursor: pointer;
 }

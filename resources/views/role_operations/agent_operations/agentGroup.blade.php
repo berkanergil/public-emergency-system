@@ -11,12 +11,13 @@
             <div class="row">
                 <div class="col-md-6">
 
-                    <h3 class="text-bold mb-3">Agent Group: <span class="text-danger">{{ $group[0]->group_id }}</span>
+                    <h3 class="text-bold mb-3">{{ __('Agent Group') }}: <span
+                            class="text-danger">{{ $group[0]->group_id }}</span>
                     </h3>
                 </div>
                 <div class="col-md-6">
-                    <button class="btn form-buttons3 btn-md p-2  float-right mb-5"><i class="fas fa-edit"></i> Edit
-                        Agent Group</button>
+                    <button class="btn form-buttons3 btn-md p-2  float-right mb-5"><i class="fas fa-edit"></i>
+                        {{ __('Edit Agent Group') }}</button>
 
                 </div>
 
@@ -36,20 +37,20 @@
 
                                 <ul class="list-group list-group-unbordered mb-3">
                                     <li class="list-group-item">
-                                        <b>Name Surname:</b> <a
+                                        <b>{{ __('Name Surname') }}:</b> <a
                                             class="float-right">{{ Str::title($agent->name . ' ' . $agent->surname) }}</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Phone Number:</b> <a class="float-right">{{ $agent->msisdn }}</a>
+                                        <b>{{ __('Phone Number') }}:</b> <a
+                                            class="float-right">{{ $agent->msisdn }}</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Email:</b> <a class="float-right">{{ $agent->email }}</a>
+                                        <b>{{ __('Email') }}:</b> <a class="float-right">{{ $agent->email }}</a>
                                     </li>
                                 </ul>
 
                                 <button type="button" data-toggle="modal" data-target="#{{ $modal_trigger }}" href="#"
-                                    class="btn btn-info btn-block"><b>Agent
-                                        Information</b></button>
+                                    class="btn btn-info btn-block"><b>{{ __('Agent Information') }}</b></button>
                             </div>
                             <!-- /.card-body -->
                             <div class="modal fade" id="{{ $modal_trigger }}" tabindex="-1" role="dialog"
@@ -59,8 +60,7 @@
                                         <div class="modal-header">
                                             <h5 class="modal-title text-center text-bold text-dark"
                                                 id="exampleModalLongTitle">
-                                                <i class="fas fa-id-badge mr-2"></i>Agent
-                                                Details
+                                                <i class="fas fa-id-badge mr-2"></i>{{ __('Agent Details') }}
                                             </h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close">
@@ -73,29 +73,31 @@
 
                                             <ul class="list-group list-group-unbordered mb-3">
                                                 <li class="list-group-item border-0">
-                                                    <b>Agent Group ID:</b> <a class="float-right"></a>
+                                                    <b>{{ __('Agent Group ID') }}:</b> <a class="float-right"></a>
                                                 </li>
                                                 <li class="list-group-item border-0">
-                                                    <b>Agent ID:</b> <a class="float-right">{{ $agent->id }}</a>
+                                                    <b>{{ __('Agent ID') }}:</b> <a
+                                                        class="float-right">{{ $agent->id }}</a>
                                                 </li>
                                                 <li class="list-group-item border-0">
-                                                    <b>Name Surname:</b> <a
+                                                    <b>{{ __('Name Surname') }}:</b> <a
                                                         class="float-right">{{ Str::title($agent->name . ' ' . $agent->surname) }}
                                                     </a>
                                                 </li>
                                                 <li class="list-group-item border-0">
-                                                    <b>Phone Number:</b> <a
+                                                    <b>{{ __('Phone Number') }}:</b> <a
                                                         class="float-right">{{ $agent->msisdn }}</a>
                                                 </li>
                                                 <li class="list-group-item border-0">
-                                                    <b>Email:</b> <a class="float-right">{{ $agent->msisdn }}</a>
+                                                    <b>{{ __('Email') }}:</b> <a
+                                                        class="float-right">{{ $agent->msisdn }}</a>
                                                 </li>
                                                 <li class="list-group-item border-0">
-                                                    <b>Device ID:</b> <a
+                                                    <b>{{ __('Device ID') }}:</b> <a
                                                         class="float-right">{{ $agent->device_id }}</a>
                                                 </li>
                                                 <li class="list-group-item border-0">
-                                                    <b>Device Token:</b> <a
+                                                    <b>{{ __('Device Token') }}:</b> <a
                                                         class="float-right">{{ $agent->device_token }}</a>
                                                 </li>
 
@@ -103,8 +105,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <a href="{{ route('agent', $agent) }}" class="btn btn-dark btn-block"><i
-                                                    class="fas fa-user mr-2"></i>Visit
-                                                Profile</a>
+                                                    class="fas fa-user mr-2"></i>{{ __('Visit Profile') }}</a>
 
                                         </div>
                                     </div>
@@ -113,7 +114,6 @@
                         </div>
                     </div>
                 @endif
-
             @endforeach
 
         </div>

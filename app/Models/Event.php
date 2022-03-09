@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Exception;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Staff;
@@ -9,6 +10,7 @@ use App\Models\Document;
 use App\Models\EventType;
 use App\Models\GroupEvent;
 use App\Models\EventStatus;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -85,7 +87,10 @@ class Event extends Model
     {
         return Event::whereIn("event_status_id", [2, 3])->orderBy("id", "desc")->get();
     }
-
+    public static function mergedReports()
+    {
+        return Event::whereIn("event_status_id", [4])->orderBy("id", "desc")->get();
+    }
     public static function pastEvents()
     {
         return Event::where("event_status_id", "1")->orderBy("id", "desc")->get();
@@ -135,33 +140,46 @@ class Event extends Model
         return $this->hasMany(Notes::class);
     }
 
+
     public static function history($id)
     {
-        $array = array();
-        $event = Event::find($id);
-        $assignerStaff = Staff::find($event->groupEvent->assigner_staff_id);
-        $staffEvent = EventStatus::find($event->groupEvent->assigner_staff_id);
-        $array["create"] = [
-            "creator_name" => isset($event->staff->id) ? $event->staff->name . ' ' . $event->staff->surname : $event->user->name . ' ' . $event->user->surname,
-            "creator_type" => isset($event->staff->id) ? "staff" : "user",
-            "creator_id" => isset($event->staff->id) ? $event->staff->id : $event->user->id,
-            "created_at" => $event->created_at
-        ];
-        $array["group"] = [
-            "group_id" => isset($event->groupEvent) ? $event->groupEvent->group_id : null,
-            "assigner_staff_id" => isset($event->groupEvent) ? $event->groupEvent->assigner_staff_id : null,
-            "assigner_staff_name" => isset($assignerStaff) ? $assignerStaff->name . " " . $assignerStaff->surname : null,
-            "created_at" => isset($event->groupEvent) ? $event->groupEvent->created_at : null,
-        ];
-        foreach ($event->staffEvents as $staffEvent) {
-            $array["mark"][] = [
-                "event_status_name" => $staffEvent->eventStatus->title,
-                "staff_name" => $staffEvent->staff->name . " " . $staffEvent->staff->surname,
-                "staff_id" => $staffEvent->staff_id,
-                "created_at" => $staffEvent->created_at,
+        try {
+            $array = array();
+            $note = Notes::find($id);
+            $event = Event::find($id);
+            $assignerStaff = Staff::find($event->groupEvent->assigner_staff_id);
+            $staffEvent = EventStatus::find($event->groupEvent->assigner_staff_id);
+            $array["create"] = [
+                "creator_name" => isset($event->staff->id) ? $event->staff->name . ' ' . $event->staff->surname : $event->user->name . ' ' . $event->user->surname,
+                "creator_type" => isset($event->staff->id) ? "staff" : "user",
+                "creator_id" => isset($event->staff->id) ? $event->staff->id : $event->user->id,
+                "created_at" => $event->created_at
             ];
-        }
+            $array["group"] = [
+                "group_id" => isset($event->groupEvent) ? $event->groupEvent->group_id : null,
+                "assigner_staff_id" => isset($event->groupEvent) ? $event->groupEvent->assigner_staff_id : null,
+                "assigner_staff_name" => isset($assignerStaff) ? $assignerStaff->name . " " . $assignerStaff->surname : null,
+                "created_at" => isset($event->groupEvent) ? $event->groupEvent->created_at : null,
+            ];
 
-        return $array;
+            foreach ($event->staffEvents as $staffEvent) {
+                $array["mark"][] = [
+                    "event_status_name" => $staffEvent->eventStatus->title,
+                    "staff_name" => $staffEvent->staff->name . " " . $staffEvent->staff->surname,
+                    "staff_id" => $staffEvent->staff_id,
+                    "created_at" => $staffEvent->created_at,
+                ];
+            }
+
+            return $array;
+        } catch (Exception $e) {
+        }
+    }
+
+    public static function notMergedEvents()
+    {
+        $mergedEvents = Event::get()->where('event_status_id', "=", "4")->all();
+        $notMergedEvents = Event::select("id", "event_type_id", "description", "user_id", "lat", "lon")->whereNotIn('id', $mergedEvents)->get();
+        return $notMergedEvents;
     }
 }

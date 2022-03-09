@@ -8,16 +8,18 @@
             <div class="col-md-8">
                 <div class="card user-card shadow p-3 mb-5 bg-white rounded">
                     <div class="card-header  cards text-center">
-                        <h5 class="text-white font-weight-bold">PERSONAL INFORMATION</h5>
+                        <h5 class="text-white font-weight-bold">{{ __('PERSONAL INFORMATION') }}</h5>
                     </div>
                     <div class="card-block ">
-                        <p class="text-bold mt-4"> <span class="text-muted"> Full Name:</span>
+                        <p class="text-bold mt-4"> <span class="text-muted"> {{ __('Full Name') }}:</span>
                             {{ Str::title($staff->name . ' ' . $staff->surname) }}</p>
-                        <p class="text-bold"> <span class="text-muted"> Authority ID:</span>{{ $staff->id }}
+                        <p class="text-bold"> <span class="text-muted">
+                                {{ __('Authority ID') }}:</span>{{ $staff->id }}
                         </p>
-                        <p class="text-bold"> <span class="text-muted"> Email:</span>
+                        <p class="text-bold"> <span class="text-muted"> {{ __('Email') }}:</span>
                             {{ $staff->email }} </p>
-                        <p class="text-bold"> <span class="text-muted"> Phone Number:</span> {{ $staff->msisdn }}
+                        <p class="text-bold"> <span class="text-muted"> {{ __('Phone Number') }}:</span>
+                            {{ $staff->msisdn }}
                         </p>
                         <ul class="list-unstyled activity-leval text-center">
                             <li class="active"></li>
@@ -28,7 +30,7 @@
                             <li class="active"></li>
                         </ul>
                         <a href="{{ route('editProfile', $staff) }}" class="btn form-buttons float-right"><i
-                                class="far fa-edit"></i> Edit Profile</a>
+                                class="far fa-edit"></i> {{ __('Edit Profile') }}</a>
                     </div>
 
                 </div>

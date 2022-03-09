@@ -63,24 +63,25 @@
                                 <ul id="nav" class="navbar-nav ms-auto">
                                     <li class="nav-item">
                                         <a href="#home" class="page-scroll active"
-                                            aria-label="Toggle navigation">Home</a>
+                                            aria-label="Toggle navigation">{{ __('Home') }}</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="#features" class="page-scroll"
-                                            aria-label="Toggle navigation">Features</a>
+                                            aria-label="Toggle navigation">{{ __('Features') }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#overview" aria-label="Toggle navigation">Overview</a>
+                                        <a href="#overview" aria-label="Toggle navigation">{{ __('Overview') }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#team" aria-label="Toggle navigation">Team</a>
+                                        <a href="#team" aria-label="Toggle navigation">{{ __('Team') }}</a>
                                     </li>
-
 
                                 </ul>
                             </div> <!-- navbar collapse -->
+                            @include('layouts/languageSwitcher')
+
                             <div class="button add-list-button">
-                                <a href="{{ route('login') }}" class="btn">Sign in</a>
+                                <a href="{{ route('login') }}" class="btn">{{ __('Sign In') }}</a>
                             </div>
                         </nav>
                         <!-- End Navbar -->
@@ -97,10 +98,11 @@
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-12 col-12">
                     <div class="hero-content">
-                        <h1 class="wow fadeInLeft" data-wow-delay=".4s">A powerful app for your emergencies.</h1>
-                        <p class="wow fadeInLeft" data-wow-delay=".6s">EmergenCyp is a graduation project for Eastern
-                            Mediterranean University for Tolgahan Dayanıklı, Khairat Yakaka and Anas Nidal. It is not a
-                            real world application to be used by people - yet!</p>
+                        <h1 class="wow fadeInLeft" data-wow-delay=".4s">
+                            {{ __('A powerful app for your emergencies.') }}</h1>
+                        <p class="wow fadeInLeft" data-wow-delay=".6s">
+                            {{ __('EmergenCyp is a graduation project for Eastern Mediterranean University for Tolgahan Dayanıklı, Khairat Yakaka and Anas Nidal. It is not a real world application to be used by people - yet!') }}
+                        </p>
                         <div class="button wow fadeInLeft" data-wow-delay=".8s">
                             <a href="javascript:void(0)" class="btn"><i class="fa-brands fa-app-store"></i>
                                 App
@@ -127,11 +129,15 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h3 class="wow zoomIn" data-wow-delay=".2s">Features</h3>
-                        <h2 class="wow fadeInUp" data-wow-delay=".4s">Minimum Time & Effort <br> Maximum Efficiency
+                        <h3 class="wow zoomIn" data-wow-delay=".2s">{{ __('Features') }}</h3>
+                        <h2 class="wow fadeInUp" data-wow-delay=".4s">
+                            {{ __('Minimum Time & Effort') }}
+                            <br>
+                            {{ __('Maximum Efficiency') }}
                         </h2>
-                        <p class="wow fadeInUp" data-wow-delay=".6s">We are providing good user experience, good user
-                            interfaces, and all the information we have learned during our education.</p>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">
+                            {{ __('We are providing good user experience, good user interfaces, and all the information we have learned during our education.') }}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -140,8 +146,9 @@
                     <!-- Start Single Feature -->
                     <div class="single-feature wow fadeInUp" data-wow-delay=".2s">
                         <i class="lnr lnr-smartphone"></i>
-                        <h3>Use Your Mobile To Deploy</h3>
-                        <p>Simply fill the form, upload evidence, and add the location to report your emergency.</p>
+                        <h3>{{ __('Use Your Mobile To Report') }}</h3>
+                        <p>{{ __('Simply fill the form, upload evidence, and add the location to report your emergency.') }}
+                        </p>
                     </div>
                     <!-- End Single Feature -->
                 </div>
@@ -149,9 +156,9 @@
                     <!-- Start Single Feature -->
                     <div class="single-feature wow fadeInUp" data-wow-delay=".4s">
                         <i class="lnr lnr-user"></i>
-                        <h3>Web Authorities Will View</h3>
-                        <p>Web Authorities will view your emergency and deploy the necessary emergency units with your
-                            report details.</p>
+                        <h3>{{ __('Web Authorities Will View') }}</h3>
+                        <p>{{ __('Web Authorities will view your emergency and deploy the necessary emergency units with your report details.') }}
+                        </p>
                     </div>
                     <!-- End Single Feature -->
                 </div>
@@ -159,9 +166,9 @@
                     <!-- Start Single Feature -->
                     <div class="single-feature wow fadeInUp" data-wow-delay=".6s">
                         <i class="lnr lnr-map-marker"></i>
-                        <h3>Emergency Units On The Way</h3>
-                        <p>Once your report is reached to web authority, the agents will get notification to reach you
-                            in the closest time possible tracking the location sent during the reporting.</p>
+                        <h3>{{ __('Emergency Units On The Way') }}</h3>
+                        <p>{{ __('Once your report is reached to web authority, the agents will get notification to reach you in the closest time possible tracking the location sent during the reporting.') }}
+                        </p>
                     </div>
                     <!-- End Single Feature -->
                 </div>
@@ -169,8 +176,8 @@
                     <!-- Start Single Feature -->
                     <div class="single-feature wow fadeInUp" data-wow-delay=".2s">
                         <i class="lnr lnr-bubble"></i>
-                        <h3>Contact Us</h3>
-                        <p>If you have questions or any trouble, you can contact us.</p>
+                        <h3>{{ __('Contact Us') }}</h3>
+                        <p>{{ __('If you have questions or any trouble, you can contact us.') }}</p>
                     </div>
                     <!-- End Single Feature -->
                 </div>
@@ -178,8 +185,8 @@
                     <!-- Start Single Feature -->
                     <div class="single-feature wow fadeInUp" data-wow-delay=".4s">
                         <i class="lnr lnr-cog"></i>
-                        <h3>Powerful System</h3>
-                        <p>The system is accurate, you can feel free to use it!</p>
+                        <h3>{{ __('Powerful System') }}</h3>
+                        <p>{{ __('The system is accurate, you can feel free to use it!') }}</p>
                     </div>
                     <!-- End Single Feature -->
                 </div>
@@ -187,8 +194,8 @@
                     <!-- Start Single Feature -->
                     <div class="single-feature wow fadeInUp" data-wow-delay=".6s">
                         <i class="lnr lnr-layers"></i>
-                        <h3>Database Storage</h3>
-                        <p>The reports will be kept in our databases for in need of any investigation of the emergency.
+                        <h3>{{ __('Database Storage') }}</h3>
+                        <p>{{ __('The reports will be kept in our databases for in need of any investigation of the emergency.') }}
                         </p>
                     </div>
                     <!-- End Single Feature -->
@@ -204,8 +211,9 @@
             <div class="row">
                 <div class="col-lg-10 offset-lg-1 col-md-12 col-12">
                     <div class="title">
-                        <h2>Trusted by Assoc.Prof.Dr.Duygu Çelik as our supervisor</h2>
-                        <p>We have disturbed her many times to make things go on <span class="lnr lnr-smile"></span>
+                        <h2>{{ __('Trusted by Assoc.Prof.Dr.Duygu Çelik as our supervisor') }}</h2>
+                        <p>{{ __('We have disturbed her many times to make things go on') }} <span
+                                class="lnr lnr-smile"></span>
                         </p>
                     </div>
                 </div>
@@ -217,21 +225,21 @@
                             <div class="single-achievement wow fadeInUp" data-wow-delay=".2s">
                                 <h3 class="counter"><span id="secondo1" class="countup"
                                         cup-end="100">100</span>%</h3>
-                                <p>satisfaction</p>
+                                <p>{{ __('satisfaction') }}</p>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-12">
                             <div class="single-achievement wow fadeInUp" data-wow-delay=".4s">
                                 <h3 class="counter">+<span id="secondo2" class="countup"
                                         cup-end="100">100</span>K</h3>
-                                <p>Report Capacity</p>
+                                <p>{{ __('Report Capacity') }}</p>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-12">
                             <div class="single-achievement wow fadeInUp" data-wow-delay=".6s">
                                 <h3 class="counter"><span id="secondo3" class="countup"
                                         cup-end="125">235</span></h3>
-                                <p>Emergency Units</p>
+                                <p>{{ __('Emergency Units') }}</p>
                             </div>
                         </div>
                     </div>
@@ -245,7 +253,7 @@
             <div class="row">
                 <div class="col-lg-10 offset-lg-1 col-md-12 col-12">
                     <div class="title">
-                        <h2>Our Team</h2>
+                        <h2>{{ __('Our Team') }}</h2>
                     </div>
                 </div>
             </div>
@@ -257,7 +265,7 @@
                                 <h2>
                                     <span>Khairat Yakaka Ahmed Monguno</span>
                                     <strong>
-                                        Backend Developer / Analyzer
+                                        {{ __('Backend Developer / Analyzer') }}
                                     </strong>
                                 </h2>
                                 <div class="mc-content">
@@ -275,7 +283,7 @@
                                 </a>
                                 <div class="mc-footer">
                                     <h4>
-                                        Social
+                                        {{ __('Social') }}
                                     </h4>
                                     <a class="fa fa-fw fa-facebook"></a>
                                     <a class="fa fa-fw fa-twitter"></a>
@@ -289,7 +297,7 @@
                                 <h2>
                                     <span>Tolgahan Dayanıklı</span>
                                     <strong>
-                                        Team Leader / Full-Stack Developer
+                                        {{ __('Team Leader / Full-Stack Developer') }}
                                     </strong>
                                 </h2>
                                 <div class="mc-content">
@@ -307,7 +315,7 @@
                                 </a>
                                 <div class="mc-footer">
                                     <h4>
-                                        Social
+                                        {{ __('Social') }}
                                     </h4>
                                     <a class="fa fa-fw fa-facebook"></a>
                                     <a class="fa fa-fw fa-twitter"></a>
@@ -321,7 +329,7 @@
                                 <h2>
                                     <span>Anas Nidal</span>
                                     <strong>
-                                        Mobile Application Developer / Tester
+                                        {{ __('Mobile Application Developer / Tester') }}
                                     </strong>
                                 </h2>
                                 <div class="mc-content">
@@ -339,7 +347,7 @@
                                 </a>
                                 <div class="mc-footer">
                                     <h4>
-                                        Social
+                                        {{ __('Social') }}
                                     </h4>
                                     <a class="fa fa-fw fa-facebook"></a>
                                     <a class="fa fa-fw fa-twitter"></a>
@@ -365,7 +373,7 @@
         <!-- Start Footer Top -->
         <div class="footer-top">
             <div class="container">
-                © 2022 Emergencyp.com - All rights reserved.
+                © 2022 Emergencyp.com - {{ __('All rights reserved.') }}
             </div>
         </div>
         <!--/ End Footer Top -->

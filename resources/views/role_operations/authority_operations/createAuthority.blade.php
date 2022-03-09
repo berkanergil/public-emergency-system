@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('breadcrumb')
-    <a href="{{ route('createAuthority') }}">Create Authority</a>
+    <a href="{{ route('createAuthority') }}">{{ __('Create Authority') }}</a>
 @endsection
 
 @section('statistic_content')
@@ -10,7 +10,7 @@
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                 <div class="card p-5 shadow p-3 mb-5 bg-white rounded">
                     <div class="card-title  mt-3">
-                        <h3 class="create_staff_form text-bold">Create Authority</h3>
+                        <h3 class="create_staff_form text-bold">{{ __('Create Authority') }}</h3>
                         <hr class="create_staff_form">
                     </div>
                     <div class="card-body">
@@ -19,33 +19,33 @@
                             <div class="row gutters">
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group  text-primary">
-                                        <label for="name"><i class="far fa-id-card"></i> First Name</label>
+                                        <label for="name"><i class="far fa-id-card"></i> {{ __('First Name') }}</label>
                                         <input type="text" class="form-control input rounded" id="name" name="name"
-                                            placeholder="Enter first name">
+                                            placeholder="{{ __('Enter first name') }}">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="surname"><i class="far fa-id-card"></i> Last Name</label>
+                                        <label for="surname"><i class="far fa-id-card"></i> {{ __('Last Name') }}</label>
                                         <input type="text" class="form-control rounded" id="surname" name="surname"
-                                            placeholder="Enter last name">
+                                            placeholder="{{ __('Enter last name') }}">
                                     </div>
                                 </div>
                             </div>
                             <div class="row gutters">
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="email"><i class="far fa-envelope"></i> Email</label>
+                                        <label for="email"><i class="far fa-envelope"></i> {{ __('Email') }}</label>
                                         <input type="email" name="email" class="form-control rounded" id="email"
-                                            placeholder="Enter email">
+                                            placeholder="{{ __('Enter email') }}">
                                     </div>
                                 </div>
 
                                 <div class="  col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="phone"><i class="fas fa-mobile-alt"></i> Phone</label>
+                                        <label for="phone"><i class="fas fa-mobile-alt"></i> {{ __('Phone') }}</label>
                                         <input name="msisdn" class="form-control rounded" id="phone"
-                                            placeholder="Enter phone number">
+                                            placeholder="{{ __('Enter phone number') }}">
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +53,8 @@
 
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="website"><i class="fas fa-user-tag"></i> Staff Role </label>
+                                        <label for="website"><i class="fas fa-user-tag"></i> {{ __('Staff Role') }}
+                                        </label>
                                         <input type="number" class="form-control rounded" id="staff_role_id"
                                             name="staff_role_id" value="1" placeholder="Web Authority">
                                     </div>
@@ -63,15 +64,15 @@
                             <div class="row gutters">
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="password"><i class="fas fa-key"></i> Password</label>
+                                        <label for="password"><i class="fas fa-key"></i> {{ __('Password') }}</label>
                                         <input type="password" class="form-control icon" id="password" placeholder=""
                                             name="password"><i id="btn-eye" class="btn-eye far fa-eye-slash"></i>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="password_confirm"><i class="fas fa-key"></i> Confirm
-                                            Password</label>
+                                        <label for="password_confirm"><i class="fas fa-key"></i>
+                                            {{ __('Confirm Password') }}</label>
                                         <input type="password" class="form-control icon" id="password_confirm"
                                             placeholder="">
                                         <i id="btn-eye2" class="btn-eye far fa-eye-slash"></i>
@@ -84,11 +85,11 @@
                                         <form class="form-group">
                                             <button type="button" class="generator form-buttons2 mr-1"><i
                                                     class="fas fa-key"></i>
-                                                Generate Password</button>
+                                                {{ __('Generate Password') }}</button>
                                         </form>
 
                                         <button type="submit" class="form-buttons"><i class="fas fa-plus mr-1"></i>
-                                            Create</button>
+                                            {{ __('Create') }}</button>
                                     </div>
                                 </div>
                                 <div class="d-none">

@@ -7,11 +7,15 @@
     @php
     use App\Models\Staff;
     use App\Models\Group;
+    use Illuminate\Support\Facades\App;
     use App\Models\Event;
+
+    $locale = App::currentLocale();
+
     @endphp
     <div class="card  p-5 shadow p-3 mb-5 bg-white rounded">
         <div class="card-title">
-            <h2 class="create_staff_form text-bold">All Agent Groups</h2>
+            <h2 class="create_staff_form text-bold">{{ __('All Agent Groups') }}</h2>
             <hr class="create_staff_form">
         </div>
         <!-- /.card-header -->
@@ -19,10 +23,10 @@
             <table id="myTable" class="table table-hover table-bordered text-center">
                 <thead>
                     <tr class="table-success">
-                        <th class="create_staff_form">Group ID</th>
-                        <th class="create_staff_form">Agent Departments</th>
-                        <th class="create_staff_form">Status</th>
-                        <th class="create_staff_form">Disband Group</th>
+                        <th class="create_staff_form">{{ __('Group ID') }}</th>
+                        <th class="create_staff_form">{{ __('Agent Departments') }}</th>
+                        <th class="create_staff_form">{{ __('Status') }}</th>
+                        <th class="create_staff_form">{{ __('Disband Group') }}</th>
 
                     </tr>
                 </thead>
@@ -41,29 +45,53 @@
                                     href="{{ route('agentGroup', $group->group_id) }}">{{ $group->group_id }}</a>
                             </td>
                             <td>
-                                @foreach ($groupMembers as $member)
-                                    @if ($loop->last)
-                                        {{ Str::title($member->name . ' ' . '(' . $member->department->title) }}
-                                        Department)
-                                    @else
-                                        {{ Str::title($member->name . ' ' . $member->surname . ' ' . '(' . $member->department->title) }}
-                                        Department),
-                                    @endif
-
-                                @endforeach
+                                @if ($locale == 'en')
+                                    @foreach ($groupMembers as $member)
+                                        @if ($loop->last)
+                                            {{ Str::title($member->name . ' ' . '(' . $member->department->title) }}
+                                            Department)
+                                        @else
+                                            {{ Str::title($member->name . ' ' . $member->surname . ' ' . '(' . $member->department->title) }}
+                                            Department),
+                                        @endif
+                                    @endforeach
+                                @else
+                                    @foreach ($groupMembers as $member)
+                                        @if ($loop->last)
+                                            {{ Str::title($member->name . ' ' . '(' . $member->department->tr) }}
+                                            Departmanı)
+                                        @else
+                                            {{ Str::title($member->name . ' ' . $member->surname . ' ' . '(' . $member->department->tr) }}
+                                            Departmanı),
+                                        @endif
+                                    @endforeach
+                                @endif
 
                             </td>
-
-                            @if (!isset($currentEvent))
-                                <td id="{{ $group->group_id }}" class=" availablity bg-success">
-                                    Available</td>
-                            @elseif ($currentEvent->status->id == 1)
-                                <td id="{{ $group->group_id }}" class="availablity bg-success">
-                                    Available</td>
+                            @if ($locale === 'en')
+                                @if (!isset($currentEvent))
+                                    <td id="{{ $group->group_id }}" class=" availablity bg-success">
+                                        Available</td>
+                                @elseif ($currentEvent->status->id == 1)
+                                    <td id="{{ $group->group_id }}" class="availablity bg-success">
+                                        Available</td>
+                                @else
+                                    <td id="{{ $group->group_id }}" class="availablity bg-danger">
+                                        Not Available</td>
+                                @endif
                             @else
-                                <td id="{{ $group->group_id }}" class="availablity bg-danger">
-                                    Not Available</td>
+                                @if (!isset($currentEvent))
+                                    <td id="{{ $group->group_id }}" class=" availablity bg-success">
+                                        Müsait</td>
+                                @elseif ($currentEvent->status->id == 1)
+                                    <td id="{{ $group->group_id }}" class="availablity bg-success">
+                                        Müsait</td>
+                                @else
+                                    <td id="{{ $group->group_id }}" class="availablity bg-danger">
+                                        Müsait Değil</td>
+                                @endif
                             @endif
+
 
                             <td> <button type="button" class="btn btn-danger btnSelect"><i
                                         class="fas fa-user-times"></i></button>
@@ -76,8 +104,6 @@
         <!-- /.card-body -->
     </div>
     {{-- url: "{{ route('disbandGroups', $group->id) }}", --}}
-
-
 @endsection
 {{-- @section('sweetjs')
     <script>

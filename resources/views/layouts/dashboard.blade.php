@@ -9,9 +9,15 @@
     <link rel="icon" href="{{ asset('images/favicon-16x16.png') }}">
     <link href="{{ url('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css') }}"
         rel="stylesheet" />
+
+    <link rel="stylesheet"
+        href="{{ url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/css/bootstrap-select.min.css') }}">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="stylesheet"
+        href="{{ url('https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css') }}">
+
     <link rel="manifest" href="/site.webmanifest">
     {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
 
@@ -50,6 +56,8 @@
         href="{{ url('https://adminlte.io/themes/v3/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/auth/authority_global.css') }}">
 
+    <script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/js/bootstrap-select.min.js') }}">
+    </script>
 
 
     <link rel="stylesheet" href="{{ asset('sweetalert2.min.css') }}">
@@ -175,6 +183,10 @@
                     </div>
                 </li>
                 <li class="nav-item">
+                    @include('layouts/languageSwitcher')
+                </li>
+
+                <li class="nav-item">
                     <span class="text-şef" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus"
                         data-bs-content="Disabled popover">
                         <a class="nav-link" href="{{ route('logout') }}"><i
@@ -227,24 +239,24 @@
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                        <li class="nav-header"> <strong> STATISTICS & INSIGHTS</strong></li>
+                        <li class="nav-header"> <strong> {{ __('STATISTICS & INSIGHTS') }}</strong></li>
 
                         <li class="nav-item menu-open">
                             <a href="{{ route('statistics') }}" class=" nav-link active">
                                 <i class="ml-1 fas fa-chart-line"></i>
                                 <p class="ml-1">
-                                    Statistics & Insights
+                                    {{ __('Statistics & Insights') }}
                                 </p>
                             </a>
 
                         </li>
-                        <li class="nav-header"> <strong> EVENT OPERATIONS</strong></li>
+                        <li class="nav-header"> <strong> {{ __('EVENT OPERATIONS') }}</strong></li>
                         <li class="nav-item">
                             <a href="{{ route('newReports', ['id' => $staff->id]) }}" class="nav-link">
                                 <i class="ml-1 fas fa-search-location"></i>
                                 <p class="ml-1">
-                                    New Reports
-                                    <span class="right badge badge-danger ml-1">Live Map</span>
+                                    {{ __('New Reports') }}
+                                    <span class="right badge badge-danger ml-1">{{ __('Live Map') }}</span>
                                 </p>
                             </a>
                         </li>
@@ -253,7 +265,7 @@
                             <a href="#" class="nav-link">
                                 <i class="ml-1 fas fa-folder-open"></i>
                                 <p class="ml-1">
-                                    Report Archive
+                                    {{ __('Report Archive') }}
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -261,26 +273,31 @@
                                 <li class="nav-item">
                                     <a href="{{ route('currentReports') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Current Reports</p>
+                                        <p>{{ __('Current Reports') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('pastReports') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Past Reports</p>
+                                        <p>{{ __('Past Reports') }}</p>
                                     </a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a href="{{ route('mergedReports') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('Merged Reports') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
 
-                        <li class="nav-header"><strong>USER OPERATIONS</strong></li>
+                        <li class="nav-header"><strong>{{ __('USER OPERATIONS') }}</strong></li>
                         @if ($role == '3')
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="ml-1 fas fa-user-tie"></i>
                                     <p class="ml-2">
-                                        Authorities
+                                        {{ __('Authorities') }}
                                         <i class="fas fa-angle-left right"></i>
                                     </p>
                                 </a>
@@ -288,13 +305,13 @@
                                     <li class="nav-item">
                                         <a href="{{ route('createAuthority') }}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Create Authorities </p>
+                                            <p>{{ __('Create Authorities') }} </p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ route('authorities') }}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>All Authorites</p>
+                                            <p>{{ __('All Authorities') }}</p>
                                         </a>
                                     </li>
                                 </ul>
@@ -304,7 +321,7 @@
                             <a href="#" class="nav-link">
                                 <i class="ml-1 fas fa-user-tie"></i>
                                 <p class="ml-2">
-                                    Agents
+                                    {{ __('Agents') }}
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -312,27 +329,27 @@
                                 <li class="nav-item">
                                     <a href="{{ route('deployAgentGroups') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Create Agent Groups</p>
+                                        <p>{{ __('Create Agent Groups') }}</p>
                                     </a>
                                 </li>
                                 @if ($role == '3')
                                     <li class="nav-item">
                                         <a href="{{ route('createAgents') }}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Create Agents</p>
+                                            <p>{{ __('Create Agents') }}</p>
                                         </a>
                                     </li>
                                 @endif
                                 <li class="nav-item">
                                     <a href="{{ route('agentGroups') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Agent Groups</p>
+                                        <p>{{ __('Agent Groups') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('agents') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>All Agents</p>
+                                        <p>{{ __('All Agents') }}</p>
                                     </a>
                                 </li>
 
@@ -343,7 +360,7 @@
                             <a href="#" class="nav-link">
                                 <i class="ml-1 fas fa-user"></i>
                                 <p class="ml-2">
-                                    Users
+                                    {{ __('Users') }}
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -351,18 +368,18 @@
                                 <li class="nav-item">
                                     <a href="{{ route('users') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>All Users</p>
+                                        <p>{{ __('All Users') }}</p>
                                     </a>
                                 </li>
 
                             </ul>
                         </li>
-                        <li class="nav-header"><strong>SYSTEM OPERATIONS</strong></li>
+                        <li class="nav-header"><strong>{{ __('SYSTEM OPERATIONS') }}</strong></li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="ml-1 fas fa-envelope"></i>
                                 <p class="ml-2">
-                                    SMS Messages
+                                    {{ __('SMS Messages') }}
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -371,13 +388,13 @@
                                 <li class="nav-item">
                                     <a href="{{ route('createMessages') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Create SMS Messages</p>
+                                        <p>{{ __('Create SMS Messages') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('messages') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>See All SMS Messages</p>
+                                        <p>{{ __('See All SMS Messages') }}</p>
                                     </a>
                                 </li>
                             </ul>
@@ -386,7 +403,7 @@
                             <a href="#" class="nav-link">
                                 <i class="ml-1 fas fa-bell"></i>
                                 <p class="ml-2">
-                                    Notifications
+                                    {{ __('Notifications') }}
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -395,53 +412,23 @@
                                 <li class="nav-item">
                                     <a href="{{ route('createNotifications') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Create Notifications</p>
+                                        <p>{{ __('Create Notifications') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('notifications') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>See All Notifications</p>
+                                        <p>{{ __('See All Notifications') }}</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="ml-1 fas fa-database"></i>
-                                <p class="ml-2">
-                                    Databases
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Modify Databases</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Archive Databases</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
         </aside>
-
-
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -477,10 +464,10 @@
 
         <!-- Main Footer -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2022 <a href="{{ route('statistics') }}">EmergenCYP</a>.</strong>
-            All rights reserved.
+            <strong>{{ __('Copyright') }} &copy; 2022 <a href="{{ route('statistics') }}">EmergenCYP</a>.</strong>
+            {{ __('All rights reserved.') }}
             <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 1.0
+                <b>{{ __('Version') }}</b> 1.0
             </div>
         </footer>
     </div>
@@ -537,8 +524,10 @@
     <script src="{{ url('https://adminlte.io/themes/v3/plugins/jszip/jszip.min.js') }}"></script>
     <script src="{{ url('https://adminlte.io/themes/v3/plugins/pdfmake/pdfmake.min.js') }}"></script>
     <script src="{{ url('https://adminlte.io/themes/v3/plugins/pdfmake/vfs_fonts.js') }}"></script>
-    <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-    <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.html5.min.js') }}">
+    </script>
+    <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.print.min.js') }}">
+    </script>
     <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.colVis.min.js') }}">
     </script>
     {{-- <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
@@ -564,6 +553,21 @@
             });
         });
     </script>
+    <script>
+        $(document).click(function() {
+            if (jQuery('.lang-select').find('.flag-img').hasClass('lang-show')) {
+                jQuery('.lang-select').find('.flag-img').toggleClass('lang-show');
+            }
+        });
+        jQuery('.lang-selected').click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            jQuery('.lang-select').find('.flag-img').toggleClass('lang-show');
+
+        })
+    </script>
+
+
     <script src="{{ url('https://kit.fontawesome.com/3a82b90854.js') }}" crossorigin="anonymous"></script>
     <script src="{{ asset('js/password_generator.js') }}"></script>
     <script src="{{ url('//cdn.jsdelivr.net/npm/sweetalert2@11') }}"></script>

@@ -7,7 +7,7 @@
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
             <div class="card p-5 shadow p-3 mb-5 bg-white rounded">
                 <div class="card-title mt-3">
-                    <h3 class="create_staff_form text-bold">Edit Emergency Report: {{ $event->id }}</h3>
+                    <h3 class="create_staff_form text-bold">{{ __('Edit Emergency Report') }}: {{ $event->id }}</h3>
                     <hr class="create_staff_form">
                 </div>
                 <div class="card-body">
@@ -15,16 +15,25 @@
                         <div class="row">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="fullName"> Reporter Name</label>
-                                    <input style="font-size:16px; disabled type=" text" class="form-control"
-                                        id="description" name="description"
+                                    <label for="fullName"> {{ __('Reporter First Name') }}</label>
+                                    <input style="font-size:16px;  type=" text" class="form-control" id="description"
+                                        name="description"
                                         value=@if (isset($event->user)) {{ Str::title($event->user->name . ' ' . $event->user->surname) }}
-                                                    @else{{ Str::title($event->staff->name . ' ' . $event->staff->surname . ' ' . ' (Staff Category)') }} @endif>
+                                                    @else{{ Str::title($event->staff->name) }} @endif>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="dateTime">Report Date & Time</label>
+                                    <label for="fullName"> {{ __('Reporter Last Name') }}</label>
+                                    <input style="font-size:16px;  type=" text" class="form-control" id="description"
+                                        name="description"
+                                        value=@if (isset($event->user)) {{ Str::title($event->user->surname) }}
+                                                    @else{{ Str::title($event->staff->surname) }} @endif>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="dateTime">{{ __('Report Date & Time') }}</label>
                                     <input style="font-size:16px;" type="date" class="form-control" id="dateTime"
                                         name="created_at" value={{ $event->created_at }}>
                                 </div>
@@ -33,7 +42,7 @@
                         <div class="row gutters">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="fullName"> Emergency Type</label>
+                                    <label for="fullName"> {{ __('Emergency Type') }}</label>
                                     <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
                                         name="event_type_id">
                                         <option value="" selected>-</option>
@@ -48,7 +57,7 @@
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="fullName">Agent Group Deployed</label>
+                                    <label for="fullName">{{ __('Agent Group Deployed') }}</label>
                                     <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
                                         name="group_id">
                                         <option value="" selected>-</option>
@@ -66,7 +75,7 @@
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="form-group">
-                                    <label for="description">Event Description</label>
+                                    <label for="description">{{ __('Event Description') }}</label>
                                     <textarea style="font-size:16px;" type="text" class="form-control" id="description"
                                         name="description" rows="5">{{ $event->description }}</textarea>
                                 </div>
@@ -77,10 +86,9 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="text-right">
                             <button type="button" id="delete" class="form-buttons3"> <i
-                                    class="fas fa-trash mr-1"></i>Delete</button>
+                                    class="fas fa-trash mr-1"></i>{{ __('Delete') }}</button>
                             <button type="submit" id="save" class="p-2 form-buttons">
-                                <i class="far fa-edit mr-1"></i>Save
-                                Changes</button>
+                                <i class="far fa-edit mr-1"></i>{{ __('Update') }}</button>
                         </div>
                     </div>
                 </div>
