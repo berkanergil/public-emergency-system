@@ -4,8 +4,10 @@
         Current Reports</a>
 @endsection
 @php
+
 use Illuminate\Support\Facades\App;
 $locale = App::currentLocale();
+
 @endphp
 @section('statistic_content')
     <div class="card  p-5 shadow p-3 mb-5 bg-white rounded">
