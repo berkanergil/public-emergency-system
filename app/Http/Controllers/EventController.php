@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Models\Event;
 use App\Models\Staff;
 use App\Models\EventType;
-use App\DataTables\EventDataTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
