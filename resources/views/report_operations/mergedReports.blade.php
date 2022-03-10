@@ -36,7 +36,7 @@ $locale = App::currentLocale();
                         <tr>
                             <td><a target="_blank" href="{{ route('report', $event->id) }}">{{ $event->id }}</a>
                             </td>
-                            <td>Event 15</td>
+                            <td>Event 222</td>
                             @if ($locale == 'en')
                                 <td>{{ Str::title($event->eventType->title) }}</td>
                             @elseif ($locale == 'tr')
