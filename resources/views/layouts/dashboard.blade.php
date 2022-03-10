@@ -181,7 +181,7 @@
                             </ul>
 
 
-                            <<<<<<< HEAD </div>
+                        </div>
                     </li>
                     <li class="nav-item">
                         @include('layouts/languageSwitcher')
@@ -192,20 +192,11 @@
                             data-bs-content="Disabled popover">
                             <a class="nav-link" href="{{ route('logout') }}"><i
                                     class="fas fa-sign-out-alt"></i></a>
-                            =======
+                    </li>
+                </ul>
+            </nav>
         </div>
-        </li>
-        <li class="nav-item">
-            <span class="text-şef" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus"
-                data-bs-content="Disabled popover">
-                <a class="nav-link" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i></a>
-            </span>
-        </li>
-        </ul>
-        </nav>
-        <!-- /.navbar -->
 
-        <!-- Main Sidebar Container -->
         <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="{{ route('statistics') }}" class="brand-link">
@@ -213,7 +204,6 @@
                     class="brand-image img-circle">
                 <span class=" brand-text font-weight-light">
                     <p style="font-size: 15px;"> EmergenCyp</p>
-                    >>>>>>> 5bb9643bb1fd0afd42cb699a9fdc1374b8a051fa
                 </span>
             </a>
 
@@ -242,137 +232,89 @@
                     </div>
                 </div>
 
-                <<<<<<< HEAD <!-- Sidebar Menu -->
-                    <nav class="mt-2">
-                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                            data-accordion="false">
-                            <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-                            <li class="nav-header"> <strong> {{ __('STATISTICS & INSIGHTS') }}</strong></li>
-
-                            <li class="nav-item menu-open">
-                                <a href="{{ route('statistics') }}" class=" nav-link active">
-                                    <i class="ml-1 fas fa-chart-line"></i>
-                                    <p class="ml-1">
-                                        {{ __('Statistics & Insights') }}
-                                    </p>
-                                </a>
-
-                            </li>
-                            <li class="nav-header"> <strong> {{ __('EVENT OPERATIONS') }}</strong></li>
-                            <li class="nav-item">
-                                <a href="{{ route('newReports', ['id' => $staff->id]) }}" class="nav-link">
-                                    <i class="ml-1 fas fa-search-location"></i>
-                                    <p class="ml-1">
-                                        {{ __('New Reports') }}
-                                        <span class="right badge badge-danger ml-1">{{ __('Live Map') }}</span>
-                                    </p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="ml-1 fas fa-folder-open"></i>
-                                    <p class="ml-1">
-                                        {{ __('Report Archive') }}
-                                        <i class="fas fa-angle-left right"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('currentReports') }}" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>{{ __('Current Reports') }}</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('pastReports') }}" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>{{ __('Past Reports') }}</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('mergedReports') }}" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>{{ __('Merged Reports') }}</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="nav-header"><strong>{{ __('USER OPERATIONS') }}</strong></li>
-                            @if ($role == '3')
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="ml-1 fas fa-user-tie"></i>
-                                        <p class="ml-2">
-                                            {{ __('Authorities') }}
-                                            =======
-                                            <!-- Sidebar Menu -->
-                                            <nav class="mt-2">
-                                                <ul class="nav nav-pills nav-sidebar flex-column"
-                                                    data-widget="treeview" role="menu" data-accordion="false">
-                                                    <!-- Add icons to the links using the .nav-icon class
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
-                                                    <li class="nav-header"> <strong> STATISTICS & INSIGHTS</strong>
-                                                    </li>
+                        <li class="nav-header"> <strong> {{ __('STATISTICS & INSIGHTS') }}</strong></li>
 
-                                                    <li class="nav-item menu-open">
-                                                        <a href="{{ route('statistics') }}"
-                                                            class=" nav-link active">
-                                                            <i class="ml-1 fas fa-chart-line"></i>
-                                                            <p class="ml-1">
-                                                                Statistics & Insights
-                                                            </p>
-                                                        </a>
+                        <li class="nav-item menu-open">
+                            <a href="{{ route('statistics') }}" class=" nav-link active">
+                                <i class="ml-1 fas fa-chart-line"></i>
+                                <p class="ml-1">
+                                    {{ __('Statistics & Insights') }}
+                                </p>
+                            </a>
 
-                                                    </li>
-                                                    <li class="nav-header"> <strong> EVENT OPERATIONS</strong></li>
-                                                    <li class="nav-item">
-                                                        <a href="{{ route('newReports', ['id' => $staff->id]) }}"
-                                                            class="nav-link">
-                                                            <i class="ml-1 fas fa-search-location"></i>
-                                                            <p class="ml-1">
-                                                                New Reports
-                                                                <span class="right badge badge-danger ml-1">Live
-                                                                    Map</span>
-                                                            </p>
-                                                        </a>
-                                                    </li>
+                        </li>
+                        <li class="nav-header"> <strong> {{ __('EVENT OPERATIONS') }}</strong></li>
+                        <li class="nav-item">
+                            <a href="{{ route('newReports', ['id' => $staff->id]) }}" class="nav-link">
+                                <i class="ml-1 fas fa-search-location"></i>
+                                <p class="ml-1">
+                                    {{ __('New Reports') }}
+                                    <span class="right badge badge-danger ml-1">{{ __('Live Map') }}</span>
+                                </p>
+                            </a>
+                        </li>
 
-                                                    <li class="nav-item">
-                                                        <a href="#" class="nav-link">
-                                                            <i class="ml-1 fas fa-folder-open"></i>
-                                                            <p class="ml-1">
-                                                                Report Archive
-                                                                >>>>>>> 5bb9643bb1fd0afd42cb699a9fdc1374b8a051fa
-                                                                <i class="fas fa-angle-left right"></i>
-                                                            </p>
-                                                        </a>
-                                                        <ul class="nav nav-treeview">
-                                                            <li class="nav-item">
-                                                                <a href="{{ route('currentReports') }}"
-                                                                    class="nav-link">
-                                                                    <i class="far fa-circle nav-icon"></i>
-                                                                    <<<<<<< HEAD <p>{{ __('Create Authorities') }}
-                                        </p>
-                                        =======
-                                        <p>Current Reports</p>
-                                        >>>>>>> 5bb9643bb1fd0afd42cb699a9fdc1374b8a051fa
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="ml-1 fas fa-folder-open"></i>
+                                <p class="ml-1">
+                                    {{ __('Report Archive') }}
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('currentReports') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('Current Reports') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('pastReports') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <<<<<<< HEAD <p>{{ __('All Authorities') }}</p>
-                                            =======
-                                            <p>Past Reports</p>
-                                            >>>>>>> 5bb9643bb1fd0afd42cb699a9fdc1374b8a051fa
+                                        <p>{{ __('Past Reports') }}</p>
                                     </a>
                                 </li>
-
-                        </ul>
+                                <li class="nav-item">
+                                    <a href="{{ route('mergedReports') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('Merged Reports') }}</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
+
+                        <li class="nav-header"><strong>{{ __('USER OPERATIONS') }}</strong></li>
+                        @if ($role == '3')
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="ml-1 fas fa-user-tie"></i>
+                                    <p class="ml-2">
+                                        {{ __('Authorities') }}
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('createAuthority') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>{{ __('Create Authorities') }} </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('authorities') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>{{ __('All Authorites') }}</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                         @endif
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -388,268 +330,103 @@
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>{{ __('Create Agent Groups') }}</p>
                                     </a>
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item">
-                                            <a href="{{ route('createAuthority') }}" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Create Authorities </p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{ route('authorities') }}" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>All Authorites</p>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </li>
+                                @if ($role == '3')
+                                    <li class="nav-item">
+                                        <a href="{{ route('createAgents') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>{{ __('Create Agents') }}</p>
+                                        </a>
+                                    </li>
                                 @endif
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="ml-1 fas fa-user-tie"></i>
-                                        <p class="ml-2">
-                                            Agents
-                                            <i class="fas fa-angle-left right"></i>
-                                        </p>
+                                    <a href="{{ route('agentGroups') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('Agent Groups') }}</p>
                                     </a>
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item">
-                                            <a href="{{ route('deployAgentGroups') }}" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <<<<<<< HEAD <p>{{ __('Create Agents') }}</p>
-                                            </a>
-                                        </li>
-                                        @endif
-                                        <li class="nav-item">
-                                            <a href="{{ route('agentGroups') }}" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>{{ __('Agent Groups') }}</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{ route('agents') }}" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>{{ __('All Agents') }}</p>
-                                            </a>
-                                        </li>
-
-
-                                    </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="ml-1 fas fa-user"></i>
-                                        <p class="ml-2">
-                                            {{ __('Users') }}
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
+                                    <a href="{{ route('agents') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('All Agents') }}</p>
                                     </a>
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item">
-                                            <a href="{{ route('users') }}" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>{{ __('All Users') }}</p>
-                                            </a>
-                                        </li>
-
-                                    </ul>
                                 </li>
-                                <li class="nav-header"><strong>{{ __('SYSTEM OPERATIONS') }}</strong></li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="ml-1 fas fa-envelope"></i>
-                                        <p class="ml-2">
-                                            {{ __('SMS Messages') }}
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
-                                    </a>
 
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item">
-                                            <a href="{{ route('createMessages') }}" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>{{ __('Create SMS Messages') }}</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{ route('messages') }}" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>{{ __('See All SMS Messages') }}</p>
-                                            </a>
-                                        </li>
-                                    </ul>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="ml-1 fas fa-user"></i>
+                                <p class="ml-2">
+                                    {{ __('Users') }}
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('users') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('All Users') }}</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-header"><strong>{{ __('SYSTEM OPERATIONS') }}</strong></li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="ml-1 fas fa-envelope"></i>
+                                <p class="ml-2">
+                                    {{ __('SMS Messages') }}
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('createMessages') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('Create SMS Messages') }}</p>
+                                    </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="ml-1 fas fa-bell"></i>
-                                        <p class="ml-2">
-                                            {{ __('Notifications') }}
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
+                                    <a href="{{ route('messages') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('See All SMS Messages') }}</p>
                                     </a>
-
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item">
-                                            <a href="{{ route('createNotifications') }}" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>{{ __('Create Notifications') }}</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{ route('notifications') }}" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>{{ __('See All Notifications') }}</p>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </li>
                             </ul>
-                    </nav>
-                    <!-- /.sidebar-menu -->
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="ml-1 fas fa-bell"></i>
+                                <p class="ml-2">
+                                    {{ __('Notifications') }}
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('createNotifications') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('Create Notifications') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('notifications') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('See All Notifications') }}</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
-        </aside>
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                        </div><!-- /.col -->
-                        <!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </div>
-            <!-- /.content-header -->
-            =======
-            <p>Create Agent Groups</p>
-            </a>
-            </li>
-            @if ($role == '3')
-                <li class="nav-item">
-                    <a href="{{ route('createAgents') }}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Create Agents</p>
-                    </a>
-                </li>
-            @endif
-            <li class="nav-item">
-                <a href="{{ route('agentGroups') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Agent Groups</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('agents') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>All Agents</p>
-                </a>
-            </li>
-
-
-            </ul>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="ml-1 fas fa-user"></i>
-                    <p class="ml-2">
-                        Users
-                        <i class="right fas fa-angle-left"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('users') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>All Users</p>
-                        </a>
-                    </li>
-
-                </ul>
-            </li>
-            <li class="nav-header"><strong>SYSTEM OPERATIONS</strong></li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="ml-1 fas fa-envelope"></i>
-                    <p class="ml-2">
-                        SMS Messages
-                        <i class="right fas fa-angle-left"></i>
-                    </p>
-                </a>
-
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('createMessages') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Create SMS Messages</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('messages') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>See All SMS Messages</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="ml-1 fas fa-bell"></i>
-                    <p class="ml-2">
-                        Notifications
-                        <i class="right fas fa-angle-left"></i>
-                    </p>
-                </a>
-
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('createNotifications') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Create Notifications</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('notifications') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>See All Notifications</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="ml-1 fas fa-database"></i>
-                    <p class="ml-2">
-                        Databases
-                        <i class="right fas fa-angle-left"></i>
-                    </p>
-                </a>
-
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Modify Databases</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Archive Databases</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            >>>>>>> 5bb9643bb1fd0afd42cb699a9fdc1374b8a051fa
-
-            </ul>
-            </nav>
-            <!-- /.sidebar-menu -->
-        </div>
-        <!-- /.sidebar -->
         </aside>
 
 
@@ -687,22 +464,7 @@
         </aside>
         <!-- /.control-sidebar -->
 
-        <!-- Main Footer -->
-        <footer class="main-footer">
-            <strong>Copyright &copy; 2022 <a href="{{ route('statistics') }}">EmergenCYP</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 1.0
-            </div>
-        </footer>
-    </div>
-    <<<<<<< HEAD <!-- /.content-wrapper -->
 
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
 
         <!-- Main Footer -->
         <footer class="main-footer">
@@ -712,186 +474,185 @@
                 <b>{{ __('Version') }}</b> 1.0
             </div>
         </footer>
-        =======
-        >>>>>>> 5bb9643bb1fd0afd42cb699a9fdc1374b8a051fa
-        </div>
-        <!-- ./wrapper -->
 
-        <!-- REQUIRED SCRIPTS -->
+    </div>
+    <!-- ./wrapper -->
 
-        <!-- jQuery -->
-        <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-        <!-- jQuery UI 1.11.4 -->
-        <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-        <script>
-            $.widget.bridge('uibutton', $.ui.button)
-        </script>
-        <!-- Bootstrap 4 -->
-        <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-        <!-- ChartJS -->
-        <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
-        <!-- Sparkline -->
-        <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
-        <!-- JQVMap -->
-        <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-        <script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
-        <!-- jQuery Knob Chart -->
-        <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
-        <!-- daterangepicker -->
-        <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
-        <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
-        <!-- Tempusdominus Bootstrap 4 -->
-        <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-        <!-- Summernote -->
-        <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
-        <!-- overlayScrollbars -->
-        <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+    <!-- REQUIRED SCRIPTS -->
 
-        <!-- AdminLTE for demo purposes -->
-        <script src="{{ asset('dist/js/demo.js') }}"></script>
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
-        <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}">
-        </script>
-        <script
-                src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}">
-        </script>
-        <script
-                src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}">
-        </script>
-        <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}">
-        </script>
-        <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}">
-        </script>
-        <script src="{{ url('https://adminlte.io/themes/v3/plugins/jszip/jszip.min.js') }}"></script>
-        <script src="{{ url('https://adminlte.io/themes/v3/plugins/pdfmake/pdfmake.min.js') }}"></script>
-        <script src="{{ url('https://adminlte.io/themes/v3/plugins/pdfmake/vfs_fonts.js') }}"></script>
-        <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.html5.min.js') }}">
-        </script>
-        <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.print.min.js') }}">
-        </script>
-        <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.colVis.min.js') }}">
-        </script>
-        {{-- <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
+    <!-- jQuery -->
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- ChartJS -->
+    <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
+    <!-- Sparkline -->
+    <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
+    <!-- JQVMap -->
+    <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
+    <script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+    <!-- daterangepicker -->
+    <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+    <!-- Summernote -->
+    <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
+    <!-- overlayScrollbars -->
+    <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{ asset('dist/js/demo.js') }}"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+    <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}">
+    </script>
+    <script
+        src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}">
+    </script>
+    <script
+        src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}">
+    </script>
+    <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}">
+    </script>
+    <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}">
+    </script>
+    <script src="{{ url('https://adminlte.io/themes/v3/plugins/jszip/jszip.min.js') }}"></script>
+    <script src="{{ url('https://adminlte.io/themes/v3/plugins/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ url('https://adminlte.io/themes/v3/plugins/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.html5.min.js') }}">
+    </script>
+    <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.print.min.js') }}">
+    </script>
+    <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.colVis.min.js') }}">
+    </script>
+    {{-- <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
     <script src="{{ asset('vendor/datepicker/moment.min.js') }}"></script>
     <script src="{{ asset('vendor/datepicker/daterangepicker.js') }}"></script> --}}
-        <!-- Page specific script -->
-        <script>
-            $(function() {
-                $("#example1").DataTable({
-                    "dom": 'Bfrtip',
-                    "processing": true,
-                    "serverSide": true,
-                    "ajax": "{{ route('reports.data') }}",
-                    "columnDefs": [{
-                            targets: [0, 1, 2, 3, 4, 5, 6]
-                        },
-                        {
-                            "data": "id",
-                            targets: [0],
-                            render: function(data, type) {
-                                if (type === 'display') {
-                                    return '<a target="_blank" href="report/' + data + '">' + data +
-                                        '</a>';
-                                }
-                                return data;
+    <!-- Page specific script -->
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                "dom": 'Bfrtip',
+                "processing": true,
+                "serverSide": true,
+                "ajax": "{{ route('reports.data') }}",
+                "columnDefs": [{
+                        targets: [0, 1, 2, 3, 4, 5, 6]
+                    },
+                    {
+                        "data": "id",
+                        targets: [0],
+                        render: function(data, type) {
+                            if (type === 'display') {
+                                return '<a target="_blank" href="report/' + data + '">' + data +
+                                    '</a>';
                             }
-                        },
-                        {
-                            "data": "type",
-                            targets: [1]
-                        },
-                        {
-                            "data": "user",
-                            targets: [2]
-                        },
-                        {
-                            "data": "staff",
-                            targets: [3]
-                        },
-                        {
-                            "data": "statusid",
-                            targets: [4],
-                            render: function(data, type) {
-                                let status = "Not Handled";
-                                if (type === 'display') {
-                                    let className = "bg-danger";
-                                    if (data === 2) {
-                                        className = "bg-warning";
-                                        status = "Being Handled";
-                                    }
-                                    return status;
+                            return data;
+                        }
+                    },
+                    {
+                        "data": "type",
+                        targets: [1]
+                    },
+                    {
+                        "data": "user",
+                        targets: [2]
+                    },
+                    {
+                        "data": "staff",
+                        targets: [3]
+                    },
+                    {
+                        "data": "statusid",
+                        targets: [4],
+                        render: function(data, type) {
+                            let status = "Not Handled";
+                            if (type === 'display') {
+                                let className = "bg-danger";
+                                if (data === 2) {
+                                    className = "bg-warning";
+                                    status = "Being Handled";
                                 }
                                 return status;
                             }
-                        },
-                        {
-                            "data": "location",
-                            targets: [5],
-                            render: function(data, type) {
-                                let loc = data.lat.substr(0, 7) + ' - ' + data.lon.substr(0, 7);
-                                if (type === 'display') {
-                                    return '<a target="_blank" href="https://www.google.com/maps/search/' +
-                                        data.lat + ',' + data.lon + '">' + loc + '</a>';
-                                }
-                                return loc;
-                            }
-                        },
-                        {
-                            "data": "date",
-                            targets: [6]
-                        },
-                    ],
-                    "rowCallback": function(row, data, index) {
-                        if (data["statusid"] === 3) {
-                            $("td:eq(4)", row).addClass("bg-danger");
-                        } else if (data["statusid"] === 2) {
-                            $("td:eq(4)", row).addClass("bg-warning");
+                            return status;
                         }
                     },
-                    "responsive": true,
-                    "lengthChange": false,
-                    "autoWidth": false,
-                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-                }).buttons().container().appendTo('#example1 .col-md-6:eq(0)');
-                $('#example2').DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": false,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": false,
-                    "responsive": true,
-                });
+                    {
+                        "data": "location",
+                        targets: [5],
+                        render: function(data, type) {
+                            let loc = data.lat.substr(0, 7) + ' - ' + data.lon.substr(0, 7);
+                            if (type === 'display') {
+                                return '<a target="_blank" href="https://www.google.com/maps/search/' +
+                                    data.lat + ',' + data.lon + '">' + loc + '</a>';
+                            }
+                            return loc;
+                        }
+                    },
+                    {
+                        "data": "date",
+                        targets: [6]
+                    },
+                ],
+                "rowCallback": function(row, data, index) {
+                    if (data["statusid"] === 3) {
+                        $("td:eq(4)", row).addClass("bg-danger");
+                    } else if (data["statusid"] === 2) {
+                        $("td:eq(4)", row).addClass("bg-warning");
+                    }
+                },
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1 .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
             });
-        </script>
-        <script>
-            $(document).click(function() {
-                if (jQuery('.lang-select').find('.flag-img').hasClass('lang-show')) {
-                    jQuery('.lang-select').find('.flag-img').toggleClass('lang-show');
-                }
-            });
-            jQuery('.lang-selected').click(function(e) {
-                e.preventDefault();
-                e.stopPropagation();
+        });
+    </script>
+    <script>
+        $(document).click(function() {
+            if (jQuery('.lang-select').find('.flag-img').hasClass('lang-show')) {
                 jQuery('.lang-select').find('.flag-img').toggleClass('lang-show');
+            }
+        });
+        jQuery('.lang-selected').click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            jQuery('.lang-select').find('.flag-img').toggleClass('lang-show');
+        })
+    </script>
 
-            })
-        </script>
 
+    <script src="{{ url('https://kit.fontawesome.com/3a82b90854.js') }}" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/password_generator.js') }}"></script>
+    <script src="{{ url('//cdn.jsdelivr.net/npm/sweetalert2@11') }}"></script>
 
-        <script src="{{ url('https://kit.fontawesome.com/3a82b90854.js') }}" crossorigin="anonymous"></script>
-        <script src="{{ asset('js/password_generator.js') }}"></script>
-        <script src="{{ url('//cdn.jsdelivr.net/npm/sweetalert2@11') }}"></script>
-
-        <script src="{{ asset('sweetalert2.min.js') }}"></script>
-        <script src="{{ url('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js') }}"></script>
-        <script src="{{ url('https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=') }}"
-                crossorigin="anonymous"></script>
-        <!-- AdminLTE App -->
-        <script src="{{ asset('dist/js/adminlte.js') }}"></script>
+    <script src="{{ asset('sweetalert2.min.js') }}"></script>
+    <script src="{{ url('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js') }}"></script>
+    <script
+        src="{{ url('https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=') }}"
+        crossorigin="anonymous"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('dist/js/adminlte.js') }}"></script>
 </body>
 
 @yield('sweetjs')

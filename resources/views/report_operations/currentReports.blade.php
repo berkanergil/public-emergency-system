@@ -7,6 +7,8 @@
     @php
     use Illuminate\Support\Facades\App;
     $locale = App::currentLocale();
+    Log::info($locale);
+
     @endphp
     <div class="card  p-5 shadow p-3 mb-5 bg-white rounded">
         <div class="card-title">
@@ -29,15 +31,17 @@
                     </tr>
                 </thead>
                 <tbody class="table-light">
-                    {{-- @foreach ($eventObject->currentEvents() as $event)
+                    @foreach ($eventObject->currentEvents() as $event)
                         <tr>
                             <td><a target="_blank" href="{{ route('report', $event->id) }}">{{ $event->id }}</a>
                             </td>
+
                             @if ($locale == 'en')
                                 <td>{{ Str::title($event->eventType->title) }}</td>
-                            @elseif ($locale == 'tr')
+                            @else
                                 <td>{{ Str::title($event->eventType->tr) }}</td>
                             @endif
+
                             <td>
                                 @if (isset($event->user))
                                     {{ Str::title($event->user->name . ' ' . $event->user->surname) }}
@@ -71,7 +75,7 @@
                             </td>
                             <td>{{ $event->created_at }}</td>
                         </tr>
-                    @endforeach --}}
+                    @endforeach
                 </tbody>
             </table>
         </div>
