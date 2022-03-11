@@ -12,13 +12,13 @@ const app = new Vue({
     mounted() {
         window.Echo.channel('new-event')
             .listen('.event.created', (e) => {
-                $("#example1").DataTable({
+                $("#currentReports").DataTable({
                     retrieve: true,
                 }).ajax.reload()
             }),
-        window.Echo.channel(`updated-event`)
+            window.Echo.channel(`updated-event`)
             .listen('.event.updated', (e) => {
-                $("#example1").DataTable({
+                $("#currentReports").DataTable({
                     retrieve: true,
                 }).ajax.reload()
             })

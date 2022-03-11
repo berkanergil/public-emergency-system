@@ -1,7 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('statistic_content')
-
     <div class="card  p-5 shadow p-3 mb-5 bg-white rounded">
         <div class="card-title">
             <h2 class="create_staff_form text-bold">All Notifications</h2>
@@ -9,7 +8,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <table id="example1" class="table table-hover table-bordered text-center">
+            <table id="notifications" class="table table-hover table-bordered text-center">
                 <thead>
                     <tr class="table-success">
                         <th>ID</th>
@@ -29,7 +28,4 @@
         </div>
         <!-- /.card-body -->
     </div>
-
-
-
 @endsection

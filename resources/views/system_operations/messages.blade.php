@@ -12,7 +12,7 @@ use App\Models\Message;
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <table id="example1" class="table table-hover table-bordered text-center">
+            <table id="messages" class="table table-hover table-bordered text-center">
                 <thead>
                     <tr class="table-light">
                         <th>{{ __('ID') }}</th>

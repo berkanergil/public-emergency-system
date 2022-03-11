@@ -10,7 +10,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <table id="example1" class="table table-hover table-bordered text-center">
+            <table id="users" class="table table-hover table-bordered text-center">
                 <thead>
                     <tr class="table-light">
                         <th class="create_staff_form">{{ __('ID') }}</th>

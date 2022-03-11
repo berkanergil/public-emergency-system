@@ -15,7 +15,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <table id="example1" class="table table-hover table-bordered text-center">
+            <table id="pastReports" class="table table-hover table-bordered text-center">
                 <thead>
                     <tr class="table-info">
                         <th>{{ __('ID') }}</th>

@@ -435,7 +435,7 @@ Route::prefix('admin/systemOperations/')->group(function () {
     Route::get('/createMessages', function (Request $request) {
         $messageObject = new Message();
         return view("system_operations.createMessages", compact("messageObject"));
-    })->name('createAgents');
+    })->name('createMessages');
 
     Route::post('/createMessages', function (Request $request) {
         $messageObject = new MessagesController;
@@ -489,4 +489,4 @@ Route::get('admin/createNotifications', [App\Http\Controllers\HomeController::cl
 Route::get('admin/notifications', [App\Http\Controllers\HomeController::class, 'notifications'])->name('notifications');
 Route::get('/emergencyp', [App\Http\Controllers\HomeController::class, 'emergencyp'])->name('emergencyp');
 
-Route::get('reports/current/data', [EventController::class,'reportData'])->name('reports.data');
+Route::get('reports/current/data', [EventController::class, 'reportData'])->name('reports.data');

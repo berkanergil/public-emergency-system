@@ -17,7 +17,7 @@ $locale = App::currentLocale();
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <table id="example1" class="table table-hover table-bordered text-center">
+            <table id="mergedReports" class="table table-hover table-bordered text-center">
                 <thead>
                     <tr class="table-primary">
                         <th>{{ __('ID') }}</th>

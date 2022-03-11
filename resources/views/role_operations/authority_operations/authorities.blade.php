@@ -12,7 +12,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <table id="example1" class="table table-hover table-bordered text-center">
+            <table id="authorities" class="table table-hover table-bordered text-center">
                 <thead>
                     <tr class="table-success">
                         <th class="create_staff_form">{{ __('ID') }}</th>

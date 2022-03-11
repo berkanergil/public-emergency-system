@@ -15,7 +15,7 @@ $locale = App::currentLocale();
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <table id="example1" class="table table-hover table-bordered text-center">
+            <table id="agents" class="table table-hover table-bordered text-center">
                 <thead>
                     <tr class="table-primary">
                         <th class="create_staff_form">{{ __('ID') }}</th>

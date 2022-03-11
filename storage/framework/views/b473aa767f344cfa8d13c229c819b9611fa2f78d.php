@@ -10,14 +10,14 @@
     Log::info($locale);
 
     ?>
-    <div class="card  p-5 shadow p-3 mb-5 bg-white rounded">
+    <div class="card p-5 shadow p-3 mb-5 bg-white rounded">
         <div class="card-title">
             <h2 class="create_staff_form text-bold"><?php echo e(__('Current Reports')); ?></h2>
             <hr class="create_staff_form">
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <table id="example1" class="table table-hover table-bordered text-center">
+            <table id="currentReports" class="table table-hover table-bordered text-center">
                 <thead>
                     <tr class="table-primary">
                         <th>ID</th>
@@ -62,7 +62,7 @@
                                         Not Handled
                                     <?php endif; ?>
                                 </td>
-                            <?php elseif($locale == 'tr'): ?>
+                            <?php else: ?>
                                 <td class=<?php echo e($event->event_status_id == 2 ? 'bg-warning' : 'bg-danger'); ?>>
                                     <?php if($event->event_status_id == 2): ?>
                                         Müdahale Ediliyor

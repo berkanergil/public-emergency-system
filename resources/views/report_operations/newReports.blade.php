@@ -14,8 +14,8 @@
 
  @section('statistic_content')
      <div class="container-fluid">
-         <div class="card px-5 py-3">
-             <div class="card-title pt-2">
+         <div class="card px-5">
+             <div class="card-title">
                  <h3 class="create_staff_form">{{ __('New Reports') }}</h4>
                      <hr class="create_staff_form">
              </div>
