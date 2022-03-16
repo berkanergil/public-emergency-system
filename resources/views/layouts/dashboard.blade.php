@@ -106,6 +106,7 @@
 
     <div id="app">
         <div class="wrapper">
+<<<<<<< HEAD
             <div class="preloader flex-column justify-content-center align-items-center">
                 <img class="animation__shake" src="{{ asset('images/emergencyp.png') }}" alt="EmergenCyp Logo"
                     height="160" width="450">
@@ -193,6 +194,8 @@
                     </li>
                 </ul>
             </nav>
+=======
+>>>>>>> 2184c18202949313431665385137313a99a55d3e
 
             <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
@@ -461,7 +464,23 @@
             </aside>
             <!-- /.control-sidebar -->
 
+<<<<<<< HEAD
 
+=======
+        
+
+    </div>
+    <!-- Main Footer -->
+        <footer class="main-footer">
+            <strong>{{ __('Copyright') }} &copy; 2022 <a href="{{ route('statistics') }}">EmergenCYP</a>.</strong>
+            {{ __('All rights reserved.') }}
+            <div class="float-right d-none d-sm-inline-block">
+                <b>{{ __('Version') }}</b> 1.0
+            </div>
+        </footer>
+    <!-- ./wrapper -->
+    </div>
+>>>>>>> 2184c18202949313431665385137313a99a55d3e
 
             <!-- Main Footer -->
             <footer class="main-footer">
@@ -536,6 +555,7 @@
         {{-- <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
     <script src="{{ asset('vendor/datepicker/moment.min.js') }}"></script>
     <script src="{{ asset('vendor/datepicker/daterangepicker.js') }}"></script> --}}
+<<<<<<< HEAD
         <!-- Page specific script -->
         <script>
             $(function() {
@@ -582,6 +602,52 @@
                                         status = "Being Handled";
                                     }
                                     return status;
+=======
+    <!-- Page specific script -->
+    <script>
+        $(function() {
+            $("#currentReports").DataTable({
+                "dom": 'Bfrtip',
+                "processing": true,
+                "serverSide": true,
+                "ajax": "{{ route('reports.data') }}",
+                "columnDefs": [{
+                        targets: [0, 1, 2, 3, 4, 5, 6]
+                    },
+                    {
+                        "data": "id",
+                        targets: [0],
+                        render: function(data, type) {
+                            if (type === 'display') {
+                                return '<a target="_blank" href="report/' + data + '">' + data +
+                                    '</a>';
+                            }
+                            return data;
+                        }
+                    },
+                    {
+                        "data": "type",
+                        targets: [1]
+                    },
+                    {
+                        "data": "user",
+                        targets: [2]
+                    },
+                    {
+                        "data": "staff",
+                        targets: [3]
+                    },
+                    {
+                        "data": "status",
+                        targets: [4],
+                        render: function(data, type) {
+                            let status = data.locale === 'en' ? "Not Handled" : "Müdahale Edilmedi";
+                            if (type === 'display') {
+                                let className = "bg-danger";
+                                if (data.id === 2) {
+                                    className = "bg-warning";
+                                    status = data.locale === 'en' ? "Being Handled" : "Müdahale Ediliyor";
+>>>>>>> 2184c18202949313431665385137313a99a55d3e
                                 }
                                 return status;
                             }
@@ -610,6 +676,7 @@
                             $("td:eq(4)", row).addClass("bg-warning");
                         }
                     },
+<<<<<<< HEAD
                     "responsive": true,
                     "lengthChange": false,
                     "autoWidth": false,
@@ -624,6 +691,33 @@
                     "autoWidth": false,
                     "responsive": true,
                 });
+=======
+                    {
+                        "data": "date",
+                        targets: [6]
+                    },
+                ],
+                "rowCallback": function(row, data, index) {
+                    if (data["status"].id === 3) {
+                        $("td:eq(4)", row).addClass("bg-danger");
+                    } else if (data["status"].id === 2) {
+                        $("td:eq(4)", row).addClass("bg-warning");
+                    }
+                },
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#currentReports .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+>>>>>>> 2184c18202949313431665385137313a99a55d3e
             });
         </script>
         <script>
@@ -639,10 +733,16 @@
             })
         </script>
 
+<<<<<<< HEAD
 
         <script src="{{ url('https://kit.fontawesome.com/3a82b90854.js') }}" crossorigin="anonymous"></script>
         <script src="{{ asset('js/password_generator.js') }}"></script>
         <script src="{{ url('//cdn.jsdelivr.net/npm/sweetalert2@11') }}"></script>
+=======
+    <script src="{{ url('https://kit.fontawesome.com/3a82b90854.js') }}" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/password_generator.js') }}"></script>
+    <script src="{{ url('//cdn.jsdelivr.net/npm/sweetalert2@11') }}"></script>
+>>>>>>> 2184c18202949313431665385137313a99a55d3e
 
         <script src="{{ asset('sweetalert2.min.js') }}"></script>
         <script src="{{ url('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js') }}"></script>

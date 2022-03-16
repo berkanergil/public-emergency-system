@@ -4,8 +4,7 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 
-// Vue.component('event-status', require('./components/EventStatus.vue').default);
-// Vue.component('event-table', require('./components/EventTable.vue').default);
+Vue.component('live-map', require('./components/Map.vue').default);
 
 const app = new Vue({
     el: '#app',
@@ -14,9 +13,9 @@ const app = new Vue({
             .listen('.event.created', (e) => {
                 $("#currentReports").DataTable({
                     retrieve: true,
-                }).ajax.reload()
+                }).ajax.reload();
             }),
-            window.Echo.channel(`updated-event`)
+        window.Echo.channel(`updated-event`)
             .listen('.event.updated', (e) => {
                 $("#currentReports").DataTable({
                     retrieve: true,
