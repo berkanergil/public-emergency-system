@@ -106,96 +106,6 @@
 
     <div id="app">
         <div class="wrapper">
-            <div class="preloader flex-column justify-content-center align-items-center">
-                <img class="animation__shake" src="{{ asset('images/emergencyp.png') }}" alt="EmergenCyp Logo"
-                    height="160" width="450">
-            </div>
-
-            <!-- Navbar -->
-            <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-                <!-- Left navbar links -->
-                <!-- Right navbar links -->
-                <ul class="navbar-nav ">
-                    <li>
-                        <a class="nav-link" data-widget="pushmenu" href="#sidebar" role="button"><i
-                                class="fas fa-bars"></i></a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-
-                        <a class="nav-link btn-group dropwdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" href=""><i class="fa-solid fa-bell"></i></a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <ul class="list-group">
-                                <li class="list-group-item border-top-0">
-                                    <button class="dropdown-item" type="button">
-                                        <h6><i class="far fa-bell"></i> +1 Report </h6>
-                                    </button>
-                                </li>
-                                <li class="list-group-item">
-                                    <button class="dropdown-item" type="button">
-                                        <h6><i class="far fa-bell"></i>+1 Report </h6>
-                                    </button>
-                                </li>
-                                <li class="list-group-item border-bottom-0">
-                                    <button class="dropdown-item" type="button">
-                                        <h6><i class="far fa-bell"></i> +1 Report </h6>
-                                    </button>
-                                </li>
-                                <li class="text-center">
-                                    <a href="{{ route('chatPage') }}" class="dropdown-item button1">
-                                        <i class="far fa-paper-plane"></i> See All
-                                    </a>
-                                </li>
-                            </ul>
-
-
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn-group dropwdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" href=""><i class="fas fa-inbox"></i></a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <ul class="list-group">
-                                <li class="list-group-item border-top-0">
-                                    <button class="dropdown-item" type="button">
-                                        <h6><i class="far fa-envelope"></i> Tolgahan Dayanıklı </h6>
-                                    </button>
-                                </li>
-                                <li class="list-group-item">
-                                    <button class="dropdown-item" type="button">
-                                        <h6><i class="far fa-envelope"></i> Tolgahan Dayanıklı </h6>
-                                    </button>
-                                </li>
-                                <li class="list-group-item border-bottom-0">
-                                    <button class="dropdown-item" type="button">
-                                        <h6><i class="far fa-envelope"></i> Tolgahan Dayanıklı </h6>
-                                    </button>
-                                </li>
-                                <li class="text-center">
-                                    <a href="{{ route('chatPage') }}" class="dropdown-item button1">
-                                        <i class="far fa-paper-plane"></i> See All
-                                    </a>
-                                </li>
-                            </ul>
-
-
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        @include('layouts/languageSwitcher')
-                    </li>
-
-                    <li class="nav-item">
-                        <span class="text-şef" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus"
-                            data-bs-content="Disabled popover">
-                            <a class="nav-link" href="{{ route('logout') }}"><i
-                                    class="fas fa-sign-out-alt"></i></a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
 
         <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
@@ -466,7 +376,10 @@
 
 
 
-        <!-- Main Footer -->
+        
+
+    </div>
+    <!-- Main Footer -->
         <footer class="main-footer">
             <strong>{{ __('Copyright') }} &copy; 2022 <a href="{{ route('statistics') }}">EmergenCYP</a>.</strong>
             {{ __('All rights reserved.') }}
@@ -474,9 +387,8 @@
                 <b>{{ __('Version') }}</b> 1.0
             </div>
         </footer>
-
-    </div>
     <!-- ./wrapper -->
+    </div>
 
     <!-- REQUIRED SCRIPTS -->
 
@@ -541,7 +453,7 @@
     <!-- Page specific script -->
     <script>
         $(function() {
-            $("#example1").DataTable({
+            $("#currentReports").DataTable({
                 "dom": 'Bfrtip',
                 "processing": true,
                 "serverSide": true,
@@ -573,15 +485,15 @@
                         targets: [3]
                     },
                     {
-                        "data": "statusid",
+                        "data": "status",
                         targets: [4],
                         render: function(data, type) {
-                            let status = "Not Handled";
+                            let status = data.locale === 'en' ? "Not Handled" : "Müdahale Edilmedi";
                             if (type === 'display') {
                                 let className = "bg-danger";
-                                if (data === 2) {
+                                if (data.id === 2) {
                                     className = "bg-warning";
-                                    status = "Being Handled";
+                                    status = data.locale === 'en' ? "Being Handled" : "Müdahale Ediliyor";
                                 }
                                 return status;
                             }
@@ -606,9 +518,9 @@
                     },
                 ],
                 "rowCallback": function(row, data, index) {
-                    if (data["statusid"] === 3) {
+                    if (data["status"].id === 3) {
                         $("td:eq(4)", row).addClass("bg-danger");
-                    } else if (data["statusid"] === 2) {
+                    } else if (data["status"].id === 2) {
                         $("td:eq(4)", row).addClass("bg-warning");
                     }
                 },
@@ -616,7 +528,7 @@
                 "lengthChange": false,
                 "autoWidth": false,
                 "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1 .col-md-6:eq(0)');
+            }).buttons().container().appendTo('#currentReports .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,
                 "lengthChange": false,
@@ -640,7 +552,6 @@
             jQuery('.lang-select').find('.flag-img').toggleClass('lang-show');
         })
     </script>
-
 
     <script src="{{ url('https://kit.fontawesome.com/3a82b90854.js') }}" crossorigin="anonymous"></script>
     <script src="{{ asset('js/password_generator.js') }}"></script>

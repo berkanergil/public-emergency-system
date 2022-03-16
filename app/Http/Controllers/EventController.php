@@ -9,6 +9,7 @@ use App\Models\EventType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\App;
 
 class EventController extends Controller
 {
@@ -98,16 +99,21 @@ class EventController extends Controller
 
     public function reportData()
     {
+        $locale = App::currentLocale();
+        Log::info($locale);
         $query = Event::whereIn("event_status_id", [2, 3])->orderBy("id", "desc")->get();
-        $events =[];
-        foreach($query as $event){
+        $events = [];
+        foreach ($query as $event) {
             if($event->user){
                 array_push($events, [
                     'id' => $event->id,
-                    'type' => Str::title($event->eventType->title),
+                    'type' => $locale == 'en' ? Str::title($event->eventType->title) : Str::title($event->eventType->tr),
                     'user' => Str::title($event->user->name . ' ' . $event->user->surname),
                     'staff' => '',
-                    'statusid' => $event->event_status_id,
+                    'status' => [
+                        'id' => $event->event_status_id,
+                        'locale' => $locale
+                    ],
                     'location' => [
                         'lat' => $event->lat,
                         'lon' => $event->lon
@@ -118,10 +124,13 @@ class EventController extends Controller
             else if($event->staff){
                 array_push($events, [
                     'id' => $event->id,
-                    'type' => Str::title($event->eventType->title),
+                    'type' => $locale == 'en' ? Str::title($event->eventType->title) : Str::title($event->eventType->tr),
                     'user' => '',
                     'staff' => Str::title($event->staff->name . ' ' . $event->staff->surname),
-                    'statusid' => $event->event_status_id,
+                    'status' => [
+                        'id' => $event->event_status_id,
+                        'locale' => $locale
+                    ],
                     'location' => [
                         'lat' => $event->lat,
                         'lon' => $event->lon

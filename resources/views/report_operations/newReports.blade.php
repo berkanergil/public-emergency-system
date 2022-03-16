@@ -20,31 +20,31 @@
                      <hr class="create_staff_form">
              </div>
              <div class="card-body">
-                 <div id="map"></div>
+                 {{-- <div id="map"></div> --}}
+                 <live-map></live-map>
              </div>
          </div>
      </div>
 
 
      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-     <script
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcn-lnWsUHf2TwU1EeCV9SbRrDYcI7Suc&callback=initMap&libraries=&v=weekly"
-          async>
+     <script async
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcn-lnWsUHf2TwU1EeCV9SbRrDYcI7Suc&callback=initMap&libraries=&v=weekly">
      </script>
  @endsection
 
  @section('sweetjs')
-     <script>
+     {{-- <script>
          window.array1 = {!! $lat_lon_handled !!}
          window.array2 = {!! $lat_lon_being_handled !!}
          window.array3 = {!! $lat_lon_not_handled !!}
          window.array4 = {!! $lat_lon_merged !!}
-     </script>
-     <script
+     </script> --}}
+     {{-- <script
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcn-lnWsUHf2TwU1EeCV9SbRrDYcI7Suc&callback=initMap&libraries=&v=weekly"
-          async>
-     </script>
-     <script>
+          async defer>
+     </script> --}}
+     {{-- <script>
          // Initialize and add the map
          function initMap() {
              const cyprus = {
@@ -125,7 +125,6 @@
                      map: map
                  });
                  markers.push(marker4);
-
              });
 
 
@@ -145,7 +144,6 @@
 
              });
 
-
          }
 
          function toggleBounce() {
@@ -155,5 +153,5 @@
                  marker.setAnimation(google.maps.Animation.BOUNCE);
              }
          }
-     </script>
+     </script> --}}
  @endsection

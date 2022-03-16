@@ -489,4 +489,9 @@ Route::get('admin/createNotifications', [App\Http\Controllers\HomeController::cl
 Route::get('admin/notifications', [App\Http\Controllers\HomeController::class, 'notifications'])->name('notifications');
 Route::get('/emergencyp', [App\Http\Controllers\HomeController::class, 'emergencyp'])->name('emergencyp');
 
-Route::get('reports/current/data', [EventController::class, 'reportData'])->name('reports.data');
+Route::get('/admin/reports/current/data', [EventController::class, 'reportData'])->name('reports.data');
+
+Route::get('/admin/newReports/all', function() {
+    $events = Event::all();
+    return response($events);
+});
