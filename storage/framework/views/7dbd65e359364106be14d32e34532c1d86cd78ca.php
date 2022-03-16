@@ -110,7 +110,6 @@
                 <img class="animation__shake" src="<?php echo e(asset('images/emergencyp.png')); ?>" alt="EmergenCyp Logo"
                     height="160" width="450">
             </div>
-
             <!-- Navbar -->
             <nav class="main-header navbar navbar-expand navbar-white navbar-light">
                 <!-- Left navbar links -->
@@ -123,7 +122,6 @@
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-
                         <a class="nav-link btn-group dropwdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false" href=""><i class="fa-solid fa-bell"></i></a>
                         <div class="dropdown-menu dropdown-menu-right">
@@ -145,7 +143,8 @@
                                 </li>
                                 <li class="text-center">
                                     <a href="<?php echo e(route('chatPage')); ?>" class="dropdown-item button1">
-                                        <i class="far fa-paper-plane"></i> See All
+                                        <i class="far fa-paper-plane"></i> <?php echo e(__('See All')); ?>
+
                                     </a>
                                 </li>
                             </ul>
@@ -175,7 +174,8 @@
                                 </li>
                                 <li class="text-center">
                                     <a href="<?php echo e(route('chatPage')); ?>" class="dropdown-item button1">
-                                        <i class="far fa-paper-plane"></i> See All
+                                        <i class="far fa-paper-plane"></i> <?php echo e(__('See All')); ?>
+
                                     </a>
                                 </li>
                             </ul>
@@ -195,471 +195,470 @@
                     </li>
                 </ul>
             </nav>
-        </div>
 
-        <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
-            <a href="<?php echo e(route('statistics')); ?>" class="brand-link">
-                <img src="<?php echo e(asset('images/emergencyp-white.png')); ?>" alt="EmergenCYP Logo"
-                    class="brand-image img-circle">
-                <span class=" brand-text font-weight-light">
-                    <p style="font-size: 15px;"> EmergenCyp</p>
-                </span>
-            </a>
+            <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4">
+                <!-- Brand Logo -->
+                <a href="<?php echo e(route('statistics')); ?>" class="brand-link">
+                    <img src="<?php echo e(asset('images/emergencyp-white.png')); ?>" alt="EmergenCYP Logo"
+                        class="brand-image img-circle">
+                    <span class=" brand-text font-weight-light">
+                        <p style="font-size: 15px;"> EmergenCyp</p>
+                    </span>
+                </a>
 
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex text-center justify-content-center align-items-center">
-                    <div class="info">
-                        
-                        <a href="<?php echo e(route('profile', $staff)); ?>" class="d-block"><i
-                                class="fas fa-user-circle"></i>
-                            <?php echo e(Str::title($name . ' ' . $surname)); ?></a>
-                    </div>
-                </div>
-
-                <!-- SidebarSearch Form -->
-                <div class="form-inline">
-                    <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search"
-                            aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-sidebar">
-                                <i class="fas fa-search fa-fw"></i>
-                            </button>
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <!-- Sidebar user panel (optional) -->
+                    <div class="user-panel mt-3 pb-3 mb-3 d-flex text-center justify-content-center align-items-center">
+                        <div class="info">
+                            
+                            <a href="<?php echo e(route('profile', $staff)); ?>" class="d-block"><i
+                                    class="fas fa-user-circle"></i>
+                                <?php echo e(Str::title($name . ' ' . $surname)); ?></a>
                         </div>
                     </div>
-                </div>
 
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
+                    <!-- SidebarSearch Form -->
+                    <div class="form-inline">
+                        <div class="input-group" data-widget="sidebar-search">
+                            <input class="form-control form-control-sidebar" type="search" placeholder="Search"
+                                aria-label="Search">
+                            <div class="input-group-append">
+                                <button class="btn btn-sidebar">
+                                    <i class="fas fa-search fa-fw"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar Menu -->
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                            data-accordion="false">
+                            <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
-                        <li class="nav-header"> <strong> <?php echo e(__('STATISTICS & INSIGHTS')); ?></strong></li>
+                            <li class="nav-header"> <strong> <?php echo e(__('STATISTICS & INSIGHTS')); ?></strong></li>
 
-                        <li class="nav-item menu-open">
-                            <a href="<?php echo e(route('statistics')); ?>" class=" nav-link active">
-                                <i class="ml-1 fas fa-chart-line"></i>
-                                <p class="ml-1">
-                                    <?php echo e(__('Statistics & Insights')); ?>
+                            <li class="nav-item menu-open">
+                                <a href="<?php echo e(route('statistics')); ?>" class=" nav-link active">
+                                    <i class="ml-1 fas fa-chart-line"></i>
+                                    <p class="ml-1">
+                                        <?php echo e(__('Statistics & Insights')); ?>
 
-                                </p>
-                            </a>
+                                    </p>
+                                </a>
 
-                        </li>
-                        <li class="nav-header"> <strong> <?php echo e(__('EVENT OPERATIONS')); ?></strong></li>
-                        <li class="nav-item">
-                            <a href="<?php echo e(route('newReports', ['id' => $staff->id])); ?>" class="nav-link">
-                                <i class="ml-1 fas fa-search-location"></i>
-                                <p class="ml-1">
-                                    <?php echo e(__('New Reports')); ?>
+                            </li>
+                            <li class="nav-header"> <strong> <?php echo e(__('EVENT OPERATIONS')); ?></strong></li>
+                            <li class="nav-item">
+                                <a href="<?php echo e(route('newReports', ['id' => $staff->id])); ?>" class="nav-link">
+                                    <i class="ml-1 fas fa-search-location"></i>
+                                    <p class="ml-1">
+                                        <?php echo e(__('New Reports')); ?>
 
-                                    <span class="right badge badge-danger ml-1"><?php echo e(__('Live Map')); ?></span>
-                                </p>
-                            </a>
-                        </li>
+                                        <span class="right badge badge-danger ml-1"><?php echo e(__('Live Map')); ?></span>
+                                    </p>
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="ml-1 fas fa-folder-open"></i>
-                                <p class="ml-1">
-                                    <?php echo e(__('Report Archive')); ?>
-
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo e(route('currentReports')); ?>" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p><?php echo e(__('Current Reports')); ?></p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?php echo e(route('pastReports')); ?>" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p><?php echo e(__('Past Reports')); ?></p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?php echo e(route('mergedReports')); ?>" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p><?php echo e(__('Merged Reports')); ?></p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-header"><strong><?php echo e(__('USER OPERATIONS')); ?></strong></li>
-                        <?php if($role == '3'): ?>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="ml-1 fas fa-user-tie"></i>
-                                    <p class="ml-2">
-                                        <?php echo e(__('Authorities')); ?>
+                                    <i class="ml-1 fas fa-folder-open"></i>
+                                    <p class="ml-1">
+                                        <?php echo e(__('Report Archive')); ?>
 
                                         <i class="fas fa-angle-left right"></i>
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo e(route('createAuthority')); ?>" class="nav-link">
+                                        <a href="<?php echo e(route('currentReports')); ?>" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p><?php echo e(__('Create Authorities')); ?> </p>
+                                            <p><?php echo e(__('Current Reports')); ?></p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="<?php echo e(route('authorities')); ?>" class="nav-link">
+                                        <a href="<?php echo e(route('pastReports')); ?>" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p><?php echo e(__('All Authorites')); ?></p>
+                                            <p><?php echo e(__('Past Reports')); ?></p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?php echo e(route('mergedReports')); ?>" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p><?php echo e(__('Merged Reports')); ?></p>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
-                        <?php endif; ?>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="ml-1 fas fa-user-tie"></i>
-                                <p class="ml-2">
-                                    <?php echo e(__('Agents')); ?>
 
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
+                            <li class="nav-header"><strong><?php echo e(__('USER OPERATIONS')); ?></strong></li>
+                            <?php if($role == '3'): ?>
                                 <li class="nav-item">
-                                    <a href="<?php echo e(route('deployAgentGroups')); ?>" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p><?php echo e(__('Create Agent Groups')); ?></p>
+                                    <a href="#" class="nav-link">
+                                        <i class="ml-1 fas fa-user-tie"></i>
+                                        <p class="ml-2">
+                                            <?php echo e(__('Authorities')); ?>
+
+                                            <i class="fas fa-angle-left right"></i>
+                                        </p>
                                     </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="<?php echo e(route('createAuthority')); ?>" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p><?php echo e(__('Create Authorities')); ?> </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="<?php echo e(route('authorities')); ?>" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p><?php echo e(__('All Authorites')); ?></p>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
-                                <?php if($role == '3'): ?>
+                            <?php endif; ?>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="ml-1 fas fa-user-tie"></i>
+                                    <p class="ml-2">
+                                        <?php echo e(__('Agents')); ?>
+
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="<?php echo e(route('createAgents')); ?>" class="nav-link">
+                                        <a href="<?php echo e(route('deployAgentGroups')); ?>" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p><?php echo e(__('Create Agents')); ?></p>
+                                            <p><?php echo e(__('Create Agent Groups')); ?></p>
                                         </a>
                                     </li>
-                                <?php endif; ?>
-                                <li class="nav-item">
-                                    <a href="<?php echo e(route('agentGroups')); ?>" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p><?php echo e(__('Agent Groups')); ?></p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?php echo e(route('agents')); ?>" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p><?php echo e(__('All Agents')); ?></p>
-                                    </a>
-                                </li>
+                                    <?php if($role == '3'): ?>
+                                        <li class="nav-item">
+                                            <a href="<?php echo e(route('createAgents')); ?>" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p><?php echo e(__('Create Agents')); ?></p>
+                                            </a>
+                                        </li>
+                                    <?php endif; ?>
+                                    <li class="nav-item">
+                                        <a href="<?php echo e(route('agentGroups')); ?>" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p><?php echo e(__('Agent Groups')); ?></p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?php echo e(route('agents')); ?>" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p><?php echo e(__('All Agents')); ?></p>
+                                        </a>
+                                    </li>
 
 
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="ml-1 fas fa-user"></i>
-                                <p class="ml-2">
-                                    <?php echo e(__('Users')); ?>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="ml-1 fas fa-user"></i>
+                                    <p class="ml-2">
+                                        <?php echo e(__('Users')); ?>
 
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo e(route('users')); ?>" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p><?php echo e(__('All Users')); ?></p>
-                                    </a>
-                                </li>
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo e(route('users')); ?>" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p><?php echo e(__('All Users')); ?></p>
+                                        </a>
+                                    </li>
 
-                            </ul>
-                        </li>
-                        <li class="nav-header"><strong><?php echo e(__('SYSTEM OPERATIONS')); ?></strong></li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="ml-1 fas fa-envelope"></i>
-                                <p class="ml-2">
-                                    <?php echo e(__('SMS Messages')); ?>
+                                </ul>
+                            </li>
+                            <li class="nav-header"><strong><?php echo e(__('SYSTEM OPERATIONS')); ?></strong></li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="ml-1 fas fa-envelope"></i>
+                                    <p class="ml-2">
+                                        <?php echo e(__('SMS Messages')); ?>
 
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
 
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo e(route('createMessages')); ?>" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p><?php echo e(__('Create SMS Messages')); ?></p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?php echo e(route('messages')); ?>" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p><?php echo e(__('See All SMS Messages')); ?></p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="ml-1 fas fa-bell"></i>
-                                <p class="ml-2">
-                                    <?php echo e(__('Notifications')); ?>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo e(route('createMessages')); ?>" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p><?php echo e(__('Create SMS Messages')); ?></p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?php echo e(route('messages')); ?>" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p><?php echo e(__('See All SMS Messages')); ?></p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="ml-1 fas fa-bell"></i>
+                                    <p class="ml-2">
+                                        <?php echo e(__('Notifications')); ?>
 
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
 
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo e(route('createNotifications')); ?>" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p><?php echo e(__('Create Notifications')); ?></p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?php echo e(route('notifications')); ?>" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p><?php echo e(__('See All Notifications')); ?></p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- /.sidebar-menu -->
-            </div>
-            <!-- /.sidebar -->
-        </aside>
-
-
-
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                        </div><!-- /.col -->
-                        <!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </div>
-            <!-- /.content-header -->
-
-            <!-- Main content -->
-            <div class="content">
-                <div class="container-fluid">
-                    <?php echo $__env->yieldContent('statistic_content'); ?>
-
-                    <!-- /.row -->
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?php echo e(route('createNotifications')); ?>" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p><?php echo e(__('Create Notifications')); ?></p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?php echo e(route('notifications')); ?>" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p><?php echo e(__('See All Notifications')); ?></p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- /.sidebar-menu -->
                 </div>
-                <!-- /.container-fluid -->
+                <!-- /.sidebar -->
+            </aside>
+
+
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                            </div><!-- /.col -->
+                            <!-- /.col -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </div>
+                <!-- /.content-header -->
+
+                <!-- Main content -->
+                <div class="content">
+                    <div class="container-fluid">
+                        <?php echo $__env->yieldContent('statistic_content'); ?>
+
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </div>
+                <!-- /.content -->
             </div>
-            <!-- /.content -->
+            <!-- /.content-wrapper -->
+
+            <!-- Control Sidebar -->
+            <aside class="control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+            </aside>
+            <!-- /.control-sidebar -->
+
+
+
+            <!-- Main Footer -->
+            <footer class="main-footer">
+                <strong><?php echo e(__('Copyright')); ?> &copy; 2022 <a
+                        href="<?php echo e(route('statistics')); ?>">EmergenCYP</a>.</strong>
+                <?php echo e(__('All rights reserved.')); ?>
+
+                <div class="float-right d-none d-sm-inline-block">
+                    <b><?php echo e(__('Version')); ?></b> 1.0
+                </div>
+            </footer>
+
         </div>
-        <!-- /.content-wrapper -->
+        <!-- ./wrapper -->
 
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
+        <!-- REQUIRED SCRIPTS -->
 
+        <!-- jQuery -->
+        <script src="<?php echo e(asset('plugins/jquery/jquery.min.js')); ?>"></script>
+        <!-- jQuery UI 1.11.4 -->
+        <script src="<?php echo e(asset('plugins/jquery-ui/jquery-ui.min.js')); ?>"></script>
+        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+        <script>
+            $.widget.bridge('uibutton', $.ui.button)
+        </script>
+        <!-- Bootstrap 4 -->
+        <script src="<?php echo e(asset('plugins/bootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
+        <!-- ChartJS -->
+        <script src="<?php echo e(asset('plugins/chart.js/Chart.min.js')); ?>"></script>
+        <!-- Sparkline -->
+        <script src="<?php echo e(asset('plugins/sparklines/sparkline.js')); ?>"></script>
+        <!-- JQVMap -->
+        <script src="<?php echo e(asset('plugins/jqvmap/jquery.vmap.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('plugins/jqvmap/maps/jquery.vmap.usa.js')); ?>"></script>
+        <!-- jQuery Knob Chart -->
+        <script src="<?php echo e(asset('plugins/jquery-knob/jquery.knob.min.js')); ?>"></script>
+        <!-- daterangepicker -->
+        <script src="<?php echo e(asset('plugins/moment/moment.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('plugins/daterangepicker/daterangepicker.js')); ?>"></script>
+        <!-- Tempusdominus Bootstrap 4 -->
+        <script src="<?php echo e(asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')); ?>"></script>
+        <!-- Summernote -->
+        <script src="<?php echo e(asset('plugins/summernote/summernote-bs4.min.js')); ?>"></script>
+        <!-- overlayScrollbars -->
+        <script src="<?php echo e(asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')); ?>"></script>
 
-
-        <!-- Main Footer -->
-        <footer class="main-footer">
-            <strong><?php echo e(__('Copyright')); ?> &copy; 2022 <a href="<?php echo e(route('statistics')); ?>">EmergenCYP</a>.</strong>
-            <?php echo e(__('All rights reserved.')); ?>
-
-            <div class="float-right d-none d-sm-inline-block">
-                <b><?php echo e(__('Version')); ?></b> 1.0
-            </div>
-        </footer>
-
-    </div>
-    <!-- ./wrapper -->
-
-    <!-- REQUIRED SCRIPTS -->
-
-    <!-- jQuery -->
-    <script src="<?php echo e(asset('plugins/jquery/jquery.min.js')); ?>"></script>
-    <!-- jQuery UI 1.11.4 -->
-    <script src="<?php echo e(asset('plugins/jquery-ui/jquery-ui.min.js')); ?>"></script>
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
-        $.widget.bridge('uibutton', $.ui.button)
-    </script>
-    <!-- Bootstrap 4 -->
-    <script src="<?php echo e(asset('plugins/bootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
-    <!-- ChartJS -->
-    <script src="<?php echo e(asset('plugins/chart.js/Chart.min.js')); ?>"></script>
-    <!-- Sparkline -->
-    <script src="<?php echo e(asset('plugins/sparklines/sparkline.js')); ?>"></script>
-    <!-- JQVMap -->
-    <script src="<?php echo e(asset('plugins/jqvmap/jquery.vmap.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('plugins/jqvmap/maps/jquery.vmap.usa.js')); ?>"></script>
-    <!-- jQuery Knob Chart -->
-    <script src="<?php echo e(asset('plugins/jquery-knob/jquery.knob.min.js')); ?>"></script>
-    <!-- daterangepicker -->
-    <script src="<?php echo e(asset('plugins/moment/moment.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('plugins/daterangepicker/daterangepicker.js')); ?>"></script>
-    <!-- Tempusdominus Bootstrap 4 -->
-    <script src="<?php echo e(asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')); ?>"></script>
-    <!-- Summernote -->
-    <script src="<?php echo e(asset('plugins/summernote/summernote-bs4.min.js')); ?>"></script>
-    <!-- overlayScrollbars -->
-    <script src="<?php echo e(asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')); ?>"></script>
-
-    <!-- AdminLTE for demo purposes -->
-    <script src="<?php echo e(asset('dist/js/demo.js')); ?>"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="<?php echo e(asset('dist/js/pages/dashboard.js')); ?>"></script>
-    <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables/jquery.dataTables.min.js')); ?>"></script>
-    <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')); ?>">
-    </script>
-    <script
-        src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-responsive/js/dataTables.responsive.min.js')); ?>">
-    </script>
-    <script
-        src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')); ?>">
-    </script>
-    <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/dataTables.buttons.min.js')); ?>">
-    </script>
-    <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')); ?>">
-    </script>
-    <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/jszip/jszip.min.js')); ?>"></script>
-    <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/pdfmake/pdfmake.min.js')); ?>"></script>
-    <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/pdfmake/vfs_fonts.js')); ?>"></script>
-    <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.html5.min.js')); ?>">
-    </script>
-    <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.print.min.js')); ?>">
-    </script>
-    <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.colVis.min.js')); ?>">
-    </script>
-    
-    <!-- Page specific script -->
-    <script>
-        $(function() {
-            $("#example1").DataTable({
-                "dom": 'Bfrtip',
-                "processing": true,
-                "serverSide": true,
-                "ajax": "<?php echo e(route('reports.data')); ?>",
-                "columnDefs": [{
-                        targets: [0, 1, 2, 3, 4, 5, 6]
-                    },
-                    {
-                        "data": "id",
-                        targets: [0],
-                        render: function(data, type) {
-                            if (type === 'display') {
-                                return '<a target="_blank" href="report/' + data + '">' + data +
-                                    '</a>';
+        <!-- AdminLTE for demo purposes -->
+        <script src="<?php echo e(asset('dist/js/demo.js')); ?>"></script>
+        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+        <script src="<?php echo e(asset('dist/js/pages/dashboard.js')); ?>"></script>
+        <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables/jquery.dataTables.min.js')); ?>"></script>
+        <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')); ?>">
+        </script>
+        <script
+                src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-responsive/js/dataTables.responsive.min.js')); ?>">
+        </script>
+        <script
+                src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')); ?>">
+        </script>
+        <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/dataTables.buttons.min.js')); ?>">
+        </script>
+        <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')); ?>">
+        </script>
+        <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/jszip/jszip.min.js')); ?>"></script>
+        <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/pdfmake/pdfmake.min.js')); ?>"></script>
+        <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/pdfmake/vfs_fonts.js')); ?>"></script>
+        <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.html5.min.js')); ?>">
+        </script>
+        <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.print.min.js')); ?>">
+        </script>
+        <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.colVis.min.js')); ?>">
+        </script>
+        
+        <!-- Page specific script -->
+        <script>
+            $(function() {
+                $("#example1").DataTable({
+                    "dom": 'Bfrtip',
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": "<?php echo e(route('reports.data')); ?>",
+                    "columnDefs": [{
+                            targets: [0, 1, 2, 3, 4, 5, 6]
+                        },
+                        {
+                            "data": "id",
+                            targets: [0],
+                            render: function(data, type) {
+                                if (type === 'display') {
+                                    return '<a target="_blank" href="report/' + data + '">' + data +
+                                        '</a>';
+                                }
+                                return data;
                             }
-                            return data;
-                        }
-                    },
-                    {
-                        "data": "type",
-                        targets: [1]
-                    },
-                    {
-                        "data": "user",
-                        targets: [2]
-                    },
-                    {
-                        "data": "staff",
-                        targets: [3]
-                    },
-                    {
-                        "data": "statusid",
-                        targets: [4],
-                        render: function(data, type) {
-                            let status = "Not Handled";
-                            if (type === 'display') {
-                                let className = "bg-danger";
-                                if (data === 2) {
-                                    className = "bg-warning";
-                                    status = "Being Handled";
+                        },
+                        {
+                            "data": "type",
+                            targets: [1]
+                        },
+                        {
+                            "data": "user",
+                            targets: [2]
+                        },
+                        {
+                            "data": "staff",
+                            targets: [3]
+                        },
+                        {
+                            "data": "statusid",
+                            targets: [4],
+                            render: function(data, type) {
+                                let status = "Not Handled";
+                                if (type === 'display') {
+                                    let className = "bg-danger";
+                                    if (data === 2) {
+                                        className = "bg-warning";
+                                        status = "Being Handled";
+                                    }
+                                    return status;
                                 }
                                 return status;
                             }
-                            return status;
-                        }
-                    },
-                    {
-                        "data": "location",
-                        targets: [5],
-                        render: function(data, type) {
-                            let loc = data.lat.substr(0, 7) + ' - ' + data.lon.substr(0, 7);
-                            if (type === 'display') {
-                                return '<a target="_blank" href="https://www.google.com/maps/search/' +
-                                    data.lat + ',' + data.lon + '">' + loc + '</a>';
+                        },
+                        {
+                            "data": "location",
+                            targets: [5],
+                            render: function(data, type) {
+                                let loc = data.lat.substr(0, 7) + ' - ' + data.lon.substr(0, 7);
+                                if (type === 'display') {
+                                    return '<a target="_blank" href="https://www.google.com/maps/search/' +
+                                        data.lat + ',' + data.lon + '">' + loc + '</a>';
+                                }
+                                return loc;
                             }
-                            return loc;
+                        },
+                        {
+                            "data": "date",
+                            targets: [6]
+                        },
+                    ],
+                    "rowCallback": function(row, data, index) {
+                        if (data["statusid"] === 3) {
+                            $("td:eq(4)", row).addClass("bg-danger");
+                        } else if (data["statusid"] === 2) {
+                            $("td:eq(4)", row).addClass("bg-warning");
                         }
                     },
-                    {
-                        "data": "date",
-                        targets: [6]
-                    },
-                ],
-                "rowCallback": function(row, data, index) {
-                    if (data["statusid"] === 3) {
-                        $("td:eq(4)", row).addClass("bg-danger");
-                    } else if (data["statusid"] === 2) {
-                        $("td:eq(4)", row).addClass("bg-warning");
-                    }
-                },
-                "responsive": true,
-                "lengthChange": false,
-                "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1 .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
+                    "responsive": true,
+                    "lengthChange": false,
+                    "autoWidth": false,
+                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                }).buttons().container().appendTo('#example1 .col-md-6:eq(0)');
+                $('#example2').DataTable({
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": false,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false,
+                    "responsive": true,
+                });
             });
-        });
-    </script>
-    <script>
-        $(document).click(function() {
-            if (jQuery('.lang-select').find('.flag-img').hasClass('lang-show')) {
+        </script>
+        <script>
+            $(document).click(function() {
+                if (jQuery('.lang-select').find('.flag-img').hasClass('lang-show')) {
+                    jQuery('.lang-select').find('.flag-img').toggleClass('lang-show');
+                }
+            });
+            jQuery('.lang-selected').click(function(e) {
+                e.preventDefault();
+                e.stopPropagation();
                 jQuery('.lang-select').find('.flag-img').toggleClass('lang-show');
-            }
-        });
-        jQuery('.lang-selected').click(function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            jQuery('.lang-select').find('.flag-img').toggleClass('lang-show');
-        })
-    </script>
+            })
+        </script>
 
 
-    <script src="<?php echo e(url('https://kit.fontawesome.com/3a82b90854.js')); ?>" crossorigin="anonymous"></script>
-    <script src="<?php echo e(asset('js/password_generator.js')); ?>"></script>
-    <script src="<?php echo e(url('//cdn.jsdelivr.net/npm/sweetalert2@11')); ?>"></script>
+        <script src="<?php echo e(url('https://kit.fontawesome.com/3a82b90854.js')); ?>" crossorigin="anonymous"></script>
+        <script src="<?php echo e(asset('js/password_generator.js')); ?>"></script>
+        <script src="<?php echo e(url('//cdn.jsdelivr.net/npm/sweetalert2@11')); ?>"></script>
 
-    <script src="<?php echo e(asset('sweetalert2.min.js')); ?>"></script>
-    <script src="<?php echo e(url('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js')); ?>"></script>
-    <script
-        src="<?php echo e(url('https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=')); ?>"
-        crossorigin="anonymous"></script>
-    <!-- AdminLTE App -->
-    <script src="<?php echo e(asset('dist/js/adminlte.js')); ?>"></script>
+        <script src="<?php echo e(asset('sweetalert2.min.js')); ?>"></script>
+        <script src="<?php echo e(url('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js')); ?>"></script>
+        <script src="<?php echo e(url('https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=')); ?>"
+                crossorigin="anonymous"></script>
+        <!-- AdminLTE App -->
+        <script src="<?php echo e(asset('dist/js/adminlte.js')); ?>"></script>
 </body>
 
 <?php echo $__env->yieldContent('sweetjs'); ?>

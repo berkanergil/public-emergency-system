@@ -36,16 +36,17 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        Log::info('2');
         try {
             $documentModel = new Document();
 
             if ($request->file()) {
                 Log::info($request->all());
                 $fileName = time() . '_' . $request->file->getClientOriginalName();
+                $fileType = $request->file->extension();
                 $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
                 $documentModel->path = '/storage/' . $filePath;
                 $documentModel->document_type_id = $request->type;
+
                 $documentModel->save();
 
                 return response($documentModel);

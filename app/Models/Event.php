@@ -142,8 +142,11 @@ class Event extends Model
     {
         return $this->hasMany(Notes::class);
     }
-
-
+    public function getNotes($event)
+    {
+        $notes = Notes::get()->where('event_id', '=', '$event->id')->all();
+        return $notes;
+    }
     public static function history($id)
     {
         try {

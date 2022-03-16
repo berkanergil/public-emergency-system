@@ -5,26 +5,29 @@
 
 @section('statistic_content')
     @php
+    use Illuminate\Support\Facades\App;
     use App\Models\EventStatus;
     use App\Models\Staff;
     use App\Models\Document;
     use App\Models\Group;
     use App\Models\Event;
     use App\Models\Notes;
-    use Illuminate\Support\Facades\App;
+    use App\Models\DocumentType;
 
     $locale = App::currentLocale();
-
     $noteObject = new Notes();
     $groupObject = new Group();
     $eventObject = new Event();
     $eventStatus = EventStatus::where('id', '!=', '4')
         ->get()
         ->pluck('title', 'id');
-
-    $currentStatus = $event?->eventStatus?->title;
+    $eventStatusTr = EventStatus::where('id', '!=', '4')
+        ->get()
+        ->pluck('tr', 'id');
+    $currentStatus = 'Current: ' . Str::title($event?->eventStatus?->title);
+    $currentStatusTr = 'Güncel: ' . Str::title($event?->eventStatus?->tr);
     $currentStatusId = $event?->eventStatus?->id;
-    $groups = $event?->groupEvent?->group($event?->groupEvent?->group_id);
+    $documentTypes = $groups = $event?->groupEvent?->group($event?->groupEvent?->group_id);
     $documentModalTrigger = 'document' . $event?->document?->id;
     $bgWarning = 'bg-warning';
     $bgDanger = 'bg-danger';
@@ -225,7 +228,7 @@
                     aria-labelledby="custom-content-below-home-tab">
                     <div class="row">
                         <div class="col-md-6 col-sm-12 mx-auto">
-                            <div class="card  shadow  bg-white rounded">
+                            <div class="card  shadow  bg-white rounded ">
                                 <div
                                     class="card-title text-bold p-3 {{ $event->event_status_id == '1'? 'bg-success': ($event->event_status_id == '2'? 'bg-warning': ($event->event_status_id == '4'? 'bg-info': 'bg-danger')) }}">
                                     {{ __('Emergency Information') }}
@@ -559,15 +562,21 @@
                                                 <th scope="col-4">{{ __('Notes') }}</th>
                                                 <th scope="col-4">{{ __('Editor') }}</th>
                                                 <th scope="col-4">{{ __('Updated At') }} </th>
+                                                <th scope="col-4">{{ __('Delete') }} </th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($event->eventNotes as $note)
+                                            @foreach ($event?->eventNotes as $note)
                                                 <tr>
-                                                    <td>{{ $note->note }}</td>
-                                                    <td>{{ Str::title($note->editor->name . ' ' . $note->editor->surname) }}
+                                                    <td class="pt-3">{{ $note->note }}</td>
+                                                    <td class="pt-3">
+                                                        {{ Str::title($note->editor->name . ' ' . $note->editor->surname) }}
                                                     </td>
-                                                    <td>{{ $note->updated_at }}</td>
+                                                    <td class="pt-3">{{ $note->updated_at }}</td>
+                                                    <td class="pb-1"><button type="button" id="deleteNote"
+                                                            class="form-buttons3"><i
+                                                                class="fa-solid fa-trash"></i></button></td>
                                                 </tr>
                                             @endforeach
 
@@ -595,6 +604,7 @@
                                                 <th scope="col">{{ __('Document Type') }}</th>
                                                 <th scope="col">{{ __('Document') }}</th>
                                                 <th scope="col">{{ __('Uploaded At') }}</th>
+                                                <th scope="col">{{ __('Download') }}</th>
 
                                             </tr>
                                         </thead>
@@ -608,6 +618,9 @@
                                                             {{ $event->document->id }}</a>
                                                     </td>
                                                     <td>{{ $event->document->created_at }}</td>
+                                                    <td><a class="button7 p-3" download
+                                                            href="{{ asset($event->document->path) }}"><i
+                                                                class="fa-solid fa-download"></i></a></td>
                                                 </tr>
                                                 <div class="modal fade" id="{{ $documentModalTrigger }}"
                                                     tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -654,19 +667,48 @@
 @endsection
 @section('sweetjs')
     <script>
+        var event_id = '{{ $event->id }}';
+        var locale = '{{ $locale }}';
+        var buttonFirstText = "";
+        var buttonSecondText = "";
+        var buttonThirdText = "";
+        var buttonCancelText = "";
+        var uploader_name = "{{ Auth::user()->name . ' ' . Auth::user()->surname }}";
         var eventStatus = @json($eventStatus);
+        var eventStatusTr = @json($eventStatusTr);
         var currentStatus = @json($currentStatus);
+        var currentStatusTr = @json($currentStatusTr);
         var currentStatusId = @json($currentStatusId);
+        var fileType = "";
         let _token = $('meta[name="csrf-token"]').attr('content');
+
+        if (locale == 'en') {
+            currentStatusResult = currentStatus;
+            eventStatusResult = eventStatus;
+            buttonFirstText = "Mark";
+            buttonSecondText = "Upload";
+            buttonThirdText = "Add Note"
+            buttonCancelText = "Cancel";
+        } else if (locale == 'tr') {
+            currentStatusResult = currentStatusTr;
+            eventStatusResult = eventStatusTr;
+            buttonFirstText = "İşaretle"
+            buttonSecondText = "Yükle";
+            buttonThirdText = "Not Ekle";
+            buttonCancelText = "İptal";
+        }
+
+
         $("#mark_event").on("click", function() {
             Swal.fire({
                 title: '<i class="fas fa-highlighter"></i> Mark Events As',
                 input: 'select',
-                inputOptions: eventStatus,
-                inputPlaceholder: currentStatus,
+                inputOptions: eventStatusResult,
+                inputPlaceholder: currentStatusResult,
                 inputValue: currentStatusId,
                 confirmButtonColor: "#1FAB45",
-                confirmButtonText: 'Mark',
+                confirmButtonText: buttonFirstText,
+                cancelButtonText: buttonCancelText,
                 showCancelButton: true,
                 inputValidator: (value) => {
                     return new Promise((resolve) => {
@@ -722,14 +764,16 @@
             })
         })
         $("#upload_evidence").on("click", function() {
+
             Swal.fire({
                 title: '<i class="fa-solid fa-file-arrow-up"></i> Select File',
                 input: 'file',
                 confirmButtonColor: "#1FAB45",
-                confirmButtonText: 'Upload File',
+                confirmButtonText: buttonSecondText,
+                cancelButtonText: buttonCancelText,
                 inputAttributes: {
-                    'accept': 'image/*',
-                    'aria-label': 'Upload your profile picture'
+                    'accept': 'image/*,application/*,audio/*,text/*',
+                    'aria-label': 'Upload your document'
                 },
                 inputValidator: (value) => {
                     return new Promise((resolve) => {
@@ -737,11 +781,28 @@
                             resolve('You need to select oranges :)')
                         } else {
                             var fd = new FormData();
+                            var ext = file.split('.').pop();
                             // Check file selected or not
                             if (value) {
+                                if (ext == 'png' || ext == 'jpg' || ext == 'jpeg') {
+                                    var documentType = 1;
+                                } else if (ext == 'doc' || ext == 'docx' || ext == 'pdf' ||
+                                    ext == 'csv' || ext == 'xlsx') {
+                                    var documentType = 4;
+                                } else if (ext == 'mp4' || ext == 'mov' || ext == 'wmv' ||
+                                    ext == 'avi' || ext == 'mpeg-2') {
+                                    var documentType = 2;
+                                } else if (ext == 'mp3' || ext == 'aac') {
+                                    var documentType = 3;
+                                } else {
+                                    var documentType = 5;
+                                }
+
+                                fd.append('event_id', event_id);
+                                fd.append('uploader_name', uploader_name);
                                 fd.append('file', value);
                                 fd.append('_token', _token);
-                                fd.append('type', "photo");
+                                fd.append('document_type_id', documentType);
                                 $.ajax({
                                     url: "{{ route('store_evidence', $event->id) }}",
                                     type: 'post',
@@ -786,8 +847,8 @@
                 input: "textarea",
                 showCancelButton: true,
                 confirmButtonColor: "#1FAB45",
-                confirmButtonText: "Add Note",
-                cancelButtonText: "Cancel",
+                confirmButtonText: buttonThirdText,
+                cancelButtonText: buttonCancelText,
                 buttonsStyling: true
             }).then(function() {
                     $.ajax({
@@ -804,7 +865,9 @@
                                 "Sccess!",
                                 "Your note has been saved!",
                                 "success"
-                            )
+                            ).then(function() {
+                                window.location.reload();
+                            })
                         },
                         failure: function(response) {
                             Swal.fire(
@@ -826,14 +889,50 @@
                 })
 
         });
+
+        $('#deleteNote').on('click', function() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "POST",
+                        data: {
+                            url: "{{ route('delete_notes', $note->id) }}",
+                            id: '$note->id',
+                            _method: "DELETE",
+                            _token: _token
+                        },
+                        success: function() {
+                            swal.fire("Done!", "It was succesfully deleted!", "success").then(
+                                function() {
+                                    window.location.reload();
+                                })
+
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            swal.fire("Error deleting!", "Please try again", "error");
+                        }
+                    });
+                } else {
+
+                }
+            })
+        })
     </script>
     <script>
         $(document).ready(function() {
             $("#myTable").on('click', '.btnSelect', function() {
                 var currentRow = $(this).closest("tr");
                 var id = currentRow.find(".pd-price").html();
-                console.log(id);
                 $.ajax({
+                    console: function
                     url: "{{ route('update_report', $event->id) }}",
                     type: "POST",
                     data: {

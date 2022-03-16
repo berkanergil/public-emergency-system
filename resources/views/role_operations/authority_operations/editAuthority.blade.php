@@ -3,7 +3,10 @@
 @section('breadcrumb')
     <a href="{{ route('editAuthority', $staff) }}">Edit Authority ID: {{ $staff->id }}</a>
 @endsection
-
+@php
+use Illuminate\Support\Facades\App;
+$locale = App::currentLocale();
+@endphp
 @section('statistic_content')
     <div class="row gutters d-flex justify-content-center align-items-center">
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
@@ -144,6 +147,38 @@
         let _token = $('meta[name="csrf-token"]').attr('content');
         var url = 'http://127.0.0.1:8000/admin/staff/authorities'
         var id = {{ $staff->id }};
+        var url2 = 'http://127.0.0.1:8000/admin/staff/authorities/authority/id:' + id
+        var name = $('#name').val();
+        var surname = $('#surname').val();
+        var msisdn = $('#msisdn').val();
+        var email = $('#email').val();
+        var password = $('#password').val();
+
+        var locale = '{{ $locale }}';
+        var copyToClipboardButton = "";
+        var saveButton = "";
+        var cancelButtonText = "";
+        var copyButton = "";
+        var title1 = "";
+        var successMessage = "";
+        var failureMessage = "";
+        if (locale == "en") {
+            title1 = "Do You Want to Save the Changes?"
+            copyToClipboardButton = "Click Button to Copy to Clipboard";
+            copyButton = "Copy";
+            cancelButtonText = "Cancel";
+            saveButton = "Save";
+            successMessage = "Done! Successfully Updated!"
+            failureMessage = "Error! Try Again!"
+        } else {
+            title1 = "Kaydetmek İstediğnize Emin Misiniz?"
+            copyToClipboardButton = "Kopyalamak İçin Butona Tıklayınız";
+            copyButton = "Kopyala";
+            saveButton = "Kaydet";
+            cancelButtonText = "İptal";
+            successMessage = "İşlem Başarılı!";
+            failureMessage = "İşlem Başarısız! Tekrar Deneyin";
+        }
 
         var button = $("#delete").on("click", function() {
             Swal.fire({
@@ -186,22 +221,15 @@
             })
         });
 
-        var url2 = 'http://127.0.0.1:8000/admin/staff/authorities/authority/id:' + id
-        var name = $('#name').val();
-        var surname = $('#surname').val();
-        var msisdn = $('#msisdn').val();
-        var email = $('#email').val();
-        var password = $('#password').val();
 
 
         var button = $('#update').on('click', function() {
-
             Swal.fire({
-                title: 'Do you want to save the changes?',
+                title: title1,
                 icon: 'question',
                 showDenyButton: true,
-                confirmButtonText: '<i class="far fa-save"></i> Save',
-                denyButtonText: `<i class="far fa-window-close"></i> Cancel`,
+                confirmButtonText: '<i class="far fa-save"></i> ' + saveButton,
+                denyButtonText: `<i class="far fa-window-close"></i> ` + cancelButtonText,
                 confirmButtonColor: '#28A745',
                 denyButtonColor: '#6c757d',
             }).then((result2) => {
@@ -220,11 +248,11 @@
                             _token: _token
                         },
                         success: function() {
-                            swal.fire("Done!", "It was succesfully updated!", "success");
+                            swal.fire(successMessage, "success");
                             $(location).attr('href', url2);
                         },
                         error: function(xhr, ajaxOptions, thrownError) {
-                            swal.fire("Error Updating!", "Please try again", "error");
+                            swal.fire(failureMessage "error");
                         }
                     })
                 } else Swal.fire({
@@ -235,6 +263,7 @@
                 });
             })
         });
+
         var eyeBtn = document.querySelector('#btn-eye');
         eyeBtn.onclick = function() {
             var inp = document.querySelector('#password');

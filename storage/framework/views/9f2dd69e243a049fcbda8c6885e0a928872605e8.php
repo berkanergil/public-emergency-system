@@ -3,7 +3,10 @@
 <?php $__env->startSection('breadcrumb'); ?>
     <a href="<?php echo e(route('createAuthority')); ?>"><?php echo e(__('Create Authority')); ?></a>
 <?php $__env->stopSection(); ?>
-
+<?php
+use Illuminate\Support\Facades\App;
+$locale = App::currentLocale();
+?>
 <?php $__env->startSection('statistic_content'); ?>
     <div class="container-fluid">
         <div class="row gutters d-flex justify-content-center align-items-center">
@@ -146,6 +149,17 @@
 
 <?php $__env->startSection('sweetjs'); ?>
     <script>
+        var locale = '<?php echo e($locale); ?>';
+        var copyToClipboardButton = "";
+        var copyButton = "";
+
+        if (locale == "en") {
+            copyToClipboardButton = "Click Button to Copy to Clipboard";
+            copyButton = "Copy";
+        } else if (locale == "tr") {
+            copyToClipboardButton = "Kopyalamak İçin Butona Tıklayınız";
+            copyButton = "Kopyala";
+        }
         document.addEventListener('DOMContentLoaded', function() {
             var result = document.querySelector('.generator');
             var copy = document.querySelector('.btn-outline-primary');
@@ -156,8 +170,8 @@
             function copyToClipboard(text) {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Click Button to Copy to Clipboard',
-                    confirmButtonText: '<i class="far fa-copy"></i> Copy',
+                    title: copyToClipboardButton,
+                    confirmButtonText: '<i class="far fa-copy"></i> ' + copyButton,
                     confirmButtonColor: '#28A745',
                     text: text,
                 }).then((result) => {

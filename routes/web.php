@@ -378,7 +378,6 @@ Route::prefix('admin/users/')->group(function () {
 
 
 Route::post('/store_evidence/{id}', function (Request $request, $id) {
-    Log::info('web');
     $documentControllerObject = new DocumentController();
     $response = $documentControllerObject->store($request);
     if ($response?->status() == 200) {
@@ -405,6 +404,11 @@ Route::post('/store_notes', function (Request $request) {
         return abort(500);
     }
 })->name("store_notes");
+
+Route::delete('/delete_notes/{id}', function ($id) {
+    $noteControllerObject = new NotesController();
+    $response = $noteControllerObject->destroy($id);
+})->name('delete_notes');
 
 Route::post('/mark_event', function (Request $request) {
     $staffEventControllerObject = new StaffEventController();
