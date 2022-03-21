@@ -3,6 +3,7 @@
     <a href="<?php echo e(route('currentReports')); ?>">
         Current Reports</a>
 <?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('statistic_content'); ?>
     <?php
     use Illuminate\Support\Facades\App;
@@ -31,53 +32,7 @@
                     </tr>
                 </thead>
                 <tbody class="table-light">
-                    <?php $__currentLoopData = $eventObject->currentEvents(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $event): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <tr>
-                            <td><a target="_blank" href="<?php echo e(route('report', $event->id)); ?>"><?php echo e($event->id); ?></a>
-                            </td>
-
-                            <?php if($locale == 'en'): ?>
-                                <td><?php echo e(Str::title($event->eventType->title)); ?></td>
-                            <?php else: ?>
-                                <td><?php echo e(Str::title($event->eventType->tr)); ?></td>
-                            <?php endif; ?>
-
-                            <td>
-                                <?php if(isset($event->user)): ?>
-                                    <?php echo e(Str::title($event->user->name . ' ' . $event->user->surname)); ?>
-
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <?php if(isset($event->staff)): ?>
-                                    <?php echo e(Str::title($event->staff->name . ' ' . $event->staff->surname)); ?>
-
-                                <?php endif; ?>
-                            </td>
-                            <?php if($locale == 'en'): ?>
-                                <td class=<?php echo e($event->event_status_id == 2 ? 'bg-warning' : 'bg-danger'); ?>>
-                                    <?php if($event->event_status_id == 2): ?>
-                                        Being Handled
-                                    <?php elseif($event->event_status_id == 3): ?>
-                                        Not Handled
-                                    <?php endif; ?>
-                                </td>
-                            <?php else: ?>
-                                <td class=<?php echo e($event->event_status_id == 2 ? 'bg-warning' : 'bg-danger'); ?>>
-                                    <?php if($event->event_status_id == 2): ?>
-                                        Müdahale Ediliyor
-                                    <?php elseif($event->event_status_id == 3): ?>
-                                        Müdahale Edilmedi
-                                    <?php endif; ?>
-                                </td>
-                            <?php endif; ?>
-
-                            <td><a target="_blank"
-                                    href="https://www.google.com/maps/search/<?php echo e($event->lat . ',' . $event->lon); ?>"><?php echo e(substr($event->lat, 0, 7) . ' - ' . substr($event->lon, 0, 7)); ?></a>
-                            </td>
-                            <td><?php echo e($event->created_at); ?></td>
-                        </tr>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    
                 </tbody>
             </table>
         </div>

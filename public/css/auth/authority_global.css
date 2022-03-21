@@ -546,3 +546,16 @@ input[type="text"]+.btn-eye:after {
 .agentGroupModal {
     width: 1000px !important;
 }
+
+.mapButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    margin-left: 90px;
+    margin-bottom: 15px;
+}
+
+.boldMap {
+    font-weight: bold!important;
+}

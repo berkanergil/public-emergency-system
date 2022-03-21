@@ -196,6 +196,7 @@
                 </ul>
             </nav>
 
+
             <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
                 <a href="<?php echo e(route('statistics')); ?>" class="brand-link">
@@ -473,192 +474,184 @@
 
 
 
-            <!-- Main Footer -->
-            <footer class="main-footer">
-                <strong><?php echo e(__('Copyright')); ?> &copy; 2022 <a
-                        href="<?php echo e(route('statistics')); ?>">EmergenCYP</a>.</strong>
-                <?php echo e(__('All rights reserved.')); ?>
-
-                <div class="float-right d-none d-sm-inline-block">
-                    <b><?php echo e(__('Version')); ?></b> 1.0
-                </div>
-            </footer>
-
         </div>
-        <!-- ./wrapper -->
 
-        <!-- REQUIRED SCRIPTS -->
 
-        <!-- jQuery -->
-        <script src="<?php echo e(asset('plugins/jquery/jquery.min.js')); ?>"></script>
-        <!-- jQuery UI 1.11.4 -->
-        <script src="<?php echo e(asset('plugins/jquery-ui/jquery-ui.min.js')); ?>"></script>
-        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-        <script>
-            $.widget.bridge('uibutton', $.ui.button)
-        </script>
-        <!-- Bootstrap 4 -->
-        <script src="<?php echo e(asset('plugins/bootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
-        <!-- ChartJS -->
-        <script src="<?php echo e(asset('plugins/chart.js/Chart.min.js')); ?>"></script>
-        <!-- Sparkline -->
-        <script src="<?php echo e(asset('plugins/sparklines/sparkline.js')); ?>"></script>
-        <!-- JQVMap -->
-        <script src="<?php echo e(asset('plugins/jqvmap/jquery.vmap.min.js')); ?>"></script>
-        <script src="<?php echo e(asset('plugins/jqvmap/maps/jquery.vmap.usa.js')); ?>"></script>
-        <!-- jQuery Knob Chart -->
-        <script src="<?php echo e(asset('plugins/jquery-knob/jquery.knob.min.js')); ?>"></script>
-        <!-- daterangepicker -->
-        <script src="<?php echo e(asset('plugins/moment/moment.min.js')); ?>"></script>
-        <script src="<?php echo e(asset('plugins/daterangepicker/daterangepicker.js')); ?>"></script>
-        <!-- Tempusdominus Bootstrap 4 -->
-        <script src="<?php echo e(asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')); ?>"></script>
-        <!-- Summernote -->
-        <script src="<?php echo e(asset('plugins/summernote/summernote-bs4.min.js')); ?>"></script>
-        <!-- overlayScrollbars -->
-        <script src="<?php echo e(asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')); ?>"></script>
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <strong><?php echo e(__('Copyright')); ?> &copy; 2022 <a href="<?php echo e(route('statistics')); ?>">EmergenCYP</a>.</strong>
+            <?php echo e(__('All rights reserved.')); ?>
 
-        <!-- AdminLTE for demo purposes -->
-        <script src="<?php echo e(asset('dist/js/demo.js')); ?>"></script>
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="<?php echo e(asset('dist/js/pages/dashboard.js')); ?>"></script>
-        <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables/jquery.dataTables.min.js')); ?>"></script>
-        <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')); ?>">
-        </script>
-        <script
-                src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-responsive/js/dataTables.responsive.min.js')); ?>">
-        </script>
-        <script
-                src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')); ?>">
-        </script>
-        <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/dataTables.buttons.min.js')); ?>">
-        </script>
-        <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')); ?>">
-        </script>
-        <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/jszip/jszip.min.js')); ?>"></script>
-        <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/pdfmake/pdfmake.min.js')); ?>"></script>
-        <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/pdfmake/vfs_fonts.js')); ?>"></script>
-        <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.html5.min.js')); ?>">
-        </script>
-        <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.print.min.js')); ?>">
-        </script>
-        <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.colVis.min.js')); ?>">
-        </script>
-        
-        <!-- Page specific script -->
-        <script>
-            $(function() {
-                $("#example1").DataTable({
-                    "dom": 'Bfrtip',
-                    "processing": true,
-                    "serverSide": true,
-                    "ajax": "<?php echo e(route('reports.data')); ?>",
-                    "columnDefs": [{
-                            targets: [0, 1, 2, 3, 4, 5, 6]
-                        },
-                        {
-                            "data": "id",
-                            targets: [0],
-                            render: function(data, type) {
-                                if (type === 'display') {
-                                    return '<a target="_blank" href="report/' + data + '">' + data +
-                                        '</a>';
-                                }
-                                return data;
+            <div class="float-right d-none d-sm-inline-block">
+                <b><?php echo e(__('Version')); ?></b> 1.0
+            </div>
+        </footer>
+
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED SCRIPTS -->
+
+    <!-- jQuery -->
+    <script src="<?php echo e(asset('plugins/jquery/jquery.min.js')); ?>"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="<?php echo e(asset('plugins/jquery-ui/jquery-ui.min.js')); ?>"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="<?php echo e(asset('plugins/bootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
+    <!-- ChartJS -->
+    <script src="<?php echo e(asset('plugins/chart.js/Chart.min.js')); ?>"></script>
+    <!-- Sparkline -->
+    <script src="<?php echo e(asset('plugins/sparklines/sparkline.js')); ?>"></script>
+    <!-- JQVMap -->
+    <script src="<?php echo e(asset('plugins/jqvmap/jquery.vmap.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('plugins/jqvmap/maps/jquery.vmap.usa.js')); ?>"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="<?php echo e(asset('plugins/jquery-knob/jquery.knob.min.js')); ?>"></script>
+    <!-- daterangepicker -->
+    <script src="<?php echo e(asset('plugins/moment/moment.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('plugins/daterangepicker/daterangepicker.js')); ?>"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="<?php echo e(asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')); ?>"></script>
+    <!-- Summernote -->
+    <script src="<?php echo e(asset('plugins/summernote/summernote-bs4.min.js')); ?>"></script>
+    <!-- overlayScrollbars -->
+    <script src="<?php echo e(asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')); ?>"></script>
+
+    <!-- AdminLTE for demo purposes -->
+    <script src="<?php echo e(asset('dist/js/demo.js')); ?>"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="<?php echo e(asset('dist/js/pages/dashboard.js')); ?>"></script>
+    <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables/jquery.dataTables.min.js')); ?>"></script>
+    <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')); ?>">
+    </script>
+    <script
+        src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-responsive/js/dataTables.responsive.min.js')); ?>">
+    </script>
+    <script
+        src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')); ?>">
+    </script>
+    <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/dataTables.buttons.min.js')); ?>">
+    </script>
+    <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')); ?>">
+    </script>
+    <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/jszip/jszip.min.js')); ?>"></script>
+    <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/pdfmake/pdfmake.min.js')); ?>"></script>
+    <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/pdfmake/vfs_fonts.js')); ?>"></script>
+    <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.html5.min.js')); ?>">
+    </script>
+    <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.print.min.js')); ?>">
+    </script>
+    <script src="<?php echo e(url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.colVis.min.js')); ?>">
+    </script>
+    
+    <script>
+        $(function() {
+            $("#currentReports").DataTable({
+                "dom": 'Bfrtip',
+                "processing": true,
+                "serverSide": true,
+                "ajax": "<?php echo e(route('reports.data')); ?>",
+                "columnDefs": [{
+                        targets: [0, 1, 2, 3, 4, 5, 6]
+                    },
+                    {
+                        "data": "id",
+                        targets: [0],
+                        render: function(data, type) {
+                            if (type === 'display') {
+                                return '<a target="_blank" href="report/' + data + '">' + data +
+                                    '</a>';
                             }
-                        },
-                        {
-                            "data": "type",
-                            targets: [1]
-                        },
-                        {
-                            "data": "user",
-                            targets: [2]
-                        },
-                        {
-                            "data": "staff",
-                            targets: [3]
-                        },
-                        {
-                            "data": "statusid",
-                            targets: [4],
-                            render: function(data, type) {
-                                let status = "Not Handled";
-                                if (type === 'display') {
-                                    let className = "bg-danger";
-                                    if (data === 2) {
-                                        className = "bg-warning";
-                                        status = "Being Handled";
-                                    }
-                                    return status;
+                            return data;
+                        }
+                    },
+                    {
+                        "data": "type",
+                        targets: [1]
+                    },
+                    {
+                        "data": "user",
+                        targets: [2]
+                    },
+                    {
+                        "data": "staff",
+                        targets: [3]
+                    },
+                    {
+                        "data": "status",
+                        targets: [4],
+                        render: function(data, type) {
+                            let status = data.locale === 'en' ? "Not Handled" : "Müdahale Edilmedi";
+                            if (type === 'display') {
+                                let className = "bg-danger";
+                                if (data.id === 2) {
+                                    className = "bg-warning";
+                                    status = data.locale === 'en' ? "Being Handled" :
+                                        "Müdahale Ediliyor";
                                 }
                                 return status;
                             }
-                        },
-                        {
-                            "data": "location",
-                            targets: [5],
-                            render: function(data, type) {
-                                let loc = data.lat.substr(0, 7) + ' - ' + data.lon.substr(0, 7);
-                                if (type === 'display') {
-                                    return '<a target="_blank" href="https://www.google.com/maps/search/' +
-                                        data.lat + ',' + data.lon + '">' + loc + '</a>';
-                                }
-                                return loc;
-                            }
-                        },
-                        {
-                            "data": "date",
-                            targets: [6]
-                        },
-                    ],
-                    "rowCallback": function(row, data, index) {
-                        if (data["statusid"] === 3) {
-                            $("td:eq(4)", row).addClass("bg-danger");
-                        } else if (data["statusid"] === 2) {
-                            $("td:eq(4)", row).addClass("bg-warning");
+                            return status;
                         }
                     },
-                    "responsive": true,
-                    "lengthChange": false,
-                    "autoWidth": false,
-                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-                }).buttons().container().appendTo('#example1 .col-md-6:eq(0)');
-                $('#example2').DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": false,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": false,
-                    "responsive": true,
-                });
+                    {
+                        "data": "location",
+                        targets: [5],
+                        render: function(data, type) {
+                            let loc = data.lat.substr(0, 7) + ' - ' + data.lon.substr(0, 7);
+                            if (type === 'display') {
+                                return '<a target="_blank" href="https://www.google.com/maps/search/' +
+                                    data.lat + ',' + data.lon + '">' + loc + '</a>';
+                            }
+                            return loc;
+                        }
+                    },
+                    {
+                        "data": "date",
+                        targets: [6]
+                    },
+                ],
+                "rowCallback": function(row, data, index) {
+                    if (data["status"].id === 3) {
+                        $("td:eq(4)", row).addClass("bg-danger");
+                    } else if (data["status"].id === 2) {
+                        $("td:eq(4)", row).addClass("bg-warning");
+                    }
+                },
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#currentReports .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
             });
-        </script>
-        <script>
-            $(document).click(function() {
-                if (jQuery('.lang-select').find('.flag-img').hasClass('lang-show')) {
-                    jQuery('.lang-select').find('.flag-img').toggleClass('lang-show');
-                }
-            });
-            jQuery('.lang-selected').click(function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                jQuery('.lang-select').find('.flag-img').toggleClass('lang-show');
-            })
-        </script>
+        });
+    </script>
 
+    <script src="<?php echo e(url('https://kit.fontawesome.com/3a82b90854.js')); ?>" crossorigin="anonymous"></script>
+    <script src="<?php echo e(asset('js/password_generator.js')); ?>"></script>
+    <script src="<?php echo e(url('//cdn.jsdelivr.net/npm/sweetalert2@11')); ?>"></script>
+    <script src="<?php echo e(url('https://kit.fontawesome.com/3a82b90854.js')); ?>" crossorigin="anonymous"></script>
+    <script src="<?php echo e(asset('js/password_generator.js')); ?>"></script>
+    <script src="<?php echo e(url('//cdn.jsdelivr.net/npm/sweetalert2@11')); ?>"></script>
 
-        <script src="<?php echo e(url('https://kit.fontawesome.com/3a82b90854.js')); ?>" crossorigin="anonymous"></script>
-        <script src="<?php echo e(asset('js/password_generator.js')); ?>"></script>
-        <script src="<?php echo e(url('//cdn.jsdelivr.net/npm/sweetalert2@11')); ?>"></script>
-
-        <script src="<?php echo e(asset('sweetalert2.min.js')); ?>"></script>
-        <script src="<?php echo e(url('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js')); ?>"></script>
-        <script src="<?php echo e(url('https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=')); ?>"
-                crossorigin="anonymous"></script>
-        <!-- AdminLTE App -->
-        <script src="<?php echo e(asset('dist/js/adminlte.js')); ?>"></script>
+    <script src="<?php echo e(asset('sweetalert2.min.js')); ?>"></script>
+    <script src="<?php echo e(url('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js')); ?>"></script>
+    <script
+        src="<?php echo e(url('https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=')); ?>"
+        crossorigin="anonymous"></script>
+    <script src="<?php echo e(asset('dist/js/adminlte.js')); ?>"></script>
 </body>
 
 <?php echo $__env->yieldContent('sweetjs'); ?>

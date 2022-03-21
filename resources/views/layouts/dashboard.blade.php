@@ -106,7 +106,6 @@
 
     <div id="app">
         <div class="wrapper">
-<<<<<<< HEAD
             <div class="preloader flex-column justify-content-center align-items-center">
                 <img class="animation__shake" src="{{ asset('images/emergencyp.png') }}" alt="EmergenCyp Logo"
                     height="160" width="450">
@@ -194,8 +193,7 @@
                     </li>
                 </ul>
             </nav>
-=======
->>>>>>> 2184c18202949313431665385137313a99a55d3e
+
 
             <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
@@ -464,13 +462,12 @@
             </aside>
             <!-- /.control-sidebar -->
 
-<<<<<<< HEAD
 
-=======
-        
 
-    </div>
-    <!-- Main Footer -->
+        </div>
+
+
+        <!-- Main Footer -->
         <footer class="main-footer">
             <strong>{{ __('Copyright') }} &copy; 2022 <a href="{{ route('statistics') }}">EmergenCYP</a>.</strong>
             {{ __('All rights reserved.') }}
@@ -478,132 +475,70 @@
                 <b>{{ __('Version') }}</b> 1.0
             </div>
         </footer>
-    <!-- ./wrapper -->
+
     </div>
->>>>>>> 2184c18202949313431665385137313a99a55d3e
+    <!-- ./wrapper -->
 
-            <!-- Main Footer -->
-            <footer class="main-footer">
-                <strong>{{ __('Copyright') }} &copy; 2022 <a
-                        href="{{ route('statistics') }}">EmergenCYP</a>.</strong>
-                {{ __('All rights reserved.') }}
-                <div class="float-right d-none d-sm-inline-block">
-                    <b>{{ __('Version') }}</b> 1.0
-                </div>
-            </footer>
+    <!-- REQUIRED SCRIPTS -->
 
-        </div>
-        <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- ChartJS -->
+    <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
+    <!-- Sparkline -->
+    <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
+    <!-- JQVMap -->
+    <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
+    <script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+    <!-- daterangepicker -->
+    <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+    <!-- Summernote -->
+    <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
+    <!-- overlayScrollbars -->
+    <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 
-        <!-- REQUIRED SCRIPTS -->
-
-        <!-- jQuery -->
-        <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-        <!-- jQuery UI 1.11.4 -->
-        <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-        <script>
-            $.widget.bridge('uibutton', $.ui.button)
-        </script>
-        <!-- Bootstrap 4 -->
-        <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-        <!-- ChartJS -->
-        <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
-        <!-- Sparkline -->
-        <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
-        <!-- JQVMap -->
-        <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-        <script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
-        <!-- jQuery Knob Chart -->
-        <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
-        <!-- daterangepicker -->
-        <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
-        <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
-        <!-- Tempusdominus Bootstrap 4 -->
-        <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-        <!-- Summernote -->
-        <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
-        <!-- overlayScrollbars -->
-        <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-
-        <!-- AdminLTE for demo purposes -->
-        <script src="{{ asset('dist/js/demo.js') }}"></script>
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
-        <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}">
-        </script>
-        <script
-                src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}">
-        </script>
-        <script
-                src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}">
-        </script>
-        <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}">
-        </script>
-        <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}">
-        </script>
-        <script src="{{ url('https://adminlte.io/themes/v3/plugins/jszip/jszip.min.js') }}"></script>
-        <script src="{{ url('https://adminlte.io/themes/v3/plugins/pdfmake/pdfmake.min.js') }}"></script>
-        <script src="{{ url('https://adminlte.io/themes/v3/plugins/pdfmake/vfs_fonts.js') }}"></script>
-        <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.html5.min.js') }}">
-        </script>
-        <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.print.min.js') }}">
-        </script>
-        <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.colVis.min.js') }}">
-        </script>
-        {{-- <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{ asset('dist/js/demo.js') }}"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+    <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}">
+    </script>
+    <script
+        src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}">
+    </script>
+    <script
+        src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}">
+    </script>
+    <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}">
+    </script>
+    <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}">
+    </script>
+    <script src="{{ url('https://adminlte.io/themes/v3/plugins/jszip/jszip.min.js') }}"></script>
+    <script src="{{ url('https://adminlte.io/themes/v3/plugins/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ url('https://adminlte.io/themes/v3/plugins/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.html5.min.js') }}">
+    </script>
+    <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.print.min.js') }}">
+    </script>
+    <script src="{{ url('https://adminlte.io/themes/v3/plugins/datatables-buttons/js/buttons.colVis.min.js') }}">
+    </script>
+    {{-- <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
     <script src="{{ asset('vendor/datepicker/moment.min.js') }}"></script>
     <script src="{{ asset('vendor/datepicker/daterangepicker.js') }}"></script> --}}
-<<<<<<< HEAD
-        <!-- Page specific script -->
-        <script>
-            $(function() {
-                $("#example1").DataTable({
-                    "dom": 'Bfrtip',
-                    "processing": true,
-                    "serverSide": true,
-                    "ajax": "{{ route('reports.data') }}",
-                    "columnDefs": [{
-                            targets: [0, 1, 2, 3, 4, 5, 6]
-                        },
-                        {
-                            "data": "id",
-                            targets: [0],
-                            render: function(data, type) {
-                                if (type === 'display') {
-                                    return '<a target="_blank" href="report/' + data + '">' + data +
-                                        '</a>';
-                                }
-                                return data;
-                            }
-                        },
-                        {
-                            "data": "type",
-                            targets: [1]
-                        },
-                        {
-                            "data": "user",
-                            targets: [2]
-                        },
-                        {
-                            "data": "staff",
-                            targets: [3]
-                        },
-                        {
-                            "data": "statusid",
-                            targets: [4],
-                            render: function(data, type) {
-                                let status = "Not Handled";
-                                if (type === 'display') {
-                                    let className = "bg-danger";
-                                    if (data === 2) {
-                                        className = "bg-warning";
-                                        status = "Being Handled";
-                                    }
-                                    return status;
-=======
-    <!-- Page specific script -->
     <script>
         $(function() {
             $("#currentReports").DataTable({
@@ -646,52 +581,26 @@
                                 let className = "bg-danger";
                                 if (data.id === 2) {
                                     className = "bg-warning";
-                                    status = data.locale === 'en' ? "Being Handled" : "Müdahale Ediliyor";
->>>>>>> 2184c18202949313431665385137313a99a55d3e
+                                    status = data.locale === 'en' ? "Being Handled" :
+                                        "Müdahale Ediliyor";
                                 }
                                 return status;
                             }
-                        },
-                        {
-                            "data": "location",
-                            targets: [5],
-                            render: function(data, type) {
-                                let loc = data.lat.substr(0, 7) + ' - ' + data.lon.substr(0, 7);
-                                if (type === 'display') {
-                                    return '<a target="_blank" href="https://www.google.com/maps/search/' +
-                                        data.lat + ',' + data.lon + '">' + loc + '</a>';
-                                }
-                                return loc;
-                            }
-                        },
-                        {
-                            "data": "date",
-                            targets: [6]
-                        },
-                    ],
-                    "rowCallback": function(row, data, index) {
-                        if (data["statusid"] === 3) {
-                            $("td:eq(4)", row).addClass("bg-danger");
-                        } else if (data["statusid"] === 2) {
-                            $("td:eq(4)", row).addClass("bg-warning");
+                            return status;
                         }
                     },
-<<<<<<< HEAD
-                    "responsive": true,
-                    "lengthChange": false,
-                    "autoWidth": false,
-                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-                }).buttons().container().appendTo('#example1 .col-md-6:eq(0)');
-                $('#example2').DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": false,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": false,
-                    "responsive": true,
-                });
-=======
+                    {
+                        "data": "location",
+                        targets: [5],
+                        render: function(data, type) {
+                            let loc = data.lat.substr(0, 7) + ' - ' + data.lon.substr(0, 7);
+                            if (type === 'display') {
+                                return '<a target="_blank" href="https://www.google.com/maps/search/' +
+                                    data.lat + ',' + data.lon + '">' + loc + '</a>';
+                            }
+                            return loc;
+                        }
+                    },
                     {
                         "data": "date",
                         targets: [6]
@@ -717,39 +626,23 @@
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,
->>>>>>> 2184c18202949313431665385137313a99a55d3e
             });
-        </script>
-        <script>
-            $(document).click(function() {
-                if (jQuery('.lang-select').find('.flag-img').hasClass('lang-show')) {
-                    jQuery('.lang-select').find('.flag-img').toggleClass('lang-show');
-                }
-            });
-            jQuery('.lang-selected').click(function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                jQuery('.lang-select').find('.flag-img').toggleClass('lang-show');
-            })
-        </script>
+        });
+    </script>
 
-<<<<<<< HEAD
-
-        <script src="{{ url('https://kit.fontawesome.com/3a82b90854.js') }}" crossorigin="anonymous"></script>
-        <script src="{{ asset('js/password_generator.js') }}"></script>
-        <script src="{{ url('//cdn.jsdelivr.net/npm/sweetalert2@11') }}"></script>
-=======
     <script src="{{ url('https://kit.fontawesome.com/3a82b90854.js') }}" crossorigin="anonymous"></script>
     <script src="{{ asset('js/password_generator.js') }}"></script>
     <script src="{{ url('//cdn.jsdelivr.net/npm/sweetalert2@11') }}"></script>
->>>>>>> 2184c18202949313431665385137313a99a55d3e
+    <script src="{{ url('https://kit.fontawesome.com/3a82b90854.js') }}" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/password_generator.js') }}"></script>
+    <script src="{{ url('//cdn.jsdelivr.net/npm/sweetalert2@11') }}"></script>
 
-        <script src="{{ asset('sweetalert2.min.js') }}"></script>
-        <script src="{{ url('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js') }}"></script>
-        <script src="{{ url('https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=') }}"
-                crossorigin="anonymous"></script>
-        <!-- AdminLTE App -->
-        <script src="{{ asset('dist/js/adminlte.js') }}"></script>
+    <script src="{{ asset('sweetalert2.min.js') }}"></script>
+    <script src="{{ url('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js') }}"></script>
+    <script
+        src="{{ url('https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=') }}"
+        crossorigin="anonymous"></script>
+    <script src="{{ asset('dist/js/adminlte.js') }}"></script>
 </body>
 
 @yield('sweetjs')

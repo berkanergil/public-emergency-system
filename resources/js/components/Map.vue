@@ -35,15 +35,16 @@ export default {
         setMarker(report) {
             const contentString =
                 '<div id="content"><div id="siteNotice"></div>' +
-                '<h2 id="firstHeading" class="firstHeading">' + report.id + '</h2>' +
-                '<h3>Zip code: ' + report.event_status_id + '</h3>' +
-                '<div id="bodyContent" style="font-size: 12pt;" >' +
-                '</br>Population (2018): ' + report.event_type_id +
-                '</br>Median income (2015): ' + report.description + ' €' +
-                '</br>Median income relative to national average (2015): ' + report.created_at +
-                ' €' + '</div>' + '</div>';
+                '<h4 id="firstHeading" class="class="boldMap"">Report ID: ' + report.id + '</h4>' +
+                '<h4 class="boldMap">Event Status: ' + report.event_status_id + '</h4>' +
+                '<div style="font-size: 12pt;" >' +
+                '</br><span class="boldMap">Emergency Type:</span>  ' + report.event_type_id +
+                '</br><span class="boldMap">Description:</span> ' + report.description  +
+                '</br><span class="boldMap">Reported At:</span> ' + report.created_at +
+                + '</div>' + '<br>' +  '<button class="form-buttons mapButton">See Report</button>' + '</div>';
             const infowindow = new google.maps.InfoWindow({
                 content: contentString,
+               
             })
             const marker = new google.maps.Marker({
                 position: new google.maps.LatLng(report.lat, report.lon),

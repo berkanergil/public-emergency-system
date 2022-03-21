@@ -495,7 +495,7 @@ Route::get('/emergencyp', [App\Http\Controllers\HomeController::class, 'emergenc
 
 Route::get('/admin/reports/current/data', [EventController::class, 'reportData'])->name('reports.data');
 
-Route::get('/admin/newReports/all', function() {
+Route::get('/admin/newReports/all', function () {
     $events = Event::all();
     return response($events);
 });

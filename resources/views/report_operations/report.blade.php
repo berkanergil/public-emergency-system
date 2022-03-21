@@ -698,7 +698,6 @@
             buttonCancelText = "İptal";
         }
 
-
         $("#mark_event").on("click", function() {
             Swal.fire({
                 title: '<i class="fas fa-highlighter"></i> Mark Events As',
@@ -764,83 +763,50 @@
             })
         })
         $("#upload_evidence").on("click", function() {
-
             Swal.fire({
-                title: '<i class="fa-solid fa-file-arrow-up"></i> Select File',
-                input: 'file',
                 confirmButtonColor: "#1FAB45",
                 confirmButtonText: buttonSecondText,
                 cancelButtonText: buttonCancelText,
+                title: 'Select image',
+                input: 'file',
                 inputAttributes: {
                     'accept': 'image/*,application/*,audio/*,text/*',
-                    'aria-label': 'Upload your document'
-                },
-                inputValidator: (value) => {
-                    return new Promise((resolve) => {
-                        if (value === '') {
-                            resolve('You need to select oranges :)')
-                        } else {
-                            var fd = new FormData();
-                            var ext = file.split('.').pop();
-                            // Check file selected or not
-                            if (value) {
-                                if (ext == 'png' || ext == 'jpg' || ext == 'jpeg') {
-                                    var documentType = 1;
-                                } else if (ext == 'doc' || ext == 'docx' || ext == 'pdf' ||
-                                    ext == 'csv' || ext == 'xlsx') {
-                                    var documentType = 4;
-                                } else if (ext == 'mp4' || ext == 'mov' || ext == 'wmv' ||
-                                    ext == 'avi' || ext == 'mpeg-2') {
-                                    var documentType = 2;
-                                } else if (ext == 'mp3' || ext == 'aac') {
-                                    var documentType = 3;
-                                } else {
-                                    var documentType = 5;
-                                }
-
-                                fd.append('event_id', event_id);
-                                fd.append('uploader_name', uploader_name);
-                                fd.append('file', value);
-                                fd.append('_token', _token);
-                                fd.append('document_type_id', documentType);
-                                $.ajax({
-                                    url: "{{ route('store_evidence', $event->id) }}",
-                                    type: 'post',
-                                    data: fd,
-                                    contentType: false,
-                                    processData: false,
-                                    success: function(response) {
-                                        if (response) {
-                                            Swal.fire({
-                                                icon: 'success',
-                                                title: 'Done',
-                                                text: 'You have uploaded an evidence!',
-                                            }).then(
-                                                function() {
-                                                    location.reload();
-                                                }
-                                            )
-                                        } else {
-                                            Swal.fire({
-                                                icon: 'error',
-                                                title: 'Error',
-                                                text: 'Could not upload the evidence!',
-                                            })
-                                        }
-                                    },
-                                });
-                            } else {
-                                Swal.fire({
-                                    icon: 'info',
-                                    title: 'No File',
-                                    text: 'Please select a file!',
-                                })
-                            }
-                        }
-                    })
+                    'aria-label': 'Upload your document '
                 }
             })
-        })
+            if (file) {
+                const fd = new FormData();
+                var ext = file.split('.').pop();
+                if (ext == 'png' || ext == 'jpg' || ext == 'jpeg') {
+                    var documentType = 1;
+                } else if (ext == 'doc' || ext == 'docx' || ext == 'pdf' ||
+                    ext == 'csv' || ext == 'xlsx') {
+                    var documentType = 4;
+                } else if (ext == 'mp4' || ext == 'mov' || ext == 'wmv' ||
+                    ext == 'avi' || ext == 'mpeg-2') {
+                    var documentType = 2;
+                } else if (ext == 'mp3' || ext == 'aac') {
+                    var documentType = 3;
+                } else {
+                    var documentType = 5;
+                }
+                fd.append('event_id', event_id);
+                fd.append('uploader_name', uploader_name);
+                fd.append('file', value);
+                fd.append('_token', _token);
+                fd.append('document_type_id', documentType);
+
+            }.then(function() {
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('store_evidence', $event->id) }}",
+                    data: fd
+                })
+            })
+        });
+
+
+
         $('#make_notes').on('click', function() {
             Swal.fire({
                 title: "Add Note",
@@ -910,21 +876,23 @@
                             _token: _token
                         },
                         success: function() {
-                            swal.fire("Done!", "It was succesfully deleted!", "success").then(
+                            swal.fire("Done!", "It was succesfully deleted!",
+                                "success").then(
                                 function() {
                                     window.location.reload();
                                 })
 
                         },
                         error: function(xhr, ajaxOptions, thrownError) {
-                            swal.fire("Error deleting!", "Please try again", "error");
+                            swal.fire("Error deleting!", "Please try again",
+                                "error");
                         }
                     });
                 } else {
 
                 }
             })
-        })
+        });
     </script>
     <script>
         $(document).ready(function() {
