@@ -11,6 +11,11 @@ class HomeController extends Controller
      *
      * @return void
      */
+
+    public function index()
+    {
+        return view('system_operations.panelNotifications');
+    }
     public function chatPage()
     {
         return view('system_operations.chatPage');

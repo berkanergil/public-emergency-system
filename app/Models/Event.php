@@ -90,10 +90,12 @@ class Event extends Model
     {
         return Event::whereIn("event_status_id", [2, 3])->orderBy("id", "desc")->get();
     }
-    public static function mergedReports()
+
+    public function mergedEvents()
     {
-        return Event::whereIn("event_status_id", [4])->orderBy("id", "desc")->get();
+        return $this->belongsTo(MergedEvents::class);
     }
+
     public static function pastEvents()
     {
         return Event::where("event_status_id", "1")->orderBy("id", "desc")->get();
@@ -182,12 +184,7 @@ class Event extends Model
         }
     }
 
-    public static function notMergedEvents()
-    {
-        $mergedEvents = Event::get()->where('event_status_id', "=", "4")->all();
-        $notMergedEvents = Event::select("id", "event_type_id", "description", "user_id", "lat", "lon")->whereNotIn('id', $mergedEvents)->get();
-        return $notMergedEvents;
-    }
+
 
     public function broadcastOn($event)
     {

@@ -180,6 +180,7 @@ $locale = App::currentLocale();
             successMessage = "İşlem Başarılı!";
             failureMessage = "İşlem Başarısız! Tekrar Deneyin";
         }
+
         var button = $("#delete").on("click", function() {
             Swal.fire({
                 title: 'Are you sure?',

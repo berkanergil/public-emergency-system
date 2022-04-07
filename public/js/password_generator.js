@@ -47,7 +47,5 @@ document.addEventListener('DOMContentLoaded', function() {
         pwField2.value = newPassword;
         Swal.fire(newPassword).then(copyToClipboard(pwField.value));
     }
-    result.addEventListener('click', function() {
-        generatePass(pwField).then(copyToClipboard(pwField.value));
-    });
+    
 });

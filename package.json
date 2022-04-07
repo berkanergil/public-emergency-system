@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "admin-lte": "^3.1.0",
+        "firebase": "^9.6.10",
         "flag-icons": "^6.1.1",
         "select2-bootstrap-theme": "*",
         "sweetalert2": "^10.16.9",

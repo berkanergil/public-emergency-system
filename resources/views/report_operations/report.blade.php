@@ -13,8 +13,9 @@
     use App\Models\Event;
     use App\Models\Notes;
     use App\Models\DocumentType;
-
+    use App\Models\MergedEvents;
     $locale = App::currentLocale();
+
     $noteObject = new Notes();
     $groupObject = new Group();
     $eventObject = new Event();
@@ -33,7 +34,6 @@
     $bgDanger = 'bg-danger';
     $bgInfo = 'bg-info';
     $availableGroups = $groupObject->availableGroups();
-    $notMergedEvents = $eventObject->notMergedEvents();
     $history = $eventObject->history($event->id);
     @endphp
     <section class="content container-fluid">
@@ -59,9 +59,6 @@
                                         {{ __('Make Notes') }}</button>
 
                                     @if ($event->status->id == '1' || $event->status->id == '4')
-                                        <button disabled id="send_sms" type="button"
-                                            class="btn btn-lg btn-default button4 text-bold"><i class="fas fa-envelope"></i>
-                                            {{ __('Send SMS') }}</button>
                                         <button disabled id="send_notification" type="button"
                                             class="btn btn-lg btn-default button7 text-bold"><i class="fas fa-bell"></i>
                                             {{ __('Send Notification') }}</button>
@@ -78,8 +75,6 @@
                                             class="btn btn-lg btn-default button8 text-bold"><i class="fa-solid fa-ban"></i>
                                             {{ __('Merge Report') }}</button>
                                     @else
-                                        <button id="send_sms" type="button" class="btn btn-lg button4 text-bold"><i
-                                                class="fas fa-envelope"></i> {{ __('Send SMS') }}</button>
                                         <button id="send_notification" type="button"
                                             class="btn btn-lg btn-default button7 text-bold"><i class="fas fa-bell"></i>
                                             {{ __('Send Notification') }}</button>
@@ -168,21 +163,21 @@
                                     class="table table-hover table-bordered text-center table-striped">
                                     <tr class="table-info ">
                                         <th>{{ __('ID') }}</th>
-                                        <th>{{ __('Emergency Type') }}</th>
-                                        <th>{{ __('Description') }}</th>
-                                        <th>{{ __('Location') }}</th>
+
                                         <th>{{ __('Merge') }}</th>
                                     </tr>
+
                                     @foreach ($notMergedEvents as $nevent)
                                         <tr class="table-light">
                                             <td class='eventrow'>{{ $nevent->id }}</td>
-                                            <td>{{ Str::title($nevent->eventType->title) }}</td>
-                                            <td>{{ $nevent->description }}</td>
-                                            <td class='text-primary'>
-                                                {{ substr($event->lat, 0, 7) . ' - ' . substr($event->lon, 0, 7) }}</td>
+
                                             <td>
-                                                <button class="btn btn-info btnSelect2"><i
-                                                        class="fa-solid fa-square-check"></i></button>
+                                                <form method='post'>
+                                                    @csrf
+                                                    <button class="btn btn-info btnSelect2"><i
+                                                            class="fa-solid fa-square-check"></i></button>
+                                                </form>
+
                                             </td>
                                         </tr>
                                     @endforeach
@@ -221,6 +216,12 @@
                     <a class="nav-link p-3" id="custom-content-below-evidence-tab" data-toggle="pill"
                         href="#custom-content-below-evidence" role="tab" aria-controls="custom-content-below-evidence"
                         aria-selected="false">{{ __('Evidences') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link p-3" id="custom-content-below-mergedEvents-tab" data-toggle="pill"
+                        href="#custom-content-below-mergedEvents" role="tab"
+                        aria-controls="custom-content-below-mergedEvents" aria-selected="false">
+                        {{ __('Merged Events') }}</a>
                 </li>
             </ul>
             <div class="tab-content px-3" id="custom-content-below-tabContent">
@@ -414,13 +415,17 @@
                 <div class="tab-pane fade py-5" id="custom-content-below-agentsDeployed" role="tabpanel"
                     aria-labelledby="custom-content-below-agentsDeployed-tab">
                     <div class="row">
-                        <div class="col-md-7 col-sm-12">
+                        <div class="col-md-12 col-sm-12">
                             <h3 class="text-bold mb-3">{{ __('Agent Group') }}:
                                 @if (isset($groups[0]))
                                     <a href="{{ route('agentGroup', $groups[0]->group_id) }}"
                                         class="text-danger">{{ $groups[0]->group_id }} ( <i
                                             class="fas fa-eye"></i>
                                         {{ __('More Details') }})</a>
+                                    <button type="button"
+                                        class="btn btn-md p-2 float-right btn-default button3 text-bold"><i
+                                            class="fas fa-user-times"></i> {{ __('Remove Agent Group') }}
+                                    </button>
                                 @else
                                     {{ __('No Group') }}
                                 @endif
@@ -455,8 +460,8 @@
                                                     </li>
                                                     <li class="list-group-item">
                                                         <b>{{ __('Phone Number') }}:</b>
-                                                        <aclass="float-right">{{ $agent->msisdn }}
-                                                            </aclass=>
+                                                        <a class="float-right">{{ $agent->msisdn }}
+                                                        </a>
                                                     </li>
                                                     <li class="list-group-item">
                                                         <b>Email:</b> <a class="float-right">{{ $agent->email }}</a>
@@ -539,11 +544,6 @@
                                     </div>
                                 @endif
                             @endforeach
-                            <div class="container-fluid">
-                                <button type="button" class="btn btn-md p-2 float-right btn-default button3 text-bold"><i
-                                        class="fas fa-user-times"></i> {{ __('Remove Agent Group') }}
-                                </button>
-                            </div>
                         @endif
                     </div>
                 </div>
@@ -576,7 +576,8 @@
                                                     <td class="pt-3">{{ $note->updated_at }}</td>
                                                     <td class="pb-1"><button type="button" id="deleteNote"
                                                             class="form-buttons3"><i
-                                                                class="fa-solid fa-trash"></i></button></td>
+                                                                class="fa-solid fa-trash"></i></button>
+                                                    </td>
                                                 </tr>
                                             @endforeach
 
@@ -657,6 +658,37 @@
 
                     </div>
                 </div>
+                <div class="tab-pane fade py-5" id="custom-content-below-mergedEvents" role="tabpanel"
+                    aria-labelledby="custom-content-below-mergedEvents-tab">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card rounded">
+                                <div class="card-title text-bold p-3 bg-primary">{{ __('Merged Events') }}
+                                </div>
+                                <div class="card-body">
+                                    <table class="table">
+                                        <thead class="thead">
+                                            <tr>
+                                                <th scope="col">{{ __('ID') }}</th>
+                                                <th scope="col">{{ __('User Name') }}</th>
+                                                <th scope="col">{{ __('Staff Name') }}</th>
+                                                <th scope="col">{{ __('Date & Time') }}</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -667,6 +699,74 @@
 @endsection
 @section('sweetjs')
     <script>
+        let _token = $('meta[name="csrf-token"]').attr('content');
+
+        $(document).ready(function() {
+            $("#myTable").on('click', '.btnSelect', function() {
+                var currentRow = $(this).closest("tr");
+                var id = currentRow.find(".pd-price").html();
+                $.ajax({
+                    console: function
+                    url: "{{ route('update_report', $event->id) }}",
+                    type: "POST",
+                    data: {
+                        group_id: id,
+                        _method: "PUT",
+                        _token: _token
+                    },
+                    success: function() {
+                        swal.fire({
+                            icon: 'success',
+                            title: "Updated!",
+                            text: "Your row has been updated.",
+                            type: "success",
+                            timer: 3000
+                        }).then(function() {
+                            location.reload(true);
+                        });
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        swal.fire("Error deleting!", "Please try again",
+                            "error");
+                    }
+                });
+
+            });
+        });
+    </script>
+    <script>
+        let _token = $('meta[name="csrf-token"]').attr('content');
+
+        $(document).ready(function() {
+            $("#myTable2").on('click', '.btnSelect2', function() {
+                    console.log('click');
+                    var currentRow = $(this).closest("tr");
+                    var id2 = currentRow.find(".eventrow").html();
+                    $.ajax({
+                            url: "{{ route('update_report', $event->id) }}",
+                            type: "POST",
+                            data: {
+                                event_id: value,
+                                _method: "PUT",
+                                _token: _token
+                            },
+                            success: function() {
+                                $.ajax({
+                                    url: "{{ route('merge', $event->id) }}",
+                                    type: "POST",
+                                    data: {
+                                        event_id: id2,
+                                        _token: _token
+                                    },
+
+                                });
+                            });
+                    })
+            });
+        });
+    </script>
+    <script>
+        import Swal from 'sweetalert2'
         var event_id = '{{ $event->id }}';
         var locale = '{{ $locale }}';
         var buttonFirstText = "";
@@ -697,7 +797,6 @@
             buttonThirdText = "Not Ekle";
             buttonCancelText = "İptal";
         }
-
         $("#mark_event").on("click", function() {
             Swal.fire({
                 title: '<i class="fas fa-highlighter"></i> Mark Events As',
@@ -761,50 +860,7 @@
                     })
                 }
             })
-        })
-        $("#upload_evidence").on("click", function() {
-            Swal.fire({
-                confirmButtonColor: "#1FAB45",
-                confirmButtonText: buttonSecondText,
-                cancelButtonText: buttonCancelText,
-                title: 'Select image',
-                input: 'file',
-                inputAttributes: {
-                    'accept': 'image/*,application/*,audio/*,text/*',
-                    'aria-label': 'Upload your document '
-                }
-            })
-            if (file) {
-                const fd = new FormData();
-                var ext = file.split('.').pop();
-                if (ext == 'png' || ext == 'jpg' || ext == 'jpeg') {
-                    var documentType = 1;
-                } else if (ext == 'doc' || ext == 'docx' || ext == 'pdf' ||
-                    ext == 'csv' || ext == 'xlsx') {
-                    var documentType = 4;
-                } else if (ext == 'mp4' || ext == 'mov' || ext == 'wmv' ||
-                    ext == 'avi' || ext == 'mpeg-2') {
-                    var documentType = 2;
-                } else if (ext == 'mp3' || ext == 'aac') {
-                    var documentType = 3;
-                } else {
-                    var documentType = 5;
-                }
-                fd.append('event_id', event_id);
-                fd.append('uploader_name', uploader_name);
-                fd.append('file', value);
-                fd.append('_token', _token);
-                fd.append('document_type_id', documentType);
-
-            }.then(function() {
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('store_evidence', $event->id) }}",
-                    data: fd
-                })
-            })
         });
-
 
 
         $('#make_notes').on('click', function() {
@@ -818,144 +874,22 @@
                 buttonsStyling: true
             }).then(function() {
                     $.ajax({
-                        type: "POST",
-                        url: "{{ route('store_notes') }}",
-                        data: {
-                            event_id: "{{ $event->id }}",
-                            note: $('textarea').val(),
-                            editor_id: "{{ Auth::user()->id }}",
-                            _token: _token
-                        },
-                        success: function(response) {
-                            Swal.fire(
-                                "Sccess!",
-                                "Your note has been saved!",
-                                "success"
-                            ).then(function() {
-                                window.location.reload();
-                            })
-                        },
-                        failure: function(response) {
-                            Swal.fire(
-                                "Internal Error",
-                                "Oops, your note was not saved.",
-                                "error"
-                            )
+                            type: "POST",
+                            url: "{{ route('store_notes') }}",
+                            data: {
+                                event_id: "{{ $event->id }}",
+                                note: $('textarea').val(),
+                                editor_id: "{{ Auth::user()->id }}",
+                                _token: _token
+                            },
+                            success: function(response) {
+                                Swal.fire(
+                                    "Sccess!",
+                                    "Your note has been saved!",
+                                });
                         }
-                    });
-                },
-                function(dismiss) {
-                    if (dismiss === "cancel") {
-                        swal(
-                            "Cancelled",
-                            "Canceled Note",
-                            "error"
-                        )
-                    }
-                })
-
-        });
-
-        $('#deleteNote').on('click', function() {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        type: "POST",
-                        data: {
-                            url: "{{ route('delete_notes', $note->id) }}",
-                            id: '$note->id',
-                            _method: "DELETE",
-                            _token: _token
-                        },
-                        success: function() {
-                            swal.fire("Done!", "It was succesfully deleted!",
-                                "success").then(
-                                function() {
-                                    window.location.reload();
-                                })
-
-                        },
-                        error: function(xhr, ajaxOptions, thrownError) {
-                            swal.fire("Error deleting!", "Please try again",
-                                "error");
-                        }
-                    });
-                } else {
-
-                }
+                    })
             })
         });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $("#myTable").on('click', '.btnSelect', function() {
-                var currentRow = $(this).closest("tr");
-                var id = currentRow.find(".pd-price").html();
-                $.ajax({
-                    console: function
-                    url: "{{ route('update_report', $event->id) }}",
-                    type: "POST",
-                    data: {
-                        group_id: id,
-                        _method: "PUT",
-                        _token: _token
-                    },
-                    success: function() {
-                        swal.fire({
-                            icon: 'success',
-                            title: "Updated!",
-                            text: "Your row has been updated.",
-                            type: "success",
-                            timer: 3000
-                        }).then(function() {
-                            location.reload(true);
-                        });
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        swal.fire("Error deleting!", "Please try again",
-                            "error");
-                    }
-                });
-
-            });
-        });
-        $(document).ready(function() {
-            $("#myTable2").on('click', '.btnSelect', function() {
-                var currentRow = $(this).closest("tr");
-                console.log("geldim");
-                var id2 = currentRow.find(".pd-price").html();
-                $.ajax({
-                    url: "{{ route('mark_event', $event->id) }}",
-                    type: "POST",
-                    event_status_id: 4,
-                    event_id: "{{ $event->id }}",
-                    staff_id: "{{ Auth::id() }}",
-                    success: function() {
-                        swal.fire({
-                            icon: 'success',
-                            title: "Updated!",
-                            text: "Your row has been updated.",
-                            type: "success",
-                            timer: 3000
-                        }).then(function() {
-                            location.reload(true);
-                        });
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        swal.fire("Error merging!", "Please try again",
-                            "error");
-                    }
-                });
-
-            });
-        })
     </script>
 @endsection

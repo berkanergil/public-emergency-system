@@ -11,6 +11,8 @@ use App\Models\EventType;
 use App\Models\Department;
 use App\Models\GroupEvent;
 use App\Models\EventStatus;
+use App\Models\MergedEvents;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +27,11 @@ use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GroupEventController;
 use App\Http\Controllers\StaffEventController;
+use App\Http\Controllers\MergedEventsController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\MergedReportsController;
+use App\Http\Controllers\WebNotificationController;
+use Mockery\Matcher\Not;
 
 /*
 |--------------------------------------------------------------------------
@@ -112,16 +119,16 @@ Route::prefix('admin/reports/')->group(function () {
 
 
     Route::get('report/{id}', function ($id) {
+        $notMergedEvents = Event::where('merged_report_id', '=', '0')->get();
         $event = Event::find($id);
         if ($event == null) {
             return abort(404);
         } else {
-            return view("report_operations.report", compact("event"));
+            return view("report_operations.report", compact("event", "notMergedEvents"));
         }
     })->name('report');
 
     Route::get('report/edit_report/{id}', function ($id) {
-
         $event = Event::find($id);
         $eventTypeObject = new EventType();
         $groupObject = new Group();
@@ -165,14 +172,14 @@ Route::prefix('admin/reports/')->group(function () {
         } else {
             return back();
         }
-        return view("role_operations.agent_operations.agent", compact("staff"));
+        return view("report_operations.report", compact("event"));
     })->name('update_report');
 
 
-    Route::get('/mergedReports', function () {
-        $eventObject = new Event();
-        return view("report_operations.mergedReports", compact("eventObject"));
-    })->name('mergedReports');
+    // Route::get('/mergedReports', function () {
+    //     $mergedEventObject = new MergedReport();
+    //     return view("report_operations.mergedReports", compact("mergedEventObject"));
+    // })->name('mergedReports');
 });
 
 Route::prefix('admin/staff/')->group(function () {
@@ -420,7 +427,15 @@ Route::post('/mark_event', function (Request $request) {
     }
 })->name("mark_event");
 
-
+Route::put('/merge', function (Request $request) {
+    $mergedEventObject = new MergedReportsController();
+    $response = $mergedEventObject->merge($request);
+    if ($response?->status() == 200) {
+        return true;
+    } else {
+        return abort(500);
+    }
+})->name('merge');
 
 
 
@@ -431,66 +446,66 @@ Route::get('/logout', function () {
 })->name("logout");
 
 Route::prefix('admin/systemOperations/')->group(function () {
-    Route::get('/messages', function () {
-        $messageObject = new Message();
-        return view("system_operations.messages", compact("messageObject"));
-    })->name('messages');
+    Route::get('/notifications', function () {
+        $notificationObject = new Notification();
+        return view("system_operations.notifications.notifications", compact("notificationObject"));
+    })->name('notifications');
 
-    Route::get('/createMessages', function (Request $request) {
-        $messageObject = new Message();
-        return view("system_operations.createMessages", compact("messageObject"));
-    })->name('createMessages');
+    Route::get('/createNotifications', function (Request $request) {
+        $notificationObject = new Notification();
+        return view("system_operations.notifications.createNotifications", compact("notificationObject"));
+    })->name('createNotifications');
 
-    Route::post('/createMessages', function (Request $request) {
-        $messageObject = new MessagesController;
-        $response = $messageObject->store($request);
+    Route::post('/createNotifications', function (Request $request) {
+        $notificationObject = new NotificationController;
+        $response = $notificationObject->store($request);
         if ($response?->status() == 200) {
             $staff_json = json_decode($response->content());
             return redirect()->back();
         } else {
             return back();
         }
-    })->name('createMessages');
+    })->name('createNotifications');
+
     Route::get(
-        'messages/message/id:{id}',
+        'notifications/notification/id:{id}',
         function ($id) {
-            $message = Message::find($id);
-            return view("system_operations.message", compact("message"));
+            $notification = Notification::find($id);
+            return view("system_operations.notifications.notification", compact("notification"));
         }
-    )->name('message');
+    )->name('notification');
 
-    Route::get('messages/message/editMessage/id:{id}', function ($id) {
-        $message = Message::find($id);
-        return view("system_operations.editMessage", compact("message"));
-    })->name('editMessage');
+    Route::get('notifications/notification/editNotification/id:{id}', function ($id) {
+        $notification = Notification::find($id);
+        return view("system_operations.notifications.editNotification", compact("notification"));
+    })->name('editNotification');
 
-    Route::put('messages/message/editMessage/id:{id}', function (Request $request, $id) {
-        $messageObject = new MessagesController;
-        $response = $messageObject->update($request, $id);
+    Route::put('notifications/notification/editNotification/id:{id}', function (Request $request, $id) {
+        $notificationObject = new NotificationController;
+        $response = $notificationObject->update($request, $id);
         if ($response?->status() == 200) {
-            $message = Message::find($id);
-            return redirect()->route("message", ["id" => $messageObject->id]);
+            $notificationObject = Notification::find($id);
+            return redirect()->route("notification", ["id" => $notificationObject->id]);
         } else {
             return back();
         }
-        return view("system_operations.editMessage", compact("message"));
-    })->name('editMessage');
+        return view("system_operations.notifications.editNotification", compact("notification"));
+    })->name('editNotification');
 
-    Route::delete('messages/message/deleteMessage/id:{id}', function ($id) {
-        $messageControllerObject = new MessagesController();
-        $response = $messageControllerObject->destroy($id);
+    Route::delete('messages/message/deleteNotification/id:{id}', function ($id) {
+        $notificationObject = new NotificationController();
+        $response = $notificationObject->destroy($id);
         if ($response?->status() == 200) {
-            return redirect()->route("messages", ["id" => Auth::id()]);
+            return redirect()->route("notificationObject", ["id" => Auth::id()]);
         } else {
             return back();
         }
-    })->name('deleteMessage');
+    })->name('deleteNotification');
 });
 
 
 Route::get('/chatPage', [App\Http\Controllers\HomeController::class, 'chatPage'])->name('chatPage');
-Route::get('admin/createNotifications', [App\Http\Controllers\HomeController::class, 'createPagee'])->name('createNotifications');
-Route::get('admin/notifications', [App\Http\Controllers\HomeController::class, 'notifications'])->name('notifications');
+// Route::get('admin/createNotifications', [App\Http\Controllers\HomeController::class, 'createPagee'])->name('createNotifications');
 Route::get('/emergencyp', [App\Http\Controllers\HomeController::class, 'emergencyp'])->name('emergencyp');
 
 Route::get('/admin/reports/current/data', [EventController::class, 'reportData'])->name('reports.data');
@@ -499,3 +514,9 @@ Route::get('/admin/newReports/all', function () {
     $events = Event::all();
     return response($events);
 });
+
+// Route::get('/panelNotifications', [HomeController::class, 'index'])->name('panelNotifications');
+
+// // Route::get('/admin/reports/report/{id}', [WebNotificationController::class, 'index'])->name('push-notificaiton');
+// Route::post('/store-token', [WebNotificationController::class, 'storeToken'])->name('store.token');
+// Route::post('/admin/reports/report/{id}', [WebNotificationController::class, 'sendWebNotification'])->name('send.web-notification');

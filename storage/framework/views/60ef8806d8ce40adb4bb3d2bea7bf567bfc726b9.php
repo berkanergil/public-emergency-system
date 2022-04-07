@@ -20,15 +20,6 @@
             <form method="POST" action="<?php echo e(route('login')); ?>">
                 <?php echo csrf_field(); ?>
                 <h1 style="margin-bottom:30px; color: #083372;">EmergenCyp | <?php echo e(__('Login')); ?></h1>
-                <?php if($errors->has('email')): ?>
-                    <span class="invalid-feedback">
-                        <strong><?php echo e($errors->first('email')); ?></strong>
-                    </span>
-                <?php elseif($errors->has('password')): ?>
-                    <span class="invalid-feedback">
-                        <strong><?php echo e($errors->first('password')); ?></strong>
-                    </span>
-                <?php endif; ?>
                 <input id="email" type="email" class="form-control <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :

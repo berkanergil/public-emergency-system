@@ -13,8 +13,9 @@
     use App\Models\Event;
     use App\Models\Notes;
     use App\Models\DocumentType;
-
+    use App\Models\MergedEvents;
     $locale = App::currentLocale();
+
     $noteObject = new Notes();
     $groupObject = new Group();
     $eventObject = new Event();
@@ -33,7 +34,6 @@
     $bgDanger = 'bg-danger';
     $bgInfo = 'bg-info';
     $availableGroups = $groupObject->availableGroups();
-    $notMergedEvents = $eventObject->notMergedEvents();
     $history = $eventObject->history($event->id);
     ?>
     <section class="content container-fluid">
@@ -60,9 +60,6 @@
                                         <?php echo e(__('Make Notes')); ?></button>
 
                                     <?php if($event->status->id == '1' || $event->status->id == '4'): ?>
-                                        <button disabled id="send_sms" type="button"
-                                            class="btn btn-lg btn-default button4 text-bold"><i class="fas fa-envelope"></i>
-                                            <?php echo e(__('Send SMS')); ?></button>
                                         <button disabled id="send_notification" type="button"
                                             class="btn btn-lg btn-default button7 text-bold"><i class="fas fa-bell"></i>
                                             <?php echo e(__('Send Notification')); ?></button>
@@ -79,8 +76,6 @@
                                             class="btn btn-lg btn-default button8 text-bold"><i class="fa-solid fa-ban"></i>
                                             <?php echo e(__('Merge Report')); ?></button>
                                     <?php else: ?>
-                                        <button id="send_sms" type="button" class="btn btn-lg button4 text-bold"><i
-                                                class="fas fa-envelope"></i> <?php echo e(__('Send SMS')); ?></button>
                                         <button id="send_notification" type="button"
                                             class="btn btn-lg btn-default button7 text-bold"><i class="fas fa-bell"></i>
                                             <?php echo e(__('Send Notification')); ?></button>
@@ -173,21 +168,21 @@
                                     class="table table-hover table-bordered text-center table-striped">
                                     <tr class="table-info ">
                                         <th><?php echo e(__('ID')); ?></th>
-                                        <th><?php echo e(__('Emergency Type')); ?></th>
-                                        <th><?php echo e(__('Description')); ?></th>
-                                        <th><?php echo e(__('Location')); ?></th>
+
                                         <th><?php echo e(__('Merge')); ?></th>
                                     </tr>
+
                                     <?php $__currentLoopData = $notMergedEvents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $nevent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr class="table-light">
                                             <td class='eventrow'><?php echo e($nevent->id); ?></td>
-                                            <td><?php echo e(Str::title($nevent->eventType->title)); ?></td>
-                                            <td><?php echo e($nevent->description); ?></td>
-                                            <td class='text-primary'>
-                                                <?php echo e(substr($event->lat, 0, 7) . ' - ' . substr($event->lon, 0, 7)); ?></td>
+
                                             <td>
-                                                <button class="btn btn-info btnSelect2"><i
-                                                        class="fa-solid fa-square-check"></i></button>
+                                                <form method='post'>
+                                                    <?php echo csrf_field(); ?>
+                                                    <button class="btn btn-info btnSelect2"><i
+                                                            class="fa-solid fa-square-check"></i></button>
+                                                </form>
+
                                             </td>
                                         </tr>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -226,6 +221,12 @@
                     <a class="nav-link p-3" id="custom-content-below-evidence-tab" data-toggle="pill"
                         href="#custom-content-below-evidence" role="tab" aria-controls="custom-content-below-evidence"
                         aria-selected="false"><?php echo e(__('Evidences')); ?></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link p-3" id="custom-content-below-mergedEvents-tab" data-toggle="pill"
+                        href="#custom-content-below-mergedEvents" role="tab"
+                        aria-controls="custom-content-below-mergedEvents" aria-selected="false">
+                        <?php echo e(__('Merged Events')); ?></a>
                 </li>
             </ul>
             <div class="tab-content px-3" id="custom-content-below-tabContent">
@@ -435,13 +436,18 @@
                 <div class="tab-pane fade py-5" id="custom-content-below-agentsDeployed" role="tabpanel"
                     aria-labelledby="custom-content-below-agentsDeployed-tab">
                     <div class="row">
-                        <div class="col-md-7 col-sm-12">
+                        <div class="col-md-12 col-sm-12">
                             <h3 class="text-bold mb-3"><?php echo e(__('Agent Group')); ?>:
                                 <?php if(isset($groups[0])): ?>
                                     <a href="<?php echo e(route('agentGroup', $groups[0]->group_id)); ?>"
                                         class="text-danger"><?php echo e($groups[0]->group_id); ?> ( <i
                                             class="fas fa-eye"></i>
                                         <?php echo e(__('More Details')); ?>)</a>
+                                    <button type="button"
+                                        class="btn btn-md p-2 float-right btn-default button3 text-bold"><i
+                                            class="fas fa-user-times"></i> <?php echo e(__('Remove Agent Group')); ?>
+
+                                    </button>
                                 <?php else: ?>
                                     <?php echo e(__('No Group')); ?>
 
@@ -479,9 +485,9 @@
                                                     </li>
                                                     <li class="list-group-item">
                                                         <b><?php echo e(__('Phone Number')); ?>:</b>
-                                                        <aclass="float-right"><?php echo e($agent->msisdn); ?>
+                                                        <a class="float-right"><?php echo e($agent->msisdn); ?>
 
-                                                            </aclass=>
+                                                        </a>
                                                     </li>
                                                     <li class="list-group-item">
                                                         <b>Email:</b> <a class="float-right"><?php echo e($agent->email); ?></a>
@@ -568,12 +574,6 @@
                                     </div>
                                 <?php endif; ?>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            <div class="container-fluid">
-                                <button type="button" class="btn btn-md p-2 float-right btn-default button3 text-bold"><i
-                                        class="fas fa-user-times"></i> <?php echo e(__('Remove Agent Group')); ?>
-
-                                </button>
-                            </div>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -607,7 +607,8 @@
                                                     <td class="pt-3"><?php echo e($note->updated_at); ?></td>
                                                     <td class="pb-1"><button type="button" id="deleteNote"
                                                             class="form-buttons3"><i
-                                                                class="fa-solid fa-trash"></i></button></td>
+                                                                class="fa-solid fa-trash"></i></button>
+                                                    </td>
                                                 </tr>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
@@ -689,6 +690,38 @@
 
                     </div>
                 </div>
+                <div class="tab-pane fade py-5" id="custom-content-below-mergedEvents" role="tabpanel"
+                    aria-labelledby="custom-content-below-mergedEvents-tab">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card rounded">
+                                <div class="card-title text-bold p-3 bg-primary"><?php echo e(__('Merged Events')); ?>
+
+                                </div>
+                                <div class="card-body">
+                                    <table class="table">
+                                        <thead class="thead">
+                                            <tr>
+                                                <th scope="col"><?php echo e(__('ID')); ?></th>
+                                                <th scope="col"><?php echo e(__('User Name')); ?></th>
+                                                <th scope="col"><?php echo e(__('Staff Name')); ?></th>
+                                                <th scope="col"><?php echo e(__('Date & Time')); ?></th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -699,6 +732,74 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('sweetjs'); ?>
     <script>
+        let _token = $('meta[name="csrf-token"]').attr('content');
+
+        $(document).ready(function() {
+            $("#myTable").on('click', '.btnSelect', function() {
+                var currentRow = $(this).closest("tr");
+                var id = currentRow.find(".pd-price").html();
+                $.ajax({
+                    console: function
+                    url: "<?php echo e(route('update_report', $event->id)); ?>",
+                    type: "POST",
+                    data: {
+                        group_id: id,
+                        _method: "PUT",
+                        _token: _token
+                    },
+                    success: function() {
+                        swal.fire({
+                            icon: 'success',
+                            title: "Updated!",
+                            text: "Your row has been updated.",
+                            type: "success",
+                            timer: 3000
+                        }).then(function() {
+                            location.reload(true);
+                        });
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        swal.fire("Error deleting!", "Please try again",
+                            "error");
+                    }
+                });
+
+            });
+        });
+    </script>
+    <script>
+        let _token = $('meta[name="csrf-token"]').attr('content');
+
+        $(document).ready(function() {
+            $("#myTable2").on('click', '.btnSelect2', function() {
+                    console.log('click');
+                    var currentRow = $(this).closest("tr");
+                    var id2 = currentRow.find(".eventrow").html();
+                    $.ajax({
+                            url: "<?php echo e(route('update_report', $event->id)); ?>",
+                            type: "POST",
+                            data: {
+                                event_id: value,
+                                _method: "PUT",
+                                _token: _token
+                            },
+                            success: function() {
+                                $.ajax({
+                                    url: "<?php echo e(route('merge', $event->id)); ?>",
+                                    type: "POST",
+                                    data: {
+                                        event_id: id2,
+                                        _token: _token
+                                    },
+
+                                });
+                            });
+                    })
+            });
+        });
+    </script>
+    <script>
+        import Swal from 'sweetalert2'
         var event_id = '<?php echo e($event->id); ?>';
         var locale = '<?php echo e($locale); ?>';
         var buttonFirstText = "";
@@ -729,7 +830,6 @@
             buttonThirdText = "Not Ekle";
             buttonCancelText = "İptal";
         }
-
         $("#mark_event").on("click", function() {
             Swal.fire({
                 title: '<i class="fas fa-highlighter"></i> Mark Events As',
@@ -793,50 +893,7 @@
                     })
                 }
             })
-        })
-        $("#upload_evidence").on("click", function() {
-            Swal.fire({
-                confirmButtonColor: "#1FAB45",
-                confirmButtonText: buttonSecondText,
-                cancelButtonText: buttonCancelText,
-                title: 'Select image',
-                input: 'file',
-                inputAttributes: {
-                    'accept': 'image/*,application/*,audio/*,text/*',
-                    'aria-label': 'Upload your document '
-                }
-            })
-            if (file) {
-                const fd = new FormData();
-                var ext = file.split('.').pop();
-                if (ext == 'png' || ext == 'jpg' || ext == 'jpeg') {
-                    var documentType = 1;
-                } else if (ext == 'doc' || ext == 'docx' || ext == 'pdf' ||
-                    ext == 'csv' || ext == 'xlsx') {
-                    var documentType = 4;
-                } else if (ext == 'mp4' || ext == 'mov' || ext == 'wmv' ||
-                    ext == 'avi' || ext == 'mpeg-2') {
-                    var documentType = 2;
-                } else if (ext == 'mp3' || ext == 'aac') {
-                    var documentType = 3;
-                } else {
-                    var documentType = 5;
-                }
-                fd.append('event_id', event_id);
-                fd.append('uploader_name', uploader_name);
-                fd.append('file', value);
-                fd.append('_token', _token);
-                fd.append('document_type_id', documentType);
-
-            }.then(function() {
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo e(route('store_evidence', $event->id)); ?>",
-                    data: fd
-                })
-            })
         });
-
 
 
         $('#make_notes').on('click', function() {
@@ -850,145 +907,23 @@
                 buttonsStyling: true
             }).then(function() {
                     $.ajax({
-                        type: "POST",
-                        url: "<?php echo e(route('store_notes')); ?>",
-                        data: {
-                            event_id: "<?php echo e($event->id); ?>",
-                            note: $('textarea').val(),
-                            editor_id: "<?php echo e(Auth::user()->id); ?>",
-                            _token: _token
-                        },
-                        success: function(response) {
-                            Swal.fire(
-                                "Sccess!",
-                                "Your note has been saved!",
-                                "success"
-                            ).then(function() {
-                                window.location.reload();
-                            })
-                        },
-                        failure: function(response) {
-                            Swal.fire(
-                                "Internal Error",
-                                "Oops, your note was not saved.",
-                                "error"
-                            )
+                            type: "POST",
+                            url: "<?php echo e(route('store_notes')); ?>",
+                            data: {
+                                event_id: "<?php echo e($event->id); ?>",
+                                note: $('textarea').val(),
+                                editor_id: "<?php echo e(Auth::user()->id); ?>",
+                                _token: _token
+                            },
+                            success: function(response) {
+                                Swal.fire(
+                                    "Sccess!",
+                                    "Your note has been saved!",
+                                });
                         }
-                    });
-                },
-                function(dismiss) {
-                    if (dismiss === "cancel") {
-                        swal(
-                            "Cancelled",
-                            "Canceled Note",
-                            "error"
-                        )
-                    }
-                })
-
-        });
-
-        $('#deleteNote').on('click', function() {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        type: "POST",
-                        data: {
-                            url: "<?php echo e(route('delete_notes', $note->id)); ?>",
-                            id: '$note->id',
-                            _method: "DELETE",
-                            _token: _token
-                        },
-                        success: function() {
-                            swal.fire("Done!", "It was succesfully deleted!",
-                                "success").then(
-                                function() {
-                                    window.location.reload();
-                                })
-
-                        },
-                        error: function(xhr, ajaxOptions, thrownError) {
-                            swal.fire("Error deleting!", "Please try again",
-                                "error");
-                        }
-                    });
-                } else {
-
-                }
+                    })
             })
         });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $("#myTable").on('click', '.btnSelect', function() {
-                var currentRow = $(this).closest("tr");
-                var id = currentRow.find(".pd-price").html();
-                $.ajax({
-                    console: function
-                    url: "<?php echo e(route('update_report', $event->id)); ?>",
-                    type: "POST",
-                    data: {
-                        group_id: id,
-                        _method: "PUT",
-                        _token: _token
-                    },
-                    success: function() {
-                        swal.fire({
-                            icon: 'success',
-                            title: "Updated!",
-                            text: "Your row has been updated.",
-                            type: "success",
-                            timer: 3000
-                        }).then(function() {
-                            location.reload(true);
-                        });
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        swal.fire("Error deleting!", "Please try again",
-                            "error");
-                    }
-                });
-
-            });
-        });
-        $(document).ready(function() {
-            $("#myTable2").on('click', '.btnSelect', function() {
-                var currentRow = $(this).closest("tr");
-                console.log("geldim");
-                var id2 = currentRow.find(".pd-price").html();
-                $.ajax({
-                    url: "<?php echo e(route('mark_event', $event->id)); ?>",
-                    type: "POST",
-                    event_status_id: 4,
-                    event_id: "<?php echo e($event->id); ?>",
-                    staff_id: "<?php echo e(Auth::id()); ?>",
-                    success: function() {
-                        swal.fire({
-                            icon: 'success',
-                            title: "Updated!",
-                            text: "Your row has been updated.",
-                            type: "success",
-                            timer: 3000
-                        }).then(function() {
-                            location.reload(true);
-                        });
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        swal.fire("Error merging!", "Please try again",
-                            "error");
-                    }
-                });
-
-            });
-        })
     </script>
 <?php $__env->stopSection(); ?>
 

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <link rel="icon" href="{{ asset('images/favicon-16x16.png') }}">
     <link href="{{ url('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css') }}"
         rel="stylesheet" />
@@ -55,12 +56,10 @@
     <link rel="stylesheet"
         href="{{ url('https://adminlte.io/themes/v3/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/auth/authority_global.css') }}">
+    <link rel="stylesheet"
+        href="{{ url('https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.11.0/sweetalert2.css') }}" />
 
-    <script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/js/bootstrap-select.min.js') }}">
-    </script>
 
-
-    <link rel="stylesheet" href="{{ asset('sweetalert2.min.css') }}">
     @yield('css')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -207,7 +206,6 @@
 
                 <!-- Sidebar -->
                 <div class="sidebar">
-                    <!-- Sidebar user panel (optional) -->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex text-center justify-content-center align-items-center">
                         <div class="info">
                             {{-- <a href="#" class="d-block">{{ Auth::user()->name }}</a> --}}
@@ -216,8 +214,6 @@
                                 {{ Str::title($name . ' ' . $surname) }}</a>
                         </div>
                     </div>
-
-                    <!-- SidebarSearch Form -->
                     <div class="form-inline">
                         <div class="input-group" data-widget="sidebar-search">
                             <input class="form-control form-control-sidebar" type="search" placeholder="Search"
@@ -229,13 +225,9 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Sidebar Menu -->
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                             data-accordion="false">
-                            <!-- Add icons to the links using the .nav-icon class
-                with font-awesome or any other icon font library -->
                             <li class="nav-header"> <strong> {{ __('STATISTICS & INSIGHTS') }}</strong></li>
 
                             <li class="nav-item menu-open">
@@ -279,12 +271,12 @@
                                             <p>{{ __('Past Reports') }}</p>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <a href="{{ route('mergedReports') }}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>{{ __('Merged Reports') }}</p>
                                         </a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </li>
 
@@ -372,30 +364,8 @@
                                 </ul>
                             </li>
                             <li class="nav-header"><strong>{{ __('SYSTEM OPERATIONS') }}</strong></li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="ml-1 fas fa-envelope"></i>
-                                    <p class="ml-2">
-                                        {{ __('SMS Messages') }}
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                </a>
 
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('createMessages') }}" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>{{ __('Create SMS Messages') }}</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('messages') }}" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>{{ __('See All SMS Messages') }}</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="ml-1 fas fa-bell"></i>
@@ -478,13 +448,16 @@
 
     </div>
     <!-- ./wrapper -->
-
-    <!-- REQUIRED SCRIPTS -->
-
-    <!-- jQuery -->
+    <script
+        src="{{ url('https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=') }}"
+        crossorigin="anonymous"></script>
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    <!-- REQUIRED SCRIPTS -->
+
+    <!-- jQuery -->
+
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button)
@@ -496,10 +469,7 @@
     <!-- Sparkline -->
     <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
     <!-- JQVMap -->
-    <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-    <script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
-    <!-- jQuery Knob Chart -->
-    <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+
     <!-- daterangepicker -->
     <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
     <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
@@ -629,20 +599,21 @@
             });
         });
     </script>
-
+    <!-- jQuery Knob Chart -->
+    <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
     <script src="{{ url('https://kit.fontawesome.com/3a82b90854.js') }}" crossorigin="anonymous"></script>
     <script src="{{ asset('js/password_generator.js') }}"></script>
-    <script src="{{ url('//cdn.jsdelivr.net/npm/sweetalert2@11') }}"></script>
     <script src="{{ url('https://kit.fontawesome.com/3a82b90854.js') }}" crossorigin="anonymous"></script>
     <script src="{{ asset('js/password_generator.js') }}"></script>
-    <script src="{{ url('//cdn.jsdelivr.net/npm/sweetalert2@11') }}"></script>
-
-    <script src="{{ asset('sweetalert2.min.js') }}"></script>
     <script src="{{ url('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js') }}"></script>
-    <script
-        src="{{ url('https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=') }}"
-        crossorigin="anonymous"></script>
+    <script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/js/bootstrap-select.min.js') }}">
+    </script>
+
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
+    <script src="{{ url('https://cdn.jsdelivr.net/npm/sweetalert2@11') }}"></script>
+    <script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.11.0/sweetalert2.all.min.js') }}">
+    </script>
+
 </body>
 
 @yield('sweetjs')

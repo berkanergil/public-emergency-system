@@ -63,7 +63,7 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request=$request->except("group_id");
+        $request = $request->except("group_id");
         return response(Event::find($id)->update($request));
     }
 
@@ -78,22 +78,24 @@ class EventController extends Controller
         return response(Event::destroy($id));
     }
 
-    public function eventDetail($id){
-        $staff=Staff::find($id);
-        $eventDetail=$staff->group->currentEvent($staff->group->group_id);
-        if(isset($eventDetail->user_id)){
-            $eventDetail->creator=User::find($eventDetail->user_id);
-        }elseif(isset($eventDetail->staff_id)){
-            $eventDetail->creator=Staff::find($eventDetail->staff_id);
+    public function eventDetail($id)
+    {
+        $staff = Staff::find($id);
+        $eventDetail = $staff->group->currentEvent($staff->group->group_id);
+        if (isset($eventDetail->user_id)) {
+            $eventDetail->creator = User::find($eventDetail->user_id);
+        } elseif (isset($eventDetail->staff_id)) {
+            $eventDetail->creator = Staff::find($eventDetail->staff_id);
         }
-        $eventDetail->groupMembers=$staff->group->groupMembers($staff->group->group_id);
-        $eventDetail->event_type_title=EventType::find($eventDetail->event_type_id)->title;
+        $eventDetail->groupMembers = $staff->group->groupMembers($staff->group->group_id);
+        $eventDetail->event_type_title = EventType::find($eventDetail->event_type_id)->title;
         return response($eventDetail);
     }
 
-    public function groupMembers($id){
-        $staff=Staff::find($id);
-        $groupMembers=$staff->group->groupMembers($staff->group->group_id);
+    public function groupMembers($id)
+    {
+        $staff = Staff::find($id);
+        $groupMembers = $staff->group->groupMembers($staff->group->group_id);
         return response($groupMembers);
     }
 
@@ -104,7 +106,7 @@ class EventController extends Controller
         $query = Event::whereIn("event_status_id", [2, 3])->orderBy("id", "desc")->get();
         $events = [];
         foreach ($query as $event) {
-            if($event->user){
+            if ($event->user) {
                 array_push($events, [
                     'id' => $event->id,
                     'type' => $locale == 'en' ? Str::title($event->eventType->title) : Str::title($event->eventType->tr),
@@ -120,8 +122,7 @@ class EventController extends Controller
                     ],
                     'date' => substr($event->created_at, 0, 10) . ' ' . substr($event->created_at, 11, 19)
                 ]);
-            }
-            else if($event->staff){
+            } else if ($event->staff) {
                 array_push($events, [
                     'id' => $event->id,
                     'type' => $locale == 'en' ? Str::title($event->eventType->title) : Str::title($event->eventType->tr),

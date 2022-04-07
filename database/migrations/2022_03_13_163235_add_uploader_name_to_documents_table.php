@@ -14,6 +14,7 @@ class AddUploaderNameToDocumentsTable extends Migration
     public function up()
     {
         Schema::table('documents', function (Blueprint $table) {
+            $table->foreignId('document_type_id')->after('id');
             $table->string('uploader_name')->after('document_type_id');
         });
     }
